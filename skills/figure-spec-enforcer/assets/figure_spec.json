@@ -1,0 +1,23 @@
+{
+  "style": {
+    "dpi": 160,
+    "palette": [
+      "#0072B2",
+      "#E69F00",
+      "#009E73"
+    ],
+    "font_size": 10,
+    "ci_color": "#444444"
+  },
+  "paths": {
+    "inferential": "outputs/inferential_stats.json",
+    "figure_dir": "outputs/figures",
+    "matched_summary": "outputs/blowup_matched_panel_a8_summary.json",
+    "sweep_sigma_feedback": "outputs/sweep_sigma_feedback.csv",
+    "sweep_gamma_threshold": "outputs/sweep_gamma_threshold.csv",
+    "recruited_cells": "outputs/recruited_cells_a8.csv",
+    "sweep_mode_b": "outputs/sweep_mode_b.csv",
+    "mstar_isocurves": "outputs/mstar_isocurves.csv",
+    "precursor_trajectory": "outputs/precursor_longitudinal_trajectory.csv"
+  }
+}

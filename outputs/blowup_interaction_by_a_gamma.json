@@ -1,0 +1,113 @@
+{
+  "rows": [
+    {
+      "a": "2",
+      "gamma": "0",
+      "rows_total": 300,
+      "rows_with_blowup": 208,
+      "mean_blowup_step": 6.0048076923076925,
+      "min_blowup_step": 2,
+      "max_blowup_step": 58
+    },
+    {
+      "a": "2",
+      "gamma": "0.05",
+      "rows_total": 300,
+      "rows_with_blowup": 209,
+      "mean_blowup_step": 6.229665071770335,
+      "min_blowup_step": 2,
+      "max_blowup_step": 60
+    },
+    {
+      "a": "2",
+      "gamma": "0.2",
+      "rows_total": 300,
+      "rows_with_blowup": 209,
+      "mean_blowup_step": 6.110047846889952,
+      "min_blowup_step": 2,
+      "max_blowup_step": 59
+    },
+    {
+      "a": "4",
+      "gamma": "0",
+      "rows_total": 300,
+      "rows_with_blowup": 149,
+      "mean_blowup_step": 10.221476510067115,
+      "min_blowup_step": 2,
+      "max_blowup_step": 117
+    },
+    {
+      "a": "4",
+      "gamma": "0.05",
+      "rows_total": 300,
+      "rows_with_blowup": 149,
+      "mean_blowup_step": 10.100671140939598,
+      "min_blowup_step": 2,
+      "max_blowup_step": 115
+    },
+    {
+      "a": "4",
+      "gamma": "0.2",
+      "rows_total": 300,
+      "rows_with_blowup": 150,
+      "mean_blowup_step": 9.966666666666667,
+      "min_blowup_step": 2,
+      "max_blowup_step": 110
+    },
+    {
+      "a": "8",
+      "gamma": "0",
+      "rows_total": 300,
+      "rows_with_blowup": 73,
+      "mean_blowup_step": 21.136986301369863,
+      "min_blowup_step": 3,
+      "max_blowup_step": 126
+    },
+    {
+      "a": "8",
+      "gamma": "0.05",
+      "rows_total": 300,
+      "rows_with_blowup": 73,
+      "mean_blowup_step": 20.726027397260275,
+      "min_blowup_step": 3,
+      "max_blowup_step": 120
+    },
+    {
+      "a": "8",
+      "gamma": "0.2",
+      "rows_total": 300,
+      "rows_with_blowup": 78,
+      "mean_blowup_step": 24,
+      "min_blowup_step": 3,
+      "max_blowup_step": 158
+    },
+    {
+      "a": "16",
+      "gamma": "0",
+      "rows_total": 300,
+      "rows_with_blowup": 30,
+      "mean_blowup_step": 47.333333333333336,
+      "min_blowup_step": 10,
+      "max_blowup_step": 155
+    },
+    {
+      "a": "16",
+      "gamma": "0.05",
+      "rows_total": 300,
+      "rows_with_blowup": 30,
+      "mean_blowup_step": 44.8,
+      "min_blowup_step": 10,
+      "max_blowup_step": 145
+    },
+    {
+      "a": "16",
+      "gamma": "0.2",
+      "rows_total": 300,
+      "rows_with_blowup": 32,
+      "mean_blowup_step": 42.5625,
+      "min_blowup_step": 9,
+      "max_blowup_step": 148
+    }
+  ],
+  "note": "mean_blowup_step computed over rows where blowup_step is present"
+}

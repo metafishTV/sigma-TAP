@@ -1,0 +1,62 @@
+{
+  "total_rows": 3600,
+  "regime_counts": {
+    "plateau": 2100,
+    "exponential": 73,
+    "precursor-active": 37,
+    "explosive": 1390
+  },
+  "under_resolved_true": 2121,
+  "rows_with_blowup_step": 1390,
+  "mean_blowup_step_by_gamma": {
+    "0": 12.467391304347826,
+    "0.05": 12.286334056399133,
+    "0.2": 12.805970149253731
+  },
+  "by_gamma": {
+    "0": {
+      "plateau": 702,
+      "exponential": 25,
+      "precursor-active": 13,
+      "explosive": 460
+    },
+    "0.05": {
+      "plateau": 702,
+      "exponential": 24,
+      "explosive": 461,
+      "precursor-active": 13
+    },
+    "0.2": {
+      "plateau": 696,
+      "exponential": 24,
+      "explosive": 469,
+      "precursor-active": 11
+    }
+  },
+  "by_a": {
+    "2": {
+      "plateau": 254,
+      "exponential": 13,
+      "precursor-active": 7,
+      "explosive": 626
+    },
+    "4": {
+      "plateau": 431,
+      "precursor-active": 6,
+      "exponential": 15,
+      "explosive": 448
+    },
+    "8": {
+      "plateau": 637,
+      "exponential": 24,
+      "precursor-active": 15,
+      "explosive": 224
+    },
+    "16": {
+      "plateau": 778,
+      "exponential": 21,
+      "precursor-active": 9,
+      "explosive": 92
+    }
+  }
+}

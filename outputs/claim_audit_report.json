@@ -1,0 +1,327 @@
+{
+  "manuscript": "MANUSCRIPT_SYNTHESIS_FINAL.md",
+  "inferential": "outputs/inferential_stats.json",
+  "declared": "config/manuscript_declared_values.json",
+  "config": "config/audit_config.json",
+  "coef_tolerance": 0.07,
+  "check_count": 50,
+  "all_pass": true,
+  "checks": [
+    {
+      "name": "matched_p_threshold_claim",
+      "artifact_value": 0.0004997501249375312,
+      "expected": "p < 0.001 when matched p < 0.001",
+      "pass": true
+    },
+    {
+      "name": "matched_mean_difference_text_claim",
+      "artifact_value": 1.5753424657534247,
+      "expected": "1.58",
+      "pass": true
+    },
+    {
+      "name": "occupancy_p_value_claim",
+      "artifact_value": 0.12043978010994502,
+      "expected": "p = 0.120 (3dp)",
+      "pass": true
+    },
+    {
+      "name": "occupancy_difference_text_claim",
+      "artifact_value": 0.013333333333333308,
+      "expected": "0.013",
+      "pass": true
+    },
+    {
+      "name": "occupancy_ci_claim",
+      "artifact_value": {
+        "lower": 0.0033333333333332993,
+        "upper": 0.026666666666666672
+      },
+      "expected": "[0.003, 0.027]",
+      "pass": true
+    },
+    {
+      "name": "occupancy_fraction_gamma0_claim",
+      "artifact_value": 0.26,
+      "expected": "0.260",
+      "pass": true
+    },
+    {
+      "name": "occupancy_fraction_gamma0.2_claim",
+      "artifact_value": 0.2733333333333333,
+      "expected": "0.273",
+      "pass": true
+    },
+    {
+      "name": "matched_panel_n_claim",
+      "artifact_value": 73,
+      "expected": "n = 73",
+      "pass": true
+    },
+    {
+      "name": "matched_mean_gamma0_claim",
+      "artifact_value": 21.136986301369863,
+      "expected": "21.14",
+      "pass": true
+    },
+    {
+      "name": "matched_mean_gamma0.2_claim",
+      "artifact_value": 19.561643835616437,
+      "expected": "19.56",
+      "pass": true
+    },
+    {
+      "name": "sign_reversal_nonoverlap_log_alpha_flag",
+      "artifact_value": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "sign_reversal_nonoverlap_log_mu_flag",
+      "artifact_value": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "sign_reversal_nonoverlap_log_alpha_geometry",
+      "artifact_value": {
+        "mode_a_upper": -0.3764587673081444,
+        "mode_b_lower": 1.027419335049876
+      },
+      "expected": "mode_a_upper < mode_b_lower",
+      "pass": true
+    },
+    {
+      "name": "sign_reversal_nonoverlap_log_mu_geometry",
+      "artifact_value": {
+        "mode_a_lower": 1.9620942421959384,
+        "mode_b_upper": -0.3895917570876158
+      },
+      "expected": "mode_a_lower > mode_b_upper",
+      "pass": true
+    },
+    {
+      "name": "manuscript_nonoverlap_phrase_present",
+      "artifact_value": "non-overlapping confidence intervals",
+      "expected": "phrase present",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_a_2d_log_alpha_ci_lower_text",
+      "expected": "-1.03",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_a_2d_log_alpha_ci_upper_text",
+      "expected": "-0.41",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_a_2d_log_mu_ci_lower_text",
+      "expected": "1.96",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_a_2d_log_mu_ci_upper_text",
+      "expected": "2.31",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_2d_log_alpha_ci_lower_text",
+      "expected": "1.03",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_2d_log_alpha_ci_upper_text",
+      "expected": "1.40",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_2d_log_mu_ci_lower_text",
+      "expected": "-0.84",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_2d_log_mu_ci_upper_text",
+      "expected": "-0.39",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_3d_log_alpha_ci_lower_text",
+      "expected": "1.14",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_3d_log_alpha_ci_upper_text",
+      "expected": "1.48",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_3d_log_mu_ci_lower_text",
+      "expected": "-0.86",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_3d_log_mu_ci_upper_text",
+      "expected": "-0.51",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_3d_log_m0_ci_lower_text",
+      "expected": "0.94",
+      "pass": true
+    },
+    {
+      "name": "manuscript_mode_b_3d_log_m0_ci_upper_text",
+      "expected": "1.30",
+      "pass": true
+    },
+    {
+      "name": "mode_a_2d_bootstrap_log_alpha_mean_tol",
+      "artifact_value": -0.7193580438469246,
+      "manuscript_value": -0.75,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_a_2d_bootstrap_log_alpha_ci_lower_tol",
+      "artifact_value": -1.0257701694943502,
+      "manuscript_value": -1.03,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_a_2d_bootstrap_log_alpha_ci_upper_tol",
+      "artifact_value": -0.3764587673081444,
+      "manuscript_value": -0.41,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_a_2d_bootstrap_log_mu_mean_tol",
+      "artifact_value": 2.1567109126050967,
+      "manuscript_value": 2.15,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_a_2d_bootstrap_log_mu_ci_lower_tol",
+      "artifact_value": 1.9620942421959384,
+      "manuscript_value": 1.96,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_a_2d_bootstrap_log_mu_ci_upper_tol",
+      "artifact_value": 2.31056674813253,
+      "manuscript_value": 2.31,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_2d_bootstrap_log_alpha_mean_tol",
+      "artifact_value": 1.2078716194935601,
+      "manuscript_value": 1.21,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_2d_bootstrap_log_alpha_ci_lower_tol",
+      "artifact_value": 1.027419335049876,
+      "manuscript_value": 1.03,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_2d_bootstrap_log_alpha_ci_upper_tol",
+      "artifact_value": 1.3957986712459203,
+      "manuscript_value": 1.4,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_2d_bootstrap_log_mu_mean_tol",
+      "artifact_value": -0.6192473060596605,
+      "manuscript_value": -0.62,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_2d_bootstrap_log_mu_ci_lower_tol",
+      "artifact_value": -0.838272919276164,
+      "manuscript_value": -0.84,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_2d_bootstrap_log_mu_ci_upper_tol",
+      "artifact_value": -0.3895917570876158,
+      "manuscript_value": -0.39,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_3d_bootstrap_log_alpha_mean_tol",
+      "artifact_value": 1.312160524055531,
+      "manuscript_value": 1.32,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_3d_bootstrap_log_alpha_ci_lower_tol",
+      "artifact_value": 1.1317671190960474,
+      "manuscript_value": 1.14,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_3d_bootstrap_log_alpha_ci_upper_tol",
+      "artifact_value": 1.475176092284587,
+      "manuscript_value": 1.48,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_3d_bootstrap_log_mu_mean_tol",
+      "artifact_value": -0.6814323127930673,
+      "manuscript_value": -0.68,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_3d_bootstrap_log_mu_ci_lower_tol",
+      "artifact_value": -0.856287666048561,
+      "manuscript_value": -0.86,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_3d_bootstrap_log_mu_ci_upper_tol",
+      "artifact_value": -0.5054010389462795,
+      "manuscript_value": -0.51,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_3d_bootstrap_log_m0_mean_tol",
+      "artifact_value": 1.1371075528333354,
+      "manuscript_value": 1.15,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_3d_bootstrap_log_m0_ci_lower_tol",
+      "artifact_value": 0.9582668163810535,
+      "manuscript_value": 0.94,
+      "tolerance": 0.07,
+      "pass": true
+    },
+    {
+      "name": "mode_b_3d_bootstrap_log_m0_ci_upper_tol",
+      "artifact_value": 1.2926622404240828,
+      "manuscript_value": 1.3,
+      "tolerance": 0.07,
+      "pass": true
+    }
+  ]
+}

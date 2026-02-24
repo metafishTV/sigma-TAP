@@ -1,0 +1,15 @@
+{
+  "a": "8",
+  "gamma_slices": [
+    "0",
+    "0.05",
+    "0.2"
+  ],
+  "matched_cells_all_three": 73,
+  "matched_mean_blowup_step": {
+    "0": 21.136986301369863,
+    "0.05": 20.726027397260275,
+    "0.2": 19.561643835616437
+  },
+  "matched_monotone_nonincreasing": true
+}

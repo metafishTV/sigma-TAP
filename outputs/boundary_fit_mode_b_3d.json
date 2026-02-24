@@ -1,0 +1,21 @@
+{
+  "coef": {
+    "intercept": -4.217619402535901,
+    "log_alpha": 4.192513763329614,
+    "log_m0": 3.52324246985375,
+    "log_mu": -2.1876033590547546
+  },
+  "feature_standardization": {
+    "log_alpha_mean": -8.059047826263631,
+    "log_alpha_std": 2.2082408588833458,
+    "log_m0_mean": 3.0701134573254034,
+    "log_m0_std": 0.6602533307619614,
+    "log_mu_mean": -4.605170185242537,
+    "log_mu_std": 1.4721605777606388
+  },
+  "labels_positive": 75,
+  "mean_pred_prob": 0.2557277202016572,
+  "n": 300,
+  "ok": true,
+  "train_accuracy": 0.9733333333333334
+}

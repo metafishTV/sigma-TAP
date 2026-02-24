@@ -1,0 +1,10 @@
+rows_total 13 transitions 12
+last_transition 2.659538 2e-05
+terminal_state 12 2.659538 2e-05
+gate {'can_fit_reduced_form': True, 'can_test_layered_falsification': False, 'needs_proxy_for_structural_claims': True}
+gate2 {'can_fit_reduced_form': True, 'can_test_layered_falsification': True, 'needs_proxy_for_structural_claims': False}
+xi_traj [0.0, 1.95e-06, 3.86e-06, 5.71e-06, 7.52e-06, 9.28e-06, 1.099e-05, 1.266e-05, 1.429e-05, 1.587e-05, 1.742e-05, 1.892e-05, 2.038e-05]
+xi_plateau 5.859375e-06 guard False
+channel_last {'beta_B': 1.495783e-06, 'eta_H': 7.567e-09}
+regime plateau
+pass_c_runs_k9 97200

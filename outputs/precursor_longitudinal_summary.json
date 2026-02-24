@@ -1,0 +1,12 @@
+{
+  "rows": 24,
+  "short_counts": {
+    "precursor-active": 24
+  },
+  "long_counts": {
+    "explosive": 24
+  },
+  "under_resolved_long_true": 0,
+  "precursor_candidate_count": 24,
+  "resolved_explosive_count": 24
+}

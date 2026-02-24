@@ -1,0 +1,81 @@
+{
+  "matched_timing": {
+    "matched_blowup_panel_n": 73,
+    "mean_blowup_step_gamma_0": 21.136986301369863,
+    "mean_blowup_step_gamma_0.2": 19.561643835616437,
+    "mean_difference_gamma0_minus_gamma0.2": 1.5753424657534247,
+    "paired_signflip_permutation_p_two_sided": 0.0004997501249375312
+  },
+  "occupancy_shift": {
+    "paired_cells_n": 300,
+    "explosive_or_precursor_fraction_gamma_0": 0.26,
+    "explosive_or_precursor_fraction_gamma_0.2": 0.2733333333333333,
+    "difference_gamma0.2_minus_gamma0": 0.013333333333333308,
+    "difference_bootstrap_95ci": {
+      "lower": 0.0033333333333332993,
+      "upper": 0.026666666666666672
+    },
+    "paired_signflip_permutation_p_two_sided": 0.12043978010994502
+  },
+  "boundary_coefficients": {
+    "mode_a_2d_bootstrap": {
+      "log_alpha": {
+        "mean": -0.7193580438469246,
+        "ci95": {
+          "lower": -1.0257701694943502,
+          "upper": -0.3764587673081444
+        }
+      },
+      "log_mu": {
+        "mean": 2.1567109126050967,
+        "ci95": {
+          "lower": 1.9620942421959384,
+          "upper": 2.31056674813253
+        }
+      }
+    },
+    "mode_b_2d_bootstrap": {
+      "log_alpha": {
+        "mean": 1.2078716194935601,
+        "ci95": {
+          "lower": 1.027419335049876,
+          "upper": 1.3957986712459203
+        }
+      },
+      "log_mu": {
+        "mean": -0.6192473060596605,
+        "ci95": {
+          "lower": -0.838272919276164,
+          "upper": -0.3895917570876158
+        }
+      }
+    },
+    "mode_b_3d_bootstrap": {
+      "log_alpha": {
+        "mean": 1.312160524055531,
+        "ci95": {
+          "lower": 1.1317671190960474,
+          "upper": 1.475176092284587
+        }
+      },
+      "log_mu": {
+        "mean": -0.6814323127930673,
+        "ci95": {
+          "lower": -0.856287666048561,
+          "upper": -0.5054010389462795
+        }
+      },
+      "log_m0": {
+        "mean": 1.1371075528333354,
+        "ci95": {
+          "lower": 0.9582668163810535,
+          "upper": 1.2926622404240828
+        }
+      }
+    },
+    "sign_reversal_ci_nonoverlap": {
+      "log_alpha": true,
+      "log_mu": true
+    }
+  }
+}

@@ -1,0 +1,6 @@
+alpha,mu,m0,a,gamma_cross,mechanism,blowup_step_gamma_0,blowup_step_gamma_0.2,mu_iso_mstar_eq_m0,mu_over_mu_iso,abs_log_mu_ratio,m_star,m0_over_m_star
+0.0001,0.0046415888,50,8,0_to_0.2,near_boundary_amplification,,59,0.0056615818,0.81983957,0.19864661,48.006596,1.0415235
+0.00021544347,0.012915497,50,8,0_to_0.2,near_boundary_amplification,,58,0.012197508,1.0588636,0.057196211,50.57254,0.98867883
+0.001,0.001,20,8,0_to_0.2,discrete_threshold_compensation,,152,0.0028180375,0.35485688,1.0360407,11.500765,1.7390147
+0.001,0.059948425,50,8,0_to_0.2,near_boundary_amplification,,17,0.056615818,1.0588635,0.057196188,50.57254,0.98867883
+0.0046415888,0.001,10,8,0_to_0.2,discrete_threshold_compensation,,158,0.0037033233,0.27002774,1.3092306,4.15382,2.4074226

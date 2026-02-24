@@ -1,0 +1,12 @@
+{
+  "panel": {
+    "a": 8,
+    "gamma_low": 0.0,
+    "gamma_high": 0.2
+  },
+  "recruited_count": 5,
+  "mechanism_counts": {
+    "near_boundary_amplification": 3,
+    "discrete_threshold_compensation": 2
+  }
+}

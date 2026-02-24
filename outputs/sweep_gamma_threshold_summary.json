@@ -1,0 +1,32 @@
+{
+  "total_rows": 400,
+  "by_gamma": {
+    "0.5": {
+      "plateau": 79,
+      "exponential": 1,
+      "explosive": 20
+    },
+    "1": {
+      "plateau": 77,
+      "exponential": 1,
+      "explosive": 22
+    },
+    "2": {
+      "plateau": 77,
+      "exponential": 1,
+      "explosive": 22
+    },
+    "5": {
+      "plateau": 73,
+      "precursor-active": 1,
+      "explosive": 26
+    }
+  },
+  "rows_with_blowup_step": 90,
+  "mean_blowup_step_by_gamma": {
+    "0.5": 59.45,
+    "1": 55.22727272727273,
+    "2": 42.13636363636363,
+    "5": 36.61538461538461
+  }
+}
