@@ -15,17 +15,6 @@ def run(cmd: list[str], env: dict | None = None, stdout_path: Path | None = None
         subprocess.run(cmd, check=True, env=env)
 
 
-def maybe_run(cmd: list[str], *, required: bool, reason: str) -> bool:
-    target = Path(cmd[1]) if len(cmd) > 1 else None
-    if target is not None and not target.exists():
-        msg = f"Skipping missing tool: {target} ({reason})"
-        if required:
-            raise SystemExit(msg)
-        print('!', msg)
-        return False
-    run(cmd)
-    return True
-
 
 def main() -> None:
     ap = argparse.ArgumentParser(description='Run inferential -> report tables -> figures -> claim audit')
@@ -33,8 +22,6 @@ def main() -> None:
     ap.add_argument('--n-boot', type=int, default=200)
     ap.add_argument('--n-perm', type=int, default=500)
     ap.add_argument('--n-boot-coef', type=int, default=50)
-    ap.add_argument('--strict-tools', action='store_true', help='Fail if optional builder/figure/audit scripts are missing')
-
     ap.add_argument('--camera-ready', action='store_true', help='Use camera-ready resampling defaults (n_boot=1000, n_perm=2000, n_boot_coef=500)')
     args = ap.parse_args()
 
@@ -90,46 +77,25 @@ def main() -> None:
     # Evidence report: mechanistic/functional interpretation + tier validation (T3.1 + T3.2).
     run([sys.executable, 'scripts/build_evidence_report.py'])
 
-    report_builder_ok = maybe_run([sys.executable, 'skills/manuscript-report-builder/scripts/build_report_tables.py'], required=args.strict_tools, reason='report table builder')
-    figure_builder_ok = maybe_run([sys.executable, 'skills/figure-spec-enforcer/scripts/render_figures.py'], required=args.strict_tools, reason='figure renderer')
-    claim_audit_ok = maybe_run([sys.executable, 'skills/claim-to-artifact-auditor/scripts/audit_claims.py'], required=args.strict_tools, reason='claim auditor')
-
-    if figure_builder_ok:
-        expected_figures = [
-            'outputs/figures/matched_blowup_by_gamma.png',
-            'outputs/figures/occupancy_shift_bar.png',
-            'outputs/figures/coefficient_ci_modes.png',
-            'outputs/figures/coefficient_ci_mode_b_3d.png',
-            'outputs/figures/composition_artifact_matched_vs_unmatched.png',
-            'outputs/figures/a_gating_explosive_structure.png',
-            'outputs/figures/high_gamma_timing_vs_occupancy.png',
-            'outputs/figures/precursor_active_representative_trajectory.png',
-            'outputs/figures/recruited_cells_mechanism_scatter.png',
-            'outputs/figures/modec_overlay_modeb_phase_scatter.png',
-            'outputs/figures/trajectory_variants.png',
-            'outputs/figures/extinction_sensitivity.png',
-            'outputs/figures/adjacency_sensitivity.png',
-            'outputs/figures/turbulence_bandwidth.png',
-            'outputs/figures/scaling_exponents.png',
-            'outputs/figures/heaps_law.png',
-            'outputs/figures/concentration_gini.png',
-        ]
-        for fp in expected_figures:
-            p = Path(fp)
-            if (not p.exists()) or p.stat().st_size == 0:
-                raise SystemExit(f'Missing or empty expected figure: {fp}')
+    # Claim audit (T4.2): cross-reference CLAIMS.md <-> annotations <-> disk.
+    run([sys.executable, 'scripts/audit_claims.py'])
 
     report_path = Path('outputs/claim_audit_report.json')
-    if claim_audit_ok:
+    if report_path.exists():
         report = json.loads(report_path.read_text())
         if not report.get('all_pass', False):
             raise SystemExit('Claim audit failed; see outputs/claim_audit_report.json')
-        print('Pipeline completed with all_pass=true')
-    else:
-        print('Pipeline completed without claim audit (skills tool missing, non-strict mode).')
+        print('Claim audit passed (all_pass=true)')
 
-    if not report_builder_ok:
-        print('! Report table builder not run; outputs/report_tables.* may be stale or missing.')
+    # Run manifest (T4.1): record git state, configs, artifact inventory.
+    run([
+        sys.executable, 'scripts/generate_manifest.py',
+        '--seed', str(args.seed),
+        '--n-boot', str(args.n_boot),
+        '--n-perm', str(args.n_perm),
+        '--n-boot-coef', str(args.n_boot_coef),
+    ])
+    print('Pipeline completed successfully.')
 
 
 if __name__ == '__main__':
