@@ -229,17 +229,17 @@ def _goal_alignment(h1: Sequence[float], h2: Sequence[float], window: int = 5) -
         return 0.0
 
 
-def _agent_weight(agent: MetatheticAgent, all_types: dict[int, int]) -> float:
+def _agent_weight(agent: MetatheticAgent, all_types: dict[int, int], n_active: int) -> float:
     """Distinctiveness: fraction of agent's types not widely shared.
 
-    Types held by many agents are common; types held by few are distinctive.
+    Types held by ≤30% of active agents are considered distinctive.
     High distinctiveness = strong individual identity = harder to cross-metathesize.
     """
     if not agent.type_set:
         return 0.0
-    total_agents = max(1, max(all_types.values())) if all_types else 1
+    n = max(1, n_active)
     distinctive = sum(1 for t in agent.type_set
-                      if all_types.get(t, 0) <= max(1, int(total_agents * 0.3)))
+                      if all_types.get(t, 0) <= max(1, int(n * 0.3)))
     return distinctive / len(agent.type_set)
 
 
@@ -309,6 +309,11 @@ class MetatheticEnsemble:
         self.n_absorptive_cross = 0
         self.n_novel_cross = 0
         self.n_env_transitions = 0
+
+        # Rolling history for regime classification (C1 fix: need ≥3 points
+        # for classify_regime and adaptive_xi_plateau_threshold).
+        self._m_history: list[float] = []
+        self._k_history: list[float] = []
 
     def _active_agents(self) -> list[MetatheticAgent]:
         return [a for a in self.agents if a.active]
@@ -412,6 +417,7 @@ class MetatheticEnsemble:
         if len(active) < 2:
             return
 
+        n_active = len(active)
         type_counts = self._all_type_counts()
         cross_threshold = self.env.cross_metathesis_threshold()
 
@@ -431,19 +437,20 @@ class MetatheticEnsemble:
                 L = _jaccard(a1.type_set, a2.type_set)
                 G = _goal_alignment(a1.dM_history, a2.dM_history)
                 G = max(0.0, G)  # Only positive alignment counts
-                W1 = _agent_weight(a1, type_counts)
-                W2 = _agent_weight(a2, type_counts)
+                W1 = _agent_weight(a1, type_counts, n_active)
+                W2 = _agent_weight(a2, type_counts, n_active)
 
                 if L + G <= (W1 + W2) * cross_threshold:
                     continue
 
                 # Eligible — determine mode.
                 if L > G:
-                    # Mode 2: Absorptive cross-metathesis.
+                    # Mode 2: Absorptive cross-metathesis (more alike than aligned).
                     MetatheticAgent.absorptive_cross(a1, a2)
                     self.n_absorptive_cross += 1
                 else:
-                    # Mode 3: Novel cross-metathesis.
+                    # Mode 3: Novel cross-metathesis (equally or more aligned than alike).
+                    # Tie-break: L == G defaults to novel, favouring diversity.
                     self._next_agent_id += 1
                     child = MetatheticAgent.novel_cross(
                         a1, a2,
@@ -456,6 +463,23 @@ class MetatheticEnsemble:
 
                 # One cross-metathesis per step to avoid cascading.
                 return
+
+    def _record_history(self) -> None:
+        """Append current aggregate M and k to rolling history.
+
+        Called every step so that regime classification has sufficient
+        trajectory data (classify_regime needs ≥3 points).
+        """
+        active = self._active_agents()
+        total_M = sum(a.M_local for a in active)
+        k_total = sum(a.k for a in active)
+        self._m_history.append(total_M)
+        self._k_history.append(k_total)
+        # Keep last 20 points — enough for regime detection without
+        # excessive memory use.
+        if len(self._m_history) > 20:
+            self._m_history = self._m_history[-20:]
+            self._k_history = self._k_history[-20:]
 
     def _update_environment(self, step: int) -> None:
         """Mode 4: Environmental update at slow timescale.
@@ -473,12 +497,14 @@ class MetatheticEnsemble:
         k_total = sum(a.k for a in active)
         total_M = sum(a.M_local for a in active)
 
-        # Classify aggregate regime for texture type determination.
-        # Use a minimal proxy trajectory for regime classification.
-        m_traj = [max(1.0, total_M * 0.9), max(1.0, total_M)]
-        xi_traj = [max(0.0, k_total * 0.9), max(0.0, k_total)]
-        thr = adaptive_xi_plateau_threshold(xi_traj)
-        regime = classify_regime(xi_traj, m_traj, thr)
+        # Classify aggregate regime from rolling history.
+        # classify_regime and adaptive_xi_plateau_threshold both require
+        # ≥3 trajectory points for meaningful classification.
+        if len(self._m_history) >= 3:
+            thr = adaptive_xi_plateau_threshold(self._k_history)
+            regime = classify_regime(self._k_history, self._m_history, thr)
+        else:
+            regime = "plateau"
 
         old_texture = self.env.texture_type
         self.env.update(D, k_total, total_M, regime)
@@ -497,14 +523,17 @@ class MetatheticEnsemble:
             # 1. Agent-level TAP steps.
             self._step_agents()
 
-            # 2. Metathetic transitions (Modes 1-3).
+            # 2. Record aggregate history for regime classification.
+            self._record_history()
+
+            # 3. Metathetic transitions (Modes 1-3).
             self._check_self_metathesis()
             self._check_cross_metathesis()
 
-            # 3. Environmental update (Mode 4, slow timescale).
+            # 4. Environmental update (Mode 4, slow timescale).
             self._update_environment(step)
 
-            # 4. Record ensemble snapshot.
+            # 5. Record ensemble snapshot.
             active = self._active_agents()
             dormant = [a for a in self.agents if not a.active]
             agent_k_list = [a.k for a in active]
@@ -527,6 +556,7 @@ class MetatheticEnsemble:
                 "n_self_metatheses": self.n_self_metatheses,
                 "n_absorptive_cross": self.n_absorptive_cross,
                 "n_novel_cross": self.n_novel_cross,
+                "n_env_transitions": self.n_env_transitions,
             }
             trajectory.append(snapshot)
 

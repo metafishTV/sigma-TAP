@@ -9,6 +9,9 @@ from simulator.metathetic import (
     MetatheticAgent,
     EnvironmentState,
     MetatheticEnsemble,
+    _jaccard,
+    _goal_alignment,
+    _agent_weight,
 )
 
 
@@ -153,6 +156,158 @@ class TestEnsembleRun(unittest.TestCase):
         self.assertIn("n_self_metatheses", last)
         self.assertIn("n_absorptive_cross", last)
         self.assertIn("n_novel_cross", last)
+
+    def test_env_transitions_in_snapshot(self):
+        """n_env_transitions should appear in every snapshot."""
+        ensemble = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=1e-3, a=8.0, mu=0.02,
+            seed=42,
+        )
+        trajectory = ensemble.run(steps=30)
+        for s in trajectory:
+            self.assertIn("n_env_transitions", s)
+
+    def test_seed_reproducibility(self):
+        """Two runs with same seed produce identical trajectories."""
+        kwargs = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=123,
+        )
+        traj1 = MetatheticEnsemble(**kwargs).run(steps=30)
+        traj2 = MetatheticEnsemble(**kwargs).run(steps=30)
+        for s1, s2 in zip(traj1, traj2):
+            self.assertEqual(s1["D_total"], s2["D_total"])
+            self.assertAlmostEqual(s1["total_M"], s2["total_M"], places=10)
+            self.assertAlmostEqual(s1["k_total"], s2["k_total"], places=10)
+
+
+class TestHelperFunctions(unittest.TestCase):
+    """Direct tests for _jaccard, _goal_alignment, _agent_weight."""
+
+    def test_jaccard_identical(self):
+        self.assertAlmostEqual(_jaccard({1, 2, 3}, {1, 2, 3}), 1.0)
+
+    def test_jaccard_disjoint(self):
+        self.assertAlmostEqual(_jaccard({1, 2}, {3, 4}), 0.0)
+
+    def test_jaccard_partial(self):
+        # {1,2,3} ∩ {2,3,4} = {2,3}, |union| = 4 → 2/4 = 0.5
+        self.assertAlmostEqual(_jaccard({1, 2, 3}, {2, 3, 4}), 0.5)
+
+    def test_jaccard_empty_sets(self):
+        self.assertAlmostEqual(_jaccard(set(), set()), 0.0)
+
+    def test_goal_alignment_identical_series(self):
+        """Identical dM histories → perfect alignment."""
+        h = [1.0, 2.0, 3.0, 4.0, 5.0]
+        self.assertAlmostEqual(_goal_alignment(h, h), 1.0, places=5)
+
+    def test_goal_alignment_opposite(self):
+        """Opposite dM histories → negative alignment."""
+        h1 = [1.0, 2.0, 3.0, 4.0, 5.0]
+        h2 = [5.0, 4.0, 3.0, 2.0, 1.0]
+        self.assertLess(_goal_alignment(h1, h2), 0.0)
+
+    def test_goal_alignment_short_history(self):
+        """With <2 entries, return 0."""
+        self.assertAlmostEqual(_goal_alignment([1.0], [2.0]), 0.0)
+
+    def test_goal_alignment_constant_history(self):
+        """All-same values (zero variance) → return 0."""
+        self.assertAlmostEqual(_goal_alignment([5.0, 5.0, 5.0], [5.0, 5.0, 5.0]), 0.0)
+
+    def test_goal_alignment_overflow_guard(self):
+        """Extremely large values don't crash."""
+        h1 = [1e200, 1e250, 1e300]
+        h2 = [1e200, 1e250, 1e300]
+        result = _goal_alignment(h1, h2)
+        self.assertTrue(-1.0 <= result <= 1.0)
+
+    def test_agent_weight_all_unique(self):
+        """Agent with all unique types has weight 1.0."""
+        agent = MetatheticAgent(agent_id=0, type_set={10, 11, 12}, k=0.0, M_local=1.0)
+        # type counts: each appears once; n_active=5 → threshold = max(1, int(5*0.3)) = 1
+        type_counts = {10: 1, 11: 1, 12: 1}
+        w = _agent_weight(agent, type_counts, n_active=5)
+        self.assertAlmostEqual(w, 1.0)
+
+    def test_agent_weight_all_common(self):
+        """Agent with all widely-shared types has weight 0.0."""
+        agent = MetatheticAgent(agent_id=0, type_set={1, 2}, k=0.0, M_local=1.0)
+        # Every type held by all 10 agents → threshold = max(1, int(10*0.3)) = 3
+        type_counts = {1: 10, 2: 10}
+        w = _agent_weight(agent, type_counts, n_active=10)
+        self.assertAlmostEqual(w, 0.0)
+
+    def test_agent_weight_empty_types(self):
+        agent = MetatheticAgent(agent_id=0, type_set=set(), k=0.0, M_local=1.0)
+        self.assertAlmostEqual(_agent_weight(agent, {}, n_active=5), 0.0)
+
+
+class TestEnvironmentUpdate(unittest.TestCase):
+    """Direct tests for EnvironmentState.update() drift logic."""
+
+    def test_texture_type_from_regime(self):
+        """update() sets texture_type based on regime string."""
+        env = EnvironmentState()
+        env.update(D_total=10, k_total=100.0, total_M=500.0, regime="explosive")
+        self.assertEqual(env.texture_type, 4)
+        env.update(D_total=10, k_total=100.0, total_M=500.0, regime="exponential")
+        self.assertEqual(env.texture_type, 2)
+
+    def test_a_env_drifts_down_with_high_diversity(self):
+        """High diversity should push a_env down (richer adjacency)."""
+        env = EnvironmentState(a_env=8.0, _a_env_base=8.0)
+        old_a = env.a_env
+        # D_total=100 with base 8 → a_target = max(2, 8 * 10/100) = max(2, 0.8) = 2
+        env.update(D_total=100, k_total=50.0, total_M=50.0, regime="plateau")
+        self.assertLess(env.a_env, old_a)
+
+    def test_K_env_drifts_up_with_more_innovation(self):
+        """More total k should push K_env up."""
+        env = EnvironmentState(K_env=1e5, _K_env_base=1e5)
+        old_K = env.K_env
+        # K_target = 1e5 + 0.1 * 10000 = 101000 > 1e5
+        env.update(D_total=5, k_total=10000.0, total_M=50.0, regime="plateau")
+        self.assertGreater(env.K_env, old_K)
+
+    def test_unknown_regime_defaults_to_type_1(self):
+        env = EnvironmentState()
+        env.update(D_total=5, k_total=50.0, total_M=50.0, regime="unknown_regime")
+        self.assertEqual(env.texture_type, 1)
+
+
+class TestEnsembleRegimeClassification(unittest.TestCase):
+    """Integration: verify that the rolling history fix enables non-plateau regimes."""
+
+    def test_rolling_history_grows(self):
+        """After enough steps, internal history should have ≥3 points."""
+        ensemble = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        ensemble.run(steps=15)
+        self.assertGreaterEqual(len(ensemble._m_history), 3)
+        self.assertGreaterEqual(len(ensemble._k_history), 3)
+
+    def test_growth_params_logistic_produces_events(self):
+        """Growth params with logistic variant should produce metathetic events."""
+        ensemble = MetatheticEnsemble(
+            n_agents=10, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            self_meta_threshold=0.15,
+            seed=42,
+        )
+        trajectory = ensemble.run(steps=150)
+        last = trajectory[-1]
+        # At minimum, self-metatheses should fire with these growth params
+        self.assertGreater(last["n_self_metatheses"], 0)
 
 
 if __name__ == "__main__":

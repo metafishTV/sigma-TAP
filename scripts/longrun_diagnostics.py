@@ -36,7 +36,6 @@ from simulator.longrun import (
     heaps_law_fit,
     gini_coefficient,
     top_k_share,
-    diversification_rate,
     enhanced_constraint_tag,
 )
 from simulator.analysis import innovation_rate_scaling
@@ -103,6 +102,7 @@ def run_and_diagnose(
     last = trajectory[-1]
     summary = {
         "heaps_beta": round(heaps["beta"], 4),
+        "heaps_intercept": round(heaps["intercept"], 6),
         "heaps_r_squared": round(heaps["r_squared"], 4),
         "innovation_sigma": round(scaling["exponent"], 4),
         "innovation_sigma_r2": round(scaling["r_squared"], 4),
@@ -116,6 +116,7 @@ def run_and_diagnose(
         "n_self_metatheses": last["n_self_metatheses"],
         "n_absorptive_cross": last["n_absorptive_cross"],
         "n_novel_cross": last["n_novel_cross"],
+        "n_env_transitions": last["n_env_transitions"],
         "texture_type_final": last["texture_type"],
         "D_total_final": last["D_total"],
         "k_total_final": round(last["k_total"], 4),
@@ -169,12 +170,12 @@ def fig_heaps_law(trajectory: list[dict], summary: dict, save_path: Path) -> Non
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.scatter(k_pos, D_pos, s=8, alpha=0.5, color="#2196F3", label="Ensemble data")
 
-    # Fitted line.
+    # Fitted line using OLS intercept (not first-point anchor).
     beta = summary["heaps_beta"]
     r2 = summary["heaps_r_squared"]
     if k_pos and D_pos:
         k_fit = np.linspace(min(k_pos), max(k_pos), 100)
-        intercept = math.log(D_pos[0]) - beta * math.log(k_pos[0]) if k_pos[0] > 0 else 0
+        intercept = summary["heaps_intercept"]  # OLS fitted intercept in log-space
         D_fit = np.exp(intercept) * k_fit ** beta
         ax.plot(k_fit, D_fit, "r--", linewidth=2,
                 label=f"Heaps fit: beta={beta:.3f} (R2={r2:.3f})")

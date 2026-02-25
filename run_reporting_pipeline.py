@@ -85,7 +85,7 @@ def main() -> None:
     run([sys.executable, 'scripts/generate_figures.py'])
 
     # Metathetic ensemble long-run diagnostics (exploratory).
-    run([sys.executable, 'scripts/longrun_diagnostics.py'])
+    run([sys.executable, 'scripts/longrun_diagnostics.py', '--seed', str(args.seed)])
 
     report_builder_ok = maybe_run([sys.executable, 'skills/manuscript-report-builder/scripts/build_report_tables.py'], required=args.strict_tools, reason='report table builder')
     figure_builder_ok = maybe_run([sys.executable, 'skills/figure-spec-enforcer/scripts/render_figures.py'], required=args.strict_tools, reason='figure renderer')

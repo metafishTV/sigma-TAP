@@ -80,6 +80,14 @@ class TestHeapsLawFit(unittest.TestCase):
         result = heaps_law_fit([1.0, 2.0], [1.0, 3.0])
         self.assertIn("beta", result)
 
+    def test_constant_D_series(self):
+        """Constant D (ss_yy = 0) should not crash, returns r_squared=0."""
+        k_series = [float(i) for i in range(1, 20)]
+        D_series = [5.0] * len(k_series)
+        result = heaps_law_fit(D_series, k_series)
+        self.assertAlmostEqual(result["r_squared"], 0.0)
+        self.assertAlmostEqual(result["beta"], 0.0, delta=0.01)
+
 
 class TestGiniCoefficient(unittest.TestCase):
     def test_perfect_equality(self):
@@ -146,6 +154,31 @@ class TestEnhancedConstraintTag(unittest.TestCase):
         )
         self.assertIn("reasoning", result)
         self.assertIsInstance(result["reasoning"], str)
+
+    def test_mixed_tag(self):
+        """Ambiguous indicators should produce 'mixed' tag."""
+        # sigma=1.25 (not >1.3 so no adjacency), beta=0.75 (not <0.7),
+        # gini=0.5 (not <0.3), not near capacity → no strong signal either way
+        result = enhanced_constraint_tag(
+            sigma=1.25, beta=0.75, gini=0.5,
+            carrying_capacity=1000.0, m_final=100.0,
+        )
+        self.assertEqual(result["tag"], "mixed")
+
+
+class TestDiversificationRateEdgeCases(unittest.TestCase):
+    def test_dk_zero_returns_zero_rate(self):
+        """When dk=0 at some steps, rate is 0 (not error)."""
+        k_series = [1.0, 1.0, 2.0, 2.0, 3.0]
+        D_series = [1.0, 1.0, 2.0, 2.0, 3.0]
+        rates = diversification_rate(D_series, k_series)
+        self.assertEqual(len(rates), 4)
+        self.assertAlmostEqual(rates[0], 0.0)  # dk=0 → rate=0
+        self.assertAlmostEqual(rates[2], 0.0)  # dk=0 → rate=0
+
+    def test_empty_series(self):
+        """Empty series returns empty rates."""
+        self.assertEqual(diversification_rate([], []), [])
 
 
 if __name__ == "__main__":
