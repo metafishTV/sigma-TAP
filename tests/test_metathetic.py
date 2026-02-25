@@ -602,5 +602,142 @@ class TestAffordanceGate(unittest.TestCase):
             self.assertLessEqual(len(a._affordance_ticks), a._AFFORDANCE_WINDOW)
 
 
+class TestAnnihilationRedistribution(unittest.TestCase):
+    """Tests for annihilation redistribution mechanism."""
+
+    def test_redistribution_to_most_similar(self):
+        """Types should go to the agent with highest Jaccard similarity."""
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        # Make agent 0 annihilated: inactive, dormant long enough, unique types
+        ens.agents[0].active = False
+        ens.agents[0]._dormant_steps = 50
+        ens.agents[0].type_set = {100, 101}
+        ens.agents[0].k = 50.0
+
+        # Agent 1 shares type 100 (high Jaccard)
+        ens.agents[1].type_set = {0, 1, 100}
+        ens.agents[1].k = 10.0
+
+        # Agent 2 shares nothing with annihilated
+        ens.agents[2].type_set = {0, 2}
+        ens.agents[2].k = 10.0
+
+        ens._check_annihilation_redistribution()
+
+        self.assertIn(100, ens.agents[1].type_set)
+        self.assertIn(101, ens.agents[1].type_set)
+        self.assertNotIn(101, ens.agents[2].type_set)
+
+    def test_knowledge_split_proportionally(self):
+        """Knowledge should be split proportional to Jaccard weights."""
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=4, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        ens.agents[0].active = False
+        ens.agents[0]._dormant_steps = 50
+        ens.agents[0].type_set = {100, 101}
+        ens.agents[0].k = 100.0
+
+        ens.agents[1].type_set = {0, 100}
+        ens.agents[1].k = 0.0
+        ens.agents[2].type_set = {0, 100}
+        ens.agents[2].k = 0.0
+        ens.agents[3].type_set = {0, 3}
+        ens.agents[3].k = 0.0
+
+        ens._check_annihilation_redistribution()
+
+        self.assertAlmostEqual(ens.agents[1].k, 50.0, places=1)
+        self.assertAlmostEqual(ens.agents[2].k, 50.0, places=1)
+        self.assertAlmostEqual(ens.agents[3].k, 0.0)
+
+    def test_no_neighbors_means_knowledge_lost(self):
+        """If no active agent has Jaccard>0, types and k are lost."""
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        ens.agents[0].active = False
+        ens.agents[0]._dormant_steps = 50
+        ens.agents[0].type_set = {999}
+        ens.agents[0].k = 100.0
+
+        ens.agents[1].type_set = {0, 1}
+        ens.agents[2].type_set = {0, 2}
+        k1_before = ens.agents[1].k
+        k2_before = ens.agents[2].k
+
+        ens._check_annihilation_redistribution()
+
+        self.assertAlmostEqual(ens.agents[1].k, k1_before)
+        self.assertAlmostEqual(ens.agents[2].k, k2_before)
+        self.assertGreater(ens.n_types_lost, 0)
+        self.assertGreater(ens.k_lost, 0)
+
+    def test_counters_tracked(self):
+        """Redistribution should increment event counters."""
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        ens.agents[0].active = False
+        ens.agents[0]._dormant_steps = 50
+        ens.agents[0].type_set = {100}
+        ens.agents[0].k = 10.0
+        ens.agents[1].type_set = {0, 1, 100}
+
+        ens._check_annihilation_redistribution()
+        self.assertEqual(ens.n_annihilation_redistributions, 1)
+
+    def test_dissolved_agent_flagged(self):
+        """Annihilated agent should be marked dissolved after redistribution."""
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        ens.agents[0].active = False
+        ens.agents[0]._dormant_steps = 50
+        ens.agents[0].type_set = {100}
+        ens.agents[0].k = 10.0
+        ens.agents[1].type_set = {0, 1, 100}
+
+        ens._check_annihilation_redistribution()
+        self.assertTrue(ens.agents[0]._dissolved)
+
+    def test_diagnostics_in_snapshot(self):
+        """Snapshot should include redistribution diagnostics."""
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        trajectory = ens.run(steps=10)
+        for snap in trajectory:
+            self.assertIn("n_annihilation_redistributions", snap)
+            self.assertIn("n_types_lost", snap)
+            self.assertIn("k_lost", snap)
+
+
 if __name__ == "__main__":
     unittest.main()

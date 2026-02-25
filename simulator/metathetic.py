@@ -444,6 +444,9 @@ class MetatheticEnsemble:
         self.n_absorptive_cross = 0
         self.n_novel_cross = 0
         self.n_env_transitions = 0
+        self.n_annihilation_redistributions = 0
+        self.n_types_lost = 0
+        self.k_lost = 0.0
 
         # Rolling history for regime classification (C1 fix: need ≥3 points
         # for classify_regime and adaptive_xi_plateau_threshold).
@@ -628,6 +631,61 @@ class MetatheticEnsemble:
                 # One cross-metathesis per step to avoid cascading.
                 return
 
+    def _check_annihilation_redistribution(self) -> None:
+        """Check for annihilated agents and redistribute their types/knowledge.
+
+        Redistribution is weighted by Jaccard similarity (interaction proximity).
+        Types go to the most-similar active agent. Knowledge is split proportionally.
+        If no active agent has Jaccard > 0, types and knowledge are lost.
+
+        An agent is eligible for annihilation redistribution when it has been
+        inactive and dormant past the relational decay window. This is
+        consistent with temporal state 0 (annihilated) but uses the dormancy
+        condition directly so that Jaccard-based redistribution can still
+        operate on remaining type overlaps before they are cleared.
+        """
+        active = self._active_agents()
+        if not active:
+            return
+
+        for agent in list(self.agents):
+            if agent._dissolved or agent.active:
+                continue
+
+            # Annihilation eligibility: dormant past relational decay window
+            if agent._dormant_steps < agent._RELATIONAL_DECAY_WINDOW:
+                continue
+
+            # Compute Jaccard weights to each active agent
+            weights = {}
+            for other in active:
+                w = _jaccard(agent.type_set, other.type_set)
+                if w > 0:
+                    weights[other.agent_id] = w
+
+            total_w = sum(weights.values())
+
+            if total_w == 0:
+                # No interactive neighbor — knowledge and types are lost
+                self.n_types_lost += len(agent.type_set)
+                self.k_lost += agent.k
+            else:
+                # Redistribute types to highest-weight agent
+                agent_by_id = {a.agent_id: a for a in active}
+                sorted_recipients = sorted(weights.keys(), key=lambda aid: (-weights[aid], aid))
+                best_recipient = agent_by_id[sorted_recipients[0]]
+                best_recipient.type_set = best_recipient.type_set | agent.type_set
+
+                # Redistribute knowledge proportionally
+                for aid, w in weights.items():
+                    fraction = w / total_w
+                    agent_by_id[aid].k += agent.k * fraction
+
+            agent.type_set = set()
+            agent.k = 0.0
+            agent._dissolved = True
+            self.n_annihilation_redistributions += 1
+
     def _record_history(self) -> None:
         """Append current aggregate M and k to rolling history.
 
@@ -696,6 +754,7 @@ class MetatheticEnsemble:
             # 3. Metathetic transitions (Modes 1-3).
             self._check_self_metathesis()
             self._check_cross_metathesis()
+            self._check_annihilation_redistribution()
 
             # 4. Environmental update (Mode 4, slow timescale).
             self._update_environment(step)
@@ -724,6 +783,9 @@ class MetatheticEnsemble:
                 "n_absorptive_cross": self.n_absorptive_cross,
                 "n_novel_cross": self.n_novel_cross,
                 "n_env_transitions": self.n_env_transitions,
+                "n_annihilation_redistributions": self.n_annihilation_redistributions,
+                "n_types_lost": self.n_types_lost,
+                "k_lost": round(self.k_lost, 4),
             }
 
             active_scores = [a.affordance_score for a in active]
