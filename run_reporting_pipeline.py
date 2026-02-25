@@ -76,6 +76,14 @@ def main() -> None:
     run([sys.executable, 'scripts/summarize_recruited_cells.py', 'outputs/recruited_cells_a8.csv', 'outputs/recruited_cells_a8_summary.json'])
     run([sys.executable, 'scripts/summarize_blowup_matched_panel.py', 'outputs/blowup_matched_panel_a8.csv', 'outputs/blowup_matched_panel_a8_summary.json'])
 
+    # Sensitivity analysis + publication figures.
+    run([sys.executable, 'scripts/sensitivity_analysis.py'])
+    run(
+        [sys.executable, 'scripts/sweep_variants.py'],
+        stdout_path=Path('outputs/variant_comparison.csv'),
+    )
+    run([sys.executable, 'scripts/generate_figures.py'])
+
     report_builder_ok = maybe_run([sys.executable, 'skills/manuscript-report-builder/scripts/build_report_tables.py'], required=args.strict_tools, reason='report table builder')
     figure_builder_ok = maybe_run([sys.executable, 'skills/figure-spec-enforcer/scripts/render_figures.py'], required=args.strict_tools, reason='figure renderer')
     claim_audit_ok = maybe_run([sys.executable, 'skills/claim-to-artifact-auditor/scripts/audit_claims.py'], required=args.strict_tools, reason='claim auditor')
@@ -92,6 +100,11 @@ def main() -> None:
             'outputs/figures/precursor_active_representative_trajectory.png',
             'outputs/figures/recruited_cells_mechanism_scatter.png',
             'outputs/figures/modec_overlay_modeb_phase_scatter.png',
+            'outputs/figures/trajectory_variants.png',
+            'outputs/figures/extinction_sensitivity.png',
+            'outputs/figures/adjacency_sensitivity.png',
+            'outputs/figures/turbulence_bandwidth.png',
+            'outputs/figures/scaling_exponents.png',
         ]
         for fp in expected_figures:
             p = Path(fp)
