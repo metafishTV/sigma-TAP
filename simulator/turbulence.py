@@ -9,7 +9,10 @@ Decision Bandwidth B(t) = sigma(Xi) * tau / f'(M)
 
 Praxiological Reynolds Re_prax = f'(M) * M / (sigma(Xi) + alpha)
   Analogous to fluid Reynolds number: ratio of innovation pressure
-  to evaluative capacity.
+  to evaluative capacity.  The denominator sigma(Xi) + alpha combines
+  the agent's learned evaluation efficiency with the structural
+  innovation rate alpha, ensuring Re_prax remains finite when sigma -> 0
+  and capturing the minimum evaluative baseline from the system itself.
 """
 from __future__ import annotations
 

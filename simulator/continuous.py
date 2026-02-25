@@ -51,11 +51,16 @@ def _build_rhs(params: ModelParams, sigma0: float, gamma: float):
         if not np.isfinite(f_val):
             f_val = 1e15
 
-        B = sig * f_val
-        D = params.mu * M
-        H = max(0.0, 0.02 * Xi)
+        B = sig * f_val          # Birth term: sigma-scaled innovation rate
+        D = params.mu * M         # Death/extinction term
+        H = max(0.0, 0.02 * Xi)  # Compression feedback from accumulated Xi
 
         dM = B - D
+        # Xi tracks cumulative affordance pressure (total innovation exposure),
+        # not net surviving objects.  Driven by B (not B-D) because even
+        # innovations that go extinct still expand the evaluative landscape
+        # an agent has encountered.  See Kauffman & Steel (2017) on the
+        # distinction between realized M and explored affordance space.
         dXi = params.beta * B + params.eta * H
 
         return [dM, dXi]

@@ -64,8 +64,12 @@ def main() -> None:
                         append_terminal_state=True,
                     )
                     tr = [r for r in rows if "M_t1" in r]
-                    xi = [tr[0]["Xi"]] + [r["Xi_t1"] for r in tr]
-                    m = [tr[0]["M"]] + [r["M_t1"] for r in tr]
+                    if not tr:
+                        xi = [0.0]
+                        m = [m0]
+                    else:
+                        xi = [tr[0]["Xi"]] + [r["Xi_t1"] for r in tr]
+                        m = [tr[0]["M"]] + [r["M_t1"] for r in tr]
                     thr = adaptive_xi_plateau_threshold(xi)
                     regime = classify_regime(xi, m, thr)
                     blowup = next(

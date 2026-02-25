@@ -9,7 +9,14 @@ Strategy (hierarchical):
 
 Key insight: Real-world systems live in the TAMED regime of TAP --
 growth is super-linear but sub-exponential because real constraints
-prevent the full combinatorial explosion. We model: f(M) = s * M^p, p > 1.
+prevent the full combinatorial explosion.  We model: f(M) = s * M^p, p > 1.
+
+Theoretical basis: Kauffman's combinatorial kernel f(M) = alpha*a*(exp(M*ln(1+1/a))-1-M/a)
+behaves as ~ M^p for moderate M before exploding for large M.  In real systems, resource
+constraints, institutional friction, and finite search horizons tame the full combinatorial
+explosion into an effective power-law regime (see Taalbi 2025, "Long-run patterns in the
+discovery of the adjacent possible").  The power-law kernel is thus a reduced-form
+approximation to TAP in the empirically relevant range, NOT a competing model.
 
 Usage:
   python scripts/fit_realworld.py
