@@ -341,3 +341,78 @@ def mstar_isocurve_mu(alpha: float, a: float, m_star: float) -> float:
     from .tap import innovation_kernel_closed
 
     return innovation_kernel_closed(m_star, alpha, a) / m_star
+
+
+def innovation_rate_scaling(
+    m_traj: list[float],
+    dt: float = 1.0,
+) -> dict:
+    """Fit dk/dt ~ k^sigma using log-log OLS on finite differences.
+
+    Inspired by Taalbi (2025): sigma ~ 1 indicates resource-constrained
+    linear-in-k dynamics. sigma > 1 indicates unconstrained super-linear TAP.
+
+    Returns dict with 'exponent', 'r_squared', 'n_points'.
+    """
+    import math
+
+    if len(m_traj) < 3:
+        return {"exponent": 1.0, "r_squared": 0.0, "n_points": len(m_traj)}
+
+    # Finite differences for dk/dt.
+    rates = [(m_traj[i + 1] - m_traj[i]) / dt for i in range(len(m_traj) - 1)]
+    midpoints = [0.5 * (m_traj[i] + m_traj[i + 1]) for i in range(len(m_traj) - 1)]
+
+    # Filter to positive values for log-log fit.
+    log_k = []
+    log_rate = []
+    for k, r in zip(midpoints, rates):
+        if k > 0 and r > 0:
+            log_k.append(math.log(k))
+            log_rate.append(math.log(r))
+
+    n = len(log_k)
+    if n < 2:
+        return {"exponent": 1.0, "r_squared": 0.0, "n_points": n}
+
+    # OLS: log(rate) = sigma * log(k) + c.
+    mean_x = sum(log_k) / n
+    mean_y = sum(log_rate) / n
+    ss_xy = sum((x - mean_x) * (y - mean_y) for x, y in zip(log_k, log_rate))
+    ss_xx = sum((x - mean_x) ** 2 for x in log_k)
+    ss_yy = sum((y - mean_y) ** 2 for y in log_rate)
+
+    if ss_xx < 1e-15:
+        return {"exponent": 1.0, "r_squared": 0.0, "n_points": n}
+
+    sigma = ss_xy / ss_xx
+    r_squared = (ss_xy ** 2) / (ss_xx * ss_yy) if ss_yy > 1e-15 else 0.0
+
+    return {"exponent": sigma, "r_squared": r_squared, "n_points": n}
+
+
+def constraint_tag(
+    m_traj: list[float],
+    carrying_capacity: float | None,
+    dt: float = 1.0,
+) -> str:
+    """Tag observed dynamics as adjacency-limited, resource-limited, or mixed.
+
+    Uses Taalbi's framing: if carrying capacity is absent or M is far from it,
+    dynamics are adjacency-limited. If M approaches K, resource-limited.
+    """
+    if carrying_capacity is None or carrying_capacity <= 0:
+        return "adjacency-limited"
+
+    if len(m_traj) < 2:
+        return "adjacency-limited"
+
+    m_final = m_traj[-1]
+    ratio = m_final / carrying_capacity
+
+    if ratio > 0.8:
+        return "resource-limited"
+    elif ratio > 0.3:
+        return "mixed"
+    else:
+        return "adjacency-limited"

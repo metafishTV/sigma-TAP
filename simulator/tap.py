@@ -24,6 +24,21 @@ def innovation_kernel_closed(M: float, alpha: float, a: float) -> float:
     return max(0.0, alpha * a * (math.exp(exponent) - 1.0 - (M / a)))
 
 
+def innovation_kernel_derivative(M: float, alpha: float, a: float) -> float:
+    """Analytical df/dM for the closed-form power-law TAP kernel.
+
+    f(M) = alpha * a * (exp(M * ln(1+1/a)) - 1 - M/a)
+    f'(M) = alpha * a * (ln(1+1/a) * exp(M * ln(1+1/a)) - 1/a)
+    """
+    if M <= 1.0:
+        return 0.0
+    k = math.log(1.0 + 1.0 / a)
+    exponent = M * k
+    if exponent > 700:
+        return float("inf")
+    return max(0.0, alpha * a * (k * math.exp(exponent) - 1.0 / a))
+
+
 def innovation_kernel_two_scale(M: float, alpha: float, a: float, alpha1: float) -> float:
     """Two-scale TAP: adds i=1-like linear innovation to combinatorial term.
 
