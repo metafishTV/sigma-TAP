@@ -117,6 +117,7 @@ def run_and_diagnose(
         "n_absorptive_cross": last["n_absorptive_cross"],
         "n_novel_cross": last["n_novel_cross"],
         "n_env_transitions": last["n_env_transitions"],
+        "temporal_state_counts_final": last.get("temporal_state_counts", {}),
         "texture_type_final": last["texture_type"],
         "D_total_final": last["D_total"],
         "k_total_final": round(last["k_total"], 4),
@@ -267,6 +268,11 @@ def main() -> None:
     print(f"  Absorptive cross: {summary['n_absorptive_cross']}")
     print(f"  Novel cross:      {summary['n_novel_cross']}")
     print(f"  Env texture:      Type {summary['texture_type_final']}")
+    tc = summary.get("temporal_state_counts_final", {})
+    state_names = {0: "annihilated", 1: "inertial", 2: "situated", 3: "desituated", 4: "established"}
+    tc_str = ", ".join(f"{state_names.get(int(k), '?')}={v}" for k, v in sorted(tc.items()) if v > 0)
+    if tc_str:
+        print(f"  Temporal:         {tc_str}")
     print(f"\n  [exploratory — see CLAIM_POLICY.md]")
 
 

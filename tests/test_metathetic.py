@@ -421,9 +421,21 @@ class TestTemporalModulation(unittest.TestCase):
         from simulator.metathetic import _temporal_threshold_multiplier
         self.assertAlmostEqual(_temporal_threshold_multiplier(4), 2.0)
 
-    def test_desituated_suppresses(self):
+    def test_desituated_novelty_suppresses(self):
         from simulator.metathetic import _temporal_threshold_multiplier
         self.assertEqual(_temporal_threshold_multiplier(3), float('inf'))
+
+    def test_desituated_stagnation_cross_easier(self):
+        """Stagnating agents get 0.5x threshold for cross-metathesis."""
+        from simulator.metathetic import _temporal_threshold_multiplier
+        self.assertAlmostEqual(
+            _temporal_threshold_multiplier(3, for_cross=True, is_stagnating=True), 0.5)
+
+    def test_desituated_stagnation_self_still_suppressed(self):
+        """Stagnating agents still can't self-metathesize (need external stimulus)."""
+        from simulator.metathetic import _temporal_threshold_multiplier
+        self.assertEqual(
+            _temporal_threshold_multiplier(3, for_cross=False, is_stagnating=True), float('inf'))
 
     def test_temporal_state_in_snapshot(self):
         ensemble = MetatheticEnsemble(

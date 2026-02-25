@@ -324,16 +324,24 @@ def _agent_weight(agent: MetatheticAgent, all_types: dict[int, int], n_active: i
     return distinctive / len(agent.type_set)
 
 
-def _temporal_threshold_multiplier(temporal_state: int) -> float:
+def _temporal_threshold_multiplier(temporal_state: int, *, for_cross: bool = False,
+                                    is_stagnating: bool = False) -> float:
     """Threshold multiplier based on temporal orientation.
 
     Inertial (1): 0.5x — easier to change
     Situated (2): 1.5x — resists change
-    Desituated (3): inf — suppressed
+    Desituated (3): depends on sub-type:
+        - Novelty: inf (creative immunity, suppressed)
+        - Stagnation + self-metathesis: inf (needs external stimulus, not self)
+        - Stagnation + cross-metathesis: 0.5x (easier — needs external stimulus)
     Established (4): 2.0x — maximally stable
     Annihilated (0): inf — impossible
     """
-    return {0: float('inf'), 1: 0.5, 2: 1.5, 3: float('inf'), 4: 2.0}.get(
+    if temporal_state == 3:
+        if is_stagnating and for_cross:
+            return 0.5  # Stagnating agents are receptive to cross-metathesis
+        return float('inf')  # Novelty or self-metathesis: suppressed
+    return {0: float('inf'), 1: 0.5, 2: 1.5, 4: 2.0}.get(
         temporal_state, 1.0
     )
 
@@ -539,8 +547,12 @@ class MetatheticEnsemble:
                 W2 = _agent_weight(a2, type_counts, n_active)
 
                 # Temporal modulation for cross-metathesis
-                t1_mult = _temporal_threshold_multiplier(a1.temporal_state)
-                t2_mult = _temporal_threshold_multiplier(a2.temporal_state)
+                t1_stag = a1.steps_since_metathesis >= a1._STAGNATION_THRESHOLD
+                t2_stag = a2.steps_since_metathesis >= a2._STAGNATION_THRESHOLD
+                t1_mult = _temporal_threshold_multiplier(
+                    a1.temporal_state, for_cross=True, is_stagnating=t1_stag)
+                t2_mult = _temporal_threshold_multiplier(
+                    a2.temporal_state, for_cross=True, is_stagnating=t2_stag)
                 pair_mult = min(t1_mult, t2_mult) if math.isfinite(min(t1_mult, t2_mult)) else float('inf')
                 if not math.isfinite(pair_mult):
                     continue

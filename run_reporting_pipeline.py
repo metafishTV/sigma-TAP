@@ -87,6 +87,9 @@ def main() -> None:
     # Metathetic ensemble long-run diagnostics (exploratory).
     run([sys.executable, 'scripts/longrun_diagnostics.py', '--seed', str(args.seed)])
 
+    # Evidence report: mechanistic/functional interpretation + tier validation (T3.1 + T3.2).
+    run([sys.executable, 'scripts/build_evidence_report.py'])
+
     report_builder_ok = maybe_run([sys.executable, 'skills/manuscript-report-builder/scripts/build_report_tables.py'], required=args.strict_tools, reason='report table builder')
     figure_builder_ok = maybe_run([sys.executable, 'skills/figure-spec-enforcer/scripts/render_figures.py'], required=args.strict_tools, reason='figure renderer')
     claim_audit_ok = maybe_run([sys.executable, 'skills/claim-to-artifact-auditor/scripts/audit_claims.py'], required=args.strict_tools, reason='claim auditor')
