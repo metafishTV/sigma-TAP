@@ -1,0 +1,78 @@
+{
+  "papers_checked": [
+    "TAPequation-FINAL.pdf",
+    "Applications-of-TAP.pdf",
+    "Paper1-FINAL.pdf",
+    "Paper2-FINAL.pdf",
+    "Long-run patterns in the discovery of the adjacent possible.pdf"
+  ],
+  "docs_checked": [
+    "README.md",
+    "reviews/adjacent-possible-alignment-review.md",
+    "TASKS.md",
+    "ENGINEERING_PLAN.md"
+  ],
+  "requirement_evaluation": [
+    {
+      "id": "R1",
+      "description": "Treat TAP as a variant family (baseline/two-scale/logistic/differential)",
+      "status": "covered",
+      "total_keyword_hits": 41,
+      "doc_scores": {
+        "README.md": 0,
+        "reviews/adjacent-possible-alignment-review.md": 10,
+        "TASKS.md": 12,
+        "ENGINEERING_PLAN.md": 19
+      }
+    },
+    {
+      "id": "R2",
+      "description": "Model/report regime transitions (plateau/acceleration/explosive/extinction)",
+      "status": "covered",
+      "total_keyword_hits": 45,
+      "doc_scores": {
+        "README.md": 0,
+        "reviews/adjacent-possible-alignment-review.md": 7,
+        "TASKS.md": 17,
+        "ENGINEERING_PLAN.md": 21
+      }
+    },
+    {
+      "id": "R3",
+      "description": "Integrate long-run empirical diagnostics (rate scaling/distribution/diversification)",
+      "status": "covered",
+      "total_keyword_hits": 39,
+      "doc_scores": {
+        "README.md": 1,
+        "reviews/adjacent-possible-alignment-review.md": 12,
+        "TASKS.md": 10,
+        "ENGINEERING_PLAN.md": 16
+      }
+    },
+    {
+      "id": "R4",
+      "description": "Include mixed explanatory framing for Type III systems (mechanistic + functional)",
+      "status": "covered",
+      "total_keyword_hits": 18,
+      "doc_scores": {
+        "README.md": 0,
+        "reviews/adjacent-possible-alignment-review.md": 9,
+        "TASKS.md": 7,
+        "ENGINEERING_PLAN.md": 2
+      }
+    },
+    {
+      "id": "R5",
+      "description": "Enforce claim traceability (paper refs + artifact refs)",
+      "status": "covered",
+      "total_keyword_hits": 103,
+      "doc_scores": {
+        "README.md": 2,
+        "reviews/adjacent-possible-alignment-review.md": 8,
+        "TASKS.md": 46,
+        "ENGINEERING_PLAN.md": 47
+      }
+    }
+  ],
+  "priority_actions": []
+}
