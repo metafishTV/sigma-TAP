@@ -58,3 +58,55 @@ class TestAnnotationsCompleteness(unittest.TestCase):
             self.assertIn("artifacts", entry)
             self.assertIsInstance(entry["artifacts"], list)
             self.assertGreater(len(entry["artifacts"]), 0)
+
+
+from scripts.build_evidence_report import validate_annotations, build_report
+
+
+class TestValidateAnnotations(unittest.TestCase):
+    def test_missing_mechanistic_fails(self):
+        bad = {"C1": {"functional": "x" * 25, "evidence_tier": "A",
+                       "tier_justification": "y" * 15, "artifacts": ["a.csv"],
+                       "claim_policy_label": "paper-aligned"}}
+        errors = validate_annotations(bad, claim_ids=["C1"])
+        self.assertTrue(any("mechanistic" in e for e in errors))
+
+    def test_missing_functional_fails(self):
+        bad = {"C1": {"mechanistic": "x" * 25, "evidence_tier": "A",
+                       "tier_justification": "y" * 15, "artifacts": ["a.csv"],
+                       "claim_policy_label": "paper-aligned"}}
+        errors = validate_annotations(bad, claim_ids=["C1"])
+        self.assertTrue(any("functional" in e for e in errors))
+
+    def test_exploratory_tier_a_fails(self):
+        bad = {"C1": {"mechanistic": "x" * 25, "functional": "y" * 25,
+                       "evidence_tier": "A", "tier_justification": "z" * 15,
+                       "artifacts": ["a.csv"],
+                       "claim_policy_label": "exploratory"}}
+        errors = validate_annotations(bad, claim_ids=["C1"])
+        self.assertTrue(any("tier" in e.lower() or "exploratory" in e.lower() for e in errors))
+
+    def test_missing_claim_fails(self):
+        good = {"C1": {"mechanistic": "x" * 25, "functional": "y" * 25,
+                        "evidence_tier": "A", "tier_justification": "z" * 15,
+                        "artifacts": ["a.csv"],
+                        "claim_policy_label": "paper-aligned"}}
+        errors = validate_annotations(good, claim_ids=["C1", "C2"])
+        self.assertTrue(any("C2" in e for e in errors))
+
+    def test_valid_annotations_no_errors(self):
+        good = {"C1": {"mechanistic": "x" * 25, "functional": "y" * 25,
+                        "evidence_tier": "A", "tier_justification": "z" * 15,
+                        "artifacts": ["a.csv"],
+                        "claim_policy_label": "paper-aligned"}}
+        errors = validate_annotations(good, claim_ids=["C1"])
+        self.assertEqual(errors, [])
+
+
+class TestBuildReport(unittest.TestCase):
+    def test_builds_from_real_annotations(self):
+        data = json.loads(ANNOTATIONS_PATH.read_text(encoding="utf-8"))
+        report = build_report(data)
+        self.assertIn("claims", report)
+        self.assertIn("summary", report)
+        self.assertEqual(report["summary"]["total_claims"], 8)
