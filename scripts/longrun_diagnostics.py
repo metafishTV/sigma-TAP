@@ -118,6 +118,10 @@ def run_and_diagnose(
         "n_novel_cross": last["n_novel_cross"],
         "n_env_transitions": last["n_env_transitions"],
         "temporal_state_counts_final": last.get("temporal_state_counts", {}),
+        "affordance_mean_final": round(last.get("affordance_mean", 0.0), 4),
+        "n_annihilation_redistributions": last.get("n_annihilation_redistributions", 0),
+        "n_types_lost": last.get("n_types_lost", 0),
+        "k_lost": last.get("k_lost", 0.0),
         "texture_type_final": last["texture_type"],
         "D_total_final": last["D_total"],
         "k_total_final": round(last["k_total"], 4),
@@ -273,6 +277,10 @@ def main() -> None:
     tc_str = ", ".join(f"{state_names.get(int(k), '?')}={v}" for k, v in sorted(tc.items()) if v > 0)
     if tc_str:
         print(f"  Temporal:         {tc_str}")
+    print(f"  Affordance mean:  {summary['affordance_mean_final']:.4f}")
+    print(f"  Annihil. redist:  {summary['n_annihilation_redistributions']}")
+    print(f"  Types lost:       {summary['n_types_lost']}")
+    print(f"  Knowledge lost:   {summary['k_lost']:.4f}")
     print(f"\n  [exploratory — see CLAIM_POLICY.md]")
 
 
