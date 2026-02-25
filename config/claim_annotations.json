@@ -1,0 +1,93 @@
+{
+  "C1": {
+    "mechanistic": "The TAP kernel Sigma C(M,i)/a^i generates qualitatively distinct regime behavior depending on variant structure. Baseline admits unbounded combinatorial explosion controlled only by extinction rate mu. Two-scale introduces delayed acceleration via dual alpha parameters. Logistic caps M at carrying capacity K, producing bounded resource-constrained growth. Parameters a and mu are primary controls.",
+    "functional": "Variant families serve as competing hypotheses for growth-limiting mechanisms in real combinatorial innovation systems. Baseline predicts eventual explosion, two-scale predicts delayed acceleration, logistic predicts saturation. Each variant maps to a distinct class of real-world innovation environment.",
+    "evidence_tier": "A",
+    "tier_justification": "Replicated across 3 TAP variants (baseline, two-scale, logistic) with consistent regime detection",
+    "artifacts": [
+      "outputs/variant_comparison.csv",
+      "outputs/figures/trajectory_variants.png"
+    ],
+    "claim_policy_label": "paper-aligned"
+  },
+  "C2": {
+    "mechanistic": "Regime detection on M(t) and Xi(t) using adaptive thresholds. Plateau = Xi growth below noise threshold. Exponential = sustained super-threshold growth. Explosive = M exceeds blow-up proxy. Extinction = M decays to zero. classify_regime requires minimum 3 points to produce a valid classification.",
+    "functional": "Regime transitions mark qualitative shifts in innovation character. Plateau-to-exponential = adjacent possible self-amplifying. Exponential-to-explosive = loss of natural constraint. Corresponds to observable phenomena in technology adoption and scientific discovery waves.",
+    "evidence_tier": "A",
+    "tier_justification": "Tested across all TAP variants with consistent regime classification behavior",
+    "artifacts": [
+      "outputs/variant_comparison.csv",
+      "simulator/analysis.py"
+    ],
+    "claim_policy_label": "paper-aligned"
+  },
+  "C3": {
+    "mechanistic": "Innovation-rate scaling sigma estimated via log-log OLS of dM/dt vs M per Taalbi (2025). Heaps beta from D(k) ~ k^beta OLS. Under logistic variant, sigma converges near 1 and beta < 1, consistent with resource-constrained recombinant search.",
+    "functional": "Sigma near 1 = innovation rate proportional to existing knowledge. Beta < 1 = later innovations increasingly reuse existing types. Signature of maturing innovation system where novelty generation slows relative to recombination.",
+    "evidence_tier": "B",
+    "tier_justification": "Single logistic configuration only; not yet replicated across variant families",
+    "artifacts": [
+      "outputs/longrun_diagnostics_summary.json",
+      "outputs/realworld_fit.csv",
+      "outputs/figures/heaps_law.png"
+    ],
+    "claim_policy_label": "paper-aligned"
+  },
+  "C4": {
+    "mechanistic": "Three real-world datasets (Wikipedia, npm, species) fitted against null models and TAP variants. TAP-baseline achieves lowest RMSE-log for Wikipedia (0.036 vs exponential 0.705). Sub-exponential but super-polynomial growth matches real combinatorial accumulation.",
+    "functional": "Superior TAP fit validates Kauffman's hypothesis that combinatorial recombination, not simple resource competition, is the primary driver of long-run innovation trajectories.",
+    "evidence_tier": "A",
+    "tier_justification": "Three independent real-world datasets fitted with multiple competing models",
+    "artifacts": [
+      "outputs/realworld_fit.csv",
+      "scripts/fit_realworld.py"
+    ],
+    "claim_policy_label": "paper-aligned"
+  },
+  "C5": {
+    "mechanistic": "Decision bandwidth B(t) = ratio of TAP birth term to extinction loss. Praxiological Reynolds Re_prax analogized from fluid dynamics. Both derived from standard TAP quantities without additional free parameters.",
+    "functional": "Turbulence diagnostics connect TAP regime transitions to established explore-exploit tradeoff intuitions. Laminar-to-turbulent transition corresponds to combinatorial possibilities overwhelming structured search.",
+    "evidence_tier": "C",
+    "tier_justification": "Exploratory extension not grounded in source TAP literature; requires independent validation",
+    "artifacts": [
+      "simulator/turbulence.py",
+      "outputs/figures/turbulence_bandwidth.png"
+    ],
+    "claim_policy_label": "exploratory"
+  },
+  "C6": {
+    "mechanistic": "mu controls knowledge obsolescence: M(t+1) = M(t)(1-mu) + birth_term. Sweep over mu in [0.001, 0.1] shows increasing mu shifts regime from explosive to plateau, with transition timing monotonically increasing with mu.",
+    "functional": "mu represents real-world knowledge obsolescence rate. High mu = rapidly evolving fields where knowledge decays quickly. Low mu = cumulative knowledge domains. mu controls whether an innovation system reaches explosive potential.",
+    "evidence_tier": "B",
+    "tier_justification": "Sensitivity sweep conducted on single variant only; not yet cross-validated",
+    "artifacts": [
+      "outputs/extinction_sensitivity.csv",
+      "outputs/figures/extinction_sensitivity.png"
+    ],
+    "claim_policy_label": "paper-consistent extension"
+  },
+  "C7": {
+    "mechanistic": "Parameter a controls combinatorial reach in TAP kernel: higher a suppresses higher-order combinations. Sweep over a in [2, 32] shows smaller a produces faster growth and earlier explosive onset.",
+    "functional": "a encodes structural accessibility of combinatorial space. Low a = modular digital recombination. High a = strong physical barriers. Structural accessibility, not just size of adjacent possible, determines growth character.",
+    "evidence_tier": "B",
+    "tier_justification": "Sensitivity sweep conducted on single variant only; not yet cross-validated",
+    "artifacts": [
+      "outputs/adjacency_sensitivity.csv",
+      "outputs/figures/adjacency_sensitivity.png"
+    ],
+    "claim_policy_label": "paper-consistent extension"
+  },
+  "C8": {
+    "mechanistic": "N agents with local TAP dynamics and type-identity portfolios. Self-metathesis adds types when innovation rate exceeds threshold. Cross-metathesis triggers on Jaccard + goal alignment vs distinctiveness. Environmental drift adjusts a_env and K_env. Produces Heaps beta ~ 0.16, Gini ~ 0.04.",
+    "functional": "Metathetic extension distributes innovation across agents. Low Gini and sublinear Heaps law consistent with Taalbi predictions. Temporal orientation gate adds phase-awareness connecting innovation dynamics to organizational lifecycle theory.",
+    "evidence_tier": "C",
+    "tier_justification": "Exploratory multi-agent extension not present in source TAP literature",
+    "artifacts": [
+      "simulator/metathetic.py",
+      "outputs/longrun_diagnostics_summary.json",
+      "outputs/figures/heaps_law.png",
+      "outputs/figures/concentration_gini.png"
+    ],
+    "claim_policy_label": "exploratory"
+  }
+}
