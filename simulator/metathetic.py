@@ -324,6 +324,20 @@ def _agent_weight(agent: MetatheticAgent, all_types: dict[int, int], n_active: i
     return distinctive / len(agent.type_set)
 
 
+def _temporal_threshold_multiplier(temporal_state: int) -> float:
+    """Threshold multiplier based on temporal orientation.
+
+    Inertial (1): 0.5x — easier to change
+    Situated (2): 1.5x — resists change
+    Desituated (3): inf — suppressed
+    Established (4): 2.0x — maximally stable
+    Annihilated (0): inf — impossible
+    """
+    return {0: float('inf'), 1: 0.5, 2: 1.5, 3: float('inf'), 4: 2.0}.get(
+        temporal_state, 1.0
+    )
+
+
 # ---------------------------------------------------------------------------
 # Ensemble
 # ---------------------------------------------------------------------------
@@ -457,6 +471,7 @@ class MetatheticEnsemble:
 
             agent.M_local = min(m_cap, max(0.0, agent.M_local + dM))
             agent.k += max(0.0, B)
+            agent.steps_since_metathesis += 1
 
     def _check_self_metathesis(self) -> None:
         """Mode 1: Self-metathesis for each active agent.
@@ -476,7 +491,9 @@ class MetatheticEnsemble:
                 continue
             dM_recent = agent.dM_history[-1]
             threshold = self.self_meta_threshold * len(agent.type_set)
-            if dM_recent > threshold:
+            # Temporal modulation
+            threshold *= _temporal_threshold_multiplier(agent.temporal_state)
+            if math.isfinite(threshold) and dM_recent > threshold:
                 agent.self_metathesize(self._next_type_id)
                 self._next_type_id += 1
                 self.n_self_metatheses += 1
@@ -521,7 +538,15 @@ class MetatheticEnsemble:
                 W1 = _agent_weight(a1, type_counts, n_active)
                 W2 = _agent_weight(a2, type_counts, n_active)
 
-                if L + G <= (W1 + W2) * cross_threshold:
+                # Temporal modulation for cross-metathesis
+                t1_mult = _temporal_threshold_multiplier(a1.temporal_state)
+                t2_mult = _temporal_threshold_multiplier(a2.temporal_state)
+                pair_mult = min(t1_mult, t2_mult) if math.isfinite(min(t1_mult, t2_mult)) else float('inf')
+                if not math.isfinite(pair_mult):
+                    continue
+                effective_threshold = cross_threshold * pair_mult
+
+                if L + G <= (W1 + W2) * effective_threshold:
                     continue
 
                 # Eligible — determine mode.
@@ -639,6 +664,19 @@ class MetatheticEnsemble:
                 "n_novel_cross": self.n_novel_cross,
                 "n_env_transitions": self.n_env_transitions,
             }
+
+            # Track dormant steps.
+            for a in dormant:
+                a._dormant_steps += 1
+
+            # Temporal state distribution.
+            type_counts_for_context = self._all_type_counts()
+            temporal_counts = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
+            for a in self.agents:
+                ts = a.temporal_state_with_context(type_counts_for_context)
+                temporal_counts[ts] += 1
+            snapshot["temporal_state_counts"] = temporal_counts
+
             trajectory.append(snapshot)
 
         return trajectory

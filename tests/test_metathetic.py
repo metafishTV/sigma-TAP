@@ -12,6 +12,7 @@ from simulator.metathetic import (
     _jaccard,
     _goal_alignment,
     _agent_weight,
+    _temporal_threshold_multiplier,
 )
 
 
@@ -405,6 +406,51 @@ class TestTemporalState(unittest.TestCase):
         agent.dM_history = [-1.0, -2.0, -3.0, -4.0, -5.0]
         alignment = agent._trajectory_alignment()
         self.assertLess(alignment, 0.0)
+
+
+class TestTemporalModulation(unittest.TestCase):
+    def test_inertial_multiplier(self):
+        from simulator.metathetic import _temporal_threshold_multiplier
+        self.assertAlmostEqual(_temporal_threshold_multiplier(1), 0.5)
+
+    def test_situated_multiplier(self):
+        from simulator.metathetic import _temporal_threshold_multiplier
+        self.assertAlmostEqual(_temporal_threshold_multiplier(2), 1.5)
+
+    def test_established_multiplier(self):
+        from simulator.metathetic import _temporal_threshold_multiplier
+        self.assertAlmostEqual(_temporal_threshold_multiplier(4), 2.0)
+
+    def test_desituated_suppresses(self):
+        from simulator.metathetic import _temporal_threshold_multiplier
+        self.assertEqual(_temporal_threshold_multiplier(3), float('inf'))
+
+    def test_temporal_state_in_snapshot(self):
+        ensemble = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=1e-3, a=8.0, mu=0.02, seed=42,
+        )
+        trajectory = ensemble.run(steps=20)
+        for s in trajectory:
+            self.assertIn("temporal_state_counts", s)
+            self.assertIsInstance(s["temporal_state_counts"], dict)
+
+    def test_steps_since_metathesis_increments(self):
+        ensemble = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=1e-4, a=8.0, mu=0.02, seed=42,
+        )
+        ensemble.run(steps=10)
+        for agent in ensemble.agents:
+            if agent.active:
+                self.assertGreaterEqual(agent.steps_since_metathesis, 10)
+
+    def test_dormant_steps_tracked(self):
+        a1 = MetatheticAgent(agent_id=0, type_set={1, 2}, k=20.0, M_local=15.0)
+        a2 = MetatheticAgent(agent_id=1, type_set={3, 4}, k=15.0, M_local=10.0)
+        MetatheticAgent.novel_cross(a1, a2, child_id=2, next_type_id=5)
+        self.assertFalse(a1.active)
+        self.assertEqual(a1._dormant_steps, 0)
 
 
 if __name__ == "__main__":
