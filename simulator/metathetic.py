@@ -49,6 +49,86 @@ class MetatheticAgent:
     M_local: float
     active: bool = True
     dM_history: list[float] = field(default_factory=list)
+    steps_since_metathesis: int = 0
+    _dormant_steps: int = 0
+
+    # -- Temporal orientation gate constants --------------------------------
+    _NOVELTY_WINDOW: int = field(default=5, init=False, repr=False)
+    _STAGNATION_THRESHOLD: int = field(default=50, init=False, repr=False)
+    _RELATIONAL_DECAY_WINDOW: int = field(default=30, init=False, repr=False)
+    _TRAJECTORY_DIVERGENCE_THR: float = field(default=-0.3, init=False, repr=False)
+    _ESTABLISHED_ALIGNMENT_THR: float = field(default=0.5, init=False, repr=False)
+    _ESTABLISHED_MIN_HISTORY: int = field(default=6, init=False, repr=False)
+
+    # -- Temporal orientation gate ------------------------------------------
+
+    def _trajectory_alignment(self) -> float:
+        """Compute trajectory alignment from recent dM_history.
+
+        Returns a value in [-1, 1] indicating whether the agent's recent
+        trajectory is improving (positive) or deteriorating (negative).
+        """
+        if len(self.dM_history) < 3:
+            return 0.0
+        tail = self.dM_history[-5:]
+        mean_dM = sum(tail) / len(tail)
+        first = tail[0]
+        last = tail[-1]
+        trend = (last - first) / max(1.0, abs(first) + 1e-10)
+        if mean_dM > 0:
+            return min(1.0, 0.3 + 0.7 * min(1.0, trend))
+        else:
+            return max(-1.0, -0.3 + 0.7 * max(-1.0, trend))
+
+    @property
+    def temporal_state(self) -> int:
+        """Five-state temporal orientation gate.
+
+        Returns:
+            0 = annihilated (no relational capacity)
+            1 = inertial (grown away from identity)
+            2 = situated (in-flow, productive)
+            3 = desituated (novelty-shock or stagnation)
+            4 = established (consummated; static tension)
+        """
+        if not self.active:
+            return 3  # dormant defaults to desituated
+        if self.steps_since_metathesis <= self._NOVELTY_WINDOW:
+            return 3  # desituated/novelty
+        if self.steps_since_metathesis >= self._STAGNATION_THRESHOLD:
+            return 3  # desituated/stagnation
+
+        alignment = self._trajectory_alignment()
+        if alignment < self._TRAJECTORY_DIVERGENCE_THR:
+            return 1  # inertial
+        if (alignment > self._ESTABLISHED_ALIGNMENT_THR
+                and len(self.dM_history) >= self._ESTABLISHED_MIN_HISTORY):
+            return 4  # established
+        return 2  # situated
+
+    def temporal_state_with_context(self, active_type_counts: dict[int, int]) -> int:
+        """Temporal state with ensemble context for annihilation detection.
+
+        For inactive agents: checks if the agent has been dormant long enough
+        AND no active agent holds any of its types. If both conditions are met,
+        the agent is annihilated (state 0) — its relational capacity is gone.
+
+        Args:
+            active_type_counts: mapping from type-ID to count of active agents
+                holding that type.
+
+        Returns:
+            int: temporal state 0-4.
+        """
+        if not self.active:
+            if self._dormant_steps >= self._RELATIONAL_DECAY_WINDOW:
+                # Check if any active agent still holds one of this agent's types
+                has_living_connection = any(
+                    active_type_counts.get(t, 0) > 0 for t in self.type_set
+                )
+                if not has_living_connection:
+                    return 0  # annihilated
+        return self.temporal_state
 
     # -- Mode 1: Self-metathesis ------------------------------------------
 
@@ -60,6 +140,7 @@ class MetatheticAgent:
         a new product line or a single-mutation event in biology.
         """
         self.type_set = self.type_set | {next_type_id}
+        self.steps_since_metathesis = 0
 
     # -- Mode 2: Absorptive cross-metathesis ------------------------------
 

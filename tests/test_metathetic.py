@@ -310,5 +310,102 @@ class TestEnsembleRegimeClassification(unittest.TestCase):
         self.assertGreater(last["n_self_metatheses"], 0)
 
 
+class TestTemporalState(unittest.TestCase):
+    """Tests for the five-state temporal orientation gate on MetatheticAgent."""
+
+    def _make_agent(self, **kwargs):
+        """Helper to create an agent with sensible defaults."""
+        defaults = dict(agent_id=0, type_set={1, 2}, k=10.0, M_local=10.0, active=True)
+        defaults.update(kwargs)
+        return MetatheticAgent(**defaults)
+
+    def test_new_agent_is_desituated_novelty(self):
+        """Agent with steps_since_metathesis=0 should be in state 3 (desituated/novelty)."""
+        agent = self._make_agent()
+        agent.steps_since_metathesis = 0
+        agent.dM_history = [1.0, 2.0, 3.0]
+        self.assertEqual(agent.temporal_state, 3)
+
+    def test_agent_becomes_situated_after_novelty_window(self):
+        """After novelty window with positive dM, agent reaches state 2 (situated)."""
+        agent = self._make_agent()
+        agent.steps_since_metathesis = 10  # past _NOVELTY_WINDOW=5
+        agent.dM_history = [0.5, 0.6, 0.7, 0.8, 0.9]  # moderate positive, not strongly aligned
+        self.assertEqual(agent.temporal_state, 2)
+
+    def test_inertial_on_diverging_trajectory(self):
+        """Negative/diverging dM history with steps=20 should give state 1 (inertial)."""
+        agent = self._make_agent()
+        agent.steps_since_metathesis = 20
+        # Strongly negative and worsening trajectory
+        agent.dM_history = [-1.0, -2.0, -3.0, -4.0, -5.0]
+        self.assertEqual(agent.temporal_state, 1)
+
+    def test_desituated_stagnation(self):
+        """steps_since_metathesis=60 (>= _STAGNATION_THRESHOLD=50) -> state 3."""
+        agent = self._make_agent()
+        agent.steps_since_metathesis = 60
+        agent.dM_history = [0.5, 0.6, 0.7, 0.8, 0.9]
+        self.assertEqual(agent.temporal_state, 3)
+
+    def test_established_after_alignment(self):
+        """Strong positive dM history with enough steps -> state 4 (established)."""
+        agent = self._make_agent()
+        agent.steps_since_metathesis = 25
+        # Strong positive trend that yields alignment > 0.5
+        agent.dM_history = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+        self.assertEqual(agent.temporal_state, 4)
+
+    def test_annihilated_state(self):
+        """Inactive agent with dormant_steps >= 30, no living type connections -> state 0."""
+        agent = self._make_agent(active=False)
+        agent._dormant_steps = 40
+        # active_type_counts has none of agent's types
+        active_type_counts = {10: 3, 11: 2}  # agent has types {1, 2} — not present
+        self.assertEqual(agent.temporal_state_with_context(active_type_counts), 0)
+
+    def test_inactive_agent_not_annihilated_if_types_still_active(self):
+        """Inactive agent with types still active should be desituated (3), not annihilated."""
+        agent = self._make_agent(active=False)
+        agent._dormant_steps = 40
+        # type 1 is still held by an active agent
+        active_type_counts = {1: 2, 10: 3}
+        self.assertEqual(agent.temporal_state_with_context(active_type_counts), 3)
+
+    def test_inactive_agent_not_annihilated_if_dormant_too_short(self):
+        """Inactive agent with short dormancy should be desituated (3), not annihilated."""
+        agent = self._make_agent(active=False)
+        agent._dormant_steps = 10  # < _RELATIONAL_DECAY_WINDOW=30
+        active_type_counts = {10: 3}  # no overlap with agent types
+        self.assertEqual(agent.temporal_state_with_context(active_type_counts), 3)
+
+    def test_self_metathesize_resets_steps(self):
+        """self_metathesize should reset steps_since_metathesis to 0."""
+        agent = self._make_agent()
+        agent.steps_since_metathesis = 25
+        agent.self_metathesize(next_type_id=99)
+        self.assertEqual(agent.steps_since_metathesis, 0)
+
+    def test_trajectory_alignment_short_history(self):
+        """With fewer than 3 entries, _trajectory_alignment returns 0.0."""
+        agent = self._make_agent()
+        agent.dM_history = [1.0, 2.0]
+        self.assertAlmostEqual(agent._trajectory_alignment(), 0.0)
+
+    def test_trajectory_alignment_positive_trend(self):
+        """Strongly positive trend returns a positive value."""
+        agent = self._make_agent()
+        agent.dM_history = [1.0, 2.0, 3.0, 4.0, 5.0]
+        alignment = agent._trajectory_alignment()
+        self.assertGreater(alignment, 0.0)
+
+    def test_trajectory_alignment_negative_trend(self):
+        """Strongly negative trend returns a negative value."""
+        agent = self._make_agent()
+        agent.dM_history = [-1.0, -2.0, -3.0, -4.0, -5.0]
+        alignment = agent._trajectory_alignment()
+        self.assertLess(alignment, 0.0)
+
+
 if __name__ == "__main__":
     unittest.main()
