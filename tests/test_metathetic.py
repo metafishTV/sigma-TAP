@@ -465,5 +465,142 @@ class TestTemporalModulation(unittest.TestCase):
         self.assertEqual(a1._dormant_steps, 0)
 
 
+class TestAffordanceTick(unittest.TestCase):
+    """Tests for affordance tick computation."""
+
+    def test_connected_agent_positive_dM_returns_1(self):
+        from simulator.metathetic import _compute_affordance_tick, MetatheticAgent
+        focal = MetatheticAgent(0, {0, 1}, 0.0, 10.0, dM_history=[1.0])
+        others = [
+            MetatheticAgent(1, {0, 2}, 0.0, 10.0, active=True),
+            MetatheticAgent(2, {0, 3}, 0.0, 10.0, active=True),
+        ]
+        self.assertEqual(_compute_affordance_tick(focal, others, min_cluster=2), 1)
+
+    def test_isolated_agent_returns_0(self):
+        from simulator.metathetic import _compute_affordance_tick, MetatheticAgent
+        focal = MetatheticAgent(0, {99}, 0.0, 10.0, dM_history=[1.0])
+        others = [MetatheticAgent(1, {0, 2}, 0.0, 10.0, active=True)]
+        self.assertEqual(_compute_affordance_tick(focal, others, min_cluster=2), 0)
+
+    def test_negative_dM_returns_0(self):
+        from simulator.metathetic import _compute_affordance_tick, MetatheticAgent
+        focal = MetatheticAgent(0, {0, 1}, 0.0, 10.0, dM_history=[-1.0])
+        others = [
+            MetatheticAgent(1, {0, 2}, 0.0, 10.0, active=True),
+            MetatheticAgent(2, {0, 3}, 0.0, 10.0, active=True),
+        ]
+        self.assertEqual(_compute_affordance_tick(focal, others, min_cluster=2), 0)
+
+    def test_below_min_cluster_returns_0(self):
+        from simulator.metathetic import _compute_affordance_tick, MetatheticAgent
+        focal = MetatheticAgent(0, {0, 1}, 0.0, 10.0, dM_history=[1.0])
+        others = [MetatheticAgent(1, {0, 2}, 0.0, 10.0, active=True)]
+        self.assertEqual(_compute_affordance_tick(focal, others, min_cluster=2), 0)
+
+    def test_empty_dM_history_returns_0(self):
+        from simulator.metathetic import _compute_affordance_tick, MetatheticAgent
+        focal = MetatheticAgent(0, {0, 1}, 0.0, 10.0, dM_history=[])
+        others = [
+            MetatheticAgent(1, {0, 2}, 0.0, 10.0, active=True),
+            MetatheticAgent(2, {0, 3}, 0.0, 10.0, active=True),
+        ]
+        self.assertEqual(_compute_affordance_tick(focal, others, min_cluster=2), 0)
+
+    def test_affordance_ticks_field_exists(self):
+        from simulator.metathetic import MetatheticAgent
+        a = MetatheticAgent(0, {0}, 0.0, 10.0)
+        self.assertIsInstance(a._affordance_ticks, list)
+        self.assertEqual(len(a._affordance_ticks), 0)
+
+    def test_affordance_score_property(self):
+        from simulator.metathetic import MetatheticAgent
+        a = MetatheticAgent(0, {0}, 0.0, 10.0)
+        a._affordance_ticks = [1, 1, 0, 0, 1]
+        self.assertAlmostEqual(a.affordance_score, 0.6)
+
+    def test_affordance_score_empty_returns_zero(self):
+        from simulator.metathetic import MetatheticAgent
+        a = MetatheticAgent(0, {0}, 0.0, 10.0)
+        self.assertEqual(a.affordance_score, 0.0)
+
+
+class TestAffordanceGate(unittest.TestCase):
+    """Tests for affordance-gated self-metathesis."""
+
+    def test_isolated_agent_cannot_self_metathesize(self):
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42, affordance_min_cluster=2,
+        )
+        ens.agents[0].type_set = {999}
+        ens.agents[0].dM_history = [100.0]
+        ens.agents[0]._affordance_ticks = []
+        ens.agents[0].steps_since_metathesis = 10
+
+        old_types = len(ens.agents[0].type_set)
+        ens._update_affordance_ticks()
+        ens._check_self_metathesis()
+        self.assertEqual(len(ens.agents[0].type_set), old_types)
+
+    def test_connected_agent_can_self_metathesize(self):
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42, affordance_min_cluster=2,
+        )
+        ens.agents[0].dM_history = [100.0] * 5
+        ens.agents[0]._affordance_ticks = [1, 1, 1]
+        ens.agents[0].steps_since_metathesis = 10
+
+        old_self = ens.n_self_metatheses
+        ens._check_self_metathesis()
+        self.assertGreater(ens.n_self_metatheses, old_self)
+
+    def test_affordance_ticks_updated_in_run(self):
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42, affordance_min_cluster=2,
+        )
+        ens.run(steps=20)
+        for a in ens._active_agents():
+            self.assertGreater(len(a._affordance_ticks), 0)
+            self.assertLessEqual(len(a._affordance_ticks), a._AFFORDANCE_WINDOW)
+
+    def test_affordance_mean_in_snapshot(self):
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        trajectory = ens.run(steps=10)
+        for snap in trajectory:
+            self.assertIn("affordance_mean", snap)
+            self.assertGreaterEqual(snap["affordance_mean"], 0.0)
+            self.assertLessEqual(snap["affordance_mean"], 1.0)
+
+    def test_affordance_ticks_capped_at_window(self):
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        ens.run(steps=30)
+        for a in ens.agents:
+            self.assertLessEqual(len(a._affordance_ticks), a._AFFORDANCE_WINDOW)
+
+
 if __name__ == "__main__":
     unittest.main()

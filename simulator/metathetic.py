@@ -51,6 +51,8 @@ class MetatheticAgent:
     dM_history: list[float] = field(default_factory=list)
     steps_since_metathesis: int = 0
     _dormant_steps: int = 0
+    _affordance_ticks: list[int] = field(default_factory=list)
+    _dissolved: bool = field(default=False, init=False, repr=False)
 
     # -- Temporal orientation gate constants --------------------------------
     _NOVELTY_WINDOW: int = field(default=5, init=False, repr=False)
@@ -59,6 +61,7 @@ class MetatheticAgent:
     _TRAJECTORY_DIVERGENCE_THR: float = field(default=-0.3, init=False, repr=False)
     _ESTABLISHED_ALIGNMENT_THR: float = field(default=0.5, init=False, repr=False)
     _ESTABLISHED_MIN_HISTORY: int = field(default=6, init=False, repr=False)
+    _AFFORDANCE_WINDOW: int = field(default=10, init=False, repr=False)
 
     # -- Temporal orientation gate ------------------------------------------
 
@@ -129,6 +132,13 @@ class MetatheticAgent:
                 if not has_living_connection:
                     return 0  # annihilated
         return self.temporal_state
+
+    @property
+    def affordance_score(self) -> float:
+        """Rolling mean of affordance ticks. 0.0 if no ticks recorded."""
+        if not self._affordance_ticks:
+            return 0.0
+        return sum(self._affordance_ticks) / len(self._affordance_ticks)
 
     # -- Mode 1: Self-metathesis ------------------------------------------
 
@@ -346,6 +356,26 @@ def _temporal_threshold_multiplier(temporal_state: int, *, for_cross: bool = Fal
     )
 
 
+def _compute_affordance_tick(
+    agent: MetatheticAgent,
+    other_active: list[MetatheticAgent],
+    min_cluster: int = 2,
+) -> int:
+    """Binary affordance tick: 1 if agent has local interactive support, else 0.
+
+    Conditions for tick=1:
+      1. Agent has positive recent dM (growth happening)
+      2. At least min_cluster other active agents share >= 1 type with agent
+    """
+    if not agent.dM_history or agent.dM_history[-1] <= 0:
+        return 0
+    n_connected = sum(
+        1 for other in other_active
+        if other.agent_id != agent.agent_id and (agent.type_set & other.type_set)
+    )
+    return 1 if n_connected >= min_cluster else 0
+
+
 # ---------------------------------------------------------------------------
 # Ensemble
 # ---------------------------------------------------------------------------
@@ -373,6 +403,7 @@ class MetatheticEnsemble:
         carrying_capacity: float | None = None,
         env_update_interval: int = 10,
         self_meta_threshold: float = 0.5,
+        affordance_min_cluster: int = 2,
         seed: int | None = None,
     ):
         self.alpha = alpha
@@ -383,6 +414,7 @@ class MetatheticEnsemble:
         self.carrying_capacity = carrying_capacity
         self.env_update_interval = env_update_interval
         self.self_meta_threshold = self_meta_threshold
+        self.affordance_min_cluster = affordance_min_cluster
 
         self._rng = _random.Random(seed)
         self._next_type_id = n_agents + 1
@@ -481,6 +513,17 @@ class MetatheticEnsemble:
             agent.k += max(0.0, B)
             agent.steps_since_metathesis += 1
 
+    def _update_affordance_ticks(self) -> None:
+        """Compute and record affordance tick for each active agent."""
+        active = self._active_agents()
+        for agent in active:
+            tick = _compute_affordance_tick(
+                agent, active, min_cluster=self.affordance_min_cluster
+            )
+            agent._affordance_ticks.append(tick)
+            if len(agent._affordance_ticks) > agent._AFFORDANCE_WINDOW:
+                agent._affordance_ticks = agent._affordance_ticks[-agent._AFFORDANCE_WINDOW:]
+
     def _check_self_metathesis(self) -> None:
         """Mode 1: Self-metathesis for each active agent.
 
@@ -501,6 +544,9 @@ class MetatheticEnsemble:
             threshold = self.self_meta_threshold * len(agent.type_set)
             # Temporal modulation
             threshold *= _temporal_threshold_multiplier(agent.temporal_state)
+            # Affordance gate: agent must have recent environmental support
+            if agent.affordance_score <= 0.0:
+                continue
             if math.isfinite(threshold) and dM_recent > threshold:
                 agent.self_metathesize(self._next_type_id)
                 self._next_type_id += 1
@@ -644,6 +690,9 @@ class MetatheticEnsemble:
             # 2. Record aggregate history for regime classification.
             self._record_history()
 
+            # 2b. Update affordance ticks before metathesis checks.
+            self._update_affordance_ticks()
+
             # 3. Metathetic transitions (Modes 1-3).
             self._check_self_metathesis()
             self._check_cross_metathesis()
@@ -676,6 +725,11 @@ class MetatheticEnsemble:
                 "n_novel_cross": self.n_novel_cross,
                 "n_env_transitions": self.n_env_transitions,
             }
+
+            active_scores = [a.affordance_score for a in active]
+            snapshot["affordance_mean"] = (
+                sum(active_scores) / len(active_scores) if active_scores else 0.0
+            )
 
             # Track dormant steps.
             for a in dormant:
