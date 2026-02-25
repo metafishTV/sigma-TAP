@@ -74,26 +74,36 @@ def _make_params(variant: str, alpha=1e-3, a=8.0, mu=0.02) -> ModelParams:
 # ── Figure 1: Trajectory comparison ──────────────────────────────────
 
 def fig_trajectory_variants(save_path: str | None = None) -> None:
-    """M(t) trajectories for all three variants side by side."""
+    """M(t) trajectories for all three variants overlaid."""
     _setup_style()
-    fig, axes = plt.subplots(1, 3, figsize=(14, 4), sharey=True)
+    fig, ax = plt.subplots(figsize=(9, 5))
 
-    for i, variant in enumerate(["baseline", "two_scale", "logistic"]):
-        ax = axes[i]
-        params = _make_params(variant)
-        result = run_continuous(
-            initial_M=10.0, t_span=(0, 50), params=params,
-            sigma0=1.0, gamma=0.0, max_step=0.5,
+    styles = {"baseline": "-", "two_scale": "--", "logistic": "-."}
+
+    for variant in ["baseline", "two_scale", "logistic"]:
+        # Use growth-producing params: a=3 gives strong combinatorial coupling,
+        # alpha=5e-3 ensures birth > death at M=10.
+        K = 80.0 if variant == "logistic" else None
+        params = ModelParams(
+            alpha=5e-3, a=3.0, mu=0.005, beta=0.05, eta=0.02,
+            tap_variant=variant,
+            alpha1=0.05 if variant == "two_scale" else 0.0,
+            carrying_capacity=K,
         )
-        ax.plot(result.t, result.M, color=COLORS[variant], linewidth=2,
+        result = run_continuous(
+            initial_M=10.0, t_span=(0, 20), params=params,
+            sigma0=1.0, gamma=0.0, max_step=0.5, m_cap=1e4,
+        )
+        ax.plot(result.t, result.M, styles[variant],
+                color=COLORS[variant], linewidth=2.5,
                 label=VARIANT_LABELS[variant])
-        ax.set_xlabel("Time")
-        ax.set_title(VARIANT_LABELS[variant])
-        ax.legend(loc="upper left")
-        if i == 0:
-            ax.set_ylabel("M(t)")
 
-    fig.suptitle("TAP Variant Trajectories", fontsize=14, y=1.02)
+    ax.set_xlabel("Time")
+    ax.set_ylabel("M(t) — realized objects")
+    ax.set_title("TAP Variant Trajectories")
+    ax.legend()
+    ax.set_yscale("log")
+
     plt.tight_layout()
     path = save_path or str(OUT / "trajectory_variants.png")
     Path(path).parent.mkdir(parents=True, exist_ok=True)
@@ -184,6 +194,8 @@ def fig_extinction_sensitivity(
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 8), sharex=True)
 
+    line_styles = {"baseline": ("o", "-"), "two_scale": ("s", "--"), "logistic": ("^", "-.")}
+
     for variant in ["baseline", "two_scale", "logistic"]:
         vrows = sorted(
             [r for r in rows if r["variant"] == variant],
@@ -192,15 +204,17 @@ def fig_extinction_sensitivity(
         mus = [r["mu"] for r in vrows]
         final_Ms = [r["final_M"] for r in vrows]
         trans_steps = [r["transition_step"] for r in vrows]
+        marker, ls = line_styles[variant]
 
-        ax1.plot(mus, final_Ms, "o-", color=COLORS[variant],
-                 label=VARIANT_LABELS[variant], markersize=4, linewidth=1.5)
+        ax1.plot(mus, final_Ms, marker=marker, linestyle=ls, color=COLORS[variant],
+                 label=VARIANT_LABELS[variant], markersize=5, linewidth=1.8)
 
         valid_mu = [m for m, t in zip(mus, trans_steps) if t is not None]
         valid_ts = [t for t in trans_steps if t is not None]
         if valid_mu:
-            ax2.plot(valid_mu, valid_ts, "o-", color=COLORS[variant],
-                     label=VARIANT_LABELS[variant], markersize=4, linewidth=1.5)
+            ax2.plot(valid_mu, valid_ts, marker=marker, linestyle=ls,
+                     color=COLORS[variant],
+                     label=VARIANT_LABELS[variant], markersize=5, linewidth=1.8)
 
     ax1.set_xscale("log")
     ax1.set_yscale("log")
@@ -249,6 +263,8 @@ def fig_adjacency_sensitivity(
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 8), sharex=True)
 
+    line_styles = {"baseline": ("o", "-"), "two_scale": ("s", "--"), "logistic": ("^", "-.")}
+
     for variant in ["baseline", "two_scale", "logistic"]:
         vrows = sorted(
             [r for r in rows if r["variant"] == variant],
@@ -257,9 +273,11 @@ def fig_adjacency_sensitivity(
         a_vals = [r["a"] for r in vrows]
         final_Ms = [r["final_M"] for r in vrows]
         regimes = [r["regime"] for r in vrows]
+        marker, ls = line_styles[variant]
 
-        ax1.plot(a_vals, final_Ms, "o-", color=COLORS[variant],
-                 label=VARIANT_LABELS[variant], markersize=5, linewidth=1.5)
+        ax1.plot(a_vals, final_Ms, marker=marker, linestyle=ls,
+                 color=COLORS[variant],
+                 label=VARIANT_LABELS[variant], markersize=5, linewidth=1.8)
 
         for a_v, fm, reg in zip(a_vals, final_Ms, regimes):
             if reg == "explosive":
@@ -369,10 +387,10 @@ def fig_turbulence_bandwidth(save_path: str | None = None) -> None:
     """B(t) and Re_prax with laminar/turbulent shading."""
     _setup_style()
 
-    params = _make_params("baseline", alpha=1e-3, a=8.0, mu=0.005)
+    params = _make_params("baseline", alpha=5e-3, a=3.0, mu=0.005)
     result = run_continuous(
-        initial_M=10.0, t_span=(0, 60), params=params,
-        sigma0=1.0, gamma=0.0, max_step=0.5,
+        initial_M=10.0, t_span=(0, 25), params=params,
+        sigma0=1.0, gamma=0.0, max_step=0.5, m_cap=1e4,
     )
     diag = compute_turbulence_diagnostics(result, params, sigma0=1.0, gamma=0.0)
 
@@ -437,7 +455,10 @@ def fig_scaling_exponents(save_path: str | None = None) -> None:
                 pred = _euler_tap(t_data, ds["counts"][0],
                                   p["s"], p["p"], p["mu"], K=p.get("K"))
                 if pred is not None:
-                    scaling = innovation_rate_scaling(list(pred))
+                    # Use growth phase only (first 70%) to avoid saturating
+                    # tail pulling the exponent negative on S-shaped curves.
+                    n_growth = max(3, int(0.7 * len(pred)))
+                    scaling = innovation_rate_scaling(list(pred[:n_growth]))
                     exponents[variant].append(scaling["exponent"])
                 else:
                     exponents[variant].append(0)
