@@ -210,16 +210,23 @@ def _goal_alignment(h1: Sequence[float], h2: Sequence[float], window: int = 5) -
     if n < 2:
         return 0.0
 
-    m1 = sum(tail1[:n]) / n
-    m2 = sum(tail2[:n]) / n
-    cov = sum((tail1[i] - m1) * (tail2[i] - m2) for i in range(n))
-    var1 = sum((tail1[i] - m1) ** 2 for i in range(n))
-    var2 = sum((tail2[i] - m2) ** 2 for i in range(n))
+    # Guard against overflow from explosive TAP dynamics.
+    try:
+        m1 = sum(tail1[:n]) / n
+        m2 = sum(tail2[:n]) / n
+        cov = sum((tail1[i] - m1) * (tail2[i] - m2) for i in range(n))
+        var1 = sum((tail1[i] - m1) ** 2 for i in range(n))
+        var2 = sum((tail2[i] - m2) ** 2 for i in range(n))
 
-    denom = math.sqrt(var1 * var2)
-    if denom < 1e-15:
+        if not (math.isfinite(cov) and math.isfinite(var1) and math.isfinite(var2)):
+            return 0.0
+
+        denom = math.sqrt(var1 * var2)
+        if denom < 1e-15:
+            return 0.0
+        return max(-1.0, min(1.0, cov / denom))
+    except (OverflowError, ValueError):
         return 0.0
-    return max(-1.0, min(1.0, cov / denom))
 
 
 def _agent_weight(agent: MetatheticAgent, all_types: dict[int, int]) -> float:
@@ -336,8 +343,11 @@ class MetatheticEnsemble:
         max_count = max(counts.values())
         return max_count / len(active)
 
-    def _step_agents(self) -> None:
-        """Run one local TAP step for each active agent."""
+    def _step_agents(self, m_cap: float = 1e4) -> None:
+        """Run one local TAP step for each active agent.
+
+        m_cap prevents explosive TAP dynamics from causing overflow.
+        """
         for agent in self._active_agents():
             f = compute_birth_term(
                 agent.M_local,
@@ -351,7 +361,7 @@ class MetatheticEnsemble:
             if not math.isfinite(f):
                 f = 0.0
 
-            B = f
+            B = min(f, m_cap)
             D = self.mu * agent.M_local
             dM = B - D
 
@@ -359,7 +369,7 @@ class MetatheticEnsemble:
             if len(agent.dM_history) > 10:
                 agent.dM_history = agent.dM_history[-10:]
 
-            agent.M_local = max(0.0, agent.M_local + dM)
+            agent.M_local = min(m_cap, max(0.0, agent.M_local + dM))
             agent.k += max(0.0, B)
 
     def _check_self_metathesis(self) -> None:
