@@ -84,6 +84,9 @@ def main() -> None:
     )
     run([sys.executable, 'scripts/generate_figures.py'])
 
+    # Metathetic ensemble long-run diagnostics (exploratory).
+    run([sys.executable, 'scripts/longrun_diagnostics.py'])
+
     report_builder_ok = maybe_run([sys.executable, 'skills/manuscript-report-builder/scripts/build_report_tables.py'], required=args.strict_tools, reason='report table builder')
     figure_builder_ok = maybe_run([sys.executable, 'skills/figure-spec-enforcer/scripts/render_figures.py'], required=args.strict_tools, reason='figure renderer')
     claim_audit_ok = maybe_run([sys.executable, 'skills/claim-to-artifact-auditor/scripts/audit_claims.py'], required=args.strict_tools, reason='claim auditor')
@@ -105,6 +108,8 @@ def main() -> None:
             'outputs/figures/adjacency_sensitivity.png',
             'outputs/figures/turbulence_bandwidth.png',
             'outputs/figures/scaling_exponents.png',
+            'outputs/figures/heaps_law.png',
+            'outputs/figures/concentration_gini.png',
         ]
         for fp in expected_figures:
             p = Path(fp)
