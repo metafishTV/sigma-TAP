@@ -281,5 +281,45 @@ class TestDivergenceMap(unittest.TestCase):
         self.assertGreaterEqual(len(result["mode_divergence"]), 17)
 
 
+class TestTextureValidation(unittest.TestCase):
+    def test_classify_dM_texture_length(self):
+        """Output length should match trajectory length."""
+        from simulator.taps_sensitivity import classify_dM_texture
+        traj = _make_trajectory(steps=20, with_events=True)
+        result = classify_dM_texture(traj, window=5)
+        self.assertEqual(len(result), 20)
+
+    def test_classify_dM_texture_values_in_range(self):
+        """All texture types should be in {0, 1, 2, 3, 4}."""
+        from simulator.taps_sensitivity import classify_dM_texture
+        traj = _make_trajectory(steps=20, with_events=True)
+        result = classify_dM_texture(traj, window=5)
+        for t_type in result:
+            self.assertIn(t_type, {0, 1, 2, 3, 4})
+
+
+class TestCorrelationStability(unittest.TestCase):
+    def test_stability_returns_expected_keys(self):
+        """Result should have stable_pairs, unstable_pairs, stability_map, param_dependent."""
+        from simulator.taps_sensitivity import correlation_stability, sweep_taps_modes
+        grid = {"mu": [0.01], "alpha": [1e-3], "a": [8.0]}
+        sweep = sweep_taps_modes(grid, n_agents=5, steps=30, seed=42)
+        result = correlation_stability(sweep, threshold=0.85)
+        self.assertIn("stable_pairs", result)
+        self.assertIn("unstable_pairs", result)
+        self.assertIn("stability_map", result)
+        self.assertIn("param_dependent", result)
+
+    def test_single_grid_point_all_pairs_stable_or_absent(self):
+        """With 1 grid point, pairs are either 100% stable (=1.0) or not found."""
+        from simulator.taps_sensitivity import correlation_stability, sweep_taps_modes
+        grid = {"mu": [0.01], "alpha": [1e-3], "a": [8.0]}
+        sweep = sweep_taps_modes(grid, n_agents=5, steps=30, seed=42)
+        result = correlation_stability(sweep, threshold=0.85)
+        for pair, frac in result["stability_map"].items():
+            self.assertEqual(frac, 1.0,
+                f"With 1 grid point, pair {pair} should have fraction 1.0, got {frac}")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -23,6 +23,7 @@ from simulator.taps import (
     compute_all_scores,
     compute_anopression,
     compute_rip,
+    correlation_matrix as taps_corr_matrix,
     pressure_ratio,
 )
 from simulator.metathetic import MetatheticEnsemble
@@ -573,4 +574,233 @@ def compute_divergence(
         "mode_divergence": mode_divergence,
         "transition_divergence": transition_divergence,
         "significant_regimes": significant_regimes,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Function 7: classify_dM_texture
+# ---------------------------------------------------------------------------
+
+def classify_dM_texture(
+    trajectory: Trajectory,
+    window: int = 10,
+) -> list[int]:
+    """Classify Emery/Trist texture type from rolling dM variance and mean.
+
+    Parameters
+    ----------
+    trajectory : Trajectory
+        Simulation trajectory (list of snapshot dicts with ``total_M``).
+    window : int
+        Rolling window size for variance/mean computation.
+
+    Returns
+    -------
+    list[int]
+        Texture type per step: 0 = unclassified (within initial window),
+        1 = placid-randomized, 2 = placid-clustered,
+        3 = disturbed-reactive, 4 = turbulent.
+    """
+    n = len(trajectory)
+    # Step 1: compute dM series
+    dM = np.zeros(n)
+    for i in range(1, n):
+        dM[i] = trajectory[i]["total_M"] - trajectory[i - 1]["total_M"]
+
+    # Step 3: overall variance as baseline (floor at 1e-10)
+    overall_var = float(np.var(dM[1:])) if n > 1 else 1e-10
+    overall_var = max(overall_var, 1e-10)
+
+    result: list[int] = [0] * n
+
+    for t in range(window, n):
+        # Step 2: rolling window variance and mean
+        window_slice = dM[t - window + 1 : t + 1]
+        window_var = float(np.var(window_slice))
+        mean_dM = float(np.mean(window_slice))
+
+        # Step 4: var_ratio
+        var_ratio = window_var / overall_var
+
+        # Step 5: classification
+        if var_ratio > 1.5:
+            result[t] = 4  # turbulent
+        elif var_ratio > 0.5:
+            result[t] = 3  # disturbed-reactive
+        elif mean_dM > 0:
+            result[t] = 2  # placid-clustered
+        else:
+            result[t] = 1  # placid-randomized
+
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Function 8: validate_textures
+# ---------------------------------------------------------------------------
+
+def validate_textures(
+    trajectory: Trajectory,
+    window: int = 10,
+) -> dict:
+    """Compare environment-derived and dM-derived texture classifications.
+
+    Parameters
+    ----------
+    trajectory : Trajectory
+        Simulation trajectory with ``texture_type`` field per snapshot.
+    window : int
+        Rolling window for :func:`classify_dM_texture`.
+
+    Returns
+    -------
+    dict with keys:
+        env_texture : list[int]
+            Texture type from each snapshot's ``texture_type`` field.
+        dM_texture : list[int]
+            Texture type from :func:`classify_dM_texture`.
+        agreement_rate : float
+            Fraction of steps where both classifications match, excluding
+            unclassified steps (where dM_texture == 0).
+        confusion_matrix : np.ndarray
+            5x5 array (rows = env, cols = dM, index 0 = unclassified).
+    """
+    env_texture = [snap.get("texture_type", 0) for snap in trajectory]
+    dM_texture = classify_dM_texture(trajectory, window=window)
+
+    # Agreement rate: exclude steps where dM_texture == 0 (unclassified)
+    match_count = 0
+    classified_count = 0
+    for env_t, dm_t in zip(env_texture, dM_texture):
+        if dm_t == 0:
+            continue
+        classified_count += 1
+        if env_t == dm_t:
+            match_count += 1
+
+    agreement_rate = match_count / classified_count if classified_count > 0 else 0.0
+
+    # Confusion matrix: 5x5 (indices 0..4)
+    confusion = np.zeros((5, 5), dtype=int)
+    for env_t, dm_t in zip(env_texture, dM_texture):
+        if 0 <= env_t <= 4 and 0 <= dm_t <= 4:
+            confusion[env_t, dm_t] += 1
+
+    return {
+        "env_texture": env_texture,
+        "dM_texture": dM_texture,
+        "agreement_rate": agreement_rate,
+        "confusion_matrix": confusion,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Function 9: correlation_stability
+# ---------------------------------------------------------------------------
+
+def correlation_stability(
+    sweep_result: dict,
+    threshold: float = 0.85,
+) -> dict:
+    """Assess which mode-pair correlations are stable across a parameter grid.
+
+    For each grid point in *sweep_result*, re-runs a small ensemble and
+    computes the TAPS correlation matrix, then tracks which pairs exceed
+    *threshold* at each point.
+
+    Parameters
+    ----------
+    sweep_result : dict
+        Output of :func:`sweep_taps_modes`.
+    threshold : float
+        Absolute correlation threshold for a pair to be considered correlated.
+
+    Returns
+    -------
+    dict with keys:
+        stable_pairs : list[tuple[str, str]]
+            Pairs correlated at > 80 % of grid points.
+        unstable_pairs : list[tuple[str, str]]
+            Pairs correlated at < 50 % of grid points.
+        stability_map : dict[tuple[str, str], float]
+            Fraction of grid points where each pair exceeds *threshold*.
+        param_dependent : dict[tuple[str, str], list[dict]]
+            Grid points where each pair is NOT correlated.
+    """
+    grid_points = sweep_result["grid"]
+    n_points = len(grid_points)
+
+    # Count how many grid points each pair is correlated at
+    pair_correlated_count: dict[tuple[str, str], int] = {}
+    pair_not_correlated_at: dict[tuple[str, str], list[dict]] = {}
+
+    for idx, gp in enumerate(grid_points):
+        mu = gp["mu"]
+        alpha = gp["alpha"]
+        a = gp["a"]
+
+        # Re-run a small ensemble at this grid point
+        ensemble = MetatheticEnsemble(
+            n_agents=10,
+            initial_M=1.0,
+            alpha=alpha,
+            a=a,
+            mu=mu,
+            variant="logistic",
+            carrying_capacity=2e5,
+            affordance_min_cluster=2,
+            seed=42,
+        )
+        traj = ensemble.run(60)
+
+        # Compute TAPS scores and correlation matrix
+        all_scores = compute_all_scores(traj, mu=mu)
+        corr_result = taps_corr_matrix(all_scores)
+
+        labels = corr_result["labels"]
+        matrix = corr_result["matrix"]
+        n_modes = len(labels)
+
+        # Check each pair
+        for i in range(n_modes):
+            for j in range(i + 1, n_modes):
+                pair = (min(labels[i], labels[j]), max(labels[i], labels[j]))
+                if pair not in pair_correlated_count:
+                    pair_correlated_count[pair] = 0
+                    pair_not_correlated_at[pair] = []
+
+                if abs(matrix[i][j]) > threshold:
+                    pair_correlated_count[pair] += 1
+                else:
+                    pair_not_correlated_at[pair].append(gp)
+
+    # Compute stability fractions and classify.
+    # Only include pairs that are correlated at least once.
+    stability_map: dict[tuple[str, str], float] = {}
+    stable_pairs: list[tuple[str, str]] = []
+    unstable_pairs: list[tuple[str, str]] = []
+
+    for pair, count in pair_correlated_count.items():
+        if count == 0:
+            continue  # pair never correlated — omit from map
+        frac = count / n_points if n_points > 0 else 0.0
+        stability_map[pair] = frac
+
+        if frac > 0.8:
+            stable_pairs.append(pair)
+        elif frac < 0.5:
+            unstable_pairs.append(pair)
+
+    # Only report param_dependent entries for pairs in the stability_map
+    param_dependent = {
+        pair: points
+        for pair, points in pair_not_correlated_at.items()
+        if pair in stability_map
+    }
+
+    return {
+        "stable_pairs": stable_pairs,
+        "unstable_pairs": unstable_pairs,
+        "stability_map": stability_map,
+        "param_dependent": param_dependent,
     }
