@@ -313,5 +313,21 @@ class TestRunPredictiveDiagnostic(unittest.TestCase):
         self.assertEqual(result.step_count, steps - 1)
 
 
+    def test_identity_matrix_perfect_matching(self):
+        """Identity transition matrix should give 100% parallel matching."""
+        from simulator.predictive import predict_step, compute_surprisal
+
+        # Identity matrix = every state always transitions to itself
+        P = np.eye(3)
+        states = ["a", "b", "c"]
+        # Predict from state "b" — should be 100% "b"
+        dist = predict_step("b", P, states, horizon=1)
+        self.assertAlmostEqual(dist["b"], 1.0, places=10)
+        self.assertAlmostEqual(dist["a"], 0.0, places=10)
+        # Surprisal for the certain event should be 0
+        surp = compute_surprisal(dist, "b")
+        self.assertAlmostEqual(surp, 0.0, places=10)
+
+
 if __name__ == "__main__":
     unittest.main()
