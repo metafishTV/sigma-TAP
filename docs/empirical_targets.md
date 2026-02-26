@@ -483,17 +483,63 @@ Key findings:
   is less concentrated than the empirical k^(-2) pattern, possibly due
   to the small number of agents (10-20 vs. 1,493 organizations in SWINNO).
 
+### Parameter Sweep Results
+
+Systematic sweep across 192 parameter combinations x 3 seeds = 576
+simulations (200 steps each, logistic variant). Sweep script:
+`python scripts/empirical_sweep.py`
+
+**Top 5 Parameter Regimes (by composite score):**
+
+| Rank | alpha | a   | mu    | agents | Score | Youn | Slope | Heaps | PowLaw |
+|------|-------|-----|-------|--------|-------|------|-------|-------|--------|
+| 1    | 0.005 | 8.0 | 0.002 | 20     | 1.59  | 1.00 | 0.74  | 0.07  | 1.10   |
+| 2    | 0.005 | 3.0 | 0.002 | 15     | 1.59  | 1.00 | 0.86  | 0.06  | 1.12   |
+| 3    | 0.010 | 3.0 | 0.005 | 20     | 1.59  | 1.00 | 0.73  | 0.08  | 1.12   |
+| 4    | 0.005 | 5.0 | 0.002 | 20     | 1.60  | 1.00 | 0.77  | 0.07  | 1.10   |
+| 5    | 0.010 | 8.0 | 0.005 | 20     | 1.60  | 1.00 | 0.70  | 0.09  | 1.12   |
+
+**Parameter Sensitivity (range of mean deviation across values):**
+
+| Parameter | Youn   | Linearity | Heaps  | Power-law |
+|-----------|--------|-----------|--------|-----------|
+| alpha     | 0.01*  | 0.07      | 0.02   | 0.18*     |
+| a         | 0.00   | 0.04      | 0.01   | 0.06      |
+| mu        | 0.00   | 1.44*     | 0.05*  | 0.15      |
+| n_agents  | 0.00   | 0.03      | 0.01   | 0.03      |
+
+\* = most sensitive parameter for that metric.
+
+**Key findings from sweep:**
+
+- **Heaps' law matches universally**: Sub-linear exponent (0.06-0.09)
+  across all 192 parameter regimes. This is a robust structural property
+  of sigma-TAP.
+- **Youn ratio stuck at 1.0**: All cross-metathesis events are classified
+  as novel (exploration-dominant) regardless of parameters. The 60:40
+  balance from patent data requires either mechanism refinement or a
+  different mapping between sigma-TAP events and patent categories.
+- **Linearity improves with low mu**: Best slopes (0.70-0.86) occur at
+  mu <= 0.005, but still below the target of 1.0. The mu parameter
+  has by far the largest effect on linearity (sensitivity range 1.44).
+- **Power-law exponent ~1.1**: Consistently below the target of 2.0,
+  likely due to small ensemble size (10-20 agents vs. 1,493 organizations
+  in SWINNO). Alpha has the largest effect on power-law exponent.
+- **Best-fit regime**: alpha ~ 0.005-0.01, a ~ 3.0-8.0, mu ~ 0.002-0.005,
+  n_agents >= 15. Parameter `a` has minimal impact on any metric.
+
 ### Future Work
 
-1. **Parameter sweep**: Systematically vary (alpha, a, mu, n_agents) to
-   find regimes where all four metrics converge toward targets.
+1. ~~**Parameter sweep**~~: Done — see results above.
 2. **Temporal stability**: Track how metrics evolve over simulation time
    to distinguish transient from steady-state behavior.
 3. **Confidence intervals**: Bootstrap over ensemble seeds for error bars.
 4. **Longer runs / larger ensembles**: Test whether metric convergence
    improves with scale (especially power-law and Youn ratio).
+5. **Youn ratio mechanism**: Investigate why all cross-metathesis events
+   are classified as novel — may need absorptive pathway refinement.
 
-- **Status**: IMPLEMENTED (see `simulator/empirical.py`, 17 tests).
+- **Status**: IMPLEMENTED (see `simulator/empirical.py`, 22 tests).
 
 ---
 
