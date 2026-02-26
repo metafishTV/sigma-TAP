@@ -91,5 +91,75 @@ class TestComputeSurprisal(unittest.TestCase):
         self.assertAlmostEqual(result, 5.0, places=10)
 
 
+class TestDetectAdpression(unittest.TestCase):
+    """Tests for detect_adpression()."""
+
+    def test_spike_detected(self):
+        """A single spike in otherwise uniform surprisal should be flagged."""
+        from simulator.predictive import detect_adpression
+
+        # 20 uniform values at 1.0, then one spike at 8.0
+        surprisals = [1.0] * 20 + [8.0] + [1.0] * 5
+        events = detect_adpression(surprisals, threshold_sd=2.0, burn_in=5)
+        # The spike at index 20 should be detected
+        flagged_steps = [e[0] for e in events]
+        self.assertIn(20, flagged_steps)
+
+    def test_burn_in_excludes_early_steps(self):
+        """No events should be flagged within the burn-in period."""
+        from simulator.predictive import detect_adpression
+
+        # Put a spike in burn-in period
+        surprisals = [8.0] + [1.0] * 20
+        events = detect_adpression(surprisals, threshold_sd=2.0, burn_in=5)
+        flagged_steps = [e[0] for e in events]
+        self.assertNotIn(0, flagged_steps)
+
+    def test_uniform_surprisal_no_events(self):
+        """Perfectly uniform surprisal should produce no adpression events."""
+        from simulator.predictive import detect_adpression
+
+        surprisals = [1.0] * 30
+        events = detect_adpression(surprisals, threshold_sd=2.0, burn_in=5)
+        self.assertEqual(len(events), 0)
+
+    def test_empty_input(self):
+        """Empty surprisal list should return empty events."""
+        from simulator.predictive import detect_adpression
+
+        events = detect_adpression([], threshold_sd=2.0, burn_in=5)
+        self.assertEqual(len(events), 0)
+
+
+class TestDetectStateCollapse(unittest.TestCase):
+    """Tests for detect_state_collapse()."""
+
+    def test_collapse_detected(self):
+        """Axis transitioning from multi-state to single-state should be flagged."""
+        from simulator.predictive import detect_state_collapse
+
+        # 15 steps with variety, then 15 steps stuck in one state
+        states = (["a", "b", "c"] * 5) + (["a"] * 15)
+        events = detect_state_collapse(states, "test_axis", window=10)
+        self.assertGreater(len(events), 0)
+        self.assertEqual(events[0].event_type, "state_collapse")
+
+    def test_always_single_state_no_event(self):
+        """An axis that was always single-state should NOT be flagged."""
+        from simulator.predictive import detect_state_collapse
+
+        states = ["a"] * 30
+        events = detect_state_collapse(states, "test_axis", window=10)
+        self.assertEqual(len(events), 0)
+
+    def test_diverse_axis_no_event(self):
+        """An axis maintaining diversity should produce no collapse events."""
+        from simulator.predictive import detect_state_collapse
+
+        states = (["a", "b", "c"] * 10)
+        events = detect_state_collapse(states, "test_axis", window=10)
+        self.assertEqual(len(events), 0)
+
+
 if __name__ == "__main__":
     unittest.main()
