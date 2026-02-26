@@ -9,6 +9,45 @@ import numpy as np
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
+def _make_trajectory(steps=10, with_events=True):
+    """Build a synthetic trajectory for testing."""
+    traj = []
+    cumul = {"self": 0, "absorptive": 0, "novel": 0, "env": 0, "disint": 0,
+             "types_lost": 0, "k_lost": 0.0, "deep_stasis": 0}
+    for t in range(steps):
+        if with_events and t == 3:
+            cumul["self"] += 1
+            cumul["absorptive"] += 1
+        if with_events and t == 6:
+            cumul["novel"] += 1
+            cumul["disint"] += 1
+        traj.append({
+            "step": t,
+            "D_total": 10 + t,
+            "k_total": 50.0 + t * 5,
+            "total_M": 100.0 + t * 10,
+            "n_active": 8,
+            "n_dormant": 2,
+            "agent_k_list": [10.0] * 8,
+            "convergence": 0.5,
+            "texture_type": 1,
+            "a_env": 3.0,
+            "K_env": 2e5,
+            "innovation_potential": 0.8 - t * 0.01,
+            "n_self_metatheses": cumul["self"],
+            "n_absorptive_cross": cumul["absorptive"],
+            "n_novel_cross": cumul["novel"],
+            "n_env_transitions": cumul["env"],
+            "n_disintegration_redistributions": cumul["disint"],
+            "n_types_lost": cumul["types_lost"],
+            "k_lost": cumul["k_lost"],
+            "n_deep_stasis": cumul["deep_stasis"],
+            "affordance_mean": 0.6,
+            "temporal_state_counts": {0: 0, 1: 2, 2: 3, 3: 3, 4: 2},
+        })
+    return traj
+
+
 class TestPredictStep(unittest.TestCase):
     """Tests for predict_step()."""
 
@@ -159,6 +198,119 @@ class TestDetectStateCollapse(unittest.TestCase):
         states = (["a", "b", "c"] * 10)
         events = detect_state_collapse(states, "test_axis", window=10)
         self.assertEqual(len(events), 0)
+
+
+class TestRunPredictiveDiagnostic(unittest.TestCase):
+    """Tests for run_predictive_diagnostic()."""
+
+    def _compute_inputs(self, steps=50):
+        """Helper to compute TAPS inputs from synthetic trajectory."""
+        from simulator.taps import (
+            compute_all_scores, compute_anopression, compute_rip,
+            pressure_ratio,
+        )
+        traj = _make_trajectory(steps=steps, with_events=True)
+        scores = compute_all_scores(traj, mu=0.005)
+        ano_scores = compute_anopression(traj, mu=0.005)
+        rip = compute_rip(traj)
+        ratios = pressure_ratio(ano_scores)
+        return traj, scores, ano_scores, rip, ratios
+
+    def test_coarse_grain_selects_3_axes(self):
+        """Coarse grain should analyze syntegration_phase, rip_dominance, ano_dominant."""
+        from simulator.predictive import run_predictive_diagnostic
+
+        traj, scores, ano_scores, rip, ratios = self._compute_inputs()
+        result = run_predictive_diagnostic(
+            traj, scores, ano_scores, rip, ratios, grain="coarse")
+        self.assertEqual(len(result.axes_analyzed), 3)
+        expected = {"syntegration_phase", "rip_dominance", "ano_dominant"}
+        self.assertEqual(set(result.axes_analyzed), expected)
+
+    def test_fine_grain_selects_5_axes(self):
+        """Fine grain should analyze all 5 transition axes."""
+        from simulator.predictive import run_predictive_diagnostic
+
+        traj, scores, ano_scores, rip, ratios = self._compute_inputs()
+        result = run_predictive_diagnostic(
+            traj, scores, ano_scores, rip, ratios, grain="fine")
+        self.assertEqual(len(result.axes_analyzed), 5)
+
+    def test_result_has_correct_structure(self):
+        """Result should have all expected fields with correct types."""
+        from simulator.predictive import (
+            run_predictive_diagnostic, PredictiveDiagnosticResult,
+        )
+
+        traj, scores, ano_scores, rip, ratios = self._compute_inputs()
+        result = run_predictive_diagnostic(
+            traj, scores, ano_scores, rip, ratios)
+        self.assertIsInstance(result, PredictiveDiagnosticResult)
+        self.assertIsInstance(result.predictions, list)
+        self.assertIsInstance(result.parallel_matching_rate, dict)
+        self.assertIsInstance(result.mean_surprisal, dict)
+        self.assertIsInstance(result.adpression_events, list)
+        self.assertIsInstance(result.state_collapse_events, list)
+
+    def test_parallel_matching_rate_in_range(self):
+        """Parallel matching rate should be between 0.0 and 1.0 for each axis."""
+        from simulator.predictive import run_predictive_diagnostic
+
+        traj, scores, ano_scores, rip, ratios = self._compute_inputs()
+        result = run_predictive_diagnostic(
+            traj, scores, ano_scores, rip, ratios)
+        for axis, rate in result.parallel_matching_rate.items():
+            self.assertGreaterEqual(rate, 0.0,
+                f"Axis '{axis}' match rate should be >= 0")
+            self.assertLessEqual(rate, 1.0,
+                f"Axis '{axis}' match rate should be <= 1")
+
+    def test_mean_surprisal_non_negative(self):
+        """Mean surprisal should be >= 0 for each axis."""
+        from simulator.predictive import run_predictive_diagnostic
+
+        traj, scores, ano_scores, rip, ratios = self._compute_inputs()
+        result = run_predictive_diagnostic(
+            traj, scores, ano_scores, rip, ratios)
+        for axis, surp in result.mean_surprisal.items():
+            self.assertGreaterEqual(surp, 0.0,
+                f"Axis '{axis}' mean surprisal should be >= 0")
+
+    def test_top_k_predictions_ordered(self):
+        """Top predictions should be in descending probability order."""
+        from simulator.predictive import run_predictive_diagnostic
+
+        traj, scores, ano_scores, rip, ratios = self._compute_inputs()
+        result = run_predictive_diagnostic(
+            traj, scores, ano_scores, rip, ratios, top_k=3)
+        for pred in result.predictions:
+            probs = [p for _, p in pred.top_predictions]
+            for i in range(len(probs) - 1):
+                self.assertGreaterEqual(probs[i], probs[i + 1],
+                    f"Step {pred.step}, axis {pred.axis}: "
+                    f"top predictions not in descending order")
+
+    def test_horizon_parameter_stored(self):
+        """Different horizons should be stored correctly in result."""
+        from simulator.predictive import run_predictive_diagnostic
+
+        traj, scores, ano_scores, rip, ratios = self._compute_inputs(steps=50)
+        r1 = run_predictive_diagnostic(
+            traj, scores, ano_scores, rip, ratios, horizon=1)
+        r3 = run_predictive_diagnostic(
+            traj, scores, ano_scores, rip, ratios, horizon=3)
+        self.assertEqual(r1.horizon, 1)
+        self.assertEqual(r3.horizon, 3)
+
+    def test_step_count_matches_trajectory(self):
+        """step_count should equal len(trajectory) - 1."""
+        from simulator.predictive import run_predictive_diagnostic
+
+        steps = 30
+        traj, scores, ano_scores, rip, ratios = self._compute_inputs(steps=steps)
+        result = run_predictive_diagnostic(
+            traj, scores, ano_scores, rip, ratios)
+        self.assertEqual(result.step_count, steps - 1)
 
 
 if __name__ == "__main__":
