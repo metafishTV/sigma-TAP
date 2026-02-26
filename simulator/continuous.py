@@ -53,7 +53,7 @@ def _build_rhs(params: ModelParams, sigma0: float, gamma: float):
 
         B = sig * f_val          # Birth term: sigma-scaled innovation rate
         D = params.mu * M         # Death/extinction term
-        H = max(0.0, 0.02 * Xi)  # Compression feedback from accumulated Xi
+        H = max(0.0, params.h_decay * Xi)  # Compression feedback
 
         dM = B - D
         # Xi tracks cumulative affordance pressure (total innovation exposure),
@@ -131,7 +131,7 @@ def run_continuous(
     Xi_arr = sol.y[1]
 
     # Recompute sigma and f at each output point for diagnostics.
-    sigma_arr = np.array([sigma_linear(xi, sigma0, gamma) for xi in Xi_arr])
+    sigma_arr = np.maximum(0.0, sigma0 * (1.0 + gamma * Xi_arr))
     f_arr = np.array([
         compute_birth_term(
             m, alpha=params.alpha, a=params.a,

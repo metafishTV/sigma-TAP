@@ -352,11 +352,11 @@ def innovation_rate_scaling(
     if len(m_traj) < 3:
         return {"exponent": 1.0, "r_squared": 0.0, "n_points": len(m_traj)}
 
-    # Finite differences for dk/dt.
+    from scipy.stats import linregress
+
     rates = [(m_traj[i + 1] - m_traj[i]) / dt for i in range(len(m_traj) - 1)]
     midpoints = [0.5 * (m_traj[i] + m_traj[i + 1]) for i in range(len(m_traj) - 1)]
 
-    # Filter to positive values for log-log fit.
     log_k = []
     log_rate = []
     for k, r in zip(midpoints, rates):
@@ -368,20 +368,8 @@ def innovation_rate_scaling(
     if n < 2:
         return {"exponent": 1.0, "r_squared": 0.0, "n_points": n}
 
-    # OLS: log(rate) = sigma * log(k) + c.
-    mean_x = sum(log_k) / n
-    mean_y = sum(log_rate) / n
-    ss_xy = sum((x - mean_x) * (y - mean_y) for x, y in zip(log_k, log_rate))
-    ss_xx = sum((x - mean_x) ** 2 for x in log_k)
-    ss_yy = sum((y - mean_y) ** 2 for y in log_rate)
-
-    if ss_xx < 1e-15:
-        return {"exponent": 1.0, "r_squared": 0.0, "n_points": n}
-
-    sigma = ss_xy / ss_xx
-    r_squared = (ss_xy ** 2) / (ss_xx * ss_yy) if ss_yy > 1e-15 else 0.0
-
-    return {"exponent": sigma, "r_squared": r_squared, "n_points": n}
+    result = linregress(log_k, log_rate)
+    return {"exponent": result.slope, "r_squared": result.rvalue ** 2, "n_points": n}
 
 
 def constraint_tag(
