@@ -45,8 +45,6 @@ def precursor_guard_active(dxi_dt: float, xi_plateau: float) -> bool:
     return dxi_dt >= xi_plateau
 
 
-
-
 def classify_regime(
     xi_traj: list[float],
     m_traj: list[float],

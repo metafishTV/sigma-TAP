@@ -3,7 +3,6 @@ from __future__ import annotations
 import math
 
 
-
 def innovation_kernel_closed(M: float, alpha: float, a: float) -> float:
     """Overflow-aware closed form interpolation for real-valued M.
 

@@ -28,9 +28,11 @@ def heaps_law_fit(D_series: list[float], k_series: list[float]) -> dict:
     if len(D_series) < 2 or len(k_series) < 2:
         return {"beta": 1.0, "intercept": 0.0, "r_squared": 0.0, "n_points": 0}
 
+    # heaps_exponent expects integer counts; round rather than truncate
+    # to avoid silent precision loss on interpolated floats.
     result = heaps_exponent(
-        k_total=[int(k) for k in k_series],
-        D_total=[int(d) for d in D_series],
+        k_total=[round(k) for k in k_series],
+        D_total=[round(d) for d in D_series],
     )
 
     if math.isnan(result.exponent):
