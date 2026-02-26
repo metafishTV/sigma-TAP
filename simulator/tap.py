@@ -74,4 +74,4 @@ def compute_birth_term(
     else:
         raise ValueError(f"Unknown TAP variant '{variant}'. Expected baseline|two_scale|logistic")
 
-    return max(0.0, base)
+    return base

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from statistics import median
 
 
@@ -68,7 +69,6 @@ def classify_regime(
 
     if m_traj[-1] <= 0:
         return "extinction"
-    import math
     if m_traj[-1] >= m_blow or any((not math.isfinite(v)) or v == float("inf") for v in m_traj):
         return "explosive"
 
@@ -99,7 +99,6 @@ def find_fixed_point(alpha: float, mu: float, a: float, m_lo: float = 1e-3, m_hi
 
     Returns None if no positive bracketed root is found in [m_lo, m_hi].
     """
-    import math
     from .tap import innovation_kernel_closed
 
     def g(m: float) -> float:
@@ -154,7 +153,6 @@ def fit_explosive_logistic_boundary(
     y=1 for explosive-like labels, y=0 otherwise.
     Returns fitted coefficients and a compact training summary.
     """
-    import math
 
     explosive_labels = explosive_labels or {"explosive"}
 
@@ -246,7 +244,6 @@ def fit_explosive_logistic_boundary_3d(
 
     This estimates initialization sensitivity explicitly via coefficient c3 on log(M0).
     """
-    import math
 
     explosive_labels = explosive_labels or {"explosive"}
 
@@ -351,7 +348,6 @@ def innovation_rate_scaling(
 
     Returns dict with 'exponent', 'r_squared', 'n_points'.
     """
-    import math
 
     if len(m_traj) < 3:
         return {"exponent": 1.0, "r_squared": 0.0, "n_points": len(m_traj)}
