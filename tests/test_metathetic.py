@@ -667,8 +667,8 @@ class TestDisintegrationRedistribution(unittest.TestCase):
         # With equal Jaccard, lowest agent_id (agent 1) wins the types
         self.assertIn(101, ens.agents[1].type_set)
 
-    def test_no_neighbors_means_knowledge_lost(self):
-        """If no active agent has Jaccard>0, types and k are lost."""
+    def test_no_neighbors_means_deep_stasis(self):
+        """If no active agent has Jaccard>0, agent enters deep stasis."""
         from simulator.metathetic import MetatheticEnsemble
         ens = MetatheticEnsemble(
             n_agents=3, initial_M=10.0,
@@ -688,9 +688,15 @@ class TestDisintegrationRedistribution(unittest.TestCase):
 
         ens._check_disintegration_redistribution()
 
+        # Other agents' k unchanged
         self.assertAlmostEqual(ens.agents[1].k, k1_before)
         self.assertAlmostEqual(ens.agents[2].k, k2_before)
-        self.assertGreater(ens.n_types_lost, 0)
+        # Deep stasis: types preserved, n_types_lost = 0, k truncated to 5%
+        self.assertTrue(ens.agents[0]._deep_stasis)
+        self.assertFalse(ens.agents[0]._dissolved)
+        self.assertEqual(ens.agents[0].type_set, {999})
+        self.assertAlmostEqual(ens.agents[0].k, 5.0, places=1)
+        self.assertEqual(ens.n_types_lost, 0)
         self.assertGreater(ens.k_lost, 0)
 
     def test_counters_tracked(self):
@@ -768,6 +774,64 @@ class TestDisintegrationRedistribution(unittest.TestCase):
         # Second call should be a no-op
         ens._check_disintegration_redistribution()
         self.assertEqual(ens.n_disintegration_redistributions, 1)  # Still 1
+
+    def test_deep_stasis_retains_types(self):
+        """Agent with no Jaccard neighbor enters deep stasis, retains types."""
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        # Agent 0: unique types, no overlap with anyone
+        ens.agents[0].active = False
+        ens.agents[0]._dormant_steps = 30
+        ens.agents[0].type_set = {999, 998}
+        ens.agents[0].k = 100.0
+        # Agents 1,2: share types with each other but NOT with agent 0
+        ens.agents[1].type_set = {0, 1}
+        ens.agents[2].type_set = {0, 2}
+
+        ens._check_disintegration_redistribution()
+
+        # Agent should be in deep stasis, not dissolved
+        self.assertTrue(ens.agents[0]._deep_stasis)
+        self.assertFalse(ens.agents[0]._dissolved)
+        # Types preserved
+        self.assertEqual(ens.agents[0].type_set, {999, 998})
+        # Knowledge truncated to 5% residual
+        self.assertAlmostEqual(ens.agents[0].k, 5.0, places=1)
+        # k_lost tracks the truncated portion
+        self.assertAlmostEqual(ens.k_lost, 95.0, places=1)
+        # n_types_lost is 0 (types preserved)
+        self.assertEqual(ens.n_types_lost, 0)
+
+    def test_deep_stasis_not_redisintegrated(self):
+        """Deep stasis agent should not be processed again."""
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        ens.agents[0].active = False
+        ens.agents[0]._dormant_steps = 30
+        ens.agents[0].type_set = {999}
+        ens.agents[0].k = 100.0
+        ens.agents[1].type_set = {0, 1}
+        ens.agents[2].type_set = {0, 2}
+
+        ens._check_disintegration_redistribution()
+        first_k = ens.agents[0].k
+        first_lost = ens.k_lost
+
+        # Second call should be a no-op
+        ens._check_disintegration_redistribution()
+        self.assertEqual(ens.agents[0].k, first_k)
+        self.assertEqual(ens.k_lost, first_lost)
+        self.assertEqual(ens.n_disintegration_redistributions, 1)
 
     def test_disintegration_fires_in_full_run(self):
         """With aggressive params and long run, disintegration should fire naturally."""

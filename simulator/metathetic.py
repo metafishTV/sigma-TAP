@@ -53,6 +53,7 @@ class MetatheticAgent:
     _dormant_steps: int = 0
     _affordance_ticks: list[int] = field(default_factory=list)
     _dissolved: bool = field(default=False, init=False, repr=False)
+    _deep_stasis: bool = field(default=False, init=False, repr=False)
 
     # -- Temporal orientation gate constants --------------------------------
     _NOVELTY_WINDOW: int = field(default=5, init=False, repr=False)
@@ -452,6 +453,7 @@ class MetatheticEnsemble:
         self.n_novel_cross = 0
         self.n_env_transitions = 0
         self.n_disintegration_redistributions = 0
+        self.n_deep_stasis = 0
         self.n_types_lost = 0
         self.k_lost = 0.0
 
@@ -643,7 +645,8 @@ class MetatheticEnsemble:
 
         Redistribution is weighted by Jaccard similarity (interaction proximity).
         Types go to the most-similar active agent. Knowledge is split proportionally.
-        If no active agent has Jaccard > 0, types and knowledge are lost.
+        If no active agent has Jaccard > 0, the agent enters deep stasis: types
+        are preserved and knowledge is truncated to a 5% residual.
 
         An agent is eligible for disintegration redistribution when it has been
         inactive and dormant past the relational decay window. This is
@@ -656,7 +659,7 @@ class MetatheticEnsemble:
             return
 
         for agent in list(self.agents):
-            if agent._dissolved or agent.active:
+            if agent._dissolved or agent._deep_stasis or agent.active:
                 continue
 
             # Disintegration eligibility: dormant past relational decay window
@@ -673,9 +676,19 @@ class MetatheticEnsemble:
             total_w = sum(weights.values())
 
             if total_w == 0:
-                # No interactive neighbor — knowledge and types are lost
-                self.n_types_lost += len(agent.type_set)
-                self.k_lost += agent.k
+                # No interactive neighbor — enter deep stasis (rogue planet).
+                # Types preserved (identity intact), knowledge truncated to
+                # 5% residual. Agent can potentially reactivate if cross-
+                # metathesis introduces shared types from a passing agent.
+                residual_fraction = 0.05
+                k_residual = agent.k * residual_fraction
+                self.k_lost += agent.k - k_residual
+                # n_types_lost stays 0: types are preserved
+                agent.k = k_residual
+                agent._deep_stasis = True
+                self.n_deep_stasis += 1
+                self.n_disintegration_redistributions += 1
+                continue  # skip the dissolved cleanup below
             else:
                 # Redistribute types to highest-weight agent
                 agent_by_id = {a.agent_id: a for a in active}
@@ -768,7 +781,7 @@ class MetatheticEnsemble:
 
             # 5. Record ensemble snapshot.
             active = self._active_agents()
-            dormant = [a for a in self.agents if not a.active]
+            dormant = [a for a in self.agents if not a.active and not a._dissolved and not a._deep_stasis]
             agent_k_list = [a.k for a in active]
 
             snapshot = {
@@ -791,6 +804,7 @@ class MetatheticEnsemble:
                 "n_novel_cross": self.n_novel_cross,
                 "n_env_transitions": self.n_env_transitions,
                 "n_disintegration_redistributions": self.n_disintegration_redistributions,
+                "n_deep_stasis": self.n_deep_stasis,
                 "n_types_lost": self.n_types_lost,
                 "k_lost": round(self.k_lost, 4),
             }
