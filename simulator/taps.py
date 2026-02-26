@@ -188,13 +188,102 @@ def pressure_ratio(ano_scores: dict[str, list[float]]) -> list[float]:
 # P — Praxis
 # ---------------------------------------------------------------------------
 
+# Empirically-grounded weights for action modality decomposition.
+# Each event type contributes to BOTH consumption and consummation as
+# obverse and reverse of the same action.  The direction of subordination
+# determines which modality dominates:
+#
+#   Consumption  — disintegration serves integration (reflective cycle)
+#   Consummation — integration serves disintegration/transformation (projective cycle)
+#
+# These form a metathetic pair-of-pairs within Praxis:
+#   (projection · consummation) + (reflection · consumption)
+#       ⇄  (projection · reflection) + (consumption · consummation)
+#
+# Weight calibration targets (cross-domain empirical convergence):
+#   ~0.40:0.60 typical operating point (Youn et al. 2015 patents 220yr
+#     invariant; glucose ATP capture; microbial Y_ATP Bauchop & Elsden 1960)
+#   ~0.50:0.50 equilibrium attractor (Odum 1969 climax P/R=1.0; cellular
+#     ATP efficiency)
+#   See docs/empirical_targets.md §calibration for full source list.
+#
+# Format: (consumption_weight, consummation_weight)
+ACTION_MODALITY_WEIGHTS: dict[str, tuple[float, float]] = {
+    "self":           (0.45, 0.55),   # maximally dual — slight consummative lean
+    "absorptive":     (0.60, 0.40),   # primarily consumptive (disintegrate → integrate)
+    "novel":          (0.35, 0.65),   # primarily consummative (integrate → transform)
+    "disintegration": (0.40, 0.60),   # primarily consummative (culmination of identity)
+    "env":            (0.40, 0.60),   # primarily consummative (forced transformation)
+}
+
+
 def compute_praxis(trajectory: Trajectory) -> dict[str, list[float]]:
-    """Compute projection, reflection, and action scores per step."""
+    """Compute projection, reflection, action, consumption, consummation,
+    pure_action, and action_balance scores per step.
+
+    Projection: feedforward exploration of the adjacent possible.
+    Reflection: feedback self-assessment of readiness.
+    Action: total metathesis events (undifferentiated).
+
+    Consumption: disintegration serving integration, operating through a
+        reflective cycle.  Weighted sum of event deltas using empirically
+        calibrated weights (see ACTION_MODALITY_WEIGHTS).
+    Consummation: integration serving disintegration/transformation,
+        operating through a projective cycle.
+    Pure action: overlap of consumption and consummation — the intersection
+        of the two limitrophes.  min(consumption, consummation).
+    Action balance: consummation / (consumption + consummation).
+        0.5 = pure action; <0.5 = consumptive; >0.5 = consummative.
+        Empirical target for typical operating regime ≈ 0.60.
+    """
     deltas = _event_deltas(trajectory)
     projection = [snap.get("innovation_potential", 0.0) for snap in trajectory]
     reflection = [snap.get("affordance_mean", 0.0) for snap in trajectory]
-    action = [float(d["total"]) for d in deltas]
-    return {"projection": projection, "reflection": reflection, "action": action}
+    action: list[float] = []
+    consumption: list[float] = []
+    consummation: list[float] = []
+    pure_action: list[float] = []
+    action_balance: list[float] = []
+
+    w = ACTION_MODALITY_WEIGHTS
+
+    for d in deltas:
+        total = float(d["total"])
+        action.append(total)
+
+        if total == 0:
+            consumption.append(0.0)
+            consummation.append(0.0)
+            pure_action.append(0.0)
+            action_balance.append(0.5)  # undefined → neutral
+            continue
+
+        # Weighted contributions from each event type
+        cons = 0.0   # consumption
+        consu = 0.0  # consummation
+        for event_key in ("self", "absorptive", "novel", "disintegration", "env"):
+            count = float(d.get(event_key, 0))
+            cons += count * w[event_key][0]
+            consu += count * w[event_key][1]
+
+        # Normalize by total events so scores are per-event intensities
+        cons /= total
+        consu /= total
+
+        consumption.append(cons)
+        consummation.append(consu)
+        pure_action.append(min(cons, consu))
+        action_balance.append(consu / (cons + consu) if (cons + consu) > 0 else 0.5)
+
+    return {
+        "projection": projection,
+        "reflection": reflection,
+        "action": action,
+        "consumption": consumption,
+        "consummation": consummation,
+        "pure_action": pure_action,
+        "action_balance": action_balance,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -289,8 +378,9 @@ def compute_all_scores(
 
     Keys are mode names (involution, evolution, condensation, expression,
     impression, adpression, oppression, suppression, depression, compression,
-    projection, reflection, action, disintegration, preservation, integration,
-    synthesis). All arrays have length == len(trajectory).
+    projection, reflection, action, consumption, consummation, pure_action,
+    action_balance, disintegration, preservation, integration, synthesis).
+    All arrays have length == len(trajectory).
     """
     t_scores = compute_transvolution(trajectory)
     a_scores = compute_anopression(trajectory, mu=mu)

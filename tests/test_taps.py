@@ -166,6 +166,124 @@ class TestRIPDominance(unittest.TestCase):
         self.assertEqual(result["dominance"][3], "praxis")
 
 
+class TestActionModalities(unittest.TestCase):
+    """Tests for consumption/consummation decomposition of action."""
+
+    def test_praxis_returns_all_keys(self):
+        """compute_praxis should return all 7 keys including modalities."""
+        from simulator.taps import compute_praxis
+        traj = _make_trajectory(steps=10)
+        result = compute_praxis(traj)
+        expected = {"projection", "reflection", "action",
+                    "consumption", "consummation", "pure_action",
+                    "action_balance"}
+        self.assertEqual(set(result.keys()), expected)
+
+    def test_all_scores_includes_modalities(self):
+        """compute_all_scores should propagate modality keys."""
+        from simulator.taps import compute_all_scores
+        traj = _make_trajectory(steps=10)
+        scores = compute_all_scores(traj, mu=0.005)
+        for key in ("consumption", "consummation", "pure_action", "action_balance"):
+            self.assertIn(key, scores, f"Missing key: {key}")
+            self.assertEqual(len(scores[key]), 10)
+
+    def test_no_events_yields_zero_modalities(self):
+        """Steps with no events should have zero consumption/consummation."""
+        from simulator.taps import compute_praxis
+        traj = _make_trajectory(steps=10, with_events=False)
+        result = compute_praxis(traj)
+        for t in range(10):
+            self.assertAlmostEqual(result["consumption"][t], 0.0)
+            self.assertAlmostEqual(result["consummation"][t], 0.0)
+            self.assertAlmostEqual(result["pure_action"][t], 0.0)
+
+    def test_no_events_balance_is_neutral(self):
+        """action_balance should be 0.5 (neutral) when no events occur."""
+        from simulator.taps import compute_praxis
+        traj = _make_trajectory(steps=10, with_events=False)
+        result = compute_praxis(traj)
+        for t in range(10):
+            self.assertAlmostEqual(result["action_balance"][t], 0.5)
+
+    def test_pure_action_is_min(self):
+        """pure_action = min(consumption, consummation) at every step."""
+        from simulator.taps import compute_praxis
+        traj = _make_trajectory(steps=10)
+        result = compute_praxis(traj)
+        for t in range(10):
+            self.assertAlmostEqual(
+                result["pure_action"][t],
+                min(result["consumption"][t], result["consummation"][t]),
+            )
+
+    def test_absorptive_step_is_consumptive(self):
+        """A step with only absorptive events should be consumption-dominant.
+
+        At step 3: delta_self=1, delta_absorptive=1.
+        self weights:       (0.45, 0.55)
+        absorptive weights: (0.60, 0.40)
+        consumption  = (1*0.45 + 1*0.60) / 2 = 0.525
+        consummation = (1*0.55 + 1*0.40) / 2 = 0.475
+        action_balance = 0.475 / (0.525 + 0.475) = 0.475 < 0.5
+        """
+        from simulator.taps import compute_praxis
+        traj = _make_trajectory(steps=10)
+        result = compute_praxis(traj)
+        # Step 3 has self + absorptive events -> consumption > consummation
+        self.assertGreater(result["consumption"][3], result["consummation"][3])
+        self.assertLess(result["action_balance"][3], 0.5)
+
+    def test_novel_step_is_consummative(self):
+        """A step with only novel+disintegration events should be
+        consummation-dominant.
+
+        At step 6: delta_novel=1, delta_disint=1.
+        novel weights:  (0.35, 0.65)
+        disint weights: (0.40, 0.60)
+        consumption  = (1*0.35 + 1*0.40) / 2 = 0.375
+        consummation = (1*0.65 + 1*0.60) / 2 = 0.625
+        action_balance = 0.625 / (0.375 + 0.625) = 0.625 > 0.5
+        """
+        from simulator.taps import compute_praxis
+        traj = _make_trajectory(steps=10)
+        result = compute_praxis(traj)
+        # Step 6 has novel + disintegration events -> consummation > consumption
+        self.assertGreater(result["consummation"][6], result["consumption"][6])
+        self.assertGreater(result["action_balance"][6], 0.5)
+
+    def test_action_balance_range(self):
+        """action_balance should always be in [0, 1]."""
+        from simulator.taps import compute_praxis
+        traj = _make_trajectory(steps=10)
+        result = compute_praxis(traj)
+        for t in range(10):
+            self.assertGreaterEqual(result["action_balance"][t], 0.0)
+            self.assertLessEqual(result["action_balance"][t], 1.0)
+
+    def test_consumption_plus_consummation_equals_one(self):
+        """Normalized consumption + consummation should sum to ~1.0 when
+        events occur (since weights are (w, 1-w) pairs that average to 1)."""
+        from simulator.taps import compute_praxis
+        traj = _make_trajectory(steps=10)
+        result = compute_praxis(traj)
+        for t in range(10):
+            if result["action"][t] > 0:
+                total = result["consumption"][t] + result["consummation"][t]
+                self.assertAlmostEqual(total, 1.0, places=10,
+                                       msg=f"Step {t}: cons+consu={total}")
+
+    def test_weights_constant_reference(self):
+        """ACTION_MODALITY_WEIGHTS should contain all 5 event types."""
+        from simulator.taps import ACTION_MODALITY_WEIGHTS
+        expected_keys = {"self", "absorptive", "novel", "disintegration", "env"}
+        self.assertEqual(set(ACTION_MODALITY_WEIGHTS.keys()), expected_keys)
+        # Each weight pair should sum to 1.0 (obverse + reverse = unity)
+        for key, (w_cons, w_consu) in ACTION_MODALITY_WEIGHTS.items():
+            self.assertAlmostEqual(w_cons + w_consu, 1.0,
+                                   msg=f"Weights for {key} don't sum to 1.0")
+
+
 class TestCorrelationMatrix(unittest.TestCase):
     """Tests for correlation analysis."""
 

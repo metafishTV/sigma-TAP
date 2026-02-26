@@ -46,9 +46,25 @@ Syntropy is primary; entropy and extropy are derivative decompositions.
 - Projection: feedforward exploration of the adjacent possible
 - Reflection: feedback self-assessment of readiness
 - Action: the actual doing (consumption + consummation)
+  - Consumption: disintegration serving integration (reflective cycle)
+  - Consummation: integration serving disintegration/transformation (projective cycle)
+  - Pure action: the intersection of consumption and consummation (rare locally)
+  - Action balance: consummation / (consumption + consummation); empirical target ≈ 0.60
+
+The four elements (projection, reflection, consumption, consummation) form a
+metathetic pair-of-pairs that can swap bonding configurations:
+  (projection · consummation) + (reflection · consumption)
+      ⇄  (projection · reflection) + (consumption · consummation)
+
+Consumption and consummation are always synthetic (P→S direct conjunction).
+Projection and reflection are conditionally syntegrative (preservative,
+integrative, or disintegrative, but not necessarily synthetic).
 
 Extended from Aristotle's classical praxis (theory/practice/action) per
 the project author's framework. Praxis is universal, not exclusively human.
+Consumption/consummation weights calibrated against cross-domain empirical
+convergence (Youn et al. 2015, Odum 1969, Bauchop & Elsden 1960).
+See docs/empirical_targets.md §6b.
 
 **S — Syntegration** (synthetic disintegration):
 - Disintegration: coming apart, redistribution

@@ -232,6 +232,18 @@ def print_summary(scores: dict, ratios: list[float], rip: dict, corr: dict) -> N
     print(f"    Depression:     {scores['depression'][last]:.4f}")
     print(f"    Compression:    {scores['compression'][last]:.4f}")
 
+    # Praxis — action modalities
+    print(f"\n  Praxis (action modalities):")
+    print(f"    Projection:     {scores['projection'][last]:.4f}")
+    print(f"    Reflection:     {scores['reflection'][last]:.4f}")
+    print(f"    Action (total): {scores['action'][last]:.4f}")
+    print(f"    Consumption:    {scores['consumption'][last]:.4f}")
+    print(f"    Consummation:   {scores['consummation'][last]:.4f}")
+    print(f"    Pure action:    {scores['pure_action'][last]:.4f}")
+    bal = scores['action_balance'][last]
+    bal_label = "consummative" if bal > 0.5 else ("consumptive" if bal < 0.5 else "balanced")
+    print(f"    Action balance: {bal:.4f} ({bal_label}; target ~0.60)")
+
     # Transvolution
     print(f"\n  Transvolution:")
     print(f"    Involution:     {scores['involution'][last]:.4f}")
