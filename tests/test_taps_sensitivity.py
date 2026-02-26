@@ -223,5 +223,39 @@ class TestTransitionSummary(unittest.TestCase):
         self.assertEqual(pathways[2], ("c", "b", 4))
 
 
+class TestSweepTapsModes(unittest.TestCase):
+    """Tests for parameter sensitivity sweep."""
+
+    def test_sweep_returns_correct_keys(self):
+        """Sweep result should contain grid, mode_summaries, sensitivity, transition_maps."""
+        from simulator.taps_sensitivity import sweep_taps_modes
+        grid = {"mu": [0.01, 0.1], "alpha": [1e-3], "a": [8.0]}
+        result = sweep_taps_modes(grid, n_agents=5, steps=20, seed=42)
+        self.assertIn("grid", result)
+        self.assertIn("mode_summaries", result)
+        self.assertIn("sensitivity", result)
+        self.assertIn("transition_maps", result)
+
+    def test_sweep_mode_summaries_shape(self):
+        """Each mode summary should have one entry per grid point."""
+        from simulator.taps_sensitivity import sweep_taps_modes
+        grid = {"mu": [0.01, 0.05], "alpha": [1e-3], "a": [4.0]}
+        result = sweep_taps_modes(grid, n_agents=5, steps=20, seed=42)
+        n_points = 2  # 2 mu * 1 alpha * 1 a
+        for mode_name, summary in result["mode_summaries"].items():
+            self.assertEqual(len(summary["mean"]), n_points,
+                             f"Mode {mode_name}: expected {n_points} entries")
+
+    def test_sensitivity_metric_computed(self):
+        """Sensitivity dict should have normalized range per mode per swept param."""
+        from simulator.taps_sensitivity import sweep_taps_modes
+        grid = {"mu": [0.005, 0.05, 0.5], "alpha": [1e-3], "a": [8.0]}
+        result = sweep_taps_modes(grid, n_agents=5, steps=20, seed=42)
+        self.assertGreater(len(result["sensitivity"]), 0)
+        for mode_name, param_sens in result["sensitivity"].items():
+            self.assertIn("mu", param_sens,
+                          f"Mode {mode_name} should have mu sensitivity")
+
+
 if __name__ == "__main__":
     unittest.main()

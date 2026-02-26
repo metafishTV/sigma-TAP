@@ -16,7 +16,16 @@ from typing import Any
 
 import numpy as np
 
-from simulator.taps import Trajectory
+from itertools import product as _product
+
+from simulator.taps import (
+    Trajectory,
+    compute_all_scores,
+    compute_anopression,
+    compute_rip,
+    pressure_ratio,
+)
+from simulator.metathetic import MetatheticEnsemble
 
 
 # ---------------------------------------------------------------------------
@@ -219,4 +228,180 @@ def transition_summary(transition_maps: dict[str, dict]) -> dict:
         "absorbing_states": absorbing_states,
         "common_pathways": common_pathways,
         "path_entropy": path_entropy,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Function 4: _compute_sensitivity (helper)
+# ---------------------------------------------------------------------------
+
+def _compute_sensitivity(
+    grid_points: list[dict],
+    mode_summaries: dict[str, dict[str, list[float]]],
+    param_grid: dict[str, list[float]],
+) -> dict[str, dict[str, float]]:
+    """Compute normalized sensitivity range per mode per swept parameter.
+
+    For each parameter that was swept (has >1 unique value in *param_grid*),
+    group grid points by that parameter's value, compute the mean of the
+    per-grid-point mode means at each value, and report::
+
+        normalized_range = (max_mean - min_mean) / max(eps, overall_mean)
+
+    Parameters
+    ----------
+    grid_points : list[dict]
+        One dict per grid point with keys ``mu``, ``alpha``, ``a``.
+    mode_summaries : dict
+        ``{mode_name: {"mean": [float, ...], "std": [...], "final": [...]}}``
+    param_grid : dict
+        The original parameter grid passed to :func:`sweep_taps_modes`.
+
+    Returns
+    -------
+    dict[str, dict[str, float]]
+        ``{mode_name: {param_name: normalized_range}}``
+    """
+    eps = 1e-12
+
+    # Identify swept parameters (those with >1 value).
+    swept_params: list[str] = [
+        name for name, vals in param_grid.items() if len(vals) > 1
+    ]
+
+    result: dict[str, dict[str, float]] = {}
+
+    for mode_name, summary in mode_summaries.items():
+        means = summary["mean"]
+        param_sens: dict[str, float] = {}
+
+        for param_name in swept_params:
+            # Group grid-point indices by the value of this parameter.
+            value_to_means: dict[float, list[float]] = {}
+            for idx, gp in enumerate(grid_points):
+                val = gp[param_name]
+                value_to_means.setdefault(val, []).append(means[idx])
+
+            # Mean of mode means at each parameter value.
+            per_value_means = [
+                np.mean(m_list) for m_list in value_to_means.values()
+            ]
+
+            overall_mean = abs(np.mean(means))
+            max_pv = max(per_value_means)
+            min_pv = min(per_value_means)
+            normalized_range = (max_pv - min_pv) / max(eps, overall_mean)
+            param_sens[param_name] = float(normalized_range)
+
+        result[mode_name] = param_sens
+
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Function 5: sweep_taps_modes
+# ---------------------------------------------------------------------------
+
+def sweep_taps_modes(
+    param_grid: dict[str, list],
+    n_agents: int = 20,
+    steps: int = 120,
+    seed: int = 42,
+    variant: str = "logistic",
+    carrying_capacity: float = 2e5,
+) -> dict:
+    """Run an ensemble at each point in a parameter grid and summarise TAPS scores.
+
+    Parameters
+    ----------
+    param_grid : dict
+        Keys ``mu``, ``alpha``, ``a`` each mapping to a list of values.
+        Missing keys default to ``[0.005]``, ``[5e-3]``, ``[3.0]``.
+    n_agents : int
+        Number of agents per ensemble run.
+    steps : int
+        Simulation steps per run.
+    seed : int
+        Base random seed; incremented per grid point.
+    variant : str
+        TAP growth variant passed to :class:`MetatheticEnsemble`.
+    carrying_capacity : float
+        Carrying capacity passed to :class:`MetatheticEnsemble`.
+
+    Returns
+    -------
+    dict with keys:
+        grid : list[dict]
+            One dict per grid point with ``mu``, ``alpha``, ``a``.
+        mode_summaries : dict[str, dict[str, list[float]]]
+            Per mode: ``mean``, ``std``, ``final`` lists (one entry per grid point).
+        sensitivity : dict
+            Output of :func:`_compute_sensitivity`.
+        transition_maps : list[dict]
+            One transition map dict per grid point.
+    """
+    mu_vals = param_grid.get("mu", [0.005])
+    alpha_vals = param_grid.get("alpha", [5e-3])
+    a_vals = param_grid.get("a", [3.0])
+
+    grid_points: list[dict] = []
+    mode_summaries: dict[str, dict[str, list[float]]] = {}
+    transition_maps: list[dict] = []
+
+    run_idx = 0
+    for mu, alpha, a in _product(mu_vals, alpha_vals, a_vals):
+        gp = {"mu": mu, "alpha": alpha, "a": a}
+        grid_points.append(gp)
+
+        # Create and run ensemble.
+        ensemble = MetatheticEnsemble(
+            n_agents=n_agents,
+            initial_M=1.0,
+            alpha=alpha,
+            a=a,
+            mu=mu,
+            variant=variant,
+            carrying_capacity=carrying_capacity,
+            seed=seed + run_idx,
+        )
+        trajectory = ensemble.run(steps)
+
+        # Compute TAPS scores.
+        all_scores = compute_all_scores(trajectory, mu=mu)
+        ano_scores = compute_anopression(trajectory, mu=mu)
+        rip_result = compute_rip(trajectory)
+        ratios = pressure_ratio(ano_scores)
+
+        # Per-mode summaries.
+        for mode_name, scores_list in all_scores.items():
+            arr = np.array(scores_list, dtype=float)
+            if mode_name not in mode_summaries:
+                mode_summaries[mode_name] = {"mean": [], "std": [], "final": []}
+            mode_summaries[mode_name]["mean"].append(float(np.mean(arr)))
+            mode_summaries[mode_name]["std"].append(float(np.std(arr)))
+            mode_summaries[mode_name]["final"].append(float(arr[-1]) if len(arr) > 0 else 0.0)
+
+        # Pressure ratio summary.
+        pr_arr = np.array(ratios, dtype=float)
+        pr_key = "pressure_ratio"
+        if pr_key not in mode_summaries:
+            mode_summaries[pr_key] = {"mean": [], "std": [], "final": []}
+        mode_summaries[pr_key]["mean"].append(float(np.mean(pr_arr)))
+        mode_summaries[pr_key]["std"].append(float(np.std(pr_arr)))
+        mode_summaries[pr_key]["final"].append(float(pr_arr[-1]) if len(pr_arr) > 0 else 0.0)
+
+        # Build transition map for this grid point.
+        t_map = build_transition_map(all_scores, ano_scores, rip_result, ratios, trajectory)
+        transition_maps.append(t_map)
+
+        run_idx += 1
+
+    # Compute sensitivity metrics.
+    sensitivity = _compute_sensitivity(grid_points, mode_summaries, param_grid)
+
+    return {
+        "grid": grid_points,
+        "mode_summaries": mode_summaries,
+        "sensitivity": sensitivity,
+        "transition_maps": transition_maps,
     }
