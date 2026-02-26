@@ -186,6 +186,10 @@ def transition_summary(transition_maps: dict[str, dict]) -> dict:
         path_entropy : dict[str, float]
             Per axis, Shannon entropy of flattened transition distribution
             (log base 2).
+        eigenvalue_analysis : dict[str, dict]
+            Per axis, Poincare eigenvalue classification (from
+            :func:`eigenvalue_analysis`).  Includes dynamics_class,
+            spectral_gap, stationary_distribution, mixing_time, etc.
     """
     absorbing_states: dict[str, list[str]] = {}
     common_pathways: dict[str, list[tuple[str, str, int]]] = {}
@@ -225,11 +229,187 @@ def transition_summary(transition_maps: dict[str, dict]) -> dict:
         else:
             path_entropy[axis] = 0.0
 
+    # --- eigenvalue analysis (Poincare classification) ---
+    eigen_results = eigenvalue_analysis(transition_maps)
+
     return {
         "absorbing_states": absorbing_states,
         "common_pathways": common_pathways,
         "path_entropy": path_entropy,
+        "eigenvalue_analysis": eigen_results,
     }
+
+
+# ---------------------------------------------------------------------------
+# Function 3b: eigenvalue_analysis (Poincare classification)
+# ---------------------------------------------------------------------------
+
+def eigenvalue_analysis(
+    transition_maps: dict[str, dict],
+) -> dict[str, dict]:
+    """Eigenvalue decomposition of transition matrices for Poincare-style
+    dynamics classification.
+
+    Converts each axis's transition count matrix to a row-stochastic
+    (probability) matrix, then computes eigenvalues and classifies the
+    dynamics using Poincare's fixed-point framework (Strogatz 2015, Ch 5-6).
+
+    For a row-stochastic matrix P (Markov chain):
+      - lambda_1 = 1 always (Perron-Frobenius theorem)
+      - Spectral gap = 1 - |lambda_2| determines mixing speed
+      - Complex lambda_2 indicates oscillatory dynamics
+      - Stationary distribution pi satisfies pi P = pi
+
+    Parameters
+    ----------
+    transition_maps : dict
+        Output of ``build_transition_map``.
+
+    Returns
+    -------
+    dict[str, dict]
+        Keyed by axis name.  Each value is a dict with keys:
+
+        eigenvalues : list[complex]
+            Sorted by magnitude descending.
+        spectral_gap : float
+            1 - |lambda_2|.  Range [0, 1].  Large = fast mixing.
+        stationary_distribution : dict[str, float]
+            State -> long-run equilibrium probability.
+        mixing_time : float
+            Estimated steps to approximate stationarity: -1 / log|lambda_2|.
+            inf if |lambda_2| >= 1.
+        oscillation_period : float or None
+            2*pi / |arg(lambda_2)| if lambda_2 is complex, else None.
+        dynamics_class : str
+            One of: "degenerate", "ergodic", "stable_node",
+            "stable_spiral", "quasi_absorbing", "periodic".
+        is_irreducible : bool
+            Whether the chain has a single communicating class.
+        is_aperiodic : bool
+            Whether the chain is aperiodic (gcd of return times = 1).
+    """
+    result: dict[str, dict] = {}
+
+    for axis, data in transition_maps.items():
+        states = data["states"]
+        counts = data["counts"]
+        n = len(states)
+
+        # --- Handle degenerate cases ---
+        if n <= 1:
+            result[axis] = {
+                "eigenvalues": [complex(1.0)] if n == 1 else [],
+                "spectral_gap": 1.0,
+                "stationary_distribution": {states[0]: 1.0} if n == 1 else {},
+                "mixing_time": 0.0,
+                "oscillation_period": None,
+                "dynamics_class": "degenerate",
+                "is_irreducible": True,
+                "is_aperiodic": True,
+            }
+            continue
+
+        # --- Convert counts to row-stochastic matrix ---
+        P = counts.astype(float).copy()
+        row_sums = P.sum(axis=1)
+        for i in range(n):
+            if row_sums[i] > 0:
+                P[i] /= row_sums[i]
+            else:
+                # Absorbing: state never transitions out -> self-loop
+                P[i, i] = 1.0
+
+        # --- Eigenvalue decomposition ---
+        eigenvalues = np.linalg.eigvals(P)
+
+        # Sort by magnitude descending
+        idx_sorted = np.argsort(-np.abs(eigenvalues))
+        eigenvalues = eigenvalues[idx_sorted]
+
+        # --- Spectral gap ---
+        # lambda_1 should be ~1.0; lambda_2 is the second-largest
+        if n >= 2:
+            abs_lambda2 = float(np.abs(eigenvalues[1]))
+            spectral_gap = max(0.0, min(1.0, 1.0 - abs_lambda2))
+        else:
+            abs_lambda2 = 0.0
+            spectral_gap = 1.0
+
+        # --- Stationary distribution (left eigenvector of P for lambda=1) ---
+        # Solve pi P = pi  <=>  P^T pi^T = pi^T
+        evals_T, evecs_T = np.linalg.eig(P.T)
+
+        # Find eigenvector closest to eigenvalue 1.0
+        idx_one = int(np.argmin(np.abs(evals_T - 1.0)))
+        pi_raw = evecs_T[:, idx_one].real
+
+        # Normalize to probability distribution (all non-negative, sum=1)
+        if np.any(pi_raw < 0):
+            pi_raw = np.abs(pi_raw)
+        pi_sum = pi_raw.sum()
+        if pi_sum > 0:
+            pi_normalized = pi_raw / pi_sum
+        else:
+            pi_normalized = np.ones(n) / n  # fallback to uniform
+
+        stationary_dist = {
+            states[i]: float(pi_normalized[i]) for i in range(n)
+        }
+
+        # --- Mixing time ---
+        if abs_lambda2 > 0 and abs_lambda2 < 1.0:
+            mixing_time = -1.0 / np.log(abs_lambda2)
+        else:
+            mixing_time = float("inf")
+
+        # --- Oscillation period ---
+        lambda2 = eigenvalues[1] if n >= 2 else 0.0
+        imag_part = float(np.abs(lambda2.imag))
+        if imag_part > 1e-10:
+            angle = float(np.abs(np.angle(lambda2)))
+            oscillation_period = (2 * np.pi / angle) if angle > 1e-10 else None
+        else:
+            oscillation_period = None
+
+        # --- Irreducibility check (reachability via matrix powers) ---
+        # A chain is irreducible if (I + P)^(n-1) has all positive entries
+        reach = np.linalg.matrix_power(
+            (np.eye(n) + P).astype(float), n - 1
+        )
+        is_irreducible = bool(np.all(reach > 0))
+
+        # --- Aperiodicity check ---
+        # A chain is aperiodic if any diagonal of P is > 0 (sufficient)
+        is_aperiodic = bool(np.any(np.diag(P) > 0))
+
+        # --- Dynamics classification ---
+        has_complex = imag_part > 1e-10
+        is_periodic_chain = (not is_aperiodic) and is_irreducible
+
+        if is_periodic_chain and abs_lambda2 > 0.95:
+            dynamics_class = "periodic"
+        elif spectral_gap < 0.1:
+            dynamics_class = "quasi_absorbing"
+        elif spectral_gap > 0.3:
+            dynamics_class = "ergodic"
+        elif has_complex:
+            dynamics_class = "stable_spiral"
+        else:
+            dynamics_class = "stable_node"
+
+        result[axis] = {
+            "eigenvalues": [complex(e) for e in eigenvalues],
+            "spectral_gap": spectral_gap,
+            "stationary_distribution": stationary_dist,
+            "mixing_time": mixing_time,
+            "oscillation_period": oscillation_period,
+            "dynamics_class": dynamics_class,
+            "is_irreducible": is_irreducible,
+            "is_aperiodic": is_aperiodic,
+        }
+
+    return result
 
 
 # ---------------------------------------------------------------------------

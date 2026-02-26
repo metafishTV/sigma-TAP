@@ -205,18 +205,55 @@ classifying mode transition map dynamics. This is correct:
 - **Real eigenvalues < 1** → convergent dynamics (stable focus)
 - **Eigenvalue > 1** → divergent/transient dynamics (unstable node)
 
-This is a **Stage 3 analytical enhancement**: replace the current heuristic
-absorbing-state detection (self-transition > 50%) with eigenvalue
-decomposition of the transition matrix for rigorous Poincaré-style
-classification.
+This was implemented as a **Stage 3 analytical enhancement** in
+`simulator/taps_sensitivity.py::eigenvalue_analysis()`, replacing the
+heuristic absorbing-state detection (self-transition > 50%) with eigenvalue
+decomposition of row-stochastic transition matrices.
 
-- **Literature**: Poincaré, H. (1881–1886). "Mémoire sur les courbes
-  définies par une équation différentielle." Multiple parts in *Journal de
-  Mathématiques Pures et Appliquées*.
+### Implementation Details
+
+The `eigenvalue_analysis()` function converts each axis's transition count
+matrix to a row-stochastic (probability) matrix, computes eigenvalues via
+`numpy.linalg.eigvals`, and classifies dynamics per axis:
+
+- **Spectral gap** = 1 - |lambda_2| (second-largest eigenvalue magnitude).
+  Large gap = fast mixing; small gap = quasi-absorbing.
+- **Stationary distribution** = left eigenvector for lambda=1 (Perron-Frobenius).
+- **Mixing time** = -1 / log|lambda_2| (steps to approximate stationarity).
+- **Oscillation period** = 2*pi / |arg(lambda_2)| (if complex eigenvalues).
+
+Dynamics classification scheme:
+- `degenerate`: single state
+- `ergodic`: spectral gap > 0.3 (fast mixing to equilibrium)
+- `stable_node`: real eigenvalues, moderate convergence (gap 0.1-0.3)
+- `stable_spiral`: complex eigenvalues, oscillatory convergence
+- `quasi_absorbing`: spectral gap < 0.1 (very slow mixing)
+- `periodic`: aperiodic chain with |lambda_2| > 0.95
+
+Also computes irreducibility (single communicating class via matrix power
+reachability) and aperiodicity (any positive diagonal entry).
+
+### Default-Parameter Results (10 agents, 100 steps, alpha=5e-3, a=3.0, mu=0.005)
+
+| Axis | Class | Spectral Gap | Mixing Time | Stationary Dominant |
+|------|-------|-------------|-------------|---------------------|
+| pressure_regime | stable_node | 0.169 | 5.4 | entropy (81%) |
+| rip_dominance | ergodic | 0.888 | 0.5 | recursion (90%) |
+| ano_dominant | ergodic | 0.947 | 0.3 | expression (95%) |
+| syntegration_phase | ergodic | 0.912 | 0.4 | disintegration (92%) |
+| transvolution_dir | ergodic | 0.912 | 0.4 | balanced (92%) |
+
+Key finding: pressure_regime is the slowest-mixing axis (spectral gap 0.169),
+indicating that pressure regime transitions are the most dynamically
+significant.  All other axes are ergodic with fast mixing, suggesting they
+track instantaneous events rather than sustained regime dynamics.
+
+- **Literature**: Poincare, H. (1881-1886). "Memoire sur les courbes
+  definies par une equation differentielle." Multiple parts in *Journal de
+  Mathematiques Pures et Appliquees*.
 - **Modern reference**: Strogatz, S. H. (2015). *Nonlinear Dynamics and
-  Chaos*. Westview Press. Chapters 5–6 on fixed-point classification.
-- **Priority**: MEDIUM — mathematically elegant upgrade path, no new data
-  collection needed.
+  Chaos*. Westview Press. Chapters 5-6 on fixed-point classification.
+- **Status**: IMPLEMENTED (see `simulator/taps_sensitivity.py`, 12 tests).
 
 ---
 
@@ -231,7 +268,7 @@ classification.
 | Evolutionary biology | Paleobiology Database (PBDB) | Medium-high | MEDIUM | Future |
 | Evolutionary biology | PyRate speciation rates | Medium | LOW | Future |
 | Chemistry/nuclear | ENDF/B, NNDC cross-sections | High | LOW | Illustrative |
-| Dynamical systems | Poincaré eigenvalue analysis | N/A (no data needed) | MEDIUM | Stage 3 |
+| Dynamical systems | Poincare eigenvalue analysis | N/A (no data needed) | MEDIUM | **DONE** |
 
 ### Recommended Next Steps
 

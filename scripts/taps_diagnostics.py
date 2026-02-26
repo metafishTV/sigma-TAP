@@ -36,6 +36,10 @@ from simulator.taps import (
     correlation_matrix,
     pressure_ratio,
 )
+from simulator.taps_sensitivity import (
+    build_transition_map,
+    eigenvalue_analysis,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 FIG_OUT = ROOT / "outputs" / "figures"
@@ -208,7 +212,13 @@ def fig_texture(
     print(f"Wrote {save_path}")
 
 
-def print_summary(scores: dict, ratios: list[float], rip: dict, corr: dict) -> None:
+def print_summary(
+    scores: dict,
+    ratios: list[float],
+    rip: dict,
+    corr: dict,
+    eigen: dict[str, dict] | None = None,
+) -> None:
     """Print TAPS diagnostic summary to console."""
     n = len(ratios)
     last = n - 1
@@ -266,7 +276,29 @@ def print_summary(scores: dict, ratios: list[float], rip: dict, corr: dict) -> N
         for a, b, r in corr["highly_correlated"]:
             print(f"      {a} <-> {b}: r={r:.4f}")
 
-    print(f"\n  [exploratory — see CLAIM_POLICY.md]")
+    # Poincare eigenvalue analysis
+    if eigen:
+        print(f"\n  Poincare Dynamics Classification:")
+        for axis_name in sorted(eigen.keys()):
+            ea = eigen[axis_name]
+            dyn = ea["dynamics_class"]
+            gap = ea["spectral_gap"]
+            mix = ea["mixing_time"]
+            mix_str = f"{mix:.1f}" if np.isfinite(mix) else "inf"
+            osc = ea["oscillation_period"]
+            osc_str = f"{osc:.1f}" if osc is not None else "n/a"
+
+            print(f"    {axis_name:22s}: {dyn:18s} "
+                  f"(gap={gap:.4f}, mix_t={mix_str:>6s}, osc_T={osc_str:>5s})")
+
+            # Stationary distribution
+            dist = ea["stationary_distribution"]
+            if len(dist) <= 5:
+                parts = [f"{s}={p:.3f}" for s, p in sorted(
+                    dist.items(), key=lambda x: -x[1])]
+                print(f"      stationary: {', '.join(parts)}")
+
+    print(f"\n  [exploratory -- see CLAIM_POLICY.md]")
 
 
 def main() -> None:
@@ -296,8 +328,12 @@ def main() -> None:
     rip = compute_rip(trajectory)
     corr = correlation_matrix(scores)
 
+    # Eigenvalue analysis
+    t_maps = build_transition_map(scores, ano_scores, rip, ratios, trajectory)
+    eigen = eigenvalue_analysis(t_maps)
+
     # Print summary
-    print_summary(scores, ratios, rip, corr)
+    print_summary(scores, ratios, rip, corr, eigen=eigen)
 
     # Generate figures
     fig_correlation(scores, FIG_OUT / "taps_correlation.png")

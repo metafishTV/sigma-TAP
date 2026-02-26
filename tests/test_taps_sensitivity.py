@@ -222,6 +222,23 @@ class TestTransitionSummary(unittest.TestCase):
         self.assertEqual(pathways[1], ("a", "b", 5))
         self.assertEqual(pathways[2], ("c", "b", 4))
 
+    def test_summary_includes_eigenvalue_analysis(self):
+        """transition_summary should include eigenvalue_analysis key."""
+        from simulator.taps_sensitivity import transition_summary
+
+        transition_maps = {
+            "test_axis": {
+                "states": ["a", "b"],
+                "counts": np.array([[5, 2], [3, 4]]),
+                "sequence": ["a", "b"] * 5,
+            }
+        }
+        summary = transition_summary(transition_maps)
+        self.assertIn("eigenvalue_analysis", summary)
+        self.assertIn("test_axis", summary["eigenvalue_analysis"])
+        self.assertIn("dynamics_class",
+                       summary["eigenvalue_analysis"]["test_axis"])
+
 
 class TestSweepTapsModes(unittest.TestCase):
     """Tests for parameter sensitivity sweep."""
@@ -319,6 +336,240 @@ class TestCorrelationStability(unittest.TestCase):
         for pair, frac in result["stability_map"].items():
             self.assertEqual(frac, 1.0,
                 f"With 1 grid point, pair {pair} should have fraction 1.0, got {frac}")
+
+
+class TestEigenvalueAnalysis(unittest.TestCase):
+    """Tests for Poincare eigenvalue analysis of transition matrices."""
+
+    def test_returns_all_axes(self):
+        """eigenvalue_analysis should return one entry per axis from transition_maps."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        transition_maps = {
+            "axis_a": {
+                "states": ["x", "y"],
+                "counts": np.array([[5, 2], [3, 4]]),
+                "sequence": ["x", "y"] * 5,
+            },
+            "axis_b": {
+                "states": ["p", "q", "r"],
+                "counts": np.array([[3, 1, 1], [1, 3, 1], [1, 1, 3]]),
+                "sequence": ["p", "q", "r"] * 5,
+            },
+        }
+        result = eigenvalue_analysis(transition_maps)
+        self.assertEqual(set(result.keys()), {"axis_a", "axis_b"})
+
+    def test_returns_expected_keys_per_axis(self):
+        """Each axis result must contain all expected analysis keys."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        transition_maps = {
+            "test": {
+                "states": ["a", "b"],
+                "counts": np.array([[5, 2], [3, 4]]),
+                "sequence": ["a", "b"] * 5,
+            }
+        }
+        result = eigenvalue_analysis(transition_maps)
+        expected_keys = {
+            "eigenvalues", "spectral_gap", "stationary_distribution",
+            "mixing_time", "oscillation_period", "dynamics_class",
+            "is_irreducible", "is_aperiodic",
+        }
+        self.assertEqual(set(result["test"].keys()), expected_keys)
+
+    def test_degenerate_single_state(self):
+        """A 1x1 transition matrix (single state) should be classified as degenerate."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        transition_maps = {
+            "test": {
+                "states": ["only"],
+                "counts": np.array([[10]]),
+                "sequence": ["only"] * 11,
+            }
+        }
+        result = eigenvalue_analysis(transition_maps)
+        self.assertEqual(result["test"]["dynamics_class"], "degenerate")
+        self.assertAlmostEqual(
+            result["test"]["stationary_distribution"]["only"], 1.0)
+
+    def test_uniform_mixing_is_ergodic(self):
+        """Equal transitions everywhere -> fast mixing -> ergodic."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        # Perfectly uniform 3x3
+        transition_maps = {
+            "test": {
+                "states": ["a", "b", "c"],
+                "counts": np.array([[10, 10, 10], [10, 10, 10], [10, 10, 10]]),
+                "sequence": ["a", "b", "c"] * 10,
+            }
+        }
+        result = eigenvalue_analysis(transition_maps)
+        self.assertEqual(result["test"]["dynamics_class"], "ergodic")
+        # Spectral gap should be 1.0 (all non-principal eigenvalues are 0)
+        self.assertAlmostEqual(result["test"]["spectral_gap"], 1.0, places=5)
+        # Stationary distribution should be uniform
+        for state in ["a", "b", "c"]:
+            self.assertAlmostEqual(
+                result["test"]["stationary_distribution"][state], 1/3, places=5)
+
+    def test_near_absorbing_detected(self):
+        """Very high self-transition with tiny leakage -> quasi_absorbing."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        # State "a" has 99% self-transition, "b" has 98%
+        transition_maps = {
+            "test": {
+                "states": ["a", "b"],
+                "counts": np.array([[99, 1], [2, 98]]),
+                "sequence": ["a"] * 100 + ["b"] * 100,
+            }
+        }
+        result = eigenvalue_analysis(transition_maps)
+        self.assertEqual(result["test"]["dynamics_class"], "quasi_absorbing")
+        self.assertLess(result["test"]["spectral_gap"], 0.1)
+
+    def test_spectral_gap_in_range(self):
+        """Spectral gap should always be in [0, 1]."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        transition_maps = {
+            "test": {
+                "states": ["a", "b", "c"],
+                "counts": np.array([[5, 2, 1], [3, 4, 1], [1, 2, 5]]),
+                "sequence": ["a", "b", "c"] * 5,
+            }
+        }
+        result = eigenvalue_analysis(transition_maps)
+        self.assertGreaterEqual(result["test"]["spectral_gap"], 0.0)
+        self.assertLessEqual(result["test"]["spectral_gap"], 1.0)
+
+    def test_stationary_distribution_sums_to_one(self):
+        """Stationary distribution probabilities must sum to 1.0."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        transition_maps = {
+            "test": {
+                "states": ["a", "b", "c"],
+                "counts": np.array([[5, 3, 2], [1, 6, 3], [2, 2, 6]]),
+                "sequence": ["a", "b", "c"] * 5,
+            }
+        }
+        result = eigenvalue_analysis(transition_maps)
+        total = sum(result["test"]["stationary_distribution"].values())
+        self.assertAlmostEqual(total, 1.0, places=10)
+
+    def test_known_stationary_distribution(self):
+        """Verify stationary distribution against known analytical solution.
+
+        For 2-state chain with P = [[0.7, 0.3], [0.4, 0.6]]:
+        pi = [0.4/(0.3+0.4), 0.3/(0.3+0.4)] = [4/7, 3/7]
+        """
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        # Use counts that give the target transition probabilities
+        transition_maps = {
+            "test": {
+                "states": ["a", "b"],
+                "counts": np.array([[70, 30], [40, 60]]),
+                "sequence": ["a", "b"] * 50,
+            }
+        }
+        result = eigenvalue_analysis(transition_maps)
+        self.assertAlmostEqual(
+            result["test"]["stationary_distribution"]["a"], 4/7, places=5)
+        self.assertAlmostEqual(
+            result["test"]["stationary_distribution"]["b"], 3/7, places=5)
+
+    def test_oscillatory_dynamics_detected(self):
+        """A 3-state cycle should produce complex eigenvalues and detect oscillation."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        # Perfect 3-cycle: a->b->c->a
+        transition_maps = {
+            "test": {
+                "states": ["a", "b", "c"],
+                "counts": np.array([[0, 10, 0], [0, 0, 10], [10, 0, 0]]),
+                "sequence": (["a", "b", "c"] * 10) + ["a"],
+            }
+        }
+        result = eigenvalue_analysis(transition_maps)
+        # Should detect oscillatory dynamics
+        self.assertIn(result["test"]["dynamics_class"],
+                      ("stable_spiral", "periodic"))
+        # Oscillation period should be ~3 (period of the cycle)
+        if result["test"]["oscillation_period"] is not None:
+            self.assertAlmostEqual(
+                result["test"]["oscillation_period"], 3.0, places=1)
+
+    def test_mixing_time_finite_for_ergodic(self):
+        """Ergodic chains should have finite positive mixing time."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        transition_maps = {
+            "test": {
+                "states": ["a", "b"],
+                "counts": np.array([[6, 4], [3, 7]]),
+                "sequence": ["a", "b"] * 5,
+            }
+        }
+        result = eigenvalue_analysis(transition_maps)
+        self.assertGreater(result["test"]["mixing_time"], 0)
+        self.assertTrue(np.isfinite(result["test"]["mixing_time"]))
+
+    def test_zero_row_handling(self):
+        """Rows with zero total transitions should be handled gracefully."""
+        from simulator.taps_sensitivity import eigenvalue_analysis
+
+        # State "c" is never a source state (row sums to 0)
+        transition_maps = {
+            "test": {
+                "states": ["a", "b", "c"],
+                "counts": np.array([[5, 3, 2], [1, 6, 3], [0, 0, 0]]),
+                "sequence": ["a", "b", "c"] * 5,
+            }
+        }
+        # Should not raise
+        result = eigenvalue_analysis(transition_maps)
+        self.assertIn("dynamics_class", result["test"])
+
+    def test_integration_with_trajectory(self):
+        """eigenvalue_analysis should work with real build_transition_map output."""
+        from simulator.taps_sensitivity import (
+            build_transition_map, eigenvalue_analysis,
+        )
+        from simulator.taps import (
+            compute_all_scores, compute_anopression, compute_rip,
+            pressure_ratio,
+        )
+
+        traj = _make_trajectory(steps=50, with_events=True)
+        all_scores = compute_all_scores(traj, mu=0.005)
+        ano_scores = compute_anopression(traj, mu=0.005)
+        rip_result = compute_rip(traj)
+        ratios = pressure_ratio(ano_scores)
+
+        t_maps = build_transition_map(
+            all_scores, ano_scores, rip_result, ratios, traj)
+        result = eigenvalue_analysis(t_maps)
+
+        # Should have one entry per axis
+        self.assertEqual(set(result.keys()), set(t_maps.keys()))
+        # Each entry should have valid dynamics class
+        valid_classes = {
+            "degenerate", "ergodic", "stable_node", "stable_spiral",
+            "quasi_absorbing", "periodic",
+        }
+        for axis, analysis in result.items():
+            self.assertIn(analysis["dynamics_class"], valid_classes,
+                          f"Axis '{axis}' has invalid class: {analysis['dynamics_class']}")
+            # Stationary distribution should sum to 1
+            total = sum(analysis["stationary_distribution"].values())
+            self.assertAlmostEqual(total, 1.0, places=5,
+                                   msg=f"Axis '{axis}' stationary dist sums to {total}")
 
 
 if __name__ == "__main__":
