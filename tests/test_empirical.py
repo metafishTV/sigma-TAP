@@ -160,3 +160,47 @@ class TestPowerLawFit:
         result = power_law_fit([10], k_min=1)
         assert math.isnan(result.exponent)
         assert result.n_agents == 1
+
+
+# ===================================================================
+# Integration tests
+# ===================================================================
+
+class TestIntegration:
+    """Integration tests with actual simulation data."""
+
+    def test_full_validation_from_simulation(self):
+        """Run a short simulation and validate all 4 metrics produce results."""
+        from simulator.metathetic import MetatheticEnsemble
+        ens = MetatheticEnsemble(
+            n_agents=10, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5, seed=42,
+        )
+        trajectory = ens.run(steps=100)
+
+        n_novel = [s["n_novel_cross"] for s in trajectory]
+        n_absorptive = [s["n_absorptive_cross"] for s in trajectory]
+        k_total_list = [s["k_total"] for s in trajectory]
+        D_total_list = [s["D_total"] for s in trajectory]
+        agent_k_list = trajectory[-1]["agent_k_list"]
+
+        yr = youn_ratio(n_novel, n_absorptive)
+        assert 0.0 <= yr.exploration_fraction <= 1.0 or math.isnan(yr.exploration_fraction)
+
+        tl = taalbi_linearity(k_total_list)
+        assert isinstance(tl.slope, float)
+
+        he = heaps_exponent(k_total_list, D_total_list)
+        assert isinstance(he.exponent, float)
+
+        pl = power_law_fit(agent_k_list)
+        assert isinstance(pl.exponent, float)
+
+    def test_status_classification(self):
+        """MATCH/CLOSE/DIVERGENT thresholds."""
+        sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts")))
+        from empirical_validation import classify_status
+        assert classify_status(0.05, 0.10) == "MATCH"
+        assert classify_status(0.15, 0.10) == "CLOSE"
+        assert classify_status(0.30, 0.10) == "DIVERGENT"
