@@ -2,6 +2,8 @@ import csv
 import os
 import sys
 
+import numpy as np
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from simulator.analysis import adaptive_xi_plateau_threshold, classify_regime
@@ -10,18 +12,9 @@ from simulator.simulate import run_sigma_tap
 from simulator.state import ModelParams
 
 
-def logspace(lo: float, hi: float, n: int) -> list[float]:
-    import math
-    a = math.log10(lo)
-    b = math.log10(hi)
-    if n == 1:
-        return [10 ** a]
-    return [10 ** (a + i * (b - a) / (n - 1)) for i in range(n)]
-
-
 def main() -> None:
-    alphas = logspace(1e-5, 1e-2, 10)
-    mus = logspace(1e-3, 1e-1, 10)
+    alphas = np.logspace(np.log10(1e-5), np.log10(1e-2), 10).tolist()
+    mus = np.logspace(np.log10(1e-3), np.log10(1e-1), 10).tolist()
     gamma_values = [0.5, 1.0, 2.0, 5.0]
 
     writer = csv.DictWriter(
