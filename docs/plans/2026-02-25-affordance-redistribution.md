@@ -1,10 +1,10 @@
-# Affordance Gate + Annihilation Redistribution Implementation Plan
+# Affordance Gate + Disintegration Redistribution Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Add affordance-gated self-metathesis and Jaccard-weighted annihilation redistribution to the metathetic ensemble.
+**Goal:** Add affordance-gated self-metathesis and Jaccard-weighted disintegration redistribution to the metathetic ensemble.
 
-**Architecture:** Extension A adds per-agent rolling affordance ticks computed from local interactive cluster density, gating self-metathesis. Extension B adds redistribution of annihilated agents' types/knowledge to Jaccard-proximate neighbors. Both are wired into the ensemble run loop, with new diagnostics in snapshots and longrun summary.
+**Architecture:** Extension A adds per-agent rolling affordance ticks computed from local interactive cluster density, gating self-metathesis. Extension B adds redistribution of disintegrated agents' types/knowledge to Jaccard-proximate neighbors. Both are wired into the ensemble run loop, with new diagnostics in snapshots and longrun summary.
 
 **Tech Stack:** Python 3.12, unittest, existing simulator/metathetic.py infrastructure
 
@@ -329,20 +329,20 @@ git commit -m "feat: wire affordance gate into self-metathesis + ensemble loop"
 
 ---
 
-### Task 3: Annihilation redistribution
+### Task 3: Disintegration redistribution
 
 **Files:**
 - Modify: `simulator/metathetic.py` (MetatheticEnsemble)
 - Test: `tests/test_metathetic.py`
 
 **Context:**
-Add `_check_annihilation_redistribution()` method. When an agent's `temporal_state_with_context()` returns 0, redistribute its types and k to active agents weighted by Jaccard similarity. Types go to highest-weight agent (ties by agent_id). Knowledge split proportionally. Track new counters.
+Add `_check_disintegration_redistribution()` method. When an agent's `temporal_state_with_context()` returns 0, redistribute its types and k to active agents weighted by Jaccard similarity. Types go to highest-weight agent (ties by agent_id). Knowledge split proportionally. Track new counters.
 
 **Step 1: Write failing tests**
 
 ```python
-class TestAnnihilationRedistribution(unittest.TestCase):
-    """Tests for annihilation redistribution mechanism."""
+class TestDisintegrationRedistribution(unittest.TestCase):
+    """Tests for disintegration redistribution mechanism."""
 
     def test_redistribution_to_most_similar(self):
         """Types should go to the agent with highest Jaccard similarity."""
@@ -353,21 +353,21 @@ class TestAnnihilationRedistribution(unittest.TestCase):
             variant="logistic", carrying_capacity=2e5,
             seed=42,
         )
-        # Make agent 0 annihilated: inactive, dormant long enough, no shared types
+        # Make agent 0 disintegrated: inactive, dormant long enough, no shared types
         ens.agents[0].active = False
         ens.agents[0]._dormant_steps = 50
         ens.agents[0].type_set = {100, 101}  # unique types
         ens.agents[0].k = 50.0
 
-        # Agent 1 shares type 100 (high Jaccard with annihilated)
+        # Agent 1 shares type 100 (high Jaccard with disintegrated)
         ens.agents[1].type_set = {0, 1, 100}
         ens.agents[1].k = 10.0
 
-        # Agent 2 shares nothing with annihilated
+        # Agent 2 shares nothing with disintegrated
         ens.agents[2].type_set = {0, 2}
         ens.agents[2].k = 10.0
 
-        ens._check_annihilation_redistribution()
+        ens._check_disintegration_redistribution()
 
         # Agent 1 should have received the types
         self.assertIn(100, ens.agents[1].type_set)
@@ -398,7 +398,7 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         ens.agents[3].type_set = {0, 3}
         ens.agents[3].k = 0.0
 
-        ens._check_annihilation_redistribution()
+        ens._check_disintegration_redistribution()
 
         # Agents 1 and 2 have equal Jaccard, so should split k evenly
         self.assertAlmostEqual(ens.agents[1].k, 50.0, places=1)
@@ -425,7 +425,7 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         k1_before = ens.agents[1].k
         k2_before = ens.agents[2].k
 
-        ens._check_annihilation_redistribution()
+        ens._check_disintegration_redistribution()
 
         # Knowledge should be lost (not redistributed)
         self.assertAlmostEqual(ens.agents[1].k, k1_before)
@@ -448,11 +448,11 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         ens.agents[0].k = 10.0
         ens.agents[1].type_set = {0, 1, 100}  # shares type 100
 
-        ens._check_annihilation_redistribution()
-        self.assertEqual(ens.n_annihilation_redistributions, 1)
+        ens._check_disintegration_redistribution()
+        self.assertEqual(ens.n_disintegration_redistributions, 1)
 
     def test_dissolved_agent_removed(self):
-        """Annihilated agent should be marked dissolved after redistribution."""
+        """Disintegrated agent should be marked dissolved after redistribution."""
         from simulator.metathetic import MetatheticEnsemble
         ens = MetatheticEnsemble(
             n_agents=3, initial_M=10.0,
@@ -466,7 +466,7 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         ens.agents[0].k = 10.0
         ens.agents[1].type_set = {0, 1, 100}
 
-        ens._check_annihilation_redistribution()
+        ens._check_disintegration_redistribution()
         # Agent should be flagged as dissolved
         self.assertTrue(hasattr(ens.agents[0], '_dissolved'))
         self.assertTrue(ens.agents[0]._dissolved)
@@ -482,15 +482,15 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         )
         trajectory = ens.run(steps=10)
         for snap in trajectory:
-            self.assertIn("n_annihilation_redistributions", snap)
+            self.assertIn("n_disintegration_redistributions", snap)
             self.assertIn("n_types_lost", snap)
             self.assertIn("k_lost", snap)
 ```
 
 **Step 2: Run tests to verify they fail**
 
-Run: `python -m pytest tests/test_metathetic.py::TestAnnihilationRedistribution -v`
-Expected: FAIL (missing _check_annihilation_redistribution, missing counters)
+Run: `python -m pytest tests/test_metathetic.py::TestDisintegrationRedistribution -v`
+Expected: FAIL (missing _check_disintegration_redistribution, missing counters)
 
 **Step 3: Implement**
 
@@ -501,15 +501,15 @@ Expected: FAIL (missing _check_annihilation_redistribution, missing counters)
 
 2. Add counters to MetatheticEnsemble.__init__ (after n_env_transitions):
 ```python
-        self.n_annihilation_redistributions = 0
+        self.n_disintegration_redistributions = 0
         self.n_types_lost = 0
         self.k_lost = 0.0
 ```
 
-3. Add `_check_annihilation_redistribution()` method:
+3. Add `_check_disintegration_redistribution()` method:
 ```python
-    def _check_annihilation_redistribution(self) -> None:
-        """Check for annihilated agents and redistribute their types/knowledge.
+    def _check_disintegration_redistribution(self) -> None:
+        """Check for disintegrated agents and redistribute their types/knowledge.
 
         Redistribution is weighted by Jaccard similarity (interaction proximity).
         Types go to the most-similar active agent. Knowledge is split proportionally.
@@ -556,21 +556,21 @@ Expected: FAIL (missing _check_annihilation_redistribution, missing counters)
             agent.type_set = set()
             agent.k = 0.0
             agent._dissolved = True
-            self.n_annihilation_redistributions += 1
+            self.n_disintegration_redistributions += 1
 ```
 
-4. In `run()`, call `_check_annihilation_redistribution()` after `_check_cross_metathesis()` and before `_update_environment()`.
+4. In `run()`, call `_check_disintegration_redistribution()` after `_check_cross_metathesis()` and before `_update_environment()`.
 
 5. Add redistribution diagnostics to snapshot:
 ```python
-            snapshot["n_annihilation_redistributions"] = self.n_annihilation_redistributions
+            snapshot["n_disintegration_redistributions"] = self.n_disintegration_redistributions
             snapshot["n_types_lost"] = self.n_types_lost
             snapshot["k_lost"] = round(self.k_lost, 4)
 ```
 
 **Step 4: Run tests**
 
-Run: `python -m pytest tests/test_metathetic.py::TestAnnihilationRedistribution -v`
+Run: `python -m pytest tests/test_metathetic.py::TestDisintegrationRedistribution -v`
 Expected: All 6 PASS.
 
 **Step 5: Full suite**
@@ -582,7 +582,7 @@ Expected: All pass.
 
 ```bash
 git add simulator/metathetic.py tests/test_metathetic.py
-git commit -m "feat: add annihilation redistribution with Jaccard-weighted knowledge flow"
+git commit -m "feat: add disintegration redistribution with Jaccard-weighted knowledge flow"
 ```
 
 ---
@@ -610,7 +610,7 @@ class TestAffordanceAndRedistributionDiagnostics(unittest.TestCase):
         """Summary should include redistribution counters."""
         from scripts.longrun_diagnostics import run_and_diagnose
         _, summary = run_and_diagnose(n_agents=5, steps=20, seed=42)
-        self.assertIn("n_annihilation_redistributions", summary)
+        self.assertIn("n_disintegration_redistributions", summary)
         self.assertIn("n_types_lost", summary)
         self.assertIn("k_lost", summary)
 ```
@@ -625,7 +625,7 @@ Expected: FAIL (missing keys in summary)
 In `scripts/longrun_diagnostics.py`, add to the summary dict (after `n_env_transitions`):
 ```python
         "affordance_mean_final": round(last.get("affordance_mean", 0.0), 4),
-        "n_annihilation_redistributions": last.get("n_annihilation_redistributions", 0),
+        "n_disintegration_redistributions": last.get("n_disintegration_redistributions", 0),
         "n_types_lost": last.get("n_types_lost", 0),
         "k_lost": round(last.get("k_lost", 0.0), 4),
 ```
@@ -634,7 +634,7 @@ In the print output section (after temporal distribution), add:
 ```python
     aff = summary.get("affordance_mean_final", 0.0)
     print(f"  Affordance:       {aff:.4f}")
-    print(f"  Annihilations:    {summary.get('n_annihilation_redistributions', 0)}")
+    print(f"  Disintegrations:    {summary.get('n_disintegration_redistributions', 0)}")
     tl = summary.get("n_types_lost", 0)
     kl = summary.get("k_lost", 0.0)
     if tl > 0 or kl > 0:

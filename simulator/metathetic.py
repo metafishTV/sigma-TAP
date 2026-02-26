@@ -88,7 +88,7 @@ class MetatheticAgent:
         """Five-state temporal orientation gate.
 
         Returns:
-            0 = annihilated (no relational capacity)
+            0 = disintegrated (no relational capacity)
             1 = inertial (grown away from identity)
             2 = situated (in-flow, productive)
             3 = desituated (novelty-shock or stagnation)
@@ -110,11 +110,11 @@ class MetatheticAgent:
         return 2  # situated
 
     def temporal_state_with_context(self, active_type_counts: dict[int, int]) -> int:
-        """Temporal state with ensemble context for annihilation detection.
+        """Temporal state with ensemble context for disintegration detection.
 
         For inactive agents: checks if the agent has been dormant long enough
         AND no active agent holds any of its types. If both conditions are met,
-        the agent is annihilated (state 0) — its relational capacity is gone.
+        the agent is disintegrated (state 0) — its relational capacity is gone.
 
         Args:
             active_type_counts: mapping from type-ID to count of active agents
@@ -130,7 +130,7 @@ class MetatheticAgent:
                     active_type_counts.get(t, 0) > 0 for t in self.type_set
                 )
                 if not has_living_connection:
-                    return 0  # annihilated
+                    return 0  # disintegrated
         return self.temporal_state
 
     @property
@@ -345,7 +345,7 @@ def _temporal_threshold_multiplier(temporal_state: int, *, for_cross: bool = Fal
         - Stagnation + self-metathesis: inf (needs external stimulus, not self)
         - Stagnation + cross-metathesis: 0.5x (easier — needs external stimulus)
     Established (4): 2.0x — maximally stable
-    Annihilated (0): inf — impossible
+    Disintegrated (0): inf — impossible
     """
     if temporal_state == 3:
         if is_stagnating and for_cross:
@@ -361,11 +361,18 @@ def _compute_affordance_tick(
     other_active: list[MetatheticAgent],
     min_cluster: int = 2,
 ) -> int:
-    """Binary affordance tick: 1 if agent has local interactive support, else 0.
+    """Binary affordance tick: 1 if conditions are ripe for construction, else 0.
 
-    Conditions for tick=1:
-      1. Agent has positive recent dM (growth happening)
+    This is a compound readiness check, not a pure affordance measure.
+    Building blocks (types) always exist somewhere, but whether the local
+    arrangement permits construction depends on two conditions:
+
+      1. Agent has positive recent dM (growth is actively occurring)
       2. At least min_cluster other active agents share >= 1 type with agent
+
+    The combination ensures that growth is occurring in a connected context.
+    An agent at equilibrium (dM=0) or in decline (dM<0) is not in a
+    constructive state, even if building blocks are available nearby.
     """
     if not agent.dM_history or agent.dM_history[-1] <= 0:
         return 0
@@ -444,7 +451,7 @@ class MetatheticEnsemble:
         self.n_absorptive_cross = 0
         self.n_novel_cross = 0
         self.n_env_transitions = 0
-        self.n_annihilation_redistributions = 0
+        self.n_disintegration_redistributions = 0
         self.n_types_lost = 0
         self.k_lost = 0.0
 
@@ -631,16 +638,16 @@ class MetatheticEnsemble:
                 # One cross-metathesis per step to avoid cascading.
                 return
 
-    def _check_annihilation_redistribution(self) -> None:
-        """Check for annihilated agents and redistribute their types/knowledge.
+    def _check_disintegration_redistribution(self) -> None:
+        """Check for disintegrated agents and redistribute their types/knowledge.
 
         Redistribution is weighted by Jaccard similarity (interaction proximity).
         Types go to the most-similar active agent. Knowledge is split proportionally.
         If no active agent has Jaccard > 0, types and knowledge are lost.
 
-        An agent is eligible for annihilation redistribution when it has been
+        An agent is eligible for disintegration redistribution when it has been
         inactive and dormant past the relational decay window. This is
-        consistent with temporal state 0 (annihilated) but uses the dormancy
+        consistent with temporal state 0 (disintegrated) but uses the dormancy
         condition directly so that Jaccard-based redistribution can still
         operate on remaining type overlaps before they are cleared.
         """
@@ -652,7 +659,7 @@ class MetatheticEnsemble:
             if agent._dissolved or agent.active:
                 continue
 
-            # Annihilation eligibility: dormant past relational decay window
+            # Disintegration eligibility: dormant past relational decay window
             if agent._dormant_steps < agent._RELATIONAL_DECAY_WINDOW:
                 continue
 
@@ -684,7 +691,7 @@ class MetatheticEnsemble:
             agent.type_set = set()
             agent.k = 0.0
             agent._dissolved = True
-            self.n_annihilation_redistributions += 1
+            self.n_disintegration_redistributions += 1
 
     def _record_history(self) -> None:
         """Append current aggregate M and k to rolling history.
@@ -754,7 +761,7 @@ class MetatheticEnsemble:
             # 3. Metathetic transitions (Modes 1-3).
             self._check_self_metathesis()
             self._check_cross_metathesis()
-            self._check_annihilation_redistribution()
+            self._check_disintegration_redistribution()
 
             # 4. Environmental update (Mode 4, slow timescale).
             self._update_environment(step)
@@ -783,7 +790,7 @@ class MetatheticEnsemble:
                 "n_absorptive_cross": self.n_absorptive_cross,
                 "n_novel_cross": self.n_novel_cross,
                 "n_env_transitions": self.n_env_transitions,
-                "n_annihilation_redistributions": self.n_annihilation_redistributions,
+                "n_disintegration_redistributions": self.n_disintegration_redistributions,
                 "n_types_lost": self.n_types_lost,
                 "k_lost": round(self.k_lost, 4),
             }

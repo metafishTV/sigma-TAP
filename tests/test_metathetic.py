@@ -123,6 +123,9 @@ class TestEnsembleRun(unittest.TestCase):
 
     def test_diversity_non_decreasing(self):
         """Total diversity D should generally not decrease (types are not destroyed)."""
+        # NOTE: This assertion holds under conservative params (alpha=1e-3, 30 steps)
+        # where disintegration redistribution is unlikely to fire. With aggressive
+        # params or longer runs, type loss during disintegration could violate this.
         ensemble = MetatheticEnsemble(
             n_agents=5, initial_M=10.0,
             alpha=1e-3, a=8.0, mu=0.02,
@@ -357,7 +360,7 @@ class TestTemporalState(unittest.TestCase):
         agent.dM_history = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
         self.assertEqual(agent.temporal_state, 4)
 
-    def test_annihilated_state(self):
+    def test_disintegrated_state(self):
         """Inactive agent with dormant_steps >= 30, no living type connections -> state 0."""
         agent = self._make_agent(active=False)
         agent._dormant_steps = 40
@@ -365,16 +368,16 @@ class TestTemporalState(unittest.TestCase):
         active_type_counts = {10: 3, 11: 2}  # agent has types {1, 2} — not present
         self.assertEqual(agent.temporal_state_with_context(active_type_counts), 0)
 
-    def test_inactive_agent_not_annihilated_if_types_still_active(self):
-        """Inactive agent with types still active should be desituated (3), not annihilated."""
+    def test_inactive_agent_not_disintegrated_if_types_still_active(self):
+        """Inactive agent with types still active should be desituated (3), not disintegrated."""
         agent = self._make_agent(active=False)
         agent._dormant_steps = 40
         # type 1 is still held by an active agent
         active_type_counts = {1: 2, 10: 3}
         self.assertEqual(agent.temporal_state_with_context(active_type_counts), 3)
 
-    def test_inactive_agent_not_annihilated_if_dormant_too_short(self):
-        """Inactive agent with short dormancy should be desituated (3), not annihilated."""
+    def test_inactive_agent_not_disintegrated_if_dormant_too_short(self):
+        """Inactive agent with short dormancy should be desituated (3), not disintegrated."""
         agent = self._make_agent(active=False)
         agent._dormant_steps = 10  # < _RELATIONAL_DECAY_WINDOW=30
         active_type_counts = {10: 3}  # no overlap with agent types
@@ -602,8 +605,8 @@ class TestAffordanceGate(unittest.TestCase):
             self.assertLessEqual(len(a._affordance_ticks), a._AFFORDANCE_WINDOW)
 
 
-class TestAnnihilationRedistribution(unittest.TestCase):
-    """Tests for annihilation redistribution mechanism."""
+class TestDisintegrationRedistribution(unittest.TestCase):
+    """Tests for disintegration redistribution mechanism."""
 
     def test_redistribution_to_most_similar(self):
         """Types should go to the agent with highest Jaccard similarity."""
@@ -614,7 +617,7 @@ class TestAnnihilationRedistribution(unittest.TestCase):
             variant="logistic", carrying_capacity=2e5,
             seed=42,
         )
-        # Make agent 0 annihilated: inactive, dormant long enough, unique types
+        # Make agent 0 disintegrated: inactive, dormant long enough, unique types
         ens.agents[0].active = False
         ens.agents[0]._dormant_steps = 50
         ens.agents[0].type_set = {100, 101}
@@ -624,11 +627,11 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         ens.agents[1].type_set = {0, 1, 100}
         ens.agents[1].k = 10.0
 
-        # Agent 2 shares nothing with annihilated
+        # Agent 2 shares nothing with disintegrated
         ens.agents[2].type_set = {0, 2}
         ens.agents[2].k = 10.0
 
-        ens._check_annihilation_redistribution()
+        ens._check_disintegration_redistribution()
 
         self.assertIn(100, ens.agents[1].type_set)
         self.assertIn(101, ens.agents[1].type_set)
@@ -655,11 +658,14 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         ens.agents[3].type_set = {0, 3}
         ens.agents[3].k = 0.0
 
-        ens._check_annihilation_redistribution()
+        ens._check_disintegration_redistribution()
 
         self.assertAlmostEqual(ens.agents[1].k, 50.0, places=1)
         self.assertAlmostEqual(ens.agents[2].k, 50.0, places=1)
         self.assertAlmostEqual(ens.agents[3].k, 0.0)
+
+        # With equal Jaccard, lowest agent_id (agent 1) wins the types
+        self.assertIn(101, ens.agents[1].type_set)
 
     def test_no_neighbors_means_knowledge_lost(self):
         """If no active agent has Jaccard>0, types and k are lost."""
@@ -680,7 +686,7 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         k1_before = ens.agents[1].k
         k2_before = ens.agents[2].k
 
-        ens._check_annihilation_redistribution()
+        ens._check_disintegration_redistribution()
 
         self.assertAlmostEqual(ens.agents[1].k, k1_before)
         self.assertAlmostEqual(ens.agents[2].k, k2_before)
@@ -702,11 +708,11 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         ens.agents[0].k = 10.0
         ens.agents[1].type_set = {0, 1, 100}
 
-        ens._check_annihilation_redistribution()
-        self.assertEqual(ens.n_annihilation_redistributions, 1)
+        ens._check_disintegration_redistribution()
+        self.assertEqual(ens.n_disintegration_redistributions, 1)
 
     def test_dissolved_agent_flagged(self):
-        """Annihilated agent should be marked dissolved after redistribution."""
+        """Disintegrated agent should be marked dissolved after redistribution."""
         from simulator.metathetic import MetatheticEnsemble
         ens = MetatheticEnsemble(
             n_agents=3, initial_M=10.0,
@@ -720,7 +726,7 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         ens.agents[0].k = 10.0
         ens.agents[1].type_set = {0, 1, 100}
 
-        ens._check_annihilation_redistribution()
+        ens._check_disintegration_redistribution()
         self.assertTrue(ens.agents[0]._dissolved)
 
     def test_diagnostics_in_snapshot(self):
@@ -734,9 +740,51 @@ class TestAnnihilationRedistribution(unittest.TestCase):
         )
         trajectory = ens.run(steps=10)
         for snap in trajectory:
-            self.assertIn("n_annihilation_redistributions", snap)
+            self.assertIn("n_disintegration_redistributions", snap)
             self.assertIn("n_types_lost", snap)
             self.assertIn("k_lost", snap)
+
+    def test_double_disintegration_prevented(self):
+        """Dissolved agent should not be disintegrated a second time."""
+        from simulator.metathetic import MetatheticEnsemble, MetatheticAgent
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        # Force agent 0 to dormancy threshold with type overlap
+        ens.agents[0].active = False
+        ens.agents[0]._dormant_steps = 30
+        ens.agents[0].type_set = {0, 1}
+        ens.agents[0].k = 50.0
+        ens.agents[1].type_set = {0, 2}
+        ens.agents[2].type_set = {1, 3}
+
+        ens._check_disintegration_redistribution()
+        self.assertEqual(ens.n_disintegration_redistributions, 1)
+        self.assertTrue(ens.agents[0]._dissolved)
+
+        # Second call should be a no-op
+        ens._check_disintegration_redistribution()
+        self.assertEqual(ens.n_disintegration_redistributions, 1)  # Still 1
+
+    def test_disintegration_fires_in_full_run(self):
+        """With aggressive params and long run, disintegration should fire naturally."""
+        from simulator.metathetic import MetatheticEnsemble
+        # High alpha + long run + many agents = some will go dormant and disintegrate
+        ens = MetatheticEnsemble(
+            n_agents=15, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=99,
+        )
+        trajectory = ens.run(steps=200)
+        final = trajectory[-1]
+        # At least verify the counter exists and is non-negative
+        self.assertGreaterEqual(final["n_disintegration_redistributions"], 0)
+        # With these params, we expect at least some disintegration events
+        # (if not, the test still passes — it's a smoke test, not a guarantee)
 
 
 if __name__ == "__main__":

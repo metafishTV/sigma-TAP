@@ -1,4 +1,4 @@
-# Affordance-Gated Self-Metathesis + Annihilation Redistribution Design
+# Affordance-Gated Self-Metathesis + Disintegration Redistribution Design
 
 **Claim policy label: exploratory**
 
@@ -16,7 +16,7 @@ A lone survivor from a collapsed interactive cluster can affect others
 identity alone. The metathetic aperture — the local interactive collective
 that supports identity-level change — requires a minimum viable density.
 
-Separately, annihilated agents (temporal state 0) currently sit inert. Their
+Separately, disintegrated agents (temporal state 0) currently sit inert. Their
 types and knowledge contribute nothing. In reality, a defunct entity's
 knowledge dissipates into interactively-proximate neighbors, weighted by
 interaction history — not by raw activity level.
@@ -61,32 +61,39 @@ be affected by others regardless of their local cluster density.
 - Agents losing connections see gradual affordance decay (rolling window)
 - Spontaneous re-emergence possible if new connections form
 
-## Extension B: Annihilation Redistribution
+## Extension B: Disintegration Redistribution
 
 ### Trigger
 
-When `temporal_state_with_context()` returns 0 (annihilated) during the
-ensemble run loop.
+When an inactive agent's `_dormant_steps >= _RELATIONAL_DECAY_WINDOW` (default 30).
+
+**Note:** The original design used `temporal_state_with_context() == 0` as the
+trigger. The implementation uses the dormancy threshold directly instead.
+Why: `temporal_state_with_context` returns 0 only when NO active agent holds
+any of the dormant agent's types, which would make Jaccard redistribution
+impossible (all weights = 0, so everything is lost). Using the dormancy
+threshold directly allows redistribution while type overlaps still exist,
+enabling meaningful Jaccard-weighted knowledge flow to neighbors.
 
 ### Mechanism
 
-1. Compute Jaccard similarity between annihilated agent and each active agent
+1. Compute Jaccard similarity between disintegrated agent and each active agent
 2. If sum(weights) == 0: all types and k are LOST (no interactive neighbor)
 3. Otherwise normalize: p_j = w_j / sum(w_j)
 4. Redistribute types: each type assigned to agent with highest weight
    (ties broken by agent_id)
-5. Redistribute knowledge: agent_j.k += annihilated.k * p_j
+5. Redistribute knowledge: agent_j.k += disintegrated.k * p_j
 6. Mark agent as dissolved (remove from agents list or flag permanently)
 
 ### New diagnostics
 
-- `n_annihilation_redistributions: int` — count of redistribution events
+- `n_disintegration_redistributions: int` — count of redistribution events
 - `n_types_lost: int` — types that dissipated (no Jaccard neighbor)
 - `k_lost: float` — knowledge that dissipated
 
 ### No new parameters
 
-Uses existing Jaccard computation and existing annihilation detection.
+Uses existing Jaccard computation and existing disintegration detection.
 
 ### Effect on dynamics
 
@@ -103,14 +110,14 @@ Both mechanisms fire during the ensemble `run()` loop:
 3. `_update_affordance_ticks()` — NEW: compute affordance per agent
 4. `_check_self_metathesis()` — existing, now gated by affordance
 5. `_check_cross_metathesis()` — existing, unchanged
-6. `_check_annihilation_redistribution()` — NEW: detect state 0, redistribute
+6. `_check_disintegration_redistribution()` — NEW: detect state 0, redistribute
 7. `_update_environment()` — existing environmental drift
 
 ## Diagnostics additions
 
 Snapshot dict gains:
 - `affordance_mean` — mean affordance_score across active agents
-- `n_annihilation_redistributions` — cumulative count
+- `n_disintegration_redistributions` — cumulative count
 - `n_types_lost` — cumulative types dissipated
 - `k_lost` — cumulative knowledge dissipated
 

@@ -192,10 +192,10 @@ class TestLongrunDiagnosticsSummaryKeys(unittest.TestCase):
         self.assertIsInstance(summary["affordance_mean_final"], float)
 
     def test_summary_has_redistribution_keys(self):
-        """Summary should include annihilation redistribution diagnostic keys."""
+        """Summary should include disintegration redistribution diagnostic keys."""
         from scripts.longrun_diagnostics import run_and_diagnose
         _, summary = run_and_diagnose(n_agents=5, steps=20, seed=42)
-        self.assertIn("n_annihilation_redistributions", summary)
+        self.assertIn("n_disintegration_redistributions", summary)
         self.assertIn("n_types_lost", summary)
         self.assertIn("k_lost", summary)
 
