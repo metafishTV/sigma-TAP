@@ -44,9 +44,6 @@ def precursor_guard_active(dxi_dt: float, xi_plateau: float) -> bool:
     return dxi_dt >= xi_plateau
 
 
-def pass_c_additional_runs(k_pressure_params: int, slices: int = 3, lhs_points: int = 150, replicates: int = 24) -> int:
-    """Additional run count for pressure Pass C design."""
-    return k_pressure_params * slices * lhs_points * replicates
 
 
 def classify_regime(
