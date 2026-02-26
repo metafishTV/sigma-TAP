@@ -40,6 +40,7 @@ from simulator.taps_sensitivity import (
     build_transition_map,
     eigenvalue_analysis,
 )
+from simulator.predictive import run_predictive_diagnostic
 
 ROOT = Path(__file__).resolve().parents[1]
 FIG_OUT = ROOT / "outputs" / "figures"
@@ -301,6 +302,46 @@ def print_summary(
     print(f"\n  [exploratory -- see CLAIM_POLICY.md]")
 
 
+def print_predictive_diagnostic(result) -> None:
+    """Print predictive orientation diagnostic to console."""
+    print(f"\n  Predictive Orientation Diagnostic (horizon={result.horizon}, grain={result.grain}):")
+    print(f"  {'='*60}")
+
+    # Summary table
+    print(f"\n  {'Axis':<24s} {'Match%':>8s}   {'Mean Surprisal':>15s}   {'Adpressions':>12s}")
+    print(f"  {'-'*63}")
+    for axis in result.axes_analyzed:
+        rate = result.parallel_matching_rate.get(axis, 0.0)
+        surp = result.mean_surprisal.get(axis, 0.0)
+        n_adp = sum(1 for e in result.adpression_events if e.axis == axis)
+        n_col = sum(1 for e in result.state_collapse_events if e.axis == axis)
+        adp_str = f"{n_adp} event{'s' if n_adp != 1 else ''}"
+        if n_col > 0:
+            adp_str += f" + {n_col} collapse"
+        print(f"  {axis:<24s} {rate*100:>7.1f}%   {surp:>12.2f} bits   {adp_str:>12s}")
+
+    # Adpression events
+    if result.adpression_events:
+        print(f"\n  Adpression Events (transition surprisal):")
+        for e in result.adpression_events:
+            print(f"    Step {e.step:>3d}, {e.axis}: "
+                  f"predicted={e.predicted_top} -> actual={e.actual_state} "
+                  f"(P={e.probability_of_actual:.3f}), "
+                  f"surprisal={e.surprisal:.2f} bits, threshold={e.threshold:.2f}")
+
+    # State collapse events
+    if result.state_collapse_events:
+        print(f"\n  State Collapse Events (annihilation/extinction):")
+        for e in result.state_collapse_events:
+            print(f"    Step {e.step:>3d}, {e.axis}: "
+                  f"collapsed to single state '{e.actual_state}'")
+
+    if not result.adpression_events and not result.state_collapse_events:
+        print(f"\n  No adpressive events detected.")
+
+    print(f"\n  [exploratory -- see CLAIM_POLICY.md]")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="TAPS/RIP diagnostic overlay")
     parser.add_argument("--n-agents", type=int, default=10)
@@ -334,6 +375,13 @@ def main() -> None:
 
     # Print summary
     print_summary(scores, ratios, rip, corr, eigen=eigen)
+
+    # Predictive orientation diagnostic
+    pred_result = run_predictive_diagnostic(
+        trajectory, scores, ano_scores, rip, ratios,
+        horizon=1, grain="coarse",
+    )
+    print_predictive_diagnostic(pred_result)
 
     # Generate figures
     fig_correlation(scores, FIG_OUT / "taps_correlation.png")
