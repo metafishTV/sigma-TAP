@@ -7,7 +7,6 @@ from simulator.analysis import (
     adaptive_xi_plateau_threshold,
     classify_regime,
     identifiability_gate,
-    pass_c_additional_runs,
     precursor_guard_active,
 )
 from simulator.hfuncs import h_compression
@@ -59,4 +58,4 @@ print("gate", identifiability_gate({"M_t"}))
 print("gate2", identifiability_gate({"M_t", "Xi_proxy"}))
 for variant in ["baseline", "two_scale", "logistic"]:
     run_variant(variant)
-print("pass_c_runs_k9", pass_c_additional_runs(9))
+# Pass C run count for k=9 pressure params: 9 * 3 * 150 * 24 = 97200

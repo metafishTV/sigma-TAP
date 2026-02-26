@@ -480,13 +480,13 @@ class MetatheticEnsemble:
             all_types |= a.type_set
         return len(all_types)
 
-    def _convergence_measure(self) -> float:
+    def _convergence_measure(self, type_counts: dict[int, int] | None = None) -> float:
         """Fraction of agents sharing the most common type.
 
         High = convergent/localized (structure defines agents).
         Low = divergent/diffuse (agents define structure).
         """
-        counts = self._all_type_counts()
+        counts = type_counts if type_counts is not None else self._all_type_counts()
         if not counts:
             return 0.0
         active = self._active_agents()
@@ -783,22 +783,22 @@ class MetatheticEnsemble:
             active = self._active_agents()
             dormant = [a for a in self.agents if not a.active and not a._dissolved and not a._deep_stasis]
             agent_k_list = [a.k for a in active]
+            total_M = sum(a.M_local for a in active)
+            type_counts = self._all_type_counts()
 
             snapshot = {
                 "step": step,
                 "D_total": self._total_diversity(),
                 "k_total": sum(a.k for a in active),
-                "total_M": sum(a.M_local for a in active),
+                "total_M": total_M,
                 "n_active": len(active),
                 "n_dormant": len(dormant),
                 "agent_k_list": agent_k_list,
-                "convergence": self._convergence_measure(),
+                "convergence": self._convergence_measure(type_counts=type_counts),
                 "texture_type": self.env.texture_type,
                 "a_env": self.env.a_env,
                 "K_env": self.env.K_env,
-                "innovation_potential": self.env.innovation_potential(
-                    sum(a.M_local for a in active)
-                ),
+                "innovation_potential": self.env.innovation_potential(total_M),
                 "n_self_metatheses": self.n_self_metatheses,
                 "n_absorptive_cross": self.n_absorptive_cross,
                 "n_novel_cross": self.n_novel_cross,
@@ -819,10 +819,9 @@ class MetatheticEnsemble:
                 a._dormant_steps += 1
 
             # Temporal state distribution.
-            type_counts_for_context = self._all_type_counts()
             temporal_counts = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
             for a in self.agents:
-                ts = a.temporal_state_with_context(type_counts_for_context)
+                ts = a.temporal_state_with_context(type_counts)
                 temporal_counts[ts] += 1
             snapshot["temporal_state_counts"] = temporal_counts
 

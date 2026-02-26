@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from statistics import median
 
 
@@ -44,11 +45,6 @@ def precursor_guard_active(dxi_dt: float, xi_plateau: float) -> bool:
     return dxi_dt >= xi_plateau
 
 
-def pass_c_additional_runs(k_pressure_params: int, slices: int = 3, lhs_points: int = 150, replicates: int = 24) -> int:
-    """Additional run count for pressure Pass C design."""
-    return k_pressure_params * slices * lhs_points * replicates
-
-
 def classify_regime(
     xi_traj: list[float],
     m_traj: list[float],
@@ -71,7 +67,6 @@ def classify_regime(
 
     if m_traj[-1] <= 0:
         return "extinction"
-    import math
     if m_traj[-1] >= m_blow or any((not math.isfinite(v)) or v == float("inf") for v in m_traj):
         return "explosive"
 
@@ -102,7 +97,6 @@ def find_fixed_point(alpha: float, mu: float, a: float, m_lo: float = 1e-3, m_hi
 
     Returns None if no positive bracketed root is found in [m_lo, m_hi].
     """
-    import math
     from .tap import innovation_kernel_closed
 
     def g(m: float) -> float:
@@ -144,52 +138,37 @@ def find_fixed_point(alpha: float, mu: float, a: float, m_lo: float = 1e-3, m_hi
     return 0.5 * (lo + hi)
 
 
-def fit_explosive_logistic_boundary(
-    records: list[dict],
-    explosive_labels: set[str] | None = None,
+def _fit_logistic_boundary_general(
+    X: list[list[float]],
+    y: list[float],
     lr: float = 0.05,
     epochs: int = 4000,
     l2: float = 1e-4,
-) -> dict:
+) -> tuple[list[float], list[list[float]], list[float], list[float]]:
+    """General N-dimensional logistic boundary via gradient descent.
+
+    Returns (coefficients, X_standardized, means, stds).
+    coefficients[0] = intercept, coefficients[1:] = feature weights.
     """
-    Fit a simple logistic boundary on (log(alpha), log(mu)).
-
-    y=1 for explosive-like labels, y=0 otherwise.
-    Returns fitted coefficients and a compact training summary.
-    """
-    import math
-
-    explosive_labels = explosive_labels or {"explosive"}
-
-    X: list[tuple[float, float]] = []
-    y: list[float] = []
-    for r in records:
-        try:
-            a = float(r["alpha"])
-            m = float(r["mu"])
-            label = str(r["regime"])
-        except Exception:
-            continue
-        if a <= 0 or m <= 0:
-            continue
-        X.append((math.log(a), math.log(m)))
-        y.append(1.0 if label in explosive_labels else 0.0)
-
     if not X:
-        return {"ok": False, "reason": "no_valid_rows"}
+        return [], [], [], []
 
-    # Standardize features for stable optimization.
-    xs1 = [v[0] for v in X]
-    xs2 = [v[1] for v in X]
-    m1 = sum(xs1) / len(xs1)
-    m2 = sum(xs2) / len(xs2)
-    s1 = (sum((z - m1) ** 2 for z in xs1) / max(1, len(xs1) - 1)) ** 0.5 or 1.0
-    s2 = (sum((z - m2) ** 2 for z in xs2) / max(1, len(xs2) - 1)) ** 0.5 or 1.0
-    Xs = [((u - m1) / s1, (v - m2) / s2) for u, v in X]
+    n_features = len(X[0])
+    n_samples = len(X)
 
-    b0 = 0.0
-    b1 = 0.0
-    b2 = 0.0
+    # Standardize
+    means = []
+    stds = []
+    for f in range(n_features):
+        vals = [x[f] for x in X]
+        m = sum(vals) / len(vals)
+        s = (sum((v - m) ** 2 for v in vals) / max(1, len(vals) - 1)) ** 0.5 or 1.0
+        means.append(m)
+        stds.append(s)
+
+    Xs = [[(x[f] - means[f]) / stds[f] for f in range(n_features)] for x in X]
+
+    b = [0.0] * (n_features + 1)
 
     def sig(z: float) -> float:
         if z >= 0:
@@ -198,40 +177,71 @@ def fit_explosive_logistic_boundary(
         ez = math.exp(z)
         return ez / (1.0 + ez)
 
-    n = float(len(Xs))
+    n_f = float(n_samples)
     for _ in range(epochs):
-        g0 = 0.0
-        g1 = 0.0
-        g2 = 0.0
-        for (x1, x2), yi in zip(Xs, y):
-            p = sig(b0 + b1 * x1 + b2 * x2)
-            d = (p - yi)
-            g0 += d
-            g1 += d * x1
-            g2 += d * x2
-        # mean gradient + L2
-        g0 = g0 / n
-        g1 = g1 / n + l2 * b1
-        g2 = g2 / n + l2 * b2
-        b0 -= lr * g0
-        b1 -= lr * g1
-        b2 -= lr * g2
+        g = [0.0] * (n_features + 1)
+        for xs, yi in zip(Xs, y):
+            z = b[0] + sum(b[f + 1] * xs[f] for f in range(n_features))
+            d = sig(z) - yi
+            g[0] += d
+            for f in range(n_features):
+                g[f + 1] += d * xs[f]
+        g[0] /= n_f
+        for f in range(n_features):
+            g[f + 1] = g[f + 1] / n_f + l2 * b[f + 1]
+        for k in range(n_features + 1):
+            b[k] -= lr * g[k]
 
-    # train accuracy summary
+    return b, Xs, means, stds
+
+
+def fit_explosive_logistic_boundary(
+    records: list[dict],
+    explosive_labels: set[str] | None = None,
+    lr: float = 0.05,
+    epochs: int = 4000,
+    l2: float = 1e-4,
+) -> dict:
+    """Fit logistic boundary on (log(alpha), log(mu))."""
+    explosive_labels = explosive_labels or {"explosive"}
+    X = []
+    y = []
+    for r in records:
+        try:
+            a, m, label = float(r["alpha"]), float(r["mu"]), str(r["regime"])
+        except Exception:
+            continue
+        if a <= 0 or m <= 0:
+            continue
+        X.append([math.log(a), math.log(m)])
+        y.append(1.0 if label in explosive_labels else 0.0)
+
+    if not X:
+        return {"ok": False, "reason": "no_valid_rows"}
+
+    b, Xs, means, stds = _fit_logistic_boundary_general(X, y, lr, epochs, l2)
+
+    def sig(z):
+        if z >= 0:
+            return 1.0 / (1.0 + math.exp(-z))
+        ez = math.exp(z)
+        return ez / (1.0 + ez)
+
     correct = 0
-    probs: list[float] = []
-    for (x1, x2), yi in zip(Xs, y):
-        p = sig(b0 + b1 * x1 + b2 * x2)
+    probs = []
+    for xs, yi in zip(Xs, y):
+        p = sig(b[0] + b[1] * xs[0] + b[2] * xs[1])
         probs.append(p)
-        pred = 1.0 if p >= 0.5 else 0.0
-        correct += int(pred == yi)
+        correct += int((1.0 if p >= 0.5 else 0.0) == yi)
 
     return {
-        "ok": True,
-        "n": len(Xs),
+        "ok": True, "n": len(Xs),
         "labels_positive": sum(int(v) for v in y),
-        "coef": {"intercept": b0, "log_alpha": b1, "log_mu": b2},
-        "feature_standardization": {"log_alpha_mean": m1, "log_alpha_std": s1, "log_mu_mean": m2, "log_mu_std": s2},
+        "coef": {"intercept": b[0], "log_alpha": b[1], "log_mu": b[2]},
+        "feature_standardization": {
+            "log_alpha_mean": means[0], "log_alpha_std": stds[0],
+            "log_mu_mean": means[1], "log_mu_std": stds[1],
+        },
         "train_accuracy": correct / len(Xs),
         "mean_pred_prob": sum(probs) / len(probs),
     }
@@ -244,17 +254,10 @@ def fit_explosive_logistic_boundary_3d(
     epochs: int = 5000,
     l2: float = 1e-4,
 ) -> dict:
-    """
-    Fit logistic boundary on (log(alpha), log(mu), log(M0)).
-
-    This estimates initialization sensitivity explicitly via coefficient c3 on log(M0).
-    """
-    import math
-
+    """Fit logistic boundary on (log(alpha), log(mu), log(M0))."""
     explosive_labels = explosive_labels or {"explosive"}
-
-    X: list[tuple[float, float, float]] = []
-    y: list[float] = []
+    X = []
+    y = []
     for r in records:
         try:
             a = float(r["alpha"])
@@ -265,71 +268,35 @@ def fit_explosive_logistic_boundary_3d(
             continue
         if a <= 0 or m <= 0 or m0 <= 0:
             continue
-        X.append((math.log(a), math.log(m), math.log(m0)))
+        X.append([math.log(a), math.log(m), math.log(m0)])
         y.append(1.0 if label in explosive_labels else 0.0)
 
     if not X:
         return {"ok": False, "reason": "no_valid_rows"}
 
-    xs1 = [v[0] for v in X]
-    xs2 = [v[1] for v in X]
-    xs3 = [v[2] for v in X]
-    m1 = sum(xs1) / len(xs1)
-    m2 = sum(xs2) / len(xs2)
-    m3 = sum(xs3) / len(xs3)
-    s1 = (sum((z - m1) ** 2 for z in xs1) / max(1, len(xs1) - 1)) ** 0.5 or 1.0
-    s2 = (sum((z - m2) ** 2 for z in xs2) / max(1, len(xs2) - 1)) ** 0.5 or 1.0
-    s3 = (sum((z - m3) ** 2 for z in xs3) / max(1, len(xs3) - 1)) ** 0.5 or 1.0
-    Xs = [((u - m1) / s1, (v - m2) / s2, (w - m3) / s3) for u, v, w in X]
+    b, Xs, means, stds = _fit_logistic_boundary_general(X, y, lr, epochs, l2)
 
-    b0 = b1 = b2 = b3 = 0.0
-
-    def sig(z: float) -> float:
+    def sig(z):
         if z >= 0:
-            ez = math.exp(-z)
-            return 1.0 / (1.0 + ez)
+            return 1.0 / (1.0 + math.exp(-z))
         ez = math.exp(z)
         return ez / (1.0 + ez)
 
-    n = float(len(Xs))
-    for _ in range(epochs):
-        g0 = g1 = g2 = g3 = 0.0
-        for (x1, x2, x3), yi in zip(Xs, y):
-            p = sig(b0 + b1 * x1 + b2 * x2 + b3 * x3)
-            d = p - yi
-            g0 += d
-            g1 += d * x1
-            g2 += d * x2
-            g3 += d * x3
-        g0 = g0 / n
-        g1 = g1 / n + l2 * b1
-        g2 = g2 / n + l2 * b2
-        g3 = g3 / n + l2 * b3
-        b0 -= lr * g0
-        b1 -= lr * g1
-        b2 -= lr * g2
-        b3 -= lr * g3
-
     correct = 0
-    probs: list[float] = []
-    for (x1, x2, x3), yi in zip(Xs, y):
-        p = sig(b0 + b1 * x1 + b2 * x2 + b3 * x3)
+    probs = []
+    for xs, yi in zip(Xs, y):
+        p = sig(b[0] + b[1] * xs[0] + b[2] * xs[1] + b[3] * xs[2])
         probs.append(p)
-        pred = 1.0 if p >= 0.5 else 0.0
-        correct += int(pred == yi)
+        correct += int((1.0 if p >= 0.5 else 0.0) == yi)
 
     return {
-        "ok": True,
-        "n": len(Xs),
+        "ok": True, "n": len(Xs),
         "labels_positive": sum(int(v) for v in y),
-        "coef": {"intercept": b0, "log_alpha": b1, "log_mu": b2, "log_m0": b3},
+        "coef": {"intercept": b[0], "log_alpha": b[1], "log_mu": b[2], "log_m0": b[3]},
         "feature_standardization": {
-            "log_alpha_mean": m1,
-            "log_alpha_std": s1,
-            "log_mu_mean": m2,
-            "log_mu_std": s2,
-            "log_m0_mean": m3,
-            "log_m0_std": s3,
+            "log_alpha_mean": means[0], "log_alpha_std": stds[0],
+            "log_mu_mean": means[1], "log_mu_std": stds[1],
+            "log_m0_mean": means[2], "log_m0_std": stds[2],
         },
         "train_accuracy": correct / len(Xs),
         "mean_pred_prob": sum(probs) / len(probs),
@@ -354,16 +321,15 @@ def innovation_rate_scaling(
 
     Returns dict with 'exponent', 'r_squared', 'n_points'.
     """
-    import math
 
     if len(m_traj) < 3:
         return {"exponent": 1.0, "r_squared": 0.0, "n_points": len(m_traj)}
 
-    # Finite differences for dk/dt.
+    from scipy.stats import linregress
+
     rates = [(m_traj[i + 1] - m_traj[i]) / dt for i in range(len(m_traj) - 1)]
     midpoints = [0.5 * (m_traj[i] + m_traj[i + 1]) for i in range(len(m_traj) - 1)]
 
-    # Filter to positive values for log-log fit.
     log_k = []
     log_rate = []
     for k, r in zip(midpoints, rates):
@@ -375,20 +341,8 @@ def innovation_rate_scaling(
     if n < 2:
         return {"exponent": 1.0, "r_squared": 0.0, "n_points": n}
 
-    # OLS: log(rate) = sigma * log(k) + c.
-    mean_x = sum(log_k) / n
-    mean_y = sum(log_rate) / n
-    ss_xy = sum((x - mean_x) * (y - mean_y) for x, y in zip(log_k, log_rate))
-    ss_xx = sum((x - mean_x) ** 2 for x in log_k)
-    ss_yy = sum((y - mean_y) ** 2 for y in log_rate)
-
-    if ss_xx < 1e-15:
-        return {"exponent": 1.0, "r_squared": 0.0, "n_points": n}
-
-    sigma = ss_xy / ss_xx
-    r_squared = (ss_xy ** 2) / (ss_xx * ss_yy) if ss_yy > 1e-15 else 0.0
-
-    return {"exponent": sigma, "r_squared": r_squared, "n_points": n}
+    result = linregress(log_k, log_rate)
+    return {"exponent": result.slope, "r_squared": result.rvalue ** 2, "n_points": n}
 
 
 def constraint_tag(

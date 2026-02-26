@@ -170,17 +170,35 @@ def detect_adpression(
         return []
 
     events: list[tuple[int, float, float]] = []
+
+    # Welford's online algorithm — initialize with burn-in window
+    count = 0
+    mean = 0.0
+    M2 = 0.0
+    for k in range(burn_in):
+        count += 1
+        delta = surprisals[k] - mean
+        mean += delta / count
+        delta2 = surprisals[k] - mean
+        M2 += delta * delta2
+
     for i in range(burn_in, len(surprisals)):
-        window = surprisals[:i]
-        mean = sum(window) / len(window)
-        variance = sum((x - mean) ** 2 for x in window) / len(window)
+        # Stats from surprisals[:i] — exactly matches original expanding window
+        variance = M2 / count if count > 0 else 0.0
         sd = variance ** 0.5
         threshold = mean + threshold_sd * sd
         if sd > 0 and surprisals[i] > threshold:
             events.append((i, surprisals[i], threshold))
         elif sd == 0 and surprisals[i] > mean:
-            # Zero variance — any deviation above mean is notable
             events.append((i, surprisals[i], mean))
+
+        # Update running stats to include surprisals[i] for next iteration
+        count += 1
+        delta = surprisals[i] - mean
+        mean += delta / count
+        delta2 = surprisals[i] - mean
+        M2 += delta * delta2
+
     return events
 
 

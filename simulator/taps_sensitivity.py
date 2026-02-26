@@ -94,9 +94,8 @@ def classify_step(
     else:
         result["transvolution_dir"] = "evolution"
 
-    # texture_type: proxy using pressure_regime until WI-3 (Task 4)
-    # implements real dM-variance-based texture classification.
-    result["texture_type"] = result["pressure_regime"]
+    # texture_type: will be overridden by build_transition_map with real dM classification
+    result["texture_type"] = "unclassified"
 
     return result
 
@@ -134,11 +133,17 @@ def build_transition_map(
     if n_steps < 2:
         return {}
 
-    # Classify every step
-    classifications: list[dict[str, str]] = [
-        classify_step(all_scores, ano_scores, rip_result, ratios, step=t)
-        for t in range(n_steps)
-    ]
+    # Compute dM-based texture classification for all steps
+    dM_textures = classify_dM_texture(trajectory, window=10)
+    _TEXTURE_LABELS = {0: "unclassified", 1: "placid_randomized",
+                       2: "placid_clustered", 3: "disturbed_reactive",
+                       4: "turbulent"}
+
+    classifications: list[dict[str, str]] = []
+    for t in range(n_steps):
+        c = classify_step(all_scores, ano_scores, rip_result, ratios, step=t)
+        c["texture_type"] = _TEXTURE_LABELS.get(dM_textures[t], "unclassified")
+        classifications.append(c)
 
     axes = list(classifications[0].keys())
     result: dict[str, dict] = {}
@@ -321,11 +326,13 @@ def eigenvalue_analysis(
                 P[i, i] = 1.0
 
         # --- Eigenvalue decomposition ---
-        eigenvalues = np.linalg.eigvals(P)
+        # Eigenvalues of P^T equal eigenvalues of P (transpose preserves spectrum).
+        # Single decomposition gives both eigenvalues and stationary eigenvector.
+        evals_T, evecs_T = np.linalg.eig(P.T)
 
-        # Sort by magnitude descending
-        idx_sorted = np.argsort(-np.abs(eigenvalues))
-        eigenvalues = eigenvalues[idx_sorted]
+        # Sort eigenvalues by magnitude descending
+        idx_sorted = np.argsort(-np.abs(evals_T))
+        eigenvalues = evals_T[idx_sorted]
 
         # --- Spectral gap ---
         # lambda_1 should be ~1.0; lambda_2 is the second-largest
@@ -338,7 +345,6 @@ def eigenvalue_analysis(
 
         # --- Stationary distribution (left eigenvector of P for lambda=1) ---
         # Solve pi P = pi  <=>  P^T pi^T = pi^T
-        evals_T, evecs_T = np.linalg.eig(P.T)
 
         # Find eigenvector closest to eigenvalue 1.0
         idx_one = int(np.argmin(np.abs(evals_T - 1.0)))

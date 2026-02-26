@@ -15,6 +15,8 @@ import os
 import sys
 from pathlib import Path
 
+import numpy as np
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from simulator.analysis import adaptive_xi_plateau_threshold, classify_regime
@@ -76,10 +78,7 @@ def run_extinction_sweep(
 ) -> list[dict]:
     """Sweep extinction rate mu across all variants."""
     results = []
-    log_lo = math.log10(mu_range[0])
-    log_hi = math.log10(mu_range[1])
-    mus = [10 ** (log_lo + i * (log_hi - log_lo) / max(1, n_mu - 1))
-           for i in range(n_mu)]
+    mus = np.logspace(np.log10(mu_range[0]), np.log10(mu_range[1]), n_mu).tolist()
 
     for mu in mus:
         for variant in VARIANTS:

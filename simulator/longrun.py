@@ -23,34 +23,29 @@ def heaps_law_fit(D_series: list[float], k_series: list[float]) -> dict:
 
     Returns dict with 'beta', 'intercept', 'r_squared', 'n_points'.
     """
+    from simulator.empirical import heaps_exponent
+
     if len(D_series) < 2 or len(k_series) < 2:
         return {"beta": 1.0, "intercept": 0.0, "r_squared": 0.0, "n_points": 0}
 
-    log_k = []
-    log_D = []
-    for k, d in zip(k_series, D_series):
-        if k > 0 and d > 0:
-            log_k.append(math.log(k))
-            log_D.append(math.log(d))
+    # heaps_exponent expects integer counts; round rather than truncate
+    # to avoid silent precision loss on interpolated floats.
+    result = heaps_exponent(
+        k_total=[round(k) for k in k_series],
+        D_total=[round(d) for d in D_series],
+    )
 
-    n = len(log_k)
-    if n < 2:
-        return {"beta": 1.0, "intercept": 0.0, "r_squared": 0.0, "n_points": n}
+    if math.isnan(result.exponent):
+        return {"beta": 1.0, "intercept": 0.0, "r_squared": 0.0, "n_points": result.n_points}
 
-    mean_x = sum(log_k) / n
-    mean_y = sum(log_D) / n
-    ss_xy = sum((x - mean_x) * (y - mean_y) for x, y in zip(log_k, log_D))
-    ss_xx = sum((x - mean_x) ** 2 for x in log_k)
-    ss_yy = sum((y - mean_y) ** 2 for y in log_D)
+    r_sq = result.r_squared if not math.isnan(result.r_squared) else 0.0
 
-    if ss_xx < 1e-15:
-        return {"beta": 1.0, "intercept": 0.0, "r_squared": 0.0, "n_points": n}
-
-    beta = ss_xy / ss_xx
-    intercept = mean_y - beta * mean_x
-    r_squared = (ss_xy ** 2) / (ss_xx * ss_yy) if ss_yy > 1e-15 else 0.0
-
-    return {"beta": beta, "intercept": intercept, "r_squared": r_squared, "n_points": n}
+    return {
+        "beta": result.exponent,
+        "intercept": result.intercept,
+        "r_squared": r_sq,
+        "n_points": result.n_points,
+    }
 
 
 def gini_coefficient(values: list[float]) -> float:

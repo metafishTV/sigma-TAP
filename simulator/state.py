@@ -14,6 +14,7 @@ class ModelParams:
     tap_variant: str = "baseline"
     alpha1: float = 0.0
     carrying_capacity: float | None = None
+    h_decay: float = 0.02
 
 
 @dataclass
