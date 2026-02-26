@@ -111,3 +111,31 @@ def predict_step(
 
     row = P_k[idx]
     return {states[i]: float(row[i]) for i in range(n)}
+
+
+def compute_surprisal(
+    predicted_dist: dict[str, float],
+    actual_state: str,
+    max_surprisal: float = 10.0,
+) -> float:
+    """Compute information-theoretic surprisal for an observed transition.
+
+    Parameters
+    ----------
+    predicted_dist : dict[str, float]
+        Predicted probability distribution {state: probability}.
+    actual_state : str
+        The state that actually occurred.
+    max_surprisal : float
+        Cap for zero-probability events (default 10.0 bits = P < 1/1024).
+
+    Returns
+    -------
+    float
+        Surprisal in bits: -log2(P(actual_state)).
+        Capped at max_surprisal if probability is 0 or state is unknown.
+    """
+    prob = predicted_dist.get(actual_state, 0.0)
+    if prob <= 0.0:
+        return max_surprisal
+    return -math.log2(prob)

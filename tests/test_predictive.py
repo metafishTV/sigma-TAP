@@ -52,5 +52,44 @@ class TestPredictStep(unittest.TestCase):
         self.assertAlmostEqual(sum(result.values()), 1.0, places=10)
 
 
+class TestComputeSurprisal(unittest.TestCase):
+    """Tests for compute_surprisal()."""
+
+    def test_known_probability(self):
+        """P=0.5 should give exactly 1.0 bit of surprisal."""
+        from simulator.predictive import compute_surprisal
+
+        result = compute_surprisal({"a": 0.5, "b": 0.5}, "a")
+        self.assertAlmostEqual(result, 1.0, places=10)
+
+    def test_certain_event_zero_surprisal(self):
+        """P=1.0 should give 0.0 bits of surprisal."""
+        from simulator.predictive import compute_surprisal
+
+        result = compute_surprisal({"a": 1.0}, "a")
+        self.assertAlmostEqual(result, 0.0, places=10)
+
+    def test_zero_probability_caps_at_max(self):
+        """P=0.0 should cap at max_surprisal (default 10.0 bits)."""
+        from simulator.predictive import compute_surprisal
+
+        result = compute_surprisal({"a": 0.0, "b": 1.0}, "a")
+        self.assertAlmostEqual(result, 10.0, places=10)
+
+    def test_unknown_state_caps_at_max(self):
+        """State not in distribution should cap at max_surprisal."""
+        from simulator.predictive import compute_surprisal
+
+        result = compute_surprisal({"a": 0.5, "b": 0.5}, "c")
+        self.assertAlmostEqual(result, 10.0, places=10)
+
+    def test_custom_max_surprisal(self):
+        """Custom max_surprisal should be respected."""
+        from simulator.predictive import compute_surprisal
+
+        result = compute_surprisal({"a": 0.0}, "a", max_surprisal=5.0)
+        self.assertAlmostEqual(result, 5.0, places=10)
+
+
 if __name__ == "__main__":
     unittest.main()
