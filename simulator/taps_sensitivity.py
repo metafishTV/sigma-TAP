@@ -405,3 +405,172 @@ def sweep_taps_modes(
         "sensitivity": sensitivity,
         "transition_maps": transition_maps,
     }
+
+
+# ---------------------------------------------------------------------------
+# Function 6: compute_divergence
+# ---------------------------------------------------------------------------
+
+def compute_divergence(
+    param_grid: dict[str, list],
+    n_agents: int = 20,
+    steps: int = 120,
+    seed: int = 42,
+    variant: str = "logistic",
+    carrying_capacity: float = 2e5,
+    gated_cluster: int = 2,
+    ungated_cluster: int = 0,
+) -> dict:
+    """Compare gated vs ungated ensemble behaviour across a parameter grid.
+
+    At each grid point runs BOTH a gated (``affordance_min_cluster=gated_cluster``)
+    and ungated (``affordance_min_cluster=ungated_cluster``) ensemble with the
+    SAME seed, then computes per-mode mean absolute differences and transition
+    map Frobenius-norm divergences.
+
+    Parameters
+    ----------
+    param_grid : dict
+        Keys ``mu``, ``alpha``, ``a`` each mapping to a list of values.
+        Missing keys default to ``[0.005]``, ``[5e-3]``, ``[3.0]``.
+    n_agents, steps, seed, variant, carrying_capacity :
+        Passed through to :class:`MetatheticEnsemble`.
+    gated_cluster : int
+        ``affordance_min_cluster`` for the gated run (default 2).
+    ungated_cluster : int
+        ``affordance_min_cluster`` for the ungated run (default 0).
+
+    Returns
+    -------
+    dict with keys:
+        grid : list[dict]
+            One dict per grid point with ``mu``, ``alpha``, ``a``.
+        mode_divergence : dict[str, list[float]]
+            Per mode: list of mean-absolute-difference values (one per grid point).
+        transition_divergence : dict[str, list[float]]
+            Per axis: list of Frobenius norms of aligned transition-count
+            matrix differences (one per grid point).
+        significant_regimes : list[dict]
+            Grid points where max divergence across all modes exceeds 0.1.
+    """
+    mu_vals = param_grid.get("mu", [0.005])
+    alpha_vals = param_grid.get("alpha", [5e-3])
+    a_vals = param_grid.get("a", [3.0])
+
+    grid_points: list[dict] = []
+    mode_divergence: dict[str, list[float]] = {}
+    transition_divergence: dict[str, list[float]] = {}
+    significant_regimes: list[dict] = []
+
+    run_idx = 0
+    for mu, alpha, a in _product(mu_vals, alpha_vals, a_vals):
+        gp = {"mu": mu, "alpha": alpha, "a": a}
+        grid_points.append(gp)
+
+        shared_seed = seed + run_idx
+        run_idx += 1
+
+        # --- Run gated ensemble ---
+        ens_gated = MetatheticEnsemble(
+            n_agents=n_agents,
+            initial_M=1.0,
+            alpha=alpha,
+            a=a,
+            mu=mu,
+            variant=variant,
+            carrying_capacity=carrying_capacity,
+            affordance_min_cluster=gated_cluster,
+            seed=shared_seed,
+        )
+        traj_gated = ens_gated.run(steps)
+
+        # --- Run ungated ensemble ---
+        ens_ungated = MetatheticEnsemble(
+            n_agents=n_agents,
+            initial_M=1.0,
+            alpha=alpha,
+            a=a,
+            mu=mu,
+            variant=variant,
+            carrying_capacity=carrying_capacity,
+            affordance_min_cluster=ungated_cluster,
+            seed=shared_seed,
+        )
+        traj_ungated = ens_ungated.run(steps)
+
+        # --- Compute TAPS scores for both ---
+        scores_g = compute_all_scores(traj_gated, mu=mu)
+        scores_u = compute_all_scores(traj_ungated, mu=mu)
+
+        # --- Per-mode mean absolute difference ---
+        all_mode_names = sorted(set(scores_g.keys()) | set(scores_u.keys()))
+        max_div = 0.0
+        for mode_name in all_mode_names:
+            arr_g = np.array(scores_g.get(mode_name, []), dtype=float)
+            arr_u = np.array(scores_u.get(mode_name, []), dtype=float)
+            min_len = min(len(arr_g), len(arr_u))
+            if min_len > 0:
+                diff = float(np.mean(np.abs(arr_g[:min_len] - arr_u[:min_len])))
+            else:
+                diff = 0.0
+
+            if mode_name not in mode_divergence:
+                mode_divergence[mode_name] = []
+            mode_divergence[mode_name].append(diff)
+            max_div = max(max_div, diff)
+
+        # --- Transition map divergence (Frobenius norm of aligned matrices) ---
+        ano_g = compute_anopression(traj_gated, mu=mu)
+        ano_u = compute_anopression(traj_ungated, mu=mu)
+        rip_g = compute_rip(traj_gated)
+        rip_u = compute_rip(traj_ungated)
+        ratios_g = pressure_ratio(ano_g)
+        ratios_u = pressure_ratio(ano_u)
+
+        tmap_g = build_transition_map(scores_g, ano_g, rip_g, ratios_g, traj_gated)
+        tmap_u = build_transition_map(scores_u, ano_u, rip_u, ratios_u, traj_ungated)
+
+        all_axes = sorted(set(tmap_g.keys()) | set(tmap_u.keys()))
+        for axis in all_axes:
+            data_g = tmap_g.get(axis)
+            data_u = tmap_u.get(axis)
+
+            if data_g is None or data_u is None:
+                frob = 0.0
+            else:
+                # Build unified state list and aligned matrices
+                states_g = data_g["states"]
+                states_u = data_u["states"]
+                unified = sorted(set(states_g) | set(states_u))
+                n_unified = len(unified)
+                idx_map = {s: i for i, s in enumerate(unified)}
+
+                mat_g = np.zeros((n_unified, n_unified), dtype=float)
+                mat_u = np.zeros((n_unified, n_unified), dtype=float)
+
+                # Fill gated matrix
+                for ri, rs in enumerate(states_g):
+                    for ci, cs in enumerate(states_g):
+                        mat_g[idx_map[rs], idx_map[cs]] = data_g["counts"][ri, ci]
+
+                # Fill ungated matrix
+                for ri, rs in enumerate(states_u):
+                    for ci, cs in enumerate(states_u):
+                        mat_u[idx_map[rs], idx_map[cs]] = data_u["counts"][ri, ci]
+
+                frob = float(np.linalg.norm(mat_g - mat_u))
+
+            if axis not in transition_divergence:
+                transition_divergence[axis] = []
+            transition_divergence[axis].append(frob)
+
+        # --- Check significance ---
+        if max_div > 0.1:
+            significant_regimes.append(gp)
+
+    return {
+        "grid": grid_points,
+        "mode_divergence": mode_divergence,
+        "transition_divergence": transition_divergence,
+        "significant_regimes": significant_regimes,
+    }

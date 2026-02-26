@@ -257,5 +257,29 @@ class TestSweepTapsModes(unittest.TestCase):
                           f"Mode {mode_name} should have mu sensitivity")
 
 
+class TestDivergenceMap(unittest.TestCase):
+    """Tests for gated vs ungated divergence."""
+
+    def test_identical_params_zero_divergence(self):
+        """Same gate settings should produce zero divergence."""
+        from simulator.taps_sensitivity import compute_divergence
+        grid = {"mu": [0.01], "alpha": [1e-3], "a": [8.0]}
+        result = compute_divergence(
+            grid, n_agents=5, steps=20, seed=42,
+            gated_cluster=2, ungated_cluster=2,  # SAME setting
+        )
+        for mode_name, divs in result["mode_divergence"].items():
+            for d in divs:
+                self.assertAlmostEqual(d, 0.0, places=5,
+                    msg=f"Mode {mode_name} should have 0 divergence with same gate")
+
+    def test_divergence_returns_all_modes(self):
+        """Divergence result should cover all 17 TAPS modes."""
+        from simulator.taps_sensitivity import compute_divergence
+        grid = {"mu": [0.01], "alpha": [1e-3], "a": [8.0]}
+        result = compute_divergence(grid, n_agents=5, steps=20, seed=42)
+        self.assertGreaterEqual(len(result["mode_divergence"]), 17)
+
+
 if __name__ == "__main__":
     unittest.main()
