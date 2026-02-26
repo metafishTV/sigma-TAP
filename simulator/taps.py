@@ -50,14 +50,14 @@ def _event_deltas(trajectory: Trajectory) -> list[dict[str, int]]:
 # T — Transvolution
 # ---------------------------------------------------------------------------
 
-def compute_transvolution(trajectory: Trajectory) -> dict[str, list[float]]:
+def compute_transvolution(trajectory: Trajectory, *, _deltas: list[dict[str, int]] | None = None) -> dict[str, list[float]]:
     """Compute involution, evolution, and condensation scores per step.
 
     Involution = (self + absorptive) / total_events  [inward folding]
     Evolution  = (novel + disintegration + env) / total_events  [outward unfolding]
     Condensation = involution * evolution  [coupled product]
     """
-    deltas = _event_deltas(trajectory)
+    deltas = _deltas if _deltas is not None else _event_deltas(trajectory)
     involution = []
     evolution = []
     condensation = []
@@ -84,6 +84,8 @@ def compute_transvolution(trajectory: Trajectory) -> dict[str, list[float]]:
 def compute_anopression(
     trajectory: Trajectory,
     mu: float = 0.005,
+    *,
+    _deltas: list[dict[str, int]] | None = None,
 ) -> dict[str, list[float]]:
     """Compute anopressive and anapressive pressure scores per step.
 
@@ -98,7 +100,7 @@ def compute_anopression(
       depression  = mu * mean_M / max(eps, |mean_dM|)
       compression = mean_M / K
     """
-    deltas = _event_deltas(trajectory)
+    deltas = _deltas if _deltas is not None else _event_deltas(trajectory)
 
     # Pre-compute dM series for oppression
     dM_series = []
@@ -217,7 +219,7 @@ ACTION_MODALITY_WEIGHTS: dict[str, tuple[float, float]] = {
 }
 
 
-def compute_praxis(trajectory: Trajectory) -> dict[str, list[float]]:
+def compute_praxis(trajectory: Trajectory, *, _deltas: list[dict[str, int]] | None = None) -> dict[str, list[float]]:
     """Compute projection, reflection, action, consumption, consummation,
     pure_action, and action_balance scores per step.
 
@@ -236,7 +238,7 @@ def compute_praxis(trajectory: Trajectory) -> dict[str, list[float]]:
         0.5 = pure action; <0.5 = consumptive; >0.5 = consummative.
         Empirical target for typical operating regime ≈ 0.60.
     """
-    deltas = _event_deltas(trajectory)
+    deltas = _deltas if _deltas is not None else _event_deltas(trajectory)
     projection = [snap.get("innovation_potential", 0.0) for snap in trajectory]
     reflection = [snap.get("affordance_mean", 0.0) for snap in trajectory]
     action: list[float] = []
@@ -290,9 +292,9 @@ def compute_praxis(trajectory: Trajectory) -> dict[str, list[float]]:
 # S — Syntegration
 # ---------------------------------------------------------------------------
 
-def compute_syntegration(trajectory: Trajectory) -> dict[str, list[float]]:
+def compute_syntegration(trajectory: Trajectory, *, _deltas: list[dict[str, int]] | None = None) -> dict[str, list[float]]:
     """Compute disintegration, preservation, integration, synthesis per step."""
-    deltas = _event_deltas(trajectory)
+    deltas = _deltas if _deltas is not None else _event_deltas(trajectory)
     disintegration = [float(d["disintegration"]) for d in deltas]
     preservation = []
     integration = [float(d["absorptive"]) for d in deltas]
@@ -382,10 +384,11 @@ def compute_all_scores(
     action_balance, disintegration, preservation, integration, synthesis).
     All arrays have length == len(trajectory).
     """
-    t_scores = compute_transvolution(trajectory)
-    a_scores = compute_anopression(trajectory, mu=mu)
-    p_scores = compute_praxis(trajectory)
-    s_scores = compute_syntegration(trajectory)
+    deltas = _event_deltas(trajectory)
+    t_scores = compute_transvolution(trajectory, _deltas=deltas)
+    a_scores = compute_anopression(trajectory, mu=mu, _deltas=deltas)
+    p_scores = compute_praxis(trajectory, _deltas=deltas)
+    s_scores = compute_syntegration(trajectory, _deltas=deltas)
 
     all_scores = {}
     for d in [t_scores, a_scores, p_scores, s_scores]:
