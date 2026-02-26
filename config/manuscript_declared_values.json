@@ -1,0 +1,15 @@
+{
+  "mode_a_2d_bootstrap": {
+    "log_alpha": {"mean": -0.75, "lower": -1.03, "upper": -0.41},
+    "log_mu": {"mean": 2.15, "lower": 1.96, "upper": 2.31}
+  },
+  "mode_b_2d_bootstrap": {
+    "log_alpha": {"mean": 1.21, "lower": 1.03, "upper": 1.40},
+    "log_mu": {"mean": -0.62, "lower": -0.84, "upper": -0.39}
+  },
+  "mode_b_3d_bootstrap": {
+    "log_alpha": {"mean": 1.32, "lower": 1.14, "upper": 1.48},
+    "log_mu": {"mean": -0.68, "lower": -0.86, "upper": -0.51},
+    "log_m0": {"mean": 1.15, "lower": 0.94, "upper": 1.30}
+  }
+}

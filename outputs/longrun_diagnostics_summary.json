@@ -1,0 +1,33 @@
+{
+  "heaps_beta": 0.1019,
+  "heaps_intercept": 2.230962,
+  "heaps_r_squared": 0.9017,
+  "innovation_sigma": 1.1863,
+  "innovation_sigma_r2": 0.873,
+  "gini_final": 0.0577,
+  "top10_share_final": 0.1137,
+  "constraint_tag": "resource-limited",
+  "constraint_confidence": "medium",
+  "constraint_reasoning": "beta=0.10 (strong Heaps sublinearity); sigma=1.19 (near-linear); gini=0.06 (low concentration)",
+  "n_agents_final": 10,
+  "n_dormant_final": 0,
+  "n_self_metatheses": 20,
+  "n_absorptive_cross": 0,
+  "n_novel_cross": 0,
+  "n_env_transitions": 4,
+  "temporal_state_counts_final": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 10,
+    "4": 0
+  },
+  "texture_type_final": 1,
+  "D_total_final": 31,
+  "k_total_final": 99894.3071,
+  "total_M_final": 52048.9929,
+  "steps": 150,
+  "n_agents_initial": 10,
+  "claim_policy_label": "exploratory",
+  "disclaimer": "This result is exploratory and does not derive from the source TAP/biocosmology literature. It uses sigma-TAP computational infrastructure but represents an independent analytical direction that requires further validation."
+}

@@ -1,0 +1,25 @@
+{
+  "datasets": {
+    "wikipedia_articles": {
+      "description": "English Wikipedia article count (2001-2024)",
+      "units": "articles",
+      "tap_context": "Articles create linking possibilities for new articles.",
+      "years": [2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],
+      "counts": [20000,96000,188000,420000,890000,1500000,2100000,2600000,3100000,3500000,3800000,4100000,4400000,4700000,5000000,5300000,5500000,5750000,5980000,6200000,6400000,6600000,6750000,6900000]
+    },
+    "npm_packages": {
+      "description": "npm registry total packages (2010-2025)",
+      "units": "packages",
+      "tap_context": "Packages create dependency possibilities for new packages.",
+      "years": [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+      "counts": [2000,10000,30000,55000,100000,200000,350000,500000,785000,1000000,1300000,1500000,1700000,1900000,2100000,2300000]
+    },
+    "described_species": {
+      "description": "Cumulative described species (1750-2020)",
+      "units": "species",
+      "tap_context": "Species create niches enabling new species (Kauffman TAP).",
+      "years": [1750,1780,1800,1820,1840,1860,1880,1900,1920,1940,1960,1980,2000,2010,2020],
+      "counts": [4000,15000,40000,80000,150000,300000,500000,800000,950000,1050000,1250000,1450000,1700000,1850000,2000000]
+    }
+  }
+}
