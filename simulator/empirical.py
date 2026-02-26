@@ -100,6 +100,11 @@ def youn_ratio(
     YounRatioResult
         Exploration fraction compared to 0.6 target.
     """
+    if len(n_novel_cross) != len(n_absorptive_cross):
+        raise ValueError(
+            f"Input lengths must match: n_novel_cross has {len(n_novel_cross)} "
+            f"elements, n_absorptive_cross has {len(n_absorptive_cross)}"
+        )
     novel = np.asarray(n_novel_cross, dtype=float)
     absorptive = np.asarray(n_absorptive_cross, dtype=float)
     target = 0.6
@@ -153,6 +158,8 @@ def taalbi_linearity(
     TaalbiLinearityResult
         Slope, intercept, R², and comparison to target slope of 1.0.
     """
+    if dt <= 0:
+        raise ValueError(f"dt must be positive, got {dt}")
     k_arr = np.asarray(k_total, dtype=float)
     target_slope = 1.0
 
@@ -208,6 +215,11 @@ def heaps_exponent(
     HeapsLawResult
         Exponent, fit quality, and sub-linearity check.
     """
+    if len(k_total) != len(D_total):
+        raise ValueError(
+            f"Input lengths must match: k_total has {len(k_total)} "
+            f"elements, D_total has {len(D_total)}"
+        )
     k_arr = np.asarray(k_total, dtype=float)
     d_arr = np.asarray(D_total, dtype=float)
 
@@ -258,6 +270,8 @@ def power_law_fit(
     PowerLawResult
         Estimated exponent, KS statistic, and p-value.
     """
+    if k_min < 1:
+        raise ValueError(f"k_min must be >= 1, got {k_min}")
     k_arr = np.asarray(agent_k_list, dtype=float)
     target_exponent = 2.0
 

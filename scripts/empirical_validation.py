@@ -15,7 +15,6 @@ import argparse
 import math
 import os
 import sys
-from pathlib import Path
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -50,6 +49,8 @@ def classify_status(deviation: float, threshold_match: float = 0.10) -> str:
         "CLOSE" if deviation <= threshold_match * 2.5,
         "DIVERGENT" otherwise.
     """
+    if math.isnan(deviation):
+        return "N/A"
     if deviation <= threshold_match:
         return "MATCH"
     if deviation <= threshold_match * 2.5:
