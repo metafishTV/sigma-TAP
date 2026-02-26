@@ -278,6 +278,72 @@ organizational ecology.
 
 - Bohm, D. (1980). *Wholeness and the Implicate Order*. Routledge.
 
+### Network Motifs and Synchronizability (Stage 3+ reference)
+
+- Lizier, J. T., Bauer, F., Atay, F. M., & Jost, J. (2023). "Analytic
+  relationship of relative synchronizability to network structure and motifs."
+  *PNAS*, 120(37), e2303332120.
+
+  Key result: convergent directed walks — including feedback loops and
+  feedforward loops — hinder synchronizability. The steady-state distance from
+  synchronization (σ²) can be decomposed via power series into exact
+  contributions from process motif structures (structured walks on subnetwork
+  topologies). More clustered/regular networks are less synchronizable than
+  random ones; degree homogeneity helps.
+
+  **Relevance to sigma-TAP:** Our agents form a directed interaction network
+  through cross-metathesis events. Absorptive cross creates convergent walks;
+  novel cross creates new edges. The affordance gate effectively prunes edges.
+  Lizier et al. predict that ensembles with more clustered cross-metathesis
+  patterns (reciprocal pairs, feedback loops) should show lower convergence.
+  Implementation requires topology tracking (per-step agent-agent interaction
+  adjacency matrix) not currently in the snapshot data model.
+
+### Feed-Forward Loop Functions (Stage 3+ reference)
+
+- Mangan, S. & Alon, U. (2003). "Structure and function of the feed-forward
+  loop network motif." *PNAS*, 100(21), 11980-11985.
+
+  Key result: coherent FFLs act as sign-sensitive delays (persistence detectors
+  — rejecting transient inputs, responding only to sustained signals);
+  incoherent FFLs act as sign-sensitive accelerators (pulse generators that
+  speed up response). In E. coli and yeast, coherent Type 1 FFLs (AND-gate
+  persistence detectors) dominate with 28/26 instances; other types are rare.
+
+  **Relevance to sigma-TAP:** Our affordance gate functions as a coherent FFL
+  persistence detector — it requires sustained compound conditions (dM > 0 AND
+  cluster ≥ threshold AND dormancy > threshold) before permitting metathesis,
+  rejecting transient fluctuations. Novel cross-metathesis burst dynamics
+  parallel the incoherent FFL accelerator (rapid type diversity explosion before
+  stabilization). The strong biological preference for AND-gate persistence
+  detection over OR-gate logic validates our compound readiness check design.
+  Implementation requires the same topology tracking as Lizier et al.
+
+### Biocosmology: Type III Systems and Functional Explanation
+
+- Cortês, M., Kauffman, S. A., Liddle, A. R., & Smolin, L. (2022). "Biology
+  from a cosmological perspective." arXiv:2204.09379.
+
+  Second-half key results relevant to sigma-TAP: (1) Type III systems are
+  radically non-ergodic — the vast majority of possible states will never be
+  realized (§2.4); (2) functional explanations (why X contributes to the
+  survival of a larger system) are necessary alongside reductionist explanations
+  for Type III systems (§3.2); (3) Type III systems are both recursive (self-
+  referential through coding) and excursive (implicitly reference the adjacent
+  possible) (§4.2); (4) the proposed Fourth Law states R = FP/FA tends to
+  increase — the ratio of possible to actual functions grows (§5); (5) Table 1
+  explicitly directs: "Use TAP equation to count functions" for Type III
+  systems.
+
+  **Relevance to sigma-TAP:** Our TAPS mode scores provide exactly the
+  functional explanations that Cortês et al. argue are necessary — they
+  characterize WHY configurations persist (dispositional), complementing the
+  mechanistic TAP dynamics (WHAT happens). Self-metathesis is the recursive
+  component; innovation_potential measures excursive capacity. The Fourth Law's
+  R = FP/FA maps to our innovation_potential trajectory. Agents are Kantian
+  Wholes (parts existing for and by means of the ensemble); deep stasis
+  preserves structural identity when functional context is lost.
+
 ### TAPS / RIP / Metathesis Extension
 
 - Project author's unpublished framework. TAPS (Transanoprasyn), RIP
