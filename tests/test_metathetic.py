@@ -851,5 +851,46 @@ class TestDisintegrationRedistribution(unittest.TestCase):
         # (if not, the test still passes — it's a smoke test, not a guarantee)
 
 
+class TestLMatrixLedger(unittest.TestCase):
+    """Per-agent L-matrix event ledger (Emery channels)."""
+
+    def test_initial_ledger_zeros(self):
+        """New agent starts with all L-matrix counters at zero."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        self.assertEqual(agent.n_self_metatheses_local, 0)
+        self.assertEqual(agent.n_novel_cross_local, 0)
+        self.assertEqual(agent.n_absorptive_given_local, 0)
+        self.assertEqual(agent.n_absorptive_received_local, 0)
+        self.assertEqual(agent.n_env_transitions_local, 0)
+
+    def test_self_metathesis_increments_l11(self):
+        """Self-metathesis increments the L11 (intrapraxis) counter."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.self_metathesize(next_type_id=99)
+        self.assertEqual(agent.n_self_metatheses_local, 1)
+        agent.self_metathesize(next_type_id=100)
+        self.assertEqual(agent.n_self_metatheses_local, 2)
+
+    def test_absorptive_cross_increments_l12_l21(self):
+        """Absorptive cross increments L12 for donor (given), L21 for receiver."""
+        a1 = MetatheticAgent(agent_id=1, type_set={1, 2}, k=10.0, M_local=50.0)
+        a2 = MetatheticAgent(agent_id=2, type_set={2, 3}, k=5.0, M_local=20.0)
+        MetatheticAgent.absorptive_cross(a1, a2)
+        # a1 has higher M_local so a1 absorbs a2
+        # a1 = absorber = received; a2 = absorbed = given
+        self.assertEqual(a1.n_absorptive_received_local, 1)
+        self.assertEqual(a2.n_absorptive_given_local, 1)
+
+    def test_novel_cross_increments_l12(self):
+        """Novel cross increments L12 (novel_cross_local) for both parents."""
+        a1 = MetatheticAgent(agent_id=1, type_set={1}, k=5.0, M_local=10.0)
+        a2 = MetatheticAgent(agent_id=2, type_set={2}, k=5.0, M_local=10.0)
+        child = MetatheticAgent.novel_cross(a1, a2, child_id=3, next_type_id=99)
+        self.assertEqual(a1.n_novel_cross_local, 1)
+        self.assertEqual(a2.n_novel_cross_local, 1)
+        # Child starts fresh
+        self.assertEqual(child.n_novel_cross_local, 0)
+
+
 if __name__ == "__main__":
     unittest.main()

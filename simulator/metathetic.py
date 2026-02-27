@@ -52,6 +52,18 @@ class MetatheticAgent:
     steps_since_metathesis: int = 0
     _dormant_steps: int = 0
     _affordance_ticks: list[int] = field(default_factory=list)
+
+    # -- L-matrix event ledger (Emery channels) ------------------------------
+    # L11: intrapraxis (self-transformation)
+    n_self_metatheses_local: int = 0
+    # L12: system → environment (outward projection)
+    n_novel_cross_local: int = 0
+    n_absorptive_given_local: int = 0
+    # L21: environment → system (inward reception)
+    n_absorptive_received_local: int = 0
+    # L22: causal texture (regime shifts imposed from outside)
+    n_env_transitions_local: int = 0
+
     _dissolved: bool = field(default=False, init=False, repr=False)
     _deep_stasis: bool = field(default=False, init=False, repr=False)
 
@@ -152,6 +164,7 @@ class MetatheticAgent:
         """
         self.type_set = self.type_set | {next_type_id}
         self.steps_since_metathesis = 0
+        self.n_self_metatheses_local += 1
 
     # -- Mode 2: Absorptive cross-metathesis ------------------------------
 
@@ -173,6 +186,8 @@ class MetatheticAgent:
         absorber.k += absorbed.k
         absorber.M_local += absorbed.M_local
         absorbed.active = False
+        absorber.n_absorptive_received_local += 1
+        absorbed.n_absorptive_given_local += 1
 
     # -- Mode 3: Novel cross-metathesis -----------------------------------
 
@@ -202,6 +217,8 @@ class MetatheticAgent:
             active=True,
         )
 
+        a1.n_novel_cross_local += 1
+        a2.n_novel_cross_local += 1
         a1.active = False
         a2.active = False
 
