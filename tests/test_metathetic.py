@@ -892,5 +892,85 @@ class TestLMatrixLedger(unittest.TestCase):
         self.assertEqual(child.n_novel_cross_local, 0)
 
 
+class TestTAPSSignature(unittest.TestCase):
+    """Per-agent TAPS dispositional signature."""
+
+    def test_fresh_agent_default_signature(self):
+        """Agent with no events gets default signature.
+
+        A fresh agent has steps_since_metathesis=0, so has_adpression=True,
+        giving A-letter='A'. All counters zero gives T=T, P=X, S=S.
+        """
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        sig = agent.taps_signature
+        self.assertEqual(len(sig), 4)
+        # T=T (balanced), A=A (adpression: steps_since_metathesis=0), P=X (balanced), S=S (default)
+        self.assertEqual(sig, "TAXS")
+
+    def test_signature_is_four_letters(self):
+        """Signature always returns exactly 4 characters."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_self_metatheses_local = 10
+        agent.n_novel_cross_local = 5
+        self.assertEqual(len(agent.taps_signature), 4)
+
+    def test_involution_dominant_gives_I(self):
+        """Agent with mostly L11+L21 events has T-letter = I."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_self_metatheses_local = 10  # L11
+        agent.n_absorptive_received_local = 5  # L21
+        agent.n_novel_cross_local = 1  # L12 (low)
+        sig = agent.taps_signature
+        self.assertEqual(sig[0], "I")
+
+    def test_evolution_dominant_gives_E(self):
+        """Agent with mostly L12+L22 events has T-letter = E."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_novel_cross_local = 10  # L12
+        agent.n_env_transitions_local = 5  # L22
+        agent.n_self_metatheses_local = 1  # L11 (low)
+        sig = agent.taps_signature
+        self.assertEqual(sig[0], "E")
+
+    def test_balanced_gives_T(self):
+        """Agent with balanced inward/outward has T-letter = T."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_self_metatheses_local = 5  # L11
+        agent.n_novel_cross_local = 5  # L12
+        sig = agent.taps_signature
+        self.assertEqual(sig[0], "T")
+
+    def test_consummation_dominant_gives_U(self):
+        """Agent with mostly L12 outward events has P-letter = U."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_novel_cross_local = 10  # L12 outward
+        agent.n_absorptive_received_local = 1  # L21 inward (low)
+        sig = agent.taps_signature
+        self.assertEqual(sig[2], "U")
+
+    def test_consumption_dominant_gives_R(self):
+        """Agent with mostly L21 inward events has P-letter = R."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_absorptive_received_local = 10  # L21
+        agent.n_novel_cross_local = 1  # L12 (low)
+        sig = agent.taps_signature
+        self.assertEqual(sig[2], "R")
+
+    def test_adpression_on_fresh_metathesis(self):
+        """Agent that just self-metathesized has A-letter = A."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.self_metathesize(next_type_id=99)
+        # steps_since_metathesis == 0 after self_metathesize
+        sig = agent.taps_signature
+        self.assertEqual(sig[1], "A")
+
+    def test_dormant_agent_preservation(self):
+        """Dormant agent has S-letter = P (preservation)."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.active = False
+        sig = agent.taps_signature
+        self.assertEqual(sig[3], "P")
+
+
 if __name__ == "__main__":
     unittest.main()

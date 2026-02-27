@@ -153,6 +153,80 @@ class MetatheticAgent:
             return 0.0
         return sum(self._affordance_ticks) / len(self._affordance_ticks)
 
+    @property
+    def taps_signature(self) -> str:
+        """4-letter TAPS dispositional signature from L-matrix ledger.
+
+        Each letter derived from the agent's local event history:
+          T: Involution(I) / Evolution(E) / Transvolution(T)
+          A: Expression(E) / Impression(I) / Adpression(A)
+          P: Reflection-consumption(R) / Projection-consummation(U) / Pure action(X)
+          S: Disintegration(D) / Preservation(P) / Integration(I) / Synthesis(S)
+
+        Emery channel mapping:
+          L11 (n_self_metatheses_local)      -> inward (T), synthesis (S)
+          L12 (n_novel_cross_local + given)   -> outward (T), consummation (P)
+          L21 (n_absorptive_received_local)   -> inward (T), consumption (P), integration (S)
+          L22 (n_env_transitions_local)       -> outward (T), disintegration (S)
+        """
+        # -- T-letter: Transvolution --
+        inward = self.n_self_metatheses_local + self.n_absorptive_received_local
+        outward = (self.n_novel_cross_local + self.n_absorptive_given_local
+                   + self.n_env_transitions_local)
+        if inward > outward * 1.2:
+            t_letter = "I"
+        elif outward > inward * 1.2:
+            t_letter = "E"
+        else:
+            t_letter = "T"
+
+        # -- A-letter: Anopression --
+        has_expression = (
+            len(self.dM_history) > 0
+            and self.dM_history[-1] > 0
+            and self.affordance_score > 0.5
+        )
+        has_adpression = self.steps_since_metathesis == 0
+        l21_dominates = (
+            self.n_absorptive_received_local > 0
+            and self.n_absorptive_received_local >= self.n_novel_cross_local
+            and self.n_absorptive_received_local >= self.n_self_metatheses_local
+        )
+        if has_adpression:
+            a_letter = "A"
+        elif l21_dominates:
+            a_letter = "I"
+        elif has_expression:
+            a_letter = "E"
+        else:
+            a_letter = "E"  # default: expression as unmarked case
+
+        # -- P-letter: Praxis --
+        l21_total = self.n_absorptive_received_local
+        l12_total = self.n_novel_cross_local + self.n_absorptive_given_local
+        if l21_total > l12_total * 1.2:
+            p_letter = "R"
+        elif l12_total > l21_total * 1.2:
+            p_letter = "U"
+        else:
+            p_letter = "X"
+
+        # -- S-letter: Syntegration --
+        if not self.active:
+            s_letter = "P"  # dormant = preservation
+        else:
+            synthesis_count = self.n_self_metatheses_local + self.n_novel_cross_local
+            integration_count = self.n_absorptive_received_local
+            disintegration_signals = self.n_env_transitions_local
+            counts = {
+                "S": synthesis_count,
+                "I": integration_count,
+                "D": disintegration_signals,
+            }
+            s_letter = max(counts, key=counts.get) if any(counts.values()) else "S"
+
+        return t_letter + a_letter + p_letter + s_letter
+
     # -- Mode 1: Self-metathesis ------------------------------------------
 
     def self_metathesize(self, next_type_id: int) -> None:
