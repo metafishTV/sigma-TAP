@@ -561,7 +561,7 @@ become legible together.
 where both endpoints are the same agent (self↔self = L11 channel =
 self-metathesis). This IS the making of time — the agent projects
 forward and reflects backward in the same act, creating temporal
-thickness. Praxiological time (§5.7) is literally the rate of
+thickness. Praxitive time (§5.7) is literally the rate of
 biunivocal exchange. (Aside: if the Universe is the ultimate
 singularity-that-is-also-everything, its time-making would be
 polydirectional biunivocality — all channels, but only to itself.)
@@ -717,7 +717,7 @@ becomes legible.
 - Ensemble TAPS field / full dialectical tension (Approach 3)
 - Windowed signatures ("mood" vs "character")
 - Overconservation detection (§5.6)
-- Praxiological time / deferral mechanism (§5.8)
+- Praxitive time / deferral mechanism (§5.8)
 - Consummation-completion as third disintegration pathway (§5.8)
 - Filial inheritance / alliance mode / lineage tracking (§5.10, Stage 3B)
 - Asymmetric cross-metathesis roles (§5.10, Stage 3B)

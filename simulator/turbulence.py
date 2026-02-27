@@ -7,7 +7,7 @@ Decision Bandwidth B(t) = sigma(Xi) * tau / f'(M)
   B > 1: laminar (all affordances evaluable)
   B < 1: turbulent (affordance overflow)
 
-Praxiological Reynolds Re_prax = f'(M) * M / (sigma(Xi) + alpha)
+Praxitive Reynolds Re_prax = f'(M) * M / (sigma(Xi) + alpha)
   Analogous to fluid Reynolds number: ratio of innovation pressure
   to evaluative capacity.  The denominator sigma(Xi) + alpha combines
   the agent's learned evaluation efficiency with the structural

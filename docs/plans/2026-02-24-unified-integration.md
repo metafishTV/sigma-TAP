@@ -620,7 +620,7 @@ Expected: All 4 tests PASS.
 git add simulator/turbulence.py tests/test_turbulence.py
 git commit -m "feat: add turbulence diagnostics module (Interpretive layer)
 
-Decision Bandwidth B and praxiological Reynolds Re_prax computed
+Decision Bandwidth B and praxitive Reynolds Re_prax computed
 as post-hoc diagnostics on completed trajectories. Does not feed
 back into simulation dynamics.
 
