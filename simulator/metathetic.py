@@ -380,6 +380,13 @@ def _jaccard(s1: set, s2: set) -> float:
     return len(s1 & s2) / len(s1 | s2)
 
 
+# Minimum combined L-matrix events (both agents) before signature
+# classification is used.  Below this, agents' dispositional signatures
+# are dominated by zero-event defaults (all converge to the same
+# letters), so the old L vs G rule is a better proxy.
+_MIN_SIG_EVENTS: int = 3
+
+
 def _signature_similarity(sig1: str, sig2: str) -> int:
     """Count matching positions between two 4-letter TAPS signatures.
 
@@ -731,30 +738,65 @@ class MetatheticEnsemble:
                 if L + G <= (W1 + W2) * effective_threshold:
                     continue
 
-                # Eligible — determine mode via TAPS signature tension.
-                sig_sim = _signature_similarity(
-                    a1.taps_signature, a2.taps_signature
-                )
+                # Eligible — determine mode.
+                #
+                # Agents need sufficient L-matrix event history before
+                # signature comparison is meaningful. Without enough events,
+                # all agents share the same default signature (TEXS),
+                # collapsing everything to absorptive. Below the threshold,
+                # fall back to the original L vs G rule.
+                a1_events = (a1.n_self_metatheses_local
+                             + a1.n_novel_cross_local
+                             + a1.n_absorptive_given_local
+                             + a1.n_absorptive_received_local
+                             + a1.n_env_transitions_local)
+                a2_events = (a2.n_self_metatheses_local
+                             + a2.n_novel_cross_local
+                             + a2.n_absorptive_given_local
+                             + a2.n_absorptive_received_local
+                             + a2.n_env_transitions_local)
 
-                if sig_sim >= 3:
-                    # Low tension: similar dispositional signatures → absorptive.
-                    # η·H channel — densification within shared space.
-                    MetatheticAgent.absorptive_cross(a1, a2)
-                    self.n_absorptive_cross += 1
-                elif sig_sim <= 1:
-                    # High tension: different signatures → novel.
-                    # β·B channel — exploration across dispositional boundaries.
-                    self._next_agent_id += 1
-                    child = MetatheticAgent.novel_cross(
-                        a1, a2,
-                        child_id=self._next_agent_id,
-                        next_type_id=self._next_type_id,
+                if a1_events + a2_events >= _MIN_SIG_EVENTS:
+                    # TAPS signature tension classification.
+                    sig_sim = _signature_similarity(
+                        a1.taps_signature, a2.taps_signature
                     )
-                    self._next_type_id += 1
-                    self.agents.append(child)
-                    self.n_novel_cross += 1
+
+                    if sig_sim >= 3:
+                        # Low tension: similar signatures → absorptive.
+                        # η·H channel — densification within shared space.
+                        MetatheticAgent.absorptive_cross(a1, a2)
+                        self.n_absorptive_cross += 1
+                    elif sig_sim <= 1:
+                        # High tension: different signatures → novel.
+                        # β·B channel — exploration across boundaries.
+                        self._next_agent_id += 1
+                        child = MetatheticAgent.novel_cross(
+                            a1, a2,
+                            child_id=self._next_agent_id,
+                            next_type_id=self._next_type_id,
+                        )
+                        self._next_type_id += 1
+                        self.agents.append(child)
+                        self.n_novel_cross += 1
+                    else:
+                        # Mid tension (2 matches): L vs G tiebreak;
+                        # ties (L == G) route to novel.
+                        if L > G:
+                            MetatheticAgent.absorptive_cross(a1, a2)
+                            self.n_absorptive_cross += 1
+                        else:
+                            self._next_agent_id += 1
+                            child = MetatheticAgent.novel_cross(
+                                a1, a2,
+                                child_id=self._next_agent_id,
+                                next_type_id=self._next_type_id,
+                            )
+                            self._next_type_id += 1
+                            self.agents.append(child)
+                            self.n_novel_cross += 1
                 else:
-                    # Mid tension (2 matches): L vs G tiebreak; ties (L == G) route to novel.
+                    # Insufficient event history — L vs G fallback.
                     if L > G:
                         MetatheticAgent.absorptive_cross(a1, a2)
                         self.n_absorptive_cross += 1
