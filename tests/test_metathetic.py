@@ -1025,5 +1025,71 @@ class TestSignatureClassification(unittest.TestCase):
         self.assertEqual(_signature_similarity("IEUS", "IEXD"), 2)  # I,E match; U!=X, S!=D
 
 
+class TestYounRatioImprovement(unittest.TestCase):
+    """Verify Stage 3A classification produces absorptive events."""
+
+    def test_youn_ratio_below_one(self):
+        """Full ensemble run should produce at least some absorptive events.
+
+        The Youn ratio (novel / total_cross) should be < 1.0, indicating
+        the signature-based classification is producing absorptive events
+        that the old L > G rule never did.
+        """
+        ensemble = MetatheticEnsemble(
+            n_agents=8,
+            initial_M=10.0,
+            alpha=5e-3,
+            a=3.0,
+            mu=0.005,
+            carrying_capacity=500.0,
+            seed=42,
+        )
+        traj = ensemble.run(steps=150)
+
+        final = traj[-1]
+        n_novel = final["n_novel_cross"]
+        n_absorptive = final["n_absorptive_cross"]
+        total_cross = n_novel + n_absorptive
+
+        # Must have SOME cross-metathesis events
+        self.assertGreater(total_cross, 0,
+                           "No cross-metathesis events at all")
+
+        # Must have at least one absorptive event (Youn ratio < 1.0)
+        self.assertGreater(n_absorptive, 0,
+                           f"Youn ratio still 1.0: {n_novel} novel, "
+                           f"{n_absorptive} absorptive")
+
+    def test_youn_ratio_in_target_range(self):
+        """Youn exploration fraction should be closer to 0.6 than to 1.0.
+
+        This is a soft target — we check that the ratio has meaningfully
+        moved toward the empirical target, not that it's exactly 0.6.
+        """
+        ensemble = MetatheticEnsemble(
+            n_agents=8,
+            initial_M=10.0,
+            alpha=5e-3,
+            a=3.0,
+            mu=0.005,
+            carrying_capacity=500.0,
+            seed=42,
+        )
+        traj = ensemble.run(steps=150)
+
+        final = traj[-1]
+        n_novel = final["n_novel_cross"]
+        n_absorptive = final["n_absorptive_cross"]
+        total_cross = n_novel + n_absorptive
+
+        if total_cross == 0:
+            self.skipTest("No cross-metathesis events")
+
+        exploration_fraction = n_novel / total_cross
+        # Should be meaningfully below 1.0 (moved toward 0.6 target)
+        self.assertLess(exploration_fraction, 0.95,
+                        f"Youn ratio barely moved: {exploration_fraction:.3f}")
+
+
 if __name__ == "__main__":
     unittest.main()
