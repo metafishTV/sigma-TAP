@@ -391,7 +391,7 @@ Stage 3B should distinguish these:
    'starting from oneself' toward 'the Other'." The initiating and
    responding agents in cross-metathesis should have distinct roles.
 
-### 5.11 Praxitive Syntegration vs. Syntegrative Praxis
+### 5.11 Praxitive Syntegration vs. Syntegrative Praxis (with Agent/Artifact Assignment)
 
 Two complementary modes of agent engagement:
 
@@ -409,6 +409,20 @@ Neither is purely abstract or concrete — each has a predominant tendency.
 Less abstract syntegrative praxis → more concrete (outward-tending
 internal development). Less concrete praxitive syntegration → more
 abstract (inward-tending outward development).
+
+**Key assignment**: every praxis involves both syntegration and
+praxis-as-externalization, but each entity type has a characteristic
+**focus** (predomination in relation, not operation in exclusion —
+breaking this would violate the law of included adjacency):
+
+- **Agents do praxitive syntegration**: their primary work is
+  externalizing — integrating outward. Their praxis is projection-
+  reflection, externalization-as-internalization-deferred.
+- **Artifacts do syntegrative praxis**: their primary work is
+  making-internal — they hold and re-present what agents have
+  externalized, and that holding IS their praxis.
+
+This captures predomination / focus, not exclusive operation.
 
 ### 5.12 Surplus Value vs. Expressed Value
 
@@ -508,11 +522,32 @@ irreversible change, a trace, in the mesh of configuration space."
 - **Interactive**: notebooks, cell phones, responsive institutions.
   Bidirectional — the artifact is acted upon and acts back.
 
-**Containment asymmetries**: a song can be in a play; a play cannot
-be in a song. A song can be joined in with; a play usually cannot.
-Artifacts have nesting rules (partial order on classes) and
-**joinability** — some invite participatory engagement (rhizomatic),
-others enforce spectatorial distance (arborescent).
+**Containment asymmetries and nesting rules**: a song can be in a
+play (as performed material — true containment); a play can be in a
+song only by reference (allusion, citation — not instantiation). So
+nesting is asymmetric AND typed: **containment** (X is materially
+inside Y) vs. **reference** (X is alluded to within Y). These are
+different relations with different rules, forming a partial order on
+artifact classes.
+
+**Meshability** (term after Arno Gruen): some artifacts invite
+participatory engagement (rhizomatic), others enforce spectatorial
+distance (arborescent). "Meshability" captures the texture of how
+things fit together — compatibility of form, not dominance. Replaces
+the earlier "joinability" term.
+
+**Interactivity typology**: distinguish **biunidirectional**
+interactivity (two agents/artifacts in mutual exchange — the channel
+is between two points, like a conversation or a trade or a
+cross-metathesis event) from **polydirectional/polyvocal**
+interactivity (many agents simultaneously affecting and being
+affected, where the interaction cannot be decomposed into pairwise
+channels without losing something — ensemble singing, collective
+ritual, a market). Currently cross-metathesis is strictly
+biunidirectional. Whether irreducible polyvocal mechanics are needed
+is a deep architectural question. This distinction is non-trivial
+and, as far as we know, not formalized in a general (physics-level)
+sense.
 
 **Source/sink typology**: a book affects differently than a toothbrush
 or a pocketwatch. Each artifact class has distinct affective (how it
@@ -521,7 +556,9 @@ changes the agent's P-letter / mode of action) profiles.
 
 ### 5.15 TAPS as Four Existential Questions
 
-Each signature letter answers a distinct existential question:
+Each signature letter answers a distinct existential question.
+
+**Ontological register** (what the mode IS):
 
 | Letter | Question | Sub-modes |
 |--------|----------|-----------|
@@ -529,6 +566,21 @@ Each signature letter answers a distinct existential question:
 | **A** | How *am* I? | A (adpressively), I (impressively), E (expressively) |
 | **P** | How do I *act*? | R (consumptively), U (consummatively), X (balanced) |
 | **S** | How do I *create*? | D (disintegratively), P (preservatively), S (synthetically), I (integratively) |
+
+**Phenomenological register** (what the mode DOES for the agent):
+
+| Letter | Question | Elaboration |
+|--------|----------|-------------|
+| **T** | How do I *grow*? | What direction do I need to grow towards? |
+| **A** | How do I *feel*? | What direction do I need to channel my energy? |
+| **P** | How do I *see*? | What directions do I need to face to act appropriately? |
+| **S** | How do I *create*? | What types of force provide the most harmonious result? |
+
+The two registers gauge each other: the ontological register names
+the structure, the phenomenological register names the lived quality.
+T is literally growth direction; A is literally the agent's energetic
+state; P is literally where it's looking (observation, partner
+selection); S is literally what kind of innovation it produces.
 
 Together: the agent's dispositional name — its answer to the four
 fundamental questions of praxitive existence. This framing grounds
@@ -563,6 +615,51 @@ physical memory, slow decay) vs. declarative (low physical memory,
 faster decay). This creates a natural selection pressure on types —
 actively used and deeply integrated knowledge persists; peripheral
 and unreinforced knowledge fades.
+
+**Note on random accidents / catastrophic skill loss**: Considered
+and deliberately deferred. A random "accident roll" that removes
+skill-sets would model the *cause* of adaptation but not the
+*process* — and the process is what we're tracking. Agents who lose
+capabilities in real life readapt via mode-shifting and
+re-specialization, which is already modeled by existing decay +
+relearning mechanics. Adding an accident mechanic would add
+complication without enriching what we actually measure.
+
+### 5.17 Agent-Ensemble Primacy (Actualized vs. Actualizing)
+
+The unificity framework establishes that neither agents nor ensemble
+are derivative of the other. Both are primary, but in different
+registers:
+
+- **Ensemble-level metrics** (Youn ratio, signature distribution,
+  Heaps exponent, power-law tail) are the **most actualizing**
+  stratum. This is where patterns crystallize into observable form,
+  where the process becomes legible. But the ensemble does not "do"
+  the consummation.
+
+- **Agents** are the **most actualized** stratum. Information is
+  encoded at the singularity — each agent is a concrete instantiation
+  where alterity is irreducible. But agents alone are not the full
+  picture; they are actualized *in* their actualizing work.
+
+The only non-composite entities are the identities at the central
+point of each, which IS their alterity. Each identity is relative to
+all others (maintaining relativity throughout) but simultaneously and
+irreducibly alteric (no other particle is this particle, no other
+agent is this agent). The feeding between strata forms a spiral —
+arising from and collapsing into life lived by singularities.
+
+**Modeling implication**: ensemble metrics should NOT be treated as
+derivative summaries of agent states, nor agent states as mere
+particles of ensemble dynamics. Both strata are primary in
+equivalence, as long as agents "matter" (i.e., make matter, exist in
+form that can move into sets). Otherwise the information is latent or
+passed — missed its chance to survive infinitely qua praxis.
+
+This connects to §5.11: agents' actualizing work IS praxitive
+syntegration (externalization), while the ensemble's actualizing
+pattern is the context — the unificity — within which that work
+becomes legible.
 
 ---
 
@@ -605,3 +702,8 @@ and unreinforced knowledge fades.
 - Artifact agents with substrate classes and containment rules (§5.14)
 - TAPS as four existential questions mapping (§5.15)
 - Innovation decay / forgetting mechanism (§5.16)
+- Agent-ensemble primacy and actualized vs. actualizing strata (§5.17)
+- Praxis assignment: artifacts do syntegrative praxis, agents do praxitive syntegration (§5.11, §5.17)
+- Biunidirectional vs. polydirectional/polyvocal interactivity (§5.14)
+- Containment vs. reference nesting rules for artifacts (§5.14)
+- Meshability (Gruen) replaces joinability (§5.14)
