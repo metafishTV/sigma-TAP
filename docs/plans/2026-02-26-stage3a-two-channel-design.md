@@ -371,13 +371,121 @@ Stage 3B should distinguish these:
 
 1. **Filial inheritance**: children inherit weighted L-matrix history
    from parents, giving them dispositional character from birth (not
-   blank-slate "TEXS").
+   blank-slate "TEXS"). Both parent IDs stored (matrimonial AND
+   patrimonial lines — both genetically functional even if one is
+   unrecorded). The child's unicity "does and does not coincide"
+   with the parents' unicities; the non-coincidence is realized
+   concretely in the sibling relation.
 2. **Alliance mode**: a third cross-metathesis outcome where both agents
    persist with a bond (L12/L21 coupling), rather than one consuming
    the other. Alliance strengthens non-ergodic interpraxis without
-   destroying either party's singularity.
+   destroying either party's singularity. Per Deleuze & Guattari:
+   alliances are **rhizomatic** (any-point-to-any-point, horizontal,
+   forming and dissolving — like slime mold), while filiations are
+   **arborescent** (tree-like, vertical, irreversible lineage).
 3. **Lineage tracking**: parent IDs stored on child agents, enabling
-   genealogical analysis and filial group detection.
+   genealogical analysis and filial group detection. The filial tree
+   intertwines matrimonial and patrimonial lines.
+4. **Asymmetric cross-metathesis**: per Levinas, the I-Other relation
+   is constitutively asymmetric — "the inevitable orientation of being
+   'starting from oneself' toward 'the Other'." The initiating and
+   responding agents in cross-metathesis should have distinct roles.
+
+### 5.11 Praxitive Syntegration vs. Syntegrative Praxis
+
+Two complementary modes of agent engagement:
+
+- **Syntegrative praxis** (making internal → skill development): agent
+  develops an internal capacity. Woodworking-as-skill is outward-tending
+  (practiced on material); love-as-skill is inward-tending (restructures
+  relational capacity). More about "how I am." Maps to L11+L21 events.
+- **Praxitive syntegration** (making external → production): agent
+  externalizes capacity into an artifact or effect. A chair is more
+  concrete (directly legible); a painting is more abstract (encodes
+  internal states). More about "how I do." Maps to L12 events and
+  artifact production (§5.14).
+
+Neither is purely abstract or concrete — each has a predominant tendency.
+Less abstract syntegrative praxis → more concrete (outward-tending
+internal development). Less concrete praxitive syntegration → more
+abstract (inward-tending outward development).
+
+### 5.12 Surplus Value vs. Expressed Value
+
+- **Surplus/innovation value** can tend toward infinity. It is
+  conditioned by finite actuality (the agent's actual history). This is
+  the ever-growing type-space (`_next_type_id`), the possibility frontier.
+- **Normal/expressed/alpha value** is finite. It is determined by
+  infinite possibility but bounded in expression. This is `k_total`
+  and `M_total` at any given step.
+
+The Youn ratio may be the quantitative expression of this tension:
+exploitation draws finite value from known possibilities; exploration
+reaches into the infinite surplus.
+
+### 5.13 Praxistatic Surplus and Agent Layering
+
+**Praxistatic surplus**: the static inertia of the past within the
+present, mediated by the agent's direct relations. The bulk of the past
+acts as a weighted layer — indirectly active toward the agent through
+memory and deferred praxes whose effects propagate through time.
+
+This suggests a **two-layer agent architecture**:
+
+- **Manifest/conscious layer**: the current TAPS signature, active
+  type-set, L-matrix ledger. Future-oriented — what the agent is doing
+  and becoming. Used for cross-metathesis classification.
+- **Latent/subconscious layer**: the accumulated praxistatic surplus,
+  deferred effects, shadow ticks (§5.1). Past-oriented — what the
+  agent has been and what presses from behind. Slower-moving, heavier
+  structure that modulates the manifest layer.
+
+Both layers are present-situated. The manifest is the agent's engagement
+with future possibility; the latent is the agent's accumulated
+historical weight. The tension between them constitutes the agent's
+temporal experience.
+
+Implementation note: the latent layer could be modeled as exponentially
+weighted moving averages of L-matrix ratios, providing a "deep
+signature" that changes slowly vs. the manifest signature that responds
+to recent events. The windowed "mood" vs. cumulative "character"
+distinction (previously bookmarked) fits here.
+
+### 5.14 Artifact Agents
+
+A second agent type: **ArtifactAgent**. Artifacts are produced by
+MetatheticAgents and persist independently. They serve to simulate any
+form of media, from cave paintings to novels, that preserve active
+fragments of innovation.
+
+Key properties:
+
+1. **Always >1**: innovation is always partially externalized into
+   multiple artifacts. No singleton artifacts (prevents structural
+   equivalence with agents).
+2. **Preserve active fragments**: carry a subset of the producing
+   agent's type-set and/or knowledge, frozen at moment of production.
+   More complex/refined artifacts preserve more information.
+3. **Quality depends on three factors**:
+   - *Time*: artifacts degrade or become less legible over time
+   - *Relativity*: cross-identity function / degree of relatability
+     between artifact and encountering agent. Sumerians reading
+     cuneiform vs. moderns reading Sumerian.
+   - *Interactivity*: clay tablet (low) < notebook (medium) <
+     newspaper (medium-high) < cell phone (high). Higher interactivity
+     = artifact behaves more like an agent.
+4. **Survive extinction events**: when all agents in a lineage go
+   dormant, artifacts can persist and be encountered by future agents.
+   Manuscripts surviving Bronze Age collapse while populations did not.
+   Creates a cultural transmission channel that bypasses filial
+   inheritance — a horizontal, time-spanning rhizomatic link.
+5. **Future**: artifacts with varying interactivity parameters approach
+   agent-like behavior (responsive institutions, AI systems). The
+   spectrum from pure trace (fossil) to near-agent (interactive system)
+   is the history of media technology.
+
+Artifacts connect praxitive syntegration (§5.11) to the persistence
+layer: they are the externalized products that outlast their producers.
 
 ---
 
@@ -413,3 +521,8 @@ Stage 3B should distinguish these:
 - Praxiological time / deferral mechanism (§5.8)
 - Consummation-completion as third disintegration pathway (§5.8)
 - Filial inheritance / alliance mode / lineage tracking (§5.10, Stage 3B)
+- Asymmetric cross-metathesis roles (§5.10, Stage 3B)
+- Praxitive syntegration vs. syntegrative praxis (§5.11)
+- Surplus vs. expressed value distinction (§5.12)
+- Praxistatic surplus / two-layer agent architecture (§5.13)
+- Artifact agents (§5.14, Stage 3D or later)
