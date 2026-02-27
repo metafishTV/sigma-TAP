@@ -346,6 +346,39 @@ deeper combinatorial scheme using embedded sub-mode letters
 investigation. Could produce richer dispositional names but risks
 confusing notation.
 
+### 5.10 Irreducible Alterity and Filial Relations
+
+Per Levinas: fraternity requires individualities whose "singularity
+consists in each referring to itself" — a logical status not reducible
+to genus differences. An individual "having a common genus with another
+individual would not be removed enough from it." Society must be a
+fraternal community to be consummative.
+
+The TAPS signature is our attempt at an irreducible alterity account —
+a dispositional name unique to each agent's history. But the
+_MIN_SIG_EVENTS threshold reveals a gap: before enough events
+accumulate, agents ARE reducible to genus (the default "TEXS"). They
+have no alterity yet.
+
+Currently, cross-metathesis conflates two distinct relation types:
+
+- **Filial** (novel cross): parent → child lineage. But children start
+  with zero L-matrix history — no inherited alterity from parents.
+- **Alliance** (absorptive cross): but absorption destroys one party.
+  True alliance would preserve both while creating mutual conditioning.
+
+Stage 3B should distinguish these:
+
+1. **Filial inheritance**: children inherit weighted L-matrix history
+   from parents, giving them dispositional character from birth (not
+   blank-slate "TEXS").
+2. **Alliance mode**: a third cross-metathesis outcome where both agents
+   persist with a bond (L12/L21 coupling), rather than one consuming
+   the other. Alliance strengthens non-ergodic interpraxis without
+   destroying either party's singularity.
+3. **Lineage tracking**: parent IDs stored on child agents, enabling
+   genealogical analysis and filial group detection.
+
 ---
 
 ## 6. Success Criteria
@@ -379,3 +412,4 @@ confusing notation.
 - Overconservation detection (§5.6)
 - Praxiological time / deferral mechanism (§5.8)
 - Consummation-completion as third disintegration pathway (§5.8)
+- Filial inheritance / alliance mode / lineage tracking (§5.10, Stage 3B)
