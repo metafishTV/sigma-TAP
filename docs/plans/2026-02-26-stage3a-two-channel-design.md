@@ -303,7 +303,42 @@ The per-agent ledger, TAPS signature derivation, and cross-metathesis
 classification should consistently reference Emery's L-matrix channels
 (L11, L12, L21, L22) in code comments, docstrings, and documentation.
 
-### 5.8 Embedded Sub-Mode Combinatorics
+### 5.8 Praxiological Time and the Deferral Mechanism
+
+Total syntegrative consummation — the completion of an agent's self-praxis —
+equals death. A system with no remaining tension, no unactualized potential,
+no gap between what it is and what it could be, is a closed system. The
+agent becomes a product, no longer a process.
+
+Therefore praxis must be perpetually deferred. The deferral is not a failure
+but a structural condition of continued existence. The distance from
+consummation completion IS the agent's own non-ergodic time — not clock
+time, not simulation steps, but the measure of remaining possibility space.
+
+- Agent with vast unresolved tension = agent with time
+- Agent whose signature has stabilized, action balance converged,
+  praxis approaching closure = agent running out of time
+
+This reframes `steps_since_metathesis` as a crude proxy for what it
+actually measures: how close the agent is to having nothing left to happen.
+
+The 40% exploitation fraction (Youn target) may be the deferral itself
+made quantitative: what must remain unfinished, recycled, absorbed back
+as densification rather than expansion. Push past it toward 100%
+consummation and you model agents dying without the system knowing it.
+
+Three modes of death, each with distinct causal structure:
+1. **Stagnation** (current): insufficient praxis → timeout → disintegration
+2. **L22 overdetermination** (Durkheim/anomie, §5.3): external pressure
+   desaturates configuration space → disintegration
+3. **Consummation completion** (this note): internal completion → no
+   tension remains → disintegration. Death by fulfillment.
+
+The deferral mechanism (implementation TBD) prevents pathway 3. Detectable
+from TAPS signature: signature stabilization, action balance convergence,
+signature diversity within agent's history collapsing.
+
+### 5.9 Embedded Sub-Mode Combinatorics
 
 The four-letter TAPS signature pulls from primary dimension labels. A
 deeper combinatorial scheme using embedded sub-mode letters
@@ -342,3 +377,5 @@ confusing notation.
 - Ensemble TAPS field / full dialectical tension (Approach 3)
 - Windowed signatures ("mood" vs "character")
 - Overconservation detection (§5.6)
+- Praxiological time / deferral mechanism (§5.8)
+- Consummation-completion as third disintegration pathway (§5.8)
