@@ -884,6 +884,9 @@ class MetatheticEnsemble:
         self.env.update(D, k_total, total_M, regime)
         if self.env.texture_type != old_texture:
             self.n_env_transitions += 1
+            # L22: all active agents observe the environmental shift.
+            for agent in self._active_agents():
+                agent.n_env_transitions_local += 1
 
     def run(self, steps: int) -> list[dict]:
         """Run the ensemble for the given number of steps.

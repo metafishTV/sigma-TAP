@@ -1121,5 +1121,29 @@ class TestSignatureSnapshot(unittest.TestCase):
             self.assertLessEqual(snap["signature_diversity"], snap["n_active"])
 
 
+class TestEnvTransitionPerAgent(unittest.TestCase):
+    """L22 channel: env transitions recorded per agent."""
+
+    def test_env_transition_increments_active_agents(self):
+        """When environment texture changes, all active agents get L22 tick."""
+        ensemble = MetatheticEnsemble(
+            n_agents=4, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005, seed=42,
+            carrying_capacity=500.0,
+        )
+        # Run enough steps that at least one env transition occurs
+        traj = ensemble.run(steps=100)
+        final = traj[-1]
+
+        if final["n_env_transitions"] == 0:
+            self.skipTest("No env transitions occurred in this run")
+
+        # At least one active agent should have recorded L22 events
+        active = ensemble._active_agents()
+        total_l22 = sum(a.n_env_transitions_local for a in active)
+        self.assertGreater(total_l22, 0,
+                           "Env transitions happened but no agent recorded L22")
+
+
 if __name__ == "__main__":
     unittest.main()
