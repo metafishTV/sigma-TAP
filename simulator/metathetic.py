@@ -52,6 +52,18 @@ class MetatheticAgent:
     steps_since_metathesis: int = 0
     _dormant_steps: int = 0
     _affordance_ticks: list[int] = field(default_factory=list)
+
+    # -- L-matrix event ledger (Emery channels) ------------------------------
+    # L11: intrapraxis (self-transformation)
+    n_self_metatheses_local: int = 0
+    # L12: system → environment (outward projection)
+    n_novel_cross_local: int = 0
+    n_absorptive_given_local: int = 0
+    # L21: environment → system (inward reception)
+    n_absorptive_received_local: int = 0
+    # L22: causal texture (regime shifts imposed from outside)
+    n_env_transitions_local: int = 0
+
     _dissolved: bool = field(default=False, init=False, repr=False)
     _deep_stasis: bool = field(default=False, init=False, repr=False)
 
@@ -141,6 +153,80 @@ class MetatheticAgent:
             return 0.0
         return sum(self._affordance_ticks) / len(self._affordance_ticks)
 
+    @property
+    def taps_signature(self) -> str:
+        """4-letter TAPS dispositional signature from L-matrix ledger.
+
+        Each letter derived from the agent's local event history:
+          T: Involution(I) / Evolution(E) / Transvolution(T)
+          A: Expression(E) / Impression(I) / Adpression(A)
+          P: Reflection-consumption(R) / Projection-consummation(U) / Pure action(X)
+          S: Disintegration(D) / Preservation(P) / Integration(I) / Synthesis(S)
+
+        Emery channel mapping:
+          L11 (n_self_metatheses_local)      -> inward (T), synthesis (S)
+          L12 (n_novel_cross_local + given)   -> outward (T), consummation (P)
+          L21 (n_absorptive_received_local)   -> inward (T), consumption (P), integration (S)
+          L22 (n_env_transitions_local)       -> outward (T), disintegration (S)
+        """
+        # -- T-letter: Transvolution --
+        inward = self.n_self_metatheses_local + self.n_absorptive_received_local
+        outward = (self.n_novel_cross_local + self.n_absorptive_given_local
+                   + self.n_env_transitions_local)
+        if inward > outward * 1.2:
+            t_letter = "I"
+        elif outward > inward * 1.2:
+            t_letter = "E"
+        else:
+            t_letter = "T"
+
+        # -- A-letter: Anopression --
+        has_expression = (
+            len(self.dM_history) > 0
+            and self.dM_history[-1] > 0
+            and self.affordance_score > 0.5
+        )
+        has_adpression = self.steps_since_metathesis == 0
+        l21_dominates = (
+            self.n_absorptive_received_local > 0
+            and self.n_absorptive_received_local >= self.n_novel_cross_local
+            and self.n_absorptive_received_local >= self.n_self_metatheses_local
+        )
+        if has_adpression:
+            a_letter = "A"
+        elif l21_dominates:
+            a_letter = "I"
+        elif has_expression:
+            a_letter = "E"
+        else:
+            a_letter = "E"  # default: expression as unmarked case
+
+        # -- P-letter: Praxis --
+        l21_total = self.n_absorptive_received_local
+        l12_total = self.n_novel_cross_local + self.n_absorptive_given_local
+        if l21_total > l12_total * 1.2:
+            p_letter = "R"
+        elif l12_total > l21_total * 1.2:
+            p_letter = "U"
+        else:
+            p_letter = "X"
+
+        # -- S-letter: Syntegration --
+        if not self.active:
+            s_letter = "P"  # dormant = preservation
+        else:
+            synthesis_count = self.n_self_metatheses_local + self.n_novel_cross_local
+            integration_count = self.n_absorptive_received_local
+            disintegration_signals = self.n_env_transitions_local
+            counts = {
+                "S": synthesis_count,
+                "I": integration_count,
+                "D": disintegration_signals,
+            }
+            s_letter = max(counts, key=counts.get) if any(counts.values()) else "S"
+
+        return t_letter + a_letter + p_letter + s_letter
+
     # -- Mode 1: Self-metathesis ------------------------------------------
 
     def self_metathesize(self, next_type_id: int) -> None:
@@ -152,6 +238,7 @@ class MetatheticAgent:
         """
         self.type_set = self.type_set | {next_type_id}
         self.steps_since_metathesis = 0
+        self.n_self_metatheses_local += 1
 
     # -- Mode 2: Absorptive cross-metathesis ------------------------------
 
@@ -173,6 +260,8 @@ class MetatheticAgent:
         absorber.k += absorbed.k
         absorber.M_local += absorbed.M_local
         absorbed.active = False
+        absorber.n_absorptive_received_local += 1
+        absorbed.n_absorptive_given_local += 1
 
     # -- Mode 3: Novel cross-metathesis -----------------------------------
 
@@ -202,6 +291,8 @@ class MetatheticAgent:
             active=True,
         )
 
+        a1.n_novel_cross_local += 1
+        a2.n_novel_cross_local += 1
         a1.active = False
         a2.active = False
 
@@ -287,6 +378,30 @@ def _jaccard(s1: set, s2: set) -> float:
     if not s1 and not s2:
         return 0.0
     return len(s1 & s2) / len(s1 | s2)
+
+
+# Minimum combined L-matrix events (both agents) before signature
+# classification is used.  Below this, agents' dispositional signatures
+# are dominated by zero-event defaults (all converge to the same
+# letters), so the old L vs G rule is a better proxy.
+_MIN_SIG_EVENTS: int = 3
+
+
+def _signature_similarity(sig1: str, sig2: str) -> int:
+    """Count matching positions between two 4-letter TAPS signatures.
+
+    Returns 0-4. Used for three-level tension classification:
+      3-4 matches = low tension (absorptive)
+      2 matches   = mid tension (L vs G tiebreak)
+      0-1 matches = high tension (novel)
+
+    Raises ValueError if either signature is not exactly 4 characters.
+    """
+    if len(sig1) != 4 or len(sig2) != 4:
+        raise ValueError(
+            f"TAPS signatures must be 4 characters; got {len(sig1)} and {len(sig2)}"
+        )
+    return sum(c1 == c2 for c1, c2 in zip(sig1, sig2))
 
 
 def _goal_alignment(h1: Sequence[float], h2: Sequence[float], window: int = 5) -> float:
@@ -573,7 +688,11 @@ class MetatheticEnsemble:
           W = agent weight (distinctiveness of each agent)
 
         Cross-metathesis eligible when: L + G > (W_i + W_j) * threshold
-        Mode selection: L > G -> absorptive; G > L -> novel.
+
+        Mode selection via TAPS signature tension (three levels):
+          3-4 letter match = low tension  → absorptive (η·H densification)
+          2 letter match   = mid tension  → L vs G tiebreak
+          0-1 letter match = high tension → novel (β·B exploration)
 
         Only one cross-metathesis event fires per step to avoid cascades.
         """
@@ -620,22 +739,77 @@ class MetatheticEnsemble:
                     continue
 
                 # Eligible — determine mode.
-                if L > G:
-                    # Mode 2: Absorptive cross-metathesis (more alike than aligned).
-                    MetatheticAgent.absorptive_cross(a1, a2)
-                    self.n_absorptive_cross += 1
-                else:
-                    # Mode 3: Novel cross-metathesis (equally or more aligned than alike).
-                    # Tie-break: L == G defaults to novel, favouring diversity.
-                    self._next_agent_id += 1
-                    child = MetatheticAgent.novel_cross(
-                        a1, a2,
-                        child_id=self._next_agent_id,
-                        next_type_id=self._next_type_id,
+                #
+                # Agents need sufficient L-matrix event history before
+                # signature comparison is meaningful. Without enough events,
+                # all agents share the same default signature (TEXS),
+                # collapsing everything to absorptive. Below the threshold,
+                # fall back to the original L vs G rule.
+                a1_events = (a1.n_self_metatheses_local
+                             + a1.n_novel_cross_local
+                             + a1.n_absorptive_given_local
+                             + a1.n_absorptive_received_local
+                             + a1.n_env_transitions_local)
+                a2_events = (a2.n_self_metatheses_local
+                             + a2.n_novel_cross_local
+                             + a2.n_absorptive_given_local
+                             + a2.n_absorptive_received_local
+                             + a2.n_env_transitions_local)
+
+                if a1_events + a2_events >= _MIN_SIG_EVENTS:
+                    # TAPS signature tension classification.
+                    sig_sim = _signature_similarity(
+                        a1.taps_signature, a2.taps_signature
                     )
-                    self._next_type_id += 1
-                    self.agents.append(child)
-                    self.n_novel_cross += 1
+
+                    if sig_sim >= 3:
+                        # Low tension: similar signatures → absorptive.
+                        # η·H channel — densification within shared space.
+                        MetatheticAgent.absorptive_cross(a1, a2)
+                        self.n_absorptive_cross += 1
+                    elif sig_sim <= 1:
+                        # High tension: different signatures → novel.
+                        # β·B channel — exploration across boundaries.
+                        self._next_agent_id += 1
+                        child = MetatheticAgent.novel_cross(
+                            a1, a2,
+                            child_id=self._next_agent_id,
+                            next_type_id=self._next_type_id,
+                        )
+                        self._next_type_id += 1
+                        self.agents.append(child)
+                        self.n_novel_cross += 1
+                    else:
+                        # Mid tension (2 matches): L vs G tiebreak;
+                        # ties (L == G) route to novel.
+                        if L > G:
+                            MetatheticAgent.absorptive_cross(a1, a2)
+                            self.n_absorptive_cross += 1
+                        else:
+                            self._next_agent_id += 1
+                            child = MetatheticAgent.novel_cross(
+                                a1, a2,
+                                child_id=self._next_agent_id,
+                                next_type_id=self._next_type_id,
+                            )
+                            self._next_type_id += 1
+                            self.agents.append(child)
+                            self.n_novel_cross += 1
+                else:
+                    # Insufficient event history — L vs G fallback.
+                    if L > G:
+                        MetatheticAgent.absorptive_cross(a1, a2)
+                        self.n_absorptive_cross += 1
+                    else:
+                        self._next_agent_id += 1
+                        child = MetatheticAgent.novel_cross(
+                            a1, a2,
+                            child_id=self._next_agent_id,
+                            next_type_id=self._next_type_id,
+                        )
+                        self._next_type_id += 1
+                        self.agents.append(child)
+                        self.n_novel_cross += 1
 
                 # One cross-metathesis per step to avoid cascading.
                 return
@@ -752,6 +926,9 @@ class MetatheticEnsemble:
         self.env.update(D, k_total, total_M, regime)
         if self.env.texture_type != old_texture:
             self.n_env_transitions += 1
+            # L22: all active agents observe the environmental shift.
+            for agent in self._active_agents():
+                agent.n_env_transitions_local += 1
 
     def run(self, steps: int) -> list[dict]:
         """Run the ensemble for the given number of steps.
@@ -813,6 +990,14 @@ class MetatheticEnsemble:
             snapshot["affordance_mean"] = (
                 sum(active_scores) / len(active_scores) if active_scores else 0.0
             )
+
+            # TAPS signature distribution for active agents.
+            sig_counts: dict[str, int] = {}
+            for a in active:
+                sig = a.taps_signature
+                sig_counts[sig] = sig_counts.get(sig, 0) + 1
+            snapshot["signature_distribution"] = sig_counts
+            snapshot["signature_diversity"] = len(sig_counts)
 
             # Track dormant steps.
             for a in dormant:

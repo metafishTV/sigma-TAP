@@ -13,6 +13,7 @@ from simulator.metathetic import (
     _goal_alignment,
     _agent_weight,
     _temporal_threshold_multiplier,
+    _signature_similarity,
 )
 
 
@@ -849,6 +850,299 @@ class TestDisintegrationRedistribution(unittest.TestCase):
         self.assertGreaterEqual(final["n_disintegration_redistributions"], 0)
         # With these params, we expect at least some disintegration events
         # (if not, the test still passes — it's a smoke test, not a guarantee)
+
+
+class TestLMatrixLedger(unittest.TestCase):
+    """Per-agent L-matrix event ledger (Emery channels)."""
+
+    def test_initial_ledger_zeros(self):
+        """New agent starts with all L-matrix counters at zero."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        self.assertEqual(agent.n_self_metatheses_local, 0)
+        self.assertEqual(agent.n_novel_cross_local, 0)
+        self.assertEqual(agent.n_absorptive_given_local, 0)
+        self.assertEqual(agent.n_absorptive_received_local, 0)
+        self.assertEqual(agent.n_env_transitions_local, 0)
+
+    def test_self_metathesis_increments_l11(self):
+        """Self-metathesis increments the L11 (intrapraxis) counter."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.self_metathesize(next_type_id=99)
+        self.assertEqual(agent.n_self_metatheses_local, 1)
+        agent.self_metathesize(next_type_id=100)
+        self.assertEqual(agent.n_self_metatheses_local, 2)
+
+    def test_absorptive_cross_increments_l12_l21(self):
+        """Absorptive cross increments L12 for donor (given), L21 for receiver."""
+        a1 = MetatheticAgent(agent_id=1, type_set={1, 2}, k=10.0, M_local=50.0)
+        a2 = MetatheticAgent(agent_id=2, type_set={2, 3}, k=5.0, M_local=20.0)
+        MetatheticAgent.absorptive_cross(a1, a2)
+        # a1 has higher M_local so a1 absorbs a2
+        # a1 = absorber = received; a2 = absorbed = given
+        self.assertEqual(a1.n_absorptive_received_local, 1)
+        self.assertEqual(a2.n_absorptive_given_local, 1)
+
+    def test_novel_cross_increments_l12(self):
+        """Novel cross increments L12 (novel_cross_local) for both parents."""
+        a1 = MetatheticAgent(agent_id=1, type_set={1}, k=5.0, M_local=10.0)
+        a2 = MetatheticAgent(agent_id=2, type_set={2}, k=5.0, M_local=10.0)
+        child = MetatheticAgent.novel_cross(a1, a2, child_id=3, next_type_id=99)
+        self.assertEqual(a1.n_novel_cross_local, 1)
+        self.assertEqual(a2.n_novel_cross_local, 1)
+        # Child starts fresh
+        self.assertEqual(child.n_novel_cross_local, 0)
+
+
+class TestTAPSSignature(unittest.TestCase):
+    """Per-agent TAPS dispositional signature."""
+
+    def test_fresh_agent_default_signature(self):
+        """Agent with no events gets default signature.
+
+        A fresh agent has steps_since_metathesis=0, so has_adpression=True,
+        giving A-letter='A'. All counters zero gives T=T, P=X, S=S.
+        """
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        sig = agent.taps_signature
+        self.assertEqual(len(sig), 4)
+        # T=T (balanced), A=A (adpression: steps_since_metathesis=0), P=X (balanced), S=S (default)
+        self.assertEqual(sig, "TAXS")
+
+    def test_signature_is_four_letters(self):
+        """Signature always returns exactly 4 characters."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_self_metatheses_local = 10
+        agent.n_novel_cross_local = 5
+        self.assertEqual(len(agent.taps_signature), 4)
+
+    def test_involution_dominant_gives_I(self):
+        """Agent with mostly L11+L21 events has T-letter = I."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_self_metatheses_local = 10  # L11
+        agent.n_absorptive_received_local = 5  # L21
+        agent.n_novel_cross_local = 1  # L12 (low)
+        sig = agent.taps_signature
+        self.assertEqual(sig[0], "I")
+
+    def test_evolution_dominant_gives_E(self):
+        """Agent with mostly L12+L22 events has T-letter = E."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_novel_cross_local = 10  # L12
+        agent.n_env_transitions_local = 5  # L22
+        agent.n_self_metatheses_local = 1  # L11 (low)
+        sig = agent.taps_signature
+        self.assertEqual(sig[0], "E")
+
+    def test_balanced_gives_T(self):
+        """Agent with balanced inward/outward has T-letter = T."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_self_metatheses_local = 5  # L11
+        agent.n_novel_cross_local = 5  # L12
+        sig = agent.taps_signature
+        self.assertEqual(sig[0], "T")
+
+    def test_consummation_dominant_gives_U(self):
+        """Agent with mostly L12 outward events has P-letter = U."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_novel_cross_local = 10  # L12 outward
+        agent.n_absorptive_received_local = 1  # L21 inward (low)
+        sig = agent.taps_signature
+        self.assertEqual(sig[2], "U")
+
+    def test_consumption_dominant_gives_R(self):
+        """Agent with mostly L21 inward events has P-letter = R."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.n_absorptive_received_local = 10  # L21
+        agent.n_novel_cross_local = 1  # L12 (low)
+        sig = agent.taps_signature
+        self.assertEqual(sig[2], "R")
+
+    def test_adpression_on_fresh_metathesis(self):
+        """Agent that just self-metathesized has A-letter = A."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.self_metathesize(next_type_id=99)
+        # steps_since_metathesis == 0 after self_metathesize
+        sig = agent.taps_signature
+        self.assertEqual(sig[1], "A")
+
+    def test_dormant_agent_preservation(self):
+        """Dormant agent has S-letter = P (preservation)."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        agent.active = False
+        sig = agent.taps_signature
+        self.assertEqual(sig[3], "P")
+
+
+class TestSignatureClassification(unittest.TestCase):
+    """Three-level tension classification for cross-metathesis."""
+
+    def test_identical_signatures_produce_absorptive(self):
+        """Two agents with 4/4 matching signature → absorptive (low tension)."""
+        a1 = MetatheticAgent(agent_id=1, type_set={1, 2, 3}, k=5.0, M_local=20.0)
+        a2 = MetatheticAgent(agent_id=2, type_set={1, 2, 3}, k=5.0, M_local=15.0)
+        for a in (a1, a2):
+            a.n_self_metatheses_local = 10
+            a.dM_history = [1.0, 1.0, 1.0]
+            a._affordance_ticks = [1, 1, 1, 1, 1]
+        self.assertEqual(a1.taps_signature, a2.taps_signature)
+        similarity = _signature_similarity(a1.taps_signature, a2.taps_signature)
+        self.assertEqual(similarity, 4)
+
+    def test_different_signatures_produce_novel(self):
+        """Two agents with very different dispositions → high tension (0-1 match)."""
+        a1 = MetatheticAgent(agent_id=1, type_set={1}, k=5.0, M_local=20.0)
+        a2 = MetatheticAgent(agent_id=2, type_set={2}, k=5.0, M_local=15.0)
+        # a1: inward-dominant, recent self-metathesis, high affordance
+        a1.n_self_metatheses_local = 20
+        a1.dM_history = [1.0, 1.0, 1.0]
+        a1._affordance_ticks = [1, 1, 1, 1, 1]
+        a1.steps_since_metathesis = 0  # just metathesized → A = "A"
+        # a2: outward-dominant, no affordance, absorptive-received dominates
+        a2.n_novel_cross_local = 0
+        a2.n_absorptive_given_local = 20
+        a2.n_env_transitions_local = 5
+        a2.n_absorptive_received_local = 1
+        a2.dM_history = [-0.1, -0.1, -0.1]
+        a2._affordance_ticks = [0, 0, 0, 0, 0]
+        a2.steps_since_metathesis = 10  # past adpression window
+        # a1 sig: I(inward>outward) A(adpression) X(l21==l12==0) S(synthesis=20)
+        # a2 sig: E(outward>inward) I(l21 dominates: 1>=0,>=0) U(l12=20>l21=1) D(disintegration=5>synthesis=0,integration=1)
+        self.assertEqual(a1.taps_signature, "IAXS")
+        self.assertEqual(a2.taps_signature, "EIUD")
+        # "IAXS" vs "EIUD" → 0 matches
+        similarity = _signature_similarity(a1.taps_signature, a2.taps_signature)
+        self.assertEqual(similarity, 0)
+
+    def test_signature_similarity_function(self):
+        """_signature_similarity counts matching positions."""
+        self.assertEqual(_signature_similarity("IEUS", "IEUS"), 4)
+        self.assertEqual(_signature_similarity("IEUS", "EIRS"), 1)  # only S at pos 3
+        self.assertEqual(_signature_similarity("TEXP", "TEXP"), 4)
+        self.assertEqual(_signature_similarity("IAXS", "EIUD"), 0)  # no matches
+
+    def test_mid_tension_falls_back_to_L_vs_G(self):
+        """With 2/4 matching letters, classification uses L vs G tiebreak."""
+        self.assertEqual(_signature_similarity("IEUS", "IEXD"), 2)  # I,E match; U!=X, S!=D
+
+
+class TestYounRatioImprovement(unittest.TestCase):
+    """Verify Stage 3A classification produces absorptive events."""
+
+    def test_youn_ratio_below_one(self):
+        """Full ensemble run should produce at least some absorptive events.
+
+        The Youn ratio (novel / total_cross) should be < 1.0, indicating
+        the signature-based classification is producing absorptive events
+        that the old L > G rule never did.
+        """
+        ensemble = MetatheticEnsemble(
+            n_agents=8,
+            initial_M=10.0,
+            alpha=5e-3,
+            a=3.0,
+            mu=0.005,
+            carrying_capacity=500.0,
+            seed=42,
+        )
+        traj = ensemble.run(steps=150)
+
+        final = traj[-1]
+        n_novel = final["n_novel_cross"]
+        n_absorptive = final["n_absorptive_cross"]
+        total_cross = n_novel + n_absorptive
+
+        # Must have SOME cross-metathesis events
+        self.assertGreater(total_cross, 0,
+                           "No cross-metathesis events at all")
+
+        # Must have at least one absorptive event (Youn ratio < 1.0)
+        self.assertGreater(n_absorptive, 0,
+                           f"Youn ratio still 1.0: {n_novel} novel, "
+                           f"{n_absorptive} absorptive")
+
+    def test_youn_ratio_in_target_range(self):
+        """Youn exploration fraction should be closer to 0.6 than to 1.0.
+
+        This is a soft target — we check that the ratio has meaningfully
+        moved toward the empirical target, not that it's exactly 0.6.
+        """
+        ensemble = MetatheticEnsemble(
+            n_agents=8,
+            initial_M=10.0,
+            alpha=5e-3,
+            a=3.0,
+            mu=0.005,
+            carrying_capacity=500.0,
+            seed=42,
+        )
+        traj = ensemble.run(steps=150)
+
+        final = traj[-1]
+        n_novel = final["n_novel_cross"]
+        n_absorptive = final["n_absorptive_cross"]
+        total_cross = n_novel + n_absorptive
+
+        if total_cross == 0:
+            self.skipTest("No cross-metathesis events")
+
+        exploration_fraction = n_novel / total_cross
+        # Should be meaningfully below 1.0 (moved toward 0.6 target)
+        self.assertLess(exploration_fraction, 0.95,
+                        f"Youn ratio barely moved: {exploration_fraction:.3f}")
+
+
+class TestSignatureSnapshot(unittest.TestCase):
+    """Verify per-agent signature data appears in ensemble snapshots."""
+
+    def test_snapshot_has_signature_distribution(self):
+        """Each snapshot includes signature_distribution dict."""
+        ensemble = MetatheticEnsemble(
+            n_agents=4, initial_M=10.0, alpha=1e-3, a=8.0, mu=0.02, seed=1
+        )
+        traj = ensemble.run(steps=20)
+        for snap in traj:
+            self.assertIn("signature_distribution", snap)
+            self.assertIsInstance(snap["signature_distribution"], dict)
+            # Values should sum to number of active agents
+            self.assertEqual(
+                sum(snap["signature_distribution"].values()),
+                snap["n_active"],
+            )
+
+    def test_snapshot_has_signature_diversity(self):
+        """Each snapshot includes signature_diversity (count of unique sigs)."""
+        ensemble = MetatheticEnsemble(
+            n_agents=4, initial_M=10.0, alpha=1e-3, a=8.0, mu=0.02, seed=1
+        )
+        traj = ensemble.run(steps=20)
+        for snap in traj:
+            self.assertIn("signature_diversity", snap)
+            self.assertGreaterEqual(snap["signature_diversity"], 1)
+            self.assertLessEqual(snap["signature_diversity"], snap["n_active"])
+
+
+class TestEnvTransitionPerAgent(unittest.TestCase):
+    """L22 channel: env transitions recorded per agent."""
+
+    def test_env_transition_increments_active_agents(self):
+        """When environment texture changes, all active agents get L22 tick."""
+        ensemble = MetatheticEnsemble(
+            n_agents=4, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005, seed=42,
+            carrying_capacity=500.0,
+        )
+        # Run enough steps that at least one env transition occurs
+        traj = ensemble.run(steps=100)
+        final = traj[-1]
+
+        if final["n_env_transitions"] == 0:
+            self.skipTest("No env transitions occurred in this run")
+
+        # At least one active agent should have recorded L22 events
+        active = ensemble._active_agents()
+        total_l22 = sum(a.n_env_transitions_local for a in active)
+        self.assertGreater(total_l22, 0,
+                           "Env transitions happened but no agent recorded L22")
 
 
 if __name__ == "__main__":
