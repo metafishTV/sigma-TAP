@@ -686,6 +686,64 @@ syntegration (externalization), while the ensemble's actualizing
 pattern is the context — the unificity — within which that work
 becomes legible.
 
+### 5.18 Sartre's Critique and the Metathesis Framework
+
+Reference: Appendix to Critique of Dialectical Reason, Vol. 2
+(unfinished notes for Book III).
+
+**Core mapping**: Sartre's "totalization" = a naive (undifferentiated)
+description of what we call metathesis. "Naive" in the precise sense
+that totalization describes the general form of the dialectical spiral
+without modal articulation — no TAPS signature, no L-matrix channels,
+no way to specify WHICH TYPE of totalization is occurring (growth,
+affective, active, creative).
+
+**Totalization/detotalization = absorptive/novel cross-metathesis**:
+Sartre: "totalization is the way in which detotality is totalized;
+detotalization is a product of totalization, and totalization is a
+product of detotalization." Novel cross de-totalizes (breaks apart,
+creates new entities). Absorptive cross re-totalizes (merges,
+consolidates). The Youn ratio measures the balance of this spiral.
+
+**Totality as enfoldment = metathesis as involution**: Sartre's
+totality (completed, closed state) maps to T-letter "I" (involution).
+An agent at Youn=0 (all absorptive) is Sartre's totality — dead
+because complete. This connects to §5.8 (consummation-completion as
+third death pathway).
+
+**Practico-inert = artifact agent**: Sartre's definition: "government
+of man by worked matter proportionate to the government of inanimate
+matter by man." Artifacts do syntegrative praxis — they hold and
+re-present externalized praxis, conditioning agents who encounter
+them. The praxis/practico-inert dialectic IS the agent/artifact
+asymmetry given modal specificity.
+
+**Counter-finality**: "By acting upon one element, you make another
+more fragile." Unintended consequences of innovation. Partially
+captured by L22 (environmental texture changes); more fully by future
+polydirectional dynamics.
+
+**Verdi passage = absorptive cross working correctly**: Sartre
+describes Verdi preserving singing while integrating Wagner's
+orchestral contradiction, producing "increased complexity in the
+tension and order." This IS successful absorptive cross — the agent
+absorbs external elements, preserves core identity (signature), gains
+complexity. The alternative (becoming Wagnerian) = absorptive cross
+that destroys identity. Our sig_sim >= 3 threshold gatekeeps this.
+
+**"The tool is forged as it forges"** = biunidirectional interactivity.
+But Sartre lacks our biuni/poly/meso spectrum to distinguish when
+this becomes irreducibly multi-agent.
+
+**What Sartre couldn't resolve**: The "totalization without a
+totalizer" — history totalizes without any single agent totalizing.
+Sartre was stuck between constituent dialectic (individual praxis)
+and constituted dialectic (collective process) without a third term.
+Unificity IS that third term: neither agent (unity) nor ensemble
+(multiplicity) but the mesovocal context in which both are primary.
+This is why the Critique remained unfinished — the architecture needed
+the meso- register that Sartre intuited but couldn't formalize.
+
 ---
 
 ## 6. Success Criteria
