@@ -522,13 +522,15 @@ irreversible change, a trace, in the mesh of configuration space."
 - **Interactive**: notebooks, cell phones, responsive institutions.
   Bidirectional — the artifact is acted upon and acts back.
 
-**Containment asymmetries and nesting rules**: a song can be in a
-play (as performed material — true containment); a play can be in a
-song only by reference (allusion, citation — not instantiation). So
-nesting is asymmetric AND typed: **containment** (X is materially
-inside Y) vs. **reference** (X is alluded to within Y). These are
-different relations with different rules, forming a partial order on
-artifact classes.
+**Containment asymmetries and nesting rules**: a song can be
+**incarnated** within a play (performed, embodied, materially present
+in the play's runtime). A play can only be **disincarnated** within a
+song (referenced, alluded to, carried as information without material
+embodiment). The asymmetry is ontological: incarnated containment
+gives the contained entity a body; disincarnated containment gives it
+only a name. This forms a partial order on artifact classes with two
+typed relations: **incarnation** (X is materially embodied inside Y)
+vs. **disincarnation** (X is alluded to within Y without embodiment).
 
 **Meshability** (term after Arno Gruen): some artifacts invite
 participatory engagement (rhizomatic), others enforce spectatorial
@@ -536,18 +538,41 @@ distance (arborescent). "Meshability" captures the texture of how
 things fit together — compatibility of form, not dominance. Replaces
 the earlier "joinability" term.
 
-**Interactivity typology**: distinguish **biunidirectional**
-interactivity (two agents/artifacts in mutual exchange — the channel
-is between two points, like a conversation or a trade or a
-cross-metathesis event) from **polydirectional/polyvocal**
-interactivity (many agents simultaneously affecting and being
-affected, where the interaction cannot be decomposed into pairwise
-channels without losing something — ensemble singing, collective
-ritual, a market). Currently cross-metathesis is strictly
-biunidirectional. Whether irreducible polyvocal mechanics are needed
-is a deep architectural question. This distinction is non-trivial
-and, as far as we know, not formalized in a general (physics-level)
-sense.
+**Vocality / directionality spectrum**: a systematic vocabulary for
+interaction topology, mapping directly onto both the simulation
+architecture and the philosophical framework:
+
+| Mode | Vocality | Directionality | Maps to | Implies |
+|------|----------|----------------|---------|---------|
+| **Mono-** | Monovocal | Monodirectional | Singularity | Irreducible point — one voice, one direction |
+| **Biuni-** | Biunivocal | Biunidirectional | Unity | Two-that-are-one, dyadic exchange; **locality** |
+| **Poly-** | Polyvocal | Polydirectional | Multiplicity | Many voices, irreducible to pairwise; **nonlocality** |
+| **Meso-** | Mesovocal | Mesodirectional / mesocosmic | Unificity | Context — neither one nor many but consummation of both |
+
+**Locality mapping**: biuni- implies locality because two-point
+exchange has a definite *here* and *there* (even self↔self is local
+to that agent). Poly- implies nonlocality because the interaction
+cannot be decomposed into channels — it is everywhere-at-once in the
+ensemble. Meso- mediates: neither pinned to a locale nor dissolved
+into everywhere, but the contextual stratum where local and nonlocal
+become legible together.
+
+**Biunivocality as self-to-self transmission**: the special case
+where both endpoints are the same agent (self↔self = L11 channel =
+self-metathesis). This IS the making of time — the agent projects
+forward and reflects backward in the same act, creating temporal
+thickness. Praxiological time (§5.7) is literally the rate of
+biunivocal exchange. (Aside: if the Universe is the ultimate
+singularity-that-is-also-everything, its time-making would be
+polydirectional biunivocality — all channels, but only to itself.)
+
+**Current state**: cross-metathesis is strictly biunidirectional
+(two agents meet). Whether irreducible polyvocal mechanics are needed
+— multi-agent events that cannot be decomposed into pairwise channels
+without losing something (ensemble singing, collective ritual, a
+market) — is a deep architectural question for later stages. This
+distinction is non-trivial and, as far as we know, not formalized in
+a general (physics-level) sense.
 
 **Source/sink typology**: a book affects differently than a toothbrush
 or a pocketwatch. Each artifact class has distinct affective (how it
