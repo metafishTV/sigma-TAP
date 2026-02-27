@@ -1004,11 +1004,14 @@ class TestSignatureClassification(unittest.TestCase):
         a2.n_absorptive_received_local = 1
         a2.dM_history = [-0.1, -0.1, -0.1]
         a2._affordance_ticks = [0, 0, 0, 0, 0]
+        a2.steps_since_metathesis = 10  # past adpression window
         # a1 sig: I(inward>outward) A(adpression) X(l21==l12==0) S(synthesis=20)
-        # a2 sig: E(outward>inward) E(default) U(l12=20>l21=1) D(disintegration=5>synthesis=0,integration=1)
-        # "IAXS" vs "EEUD" → 0 matches
+        # a2 sig: E(outward>inward) I(l21 dominates: 1>=0,>=0) U(l12=20>l21=1) D(disintegration=5>synthesis=0,integration=1)
+        self.assertEqual(a1.taps_signature, "IAXS")
+        self.assertEqual(a2.taps_signature, "EIUD")
+        # "IAXS" vs "EIUD" → 0 matches
         similarity = _signature_similarity(a1.taps_signature, a2.taps_signature)
-        self.assertLessEqual(similarity, 1)
+        self.assertEqual(similarity, 0)
 
     def test_signature_similarity_function(self):
         """_signature_similarity counts matching positions."""

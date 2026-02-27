@@ -387,7 +387,13 @@ def _signature_similarity(sig1: str, sig2: str) -> int:
       3-4 matches = low tension (absorptive)
       2 matches   = mid tension (L vs G tiebreak)
       0-1 matches = high tension (novel)
+
+    Raises ValueError if either signature is not exactly 4 characters.
     """
+    if len(sig1) != 4 or len(sig2) != 4:
+        raise ValueError(
+            f"TAPS signatures must be 4 characters; got {len(sig1)} and {len(sig2)}"
+        )
     return sum(c1 == c2 for c1, c2 in zip(sig1, sig2))
 
 
@@ -748,7 +754,7 @@ class MetatheticEnsemble:
                     self.agents.append(child)
                     self.n_novel_cross += 1
                 else:
-                    # Mid tension (2 matches): fall back to L vs G tiebreak.
+                    # Mid tension (2 matches): L vs G tiebreak; ties (L == G) route to novel.
                     if L > G:
                         MetatheticAgent.absorptive_cross(a1, a2)
                         self.n_absorptive_cross += 1
