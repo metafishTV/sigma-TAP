@@ -13,6 +13,7 @@ from simulator.metathetic import (
     _goal_alignment,
     _agent_weight,
     _temporal_threshold_multiplier,
+    _signature_similarity,
 )
 
 
@@ -970,6 +971,55 @@ class TestTAPSSignature(unittest.TestCase):
         agent.active = False
         sig = agent.taps_signature
         self.assertEqual(sig[3], "P")
+
+
+class TestSignatureClassification(unittest.TestCase):
+    """Three-level tension classification for cross-metathesis."""
+
+    def test_identical_signatures_produce_absorptive(self):
+        """Two agents with 4/4 matching signature → absorptive (low tension)."""
+        a1 = MetatheticAgent(agent_id=1, type_set={1, 2, 3}, k=5.0, M_local=20.0)
+        a2 = MetatheticAgent(agent_id=2, type_set={1, 2, 3}, k=5.0, M_local=15.0)
+        for a in (a1, a2):
+            a.n_self_metatheses_local = 10
+            a.dM_history = [1.0, 1.0, 1.0]
+            a._affordance_ticks = [1, 1, 1, 1, 1]
+        self.assertEqual(a1.taps_signature, a2.taps_signature)
+        similarity = _signature_similarity(a1.taps_signature, a2.taps_signature)
+        self.assertEqual(similarity, 4)
+
+    def test_different_signatures_produce_novel(self):
+        """Two agents with very different dispositions → high tension (0-1 match)."""
+        a1 = MetatheticAgent(agent_id=1, type_set={1}, k=5.0, M_local=20.0)
+        a2 = MetatheticAgent(agent_id=2, type_set={2}, k=5.0, M_local=15.0)
+        # a1: inward-dominant, recent self-metathesis, high affordance
+        a1.n_self_metatheses_local = 20
+        a1.dM_history = [1.0, 1.0, 1.0]
+        a1._affordance_ticks = [1, 1, 1, 1, 1]
+        a1.steps_since_metathesis = 0  # just metathesized → A = "A"
+        # a2: outward-dominant, no affordance, absorptive-received dominates
+        a2.n_novel_cross_local = 0
+        a2.n_absorptive_given_local = 20
+        a2.n_env_transitions_local = 5
+        a2.n_absorptive_received_local = 1
+        a2.dM_history = [-0.1, -0.1, -0.1]
+        a2._affordance_ticks = [0, 0, 0, 0, 0]
+        # a1 sig: I(inward>outward) A(adpression) X(l21==l12==0) S(synthesis=20)
+        # a2 sig: E(outward>inward) E(default) U(l12=20>l21=1) D(disintegration=5>synthesis=0,integration=1)
+        # "IAXS" vs "EEUD" → 0 matches
+        similarity = _signature_similarity(a1.taps_signature, a2.taps_signature)
+        self.assertLessEqual(similarity, 1)
+
+    def test_signature_similarity_function(self):
+        """_signature_similarity counts matching positions."""
+        self.assertEqual(_signature_similarity("IEUS", "IEUS"), 4)
+        self.assertEqual(_signature_similarity("IEUS", "EIRS"), 1)  # only S at pos 3
+        self.assertEqual(_signature_similarity("TEXP", "TEXP"), 4)
+        self.assertEqual(_signature_similarity("IAXS", "EIUD"), 0)  # no matches
+
+    def test_mid_tension_falls_back_to_L_vs_G(self):
+        """With 2/4 matching letters, classification uses L vs G tiebreak."""
+        self.assertEqual(_signature_similarity("IEUS", "IEXD"), 2)  # I,E match; U!=X, S!=D
 
 
 if __name__ == "__main__":

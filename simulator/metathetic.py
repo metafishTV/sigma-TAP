@@ -380,6 +380,17 @@ def _jaccard(s1: set, s2: set) -> float:
     return len(s1 & s2) / len(s1 | s2)
 
 
+def _signature_similarity(sig1: str, sig2: str) -> int:
+    """Count matching positions between two 4-letter TAPS signatures.
+
+    Returns 0-4. Used for three-level tension classification:
+      3-4 matches = low tension (absorptive)
+      2 matches   = mid tension (L vs G tiebreak)
+      0-1 matches = high tension (novel)
+    """
+    return sum(c1 == c2 for c1, c2 in zip(sig1, sig2))
+
+
 def _goal_alignment(h1: Sequence[float], h2: Sequence[float], window: int = 5) -> float:
     """Correlation of recent dM/dt histories (goal alignment).
 
@@ -664,7 +675,11 @@ class MetatheticEnsemble:
           W = agent weight (distinctiveness of each agent)
 
         Cross-metathesis eligible when: L + G > (W_i + W_j) * threshold
-        Mode selection: L > G -> absorptive; G > L -> novel.
+
+        Mode selection via TAPS signature tension (three levels):
+          3-4 letter match = low tension  → absorptive (η·H densification)
+          2 letter match   = mid tension  → L vs G tiebreak
+          0-1 letter match = high tension → novel (β·B exploration)
 
         Only one cross-metathesis event fires per step to avoid cascades.
         """
@@ -710,14 +725,19 @@ class MetatheticEnsemble:
                 if L + G <= (W1 + W2) * effective_threshold:
                     continue
 
-                # Eligible — determine mode.
-                if L > G:
-                    # Mode 2: Absorptive cross-metathesis (more alike than aligned).
+                # Eligible — determine mode via TAPS signature tension.
+                sig_sim = _signature_similarity(
+                    a1.taps_signature, a2.taps_signature
+                )
+
+                if sig_sim >= 3:
+                    # Low tension: similar dispositional signatures → absorptive.
+                    # η·H channel — densification within shared space.
                     MetatheticAgent.absorptive_cross(a1, a2)
                     self.n_absorptive_cross += 1
-                else:
-                    # Mode 3: Novel cross-metathesis (equally or more aligned than alike).
-                    # Tie-break: L == G defaults to novel, favouring diversity.
+                elif sig_sim <= 1:
+                    # High tension: different signatures → novel.
+                    # β·B channel — exploration across dispositional boundaries.
                     self._next_agent_id += 1
                     child = MetatheticAgent.novel_cross(
                         a1, a2,
@@ -727,6 +747,21 @@ class MetatheticEnsemble:
                     self._next_type_id += 1
                     self.agents.append(child)
                     self.n_novel_cross += 1
+                else:
+                    # Mid tension (2 matches): fall back to L vs G tiebreak.
+                    if L > G:
+                        MetatheticAgent.absorptive_cross(a1, a2)
+                        self.n_absorptive_cross += 1
+                    else:
+                        self._next_agent_id += 1
+                        child = MetatheticAgent.novel_cross(
+                            a1, a2,
+                            child_id=self._next_agent_id,
+                            next_type_id=self._next_type_id,
+                        )
+                        self._next_type_id += 1
+                        self.agents.append(child)
+                        self.n_novel_cross += 1
 
                 # One cross-metathesis per step to avoid cascading.
                 return
