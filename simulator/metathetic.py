@@ -946,6 +946,14 @@ class MetatheticEnsemble:
                 sum(active_scores) / len(active_scores) if active_scores else 0.0
             )
 
+            # TAPS signature distribution for active agents.
+            sig_counts: dict[str, int] = {}
+            for a in active:
+                sig = a.taps_signature
+                sig_counts[sig] = sig_counts.get(sig, 0) + 1
+            snapshot["signature_distribution"] = sig_counts
+            snapshot["signature_diversity"] = len(sig_counts)
+
             # Track dormant steps.
             for a in dormant:
                 a._dormant_steps += 1

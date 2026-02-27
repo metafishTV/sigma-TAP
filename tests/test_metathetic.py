@@ -1091,5 +1091,35 @@ class TestYounRatioImprovement(unittest.TestCase):
                         f"Youn ratio barely moved: {exploration_fraction:.3f}")
 
 
+class TestSignatureSnapshot(unittest.TestCase):
+    """Verify per-agent signature data appears in ensemble snapshots."""
+
+    def test_snapshot_has_signature_distribution(self):
+        """Each snapshot includes signature_distribution dict."""
+        ensemble = MetatheticEnsemble(
+            n_agents=4, initial_M=10.0, alpha=1e-3, a=8.0, mu=0.02, seed=1
+        )
+        traj = ensemble.run(steps=20)
+        for snap in traj:
+            self.assertIn("signature_distribution", snap)
+            self.assertIsInstance(snap["signature_distribution"], dict)
+            # Values should sum to number of active agents
+            self.assertEqual(
+                sum(snap["signature_distribution"].values()),
+                snap["n_active"],
+            )
+
+    def test_snapshot_has_signature_diversity(self):
+        """Each snapshot includes signature_diversity (count of unique sigs)."""
+        ensemble = MetatheticEnsemble(
+            n_agents=4, initial_M=10.0, alpha=1e-3, a=8.0, mu=0.02, seed=1
+        )
+        traj = ensemble.run(steps=20)
+        for snap in traj:
+            self.assertIn("signature_diversity", snap)
+            self.assertGreaterEqual(snap["signature_diversity"], 1)
+            self.assertLessEqual(snap["signature_diversity"], snap["n_active"])
+
+
 if __name__ == "__main__":
     unittest.main()
