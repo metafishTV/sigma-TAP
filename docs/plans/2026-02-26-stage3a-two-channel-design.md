@@ -451,6 +451,12 @@ signature" that changes slowly vs. the manifest signature that responds
 to recent events. The windowed "mood" vs. cumulative "character"
 distinction (previously bookmarked) fits here.
 
+The latent S-layer in particular captures **habit formation**: praxes
+repeated enough to sink from manifest (conscious, effortful) to latent
+(subconscious, automatic). An agent whose latent S is "S" (synthesis)
+but manifest S is "D" (disintegration) is a constructive agent in
+crisis — habitual creativity under destructive pressure.
+
 ### 5.14 Artifact Agents
 
 A second agent type: **ArtifactAgent**. Artifacts are produced by
@@ -486,6 +492,77 @@ Key properties:
 
 Artifacts connect praxitive syntegration (§5.11) to the persistence
 layer: they are the externalized products that outlast their producers.
+Per the unificity framework: artifacts are conserved traces of praxis
+in configuration space — "praxis is always conserved at least as an
+irreversible change, a trace, in the mesh of configuration space."
+
+**Artifact substrate classes** (future work):
+
+- **Oral**: songs, stories, spoken traditions. No physical substrate;
+  persist only through agent-to-agent transmission. Most fragile but
+  most intimate (requires direct relational contact). A rhizomatic
+  link requiring living hosts.
+- **Physical**: tools, buildings, manuscripts. Persist independently
+  of agents but degrade over time. The Bronze Age manuscripts that
+  survive population collapse.
+- **Interactive**: notebooks, cell phones, responsive institutions.
+  Bidirectional — the artifact is acted upon and acts back.
+
+**Containment asymmetries**: a song can be in a play; a play cannot
+be in a song. A song can be joined in with; a play usually cannot.
+Artifacts have nesting rules (partial order on classes) and
+**joinability** — some invite participatory engagement (rhizomatic),
+others enforce spectatorial distance (arborescent).
+
+**Source/sink typology**: a book affects differently than a toothbrush
+or a pocketwatch. Each artifact class has distinct affective (how it
+changes the agent's A-letter / mode of being) vs. effective (how it
+changes the agent's P-letter / mode of action) profiles.
+
+### 5.15 TAPS as Four Existential Questions
+
+Each signature letter answers a distinct existential question:
+
+| Letter | Question | Sub-modes |
+|--------|----------|-----------|
+| **T** | How do I *become*? | I (involutionarily), E (evolutionarily), T (transvolutionarily) |
+| **A** | How *am* I? | A (adpressively), I (impressively), E (expressively) |
+| **P** | How do I *act*? | R (consumptively), U (consummatively), X (balanced) |
+| **S** | How do I *create*? | D (disintegratively), P (preservatively), S (synthetically), I (integratively) |
+
+Together: the agent's dispositional name — its answer to the four
+fundamental questions of praxitive existence. This framing grounds
+the signature system in the unificity framework where every agent is
+simultaneously a unity (itself), a multiplicity (its type-set and
+relations), and a participant in unificity (the ensemble context,
+which is "always the most actualized, being the consummation of the
+combinatorial consumption of the unities & the multiplicities").
+
+### 5.16 Innovation Decay / Forgetting
+
+Currently, k (knowledge) only increases or redistributes. Agents
+cannot *forget*. But not all knowledge is like riding a bike — some
+skills degrade without practice, some knowledge becomes obsolete.
+
+Proposed: a per-agent `k_decay_rate` bleeding k each step, modulated by:
+
+- **Type activity**: types involved in recent events (matched in
+  Jaccard comparisons, used in cross-metathesis) decay slower —
+  they're being "practiced."
+- **Latent layer weight**: deeply habituated knowledge (high
+  praxistatic surplus) decays slower — procedural/physical memory.
+- **Isolation**: agents with fewer connections (low affordance score)
+  lose knowledge faster — no relational reinforcement.
+- **Acquisition mode**: types from self-metathesis (syntegrative
+  praxis, internally developed) decay slower than types from
+  absorptive cross (externally received). What you built yourself
+  you remember longer than what was given to you.
+
+Different types of knowledge decay differently: procedural (high
+physical memory, slow decay) vs. declarative (low physical memory,
+faster decay). This creates a natural selection pressure on types —
+actively used and deeply integrated knowledge persists; peripheral
+and unreinforced knowledge fades.
 
 ---
 
@@ -525,4 +602,6 @@ layer: they are the externalized products that outlast their producers.
 - Praxitive syntegration vs. syntegrative praxis (§5.11)
 - Surplus vs. expressed value distinction (§5.12)
 - Praxistatic surplus / two-layer agent architecture (§5.13)
-- Artifact agents (§5.14, Stage 3D or later)
+- Artifact agents with substrate classes and containment rules (§5.14)
+- TAPS as four existential questions mapping (§5.15)
+- Innovation decay / forgetting mechanism (§5.16)
