@@ -82,6 +82,9 @@ class MetatheticAgent:
     _dissolved: bool = field(default=False, init=False, repr=False)
     _deep_stasis: bool = field(default=False, init=False, repr=False)
 
+    # -- Effective mu (set each step by _step_agents) -----------------------
+    _mu_eff: float = field(default=0.0, init=False, repr=False)
+
     # -- Temporal orientation gate constants --------------------------------
     _NOVELTY_WINDOW: int = field(default=5, init=False, repr=False)
     _STAGNATION_THRESHOLD: int = field(default=50, init=False, repr=False)
@@ -561,6 +564,8 @@ class MetatheticEnsemble:
         seed_entropy: float = 0.0,
         trust_update_rate: float = 0.0,
         trust_decay_rate: float = 0.0,
+        mu_affordance_sensitivity: float = 0.0,
+        mu_lower_bound: float | None = None,
     ):
         self.alpha = alpha
         self.a = a
@@ -579,6 +584,8 @@ class MetatheticEnsemble:
         self.seed_entropy = seed_entropy
         self.trust_update_rate = trust_update_rate
         self.trust_decay_rate = trust_decay_rate
+        self.mu_affordance_sensitivity = mu_affordance_sensitivity
+        self.mu_lower_bound = mu_lower_bound
 
         self._rng = _random.Random(seed)
         self._next_type_id = n_agents + 1
@@ -685,8 +692,14 @@ class MetatheticEnsemble:
             sigma_val = sigma_linear(agent.Xi_local, self.sigma0, self.gamma)
             B = sigma_val * B_raw
 
-            mu_eff_local = agent.mu_local if agent.mu_local is not None else self.mu
-            D = mu_eff_local * agent.M_local
+            base_mu = agent.mu_local if agent.mu_local is not None else self.mu
+            # Endogenous mu: affordance reduces effective death rate.
+            # With mu_affordance_sensitivity=0 (default), mu_eff = base_mu exactly.
+            mu_eff = base_mu * (1.0 - self.mu_affordance_sensitivity * agent.affordance_score)
+            floor = self.mu_lower_bound if self.mu_lower_bound is not None else 0.0
+            mu_eff = max(floor, mu_eff)
+            agent._mu_eff = mu_eff
+            D = mu_eff * agent.M_local
             dM = B - D
 
             agent.dM_history.append(dM)
@@ -1175,6 +1188,17 @@ class MetatheticEnsemble:
             snapshot["tau_pair_mean"] = (
                 sum(all_pair_vals) / len(all_pair_vals) if all_pair_vals else 0.5
             )
+
+            # Endogenous mu diagnostics.
+            active_mu_eff = [a._mu_eff for a in active]
+            if active_mu_eff:
+                mu_mean = sum(active_mu_eff) / len(active_mu_eff)
+                mu_var = sum((x - mu_mean) ** 2 for x in active_mu_eff) / len(active_mu_eff)
+                snapshot["mu_eff_mean"] = mu_mean
+                snapshot["mu_eff_std"] = math.sqrt(mu_var)
+            else:
+                snapshot["mu_eff_mean"] = self.mu
+                snapshot["mu_eff_std"] = 0.0
 
             # TAPS signature distribution for active agents.
             sig_counts: dict[str, int] = {}

@@ -1471,5 +1471,116 @@ class TestTrustMetrics(unittest.TestCase):
             self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
 
 
+class TestEndogenousMu(unittest.TestCase):
+    """Phase 4: Death rate modulated by affordance score."""
+
+    def test_default_mu_unchanged(self):
+        """mu_affordance_sensitivity=0 means D uses base mu exactly."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.02,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+            mu_affordance_sensitivity=0.0,
+        )
+        ens.run(steps=20)
+        for agent in ens.agents:
+            if agent.active:
+                # With sensitivity=0, mu_eff should equal base mu exactly
+                base_mu = agent.mu_local if agent.mu_local is not None else ens.mu
+                self.assertAlmostEqual(agent._mu_eff, base_mu, places=12)
+
+    def test_high_affordance_lowers_mu(self):
+        """Agent with affordance_score approaching 1.0 has mu_eff < base mu when sensitivity > 0."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.02,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+            mu_affordance_sensitivity=0.5,
+        )
+        # Manually pump affordance ticks to get a high affordance_score
+        for agent in ens.agents:
+            agent._affordance_ticks = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        ens._step_agents()
+        for agent in ens.agents:
+            if agent.active:
+                base_mu = agent.mu_local if agent.mu_local is not None else ens.mu
+                self.assertLess(agent._mu_eff, base_mu)
+
+    def test_mu_lower_bound_respected(self):
+        """mu_eff >= mu_lower_bound even with high affordance and sensitivity."""
+        floor = 0.01
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.02,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+            mu_affordance_sensitivity=1.0,
+            mu_lower_bound=floor,
+        )
+        # Perfect affordance => would try to go to 0.0 without floor
+        for agent in ens.agents:
+            agent._affordance_ticks = [1] * 10
+        ens._step_agents()
+        for agent in ens.agents:
+            if agent.active:
+                self.assertGreaterEqual(agent._mu_eff, floor)
+
+    def test_mu_never_negative(self):
+        """Even with extreme affordance_score and sensitivity, mu_eff >= 0."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.02,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+            mu_affordance_sensitivity=2.0,  # Extreme sensitivity
+        )
+        for agent in ens.agents:
+            agent._affordance_ticks = [1] * 10  # Max affordance
+        ens._step_agents()
+        for agent in ens.agents:
+            if agent.active:
+                self.assertGreaterEqual(agent._mu_eff, 0.0)
+
+    def test_snapshot_has_mu_eff_fields(self):
+        """mu_eff_mean and mu_eff_std keys present in snapshot."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.02,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+            mu_affordance_sensitivity=0.3,
+        )
+        traj = ens.run(steps=10)
+        for snap in traj:
+            self.assertIn("mu_eff_mean", snap)
+            self.assertIn("mu_eff_std", snap)
+            self.assertIsInstance(snap["mu_eff_mean"], float)
+            self.assertIsInstance(snap["mu_eff_std"], float)
+            self.assertGreaterEqual(snap["mu_eff_std"], 0.0)
+
+    def test_backward_compat_mu_zero_sensitivity(self):
+        """sensitivity=0 produces bit-identical trajectories to Phase 3 defaults."""
+        kwargs = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        # Phase 3 baseline: no mu params
+        traj_base = MetatheticEnsemble(**kwargs).run(steps=50)
+        # Phase 4 explicit zeros
+        traj_mu = MetatheticEnsemble(
+            **kwargs, mu_affordance_sensitivity=0.0, mu_lower_bound=None,
+        ).run(steps=50)
+
+        for s1, s2 in zip(traj_base, traj_mu):
+            self.assertAlmostEqual(s1["total_M"], s2["total_M"], places=10)
+            self.assertAlmostEqual(s1["k_total"], s2["k_total"], places=10)
+            self.assertAlmostEqual(s1["Xi_mean"], s2["Xi_mean"], places=10)
+            self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
+
+
 if __name__ == "__main__":
     unittest.main()
