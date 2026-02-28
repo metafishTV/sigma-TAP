@@ -585,6 +585,8 @@ class MetatheticEnsemble:
         self.trust_update_rate = trust_update_rate
         self.trust_decay_rate = trust_decay_rate
         self.mu_affordance_sensitivity = mu_affordance_sensitivity
+        if mu_lower_bound is not None and mu_lower_bound < 0.0:
+            raise ValueError(f"mu_lower_bound must be >= 0, got {mu_lower_bound}")
         self.mu_lower_bound = mu_lower_bound
 
         self._rng = _random.Random(seed)
@@ -608,6 +610,7 @@ class MetatheticEnsemble:
             else:
                 agent.alpha_local = alpha
                 agent.mu_local = mu
+            agent._mu_eff = agent.mu_local  # Pre-set so field is never misleading 0.0
             self.agents.append(agent)
 
         self.env = EnvironmentState(
@@ -695,6 +698,9 @@ class MetatheticEnsemble:
             base_mu = agent.mu_local if agent.mu_local is not None else self.mu
             # Endogenous mu: affordance reduces effective death rate.
             # With mu_affordance_sensitivity=0 (default), mu_eff = base_mu exactly.
+            # NOTE: affordance_score reflects ticks from the *previous* step.
+            # _update_affordance_ticks() runs after _step_agents() in the run
+            # loop, so this is a one-step lag by design.
             mu_eff = base_mu * (1.0 - self.mu_affordance_sensitivity * agent.affordance_score)
             floor = self.mu_lower_bound if self.mu_lower_bound is not None else 0.0
             mu_eff = max(floor, mu_eff)
