@@ -3,25 +3,35 @@
 
   "session_meta": {
     "date": "2026-02-28",
-    "commit": "55ccd05",
+    "commit": "3268be4",
     "branch": "main",
     "files_modified": [
-      "docs/plans/2026-02-28-memory-buffer-skill-design.md",
-      "docs/plans/2026-02-28-memory-buffer-skill-plan.md",
-      ".claude/skills/handoff/SKILL.md",
-      ".claude/skills/resume/SKILL.md",
-      ".claude/buffer/handoff.json"
+      "simulator/metathetic.py",
+      "tests/test_metathetic.py",
+      ".gitignore",
+      "docs/references/Ruesch & Bateson, Communication, excerpt, pg. 196-237.pdf",
+      "docs/references/Ruesch & Bateson, Communication, excerpt, pg. 283-299 - Conclusion.pdf",
+      "docs/references/COMMUNICATION_NETWORKS_and_LEVELS_Jakobs.pdf",
+      "docs/references/Bateson table.png",
+      "docs/plans/2026-02-25-p4-reproducibility-auditability.md",
+      "outputs/figures/taps_correlation.png",
+      "outputs/figures/taps_texture.png"
     ],
-    "tests": "295/295 passing"
+    "tests": "345/345 passing"
   },
 
   "active_work": {
-    "current_phase": "Stage 3B Phase 0 — Memory Buffer Skill",
+    "current_phase": "Stage 3B COMPLETE — all 7 phases implemented and verified",
     "completed_this_session": [
-      "Designed memory buffer skill (Approach A + B element)",
-      "Wrote design doc with full concept map spec",
-      "Created /handoff and /resume SKILL.md files",
-      "Populated initial handoff.json with concept map"
+      "Stage 3B Phase 1: Sigma wiring + per-agent Xi (commit 41956b7)",
+      "Stage 3B Phase 2: Seed entropy with per-agent alpha/mu offsets (commits 1c8b355, ac5c6a5)",
+      "Stage 3B Phase 3: Trust metrics tau_self + tau_pair (commits a4664f2, d46afa7)",
+      "Stage 3B Phase 4: Endogenous mu from affordance modulation (commits d801ce3, bb70004)",
+      "Stage 3B Phase 5: Topology / family group tracking (commits 69d0cf9, 018dd80)",
+      "Stage 3B Phase 6: Junction-mode adjacency metric (commits 3285286, 274b014)",
+      "Stage 3B Phase 7: Integration tests + regression verification (commit 3a2a1b8)",
+      "Housekeeping: .gitignore, stale file cleanup, push 14 commits (commit 3268be4)",
+      "Preserved R&B reference materials in docs/references/ (commit 515049b)"
     ],
     "in_progress": null,
     "blocked_by": null
@@ -71,8 +81,8 @@
       "ref": "§5.47"
     },
     {
-      "what": "Four-level trust: τ_self, τ_pair, τ_group, τ_context",
-      "chose": "τ_context is simultaneously a priori and constructed",
+      "what": "Four-level trust: tau_self, tau_pair, tau_group, tau_context",
+      "chose": "tau_context is simultaneously a priori and constructed",
       "why": "Context both conditions and is constituted by agent gestures",
       "ref": "§5.48"
     },
@@ -85,19 +95,58 @@
     {
       "what": "Conservation law = principle of least action",
       "chose": "Structural identity (not just analogy) with Fermat/Feynman",
-      "why": "Minimal praxis for maximal syntegration ≡ stationary action",
+      "why": "Minimal praxis for maximal syntegration = stationary action",
       "ref": "§5.50"
+    },
+    {
+      "what": "Trust stability metric: CV-squared vs raw variance",
+      "chose": "Coefficient of variation squared: cv_sq = var / (mean^2 + eps)",
+      "why": "Raw variance is scale-dependent; dM values easily 1-100 making stability always near-zero. CV^2 is scale-invariant.",
+      "ref": "Phase 3 code quality review"
+    },
+    {
+      "what": "Junction metric: symmetric vs asymmetric trust",
+      "chose": "Symmetric: average of both agents' trust views",
+      "why": "Asymmetric junction would make cross-metathesis eligibility depend on evaluation order. Symmetry is more principled.",
+      "ref": "Phase 6 code quality review"
+    },
+    {
+      "what": "Absorptive family creation: conditional vs unconditional",
+      "chose": "Always create family on absorptive cross (unconditional)",
+      "why": "Conditional guard silently skipped first-generation agents, creating data integrity gap. Novel cross and self-metathesis were already unconditional.",
+      "ref": "Phase 5 code quality review"
+    },
+    {
+      "what": "Post-3B sequencing",
+      "chose": "Housekeeping -> exploration run -> Levinas/R&B reflection -> TASKS.md",
+      "why": "R&B and Levinas material could reshape 3C roadmap, so TASKS.md comes AFTER discussion, not before.",
+      "ref": null
     }
   ],
 
   "open_threads": [
     {
-      "thread": "Stage 3B implementation planning (Phases 1-7)",
+      "thread": "Stage 3B implementation — ALL 7 PHASES COMPLETE. 50 new tests, 345 total.",
       "status": "noted",
-      "ref": "MEMORY.md Stage 3B section"
+      "ref": "Plan: C:\\Users\\user\\.claude\\plans\\shiny-beaming-tide.md"
     },
     {
-      "thread": "Centrifugal/diffuse alternation observation (evolution→anapression→projection→disintegration = out→in→out→in)",
+      "thread": "Exploration run: enable all Stage 3B features, examine trajectory, contrast with Youn empirical data",
+      "status": "noted",
+      "ref": null
+    },
+    {
+      "thread": "Reflection & discussion: Levinas material + R&B review for 3C relevance. R&B mapping: Level I->L11, II->L12/L21, III->family groups, IV->L22",
+      "status": "noted",
+      "ref": "docs/references/"
+    },
+    {
+      "thread": "TASKS.md generation — deferred until AFTER reflection/discussion",
+      "status": "deferred",
+      "ref": null
+    },
+    {
+      "thread": "Centrifugal/diffuse alternation observation (evolution->anapression->projection->disintegration = out->in->out->in)",
       "status": "deferred",
       "ref": null
     },
@@ -105,11 +154,6 @@
       "thread": "Turbulence reconception needs full rethink of turbulence.py",
       "status": "deferred",
       "ref": "§5.42"
-    },
-    {
-      "thread": "Memory buffer skill Phase 0 — COMPLETE. /handoff and /resume ready.",
-      "status": "noted",
-      "ref": "docs/plans/2026-02-28-memory-buffer-skill-plan.md"
     }
   ],
 
@@ -123,7 +167,7 @@
       "thesis": {
         "base": "positing / the thetic moment",
         "maps_to_TAPS": "T (transvolution)",
-        "time_mode": "π (thetic, L11, fastest)",
+        "time_mode": "pi (thetic, L11, fastest)",
         "equiv": null,
         "collision": null,
         "suggest": null
@@ -131,15 +175,15 @@
       "athesis": {
         "base": "counter-positing (apposite, NOT oppositional)",
         "maps_to_TAPS": "A (anopression)",
-        "time_mode": "α (athetic, L12)",
+        "time_mode": "alpha (athetic, L12)",
         "equiv": null,
-        "collision": "≠ antithesis (antithesis = counter-athesis, a different thing entirely)",
+        "collision": "!= antithesis (antithesis = counter-athesis, a different thing entirely)",
         "suggest": null
       },
       "synthesis": {
         "base": "combining / integration",
         "maps_to_TAPS": "S (syntegration)",
-        "time_mode": "σ (synthetic, L21)",
+        "time_mode": "sigma (synthetic, L21)",
         "equiv": null,
         "collision": null,
         "suggest": null
@@ -147,9 +191,9 @@
       "metathesis": {
         "base": "context window / before-after frame / enables synchronicity of the other three. Without metathesis, thesis-athesis-synthesis remain serial and diachronic",
         "maps_to_TAPS": "the M-process framing TAPS itself",
-        "time_mode": "Π (metathetic, L22, slowest)",
+        "time_mode": "Pi (metathetic, L22, slowest)",
         "equiv": null,
-        "collision": "≠ linguistic metathesis (phoneme transposition)",
+        "collision": "!= linguistic metathesis (phoneme transposition)",
         "suggest": null
       }
     },
@@ -158,7 +202,7 @@
       "evolution": {
         "base": "unfolding / multiplicity / explicate direction",
         "equiv": ["Bohm:explicate order", "extensivity", "exteriority"],
-        "collision": "≠ biological evolution (no telos implied)",
+        "collision": "!= biological evolution (no telos implied)",
         "suggest": null
       },
       "involution": {
@@ -170,13 +214,13 @@
       "condensation": {
         "base": "tendency toward actualized structure / unificity",
         "equiv": ["transvolution consummated", "third irreducible modality"],
-        "collision": "≠ condension (condension = involution specifically, not the consummation)",
+        "collision": "!= condension (condension = involution specifically, not the consummation)",
         "suggest": null
       },
       "condension": {
         "base": "specific vector of involution / densification / enfolding",
         "equiv": ["involution as directed process"],
-        "collision": "≠ condensation (which is the consummation of evolution+involution)",
+        "collision": "!= condensation (which is the consummation of evolution+involution)",
         "suggest": null
       },
       "transvolution_constraints": {
@@ -222,7 +266,7 @@
       "depression": {
         "base": "pressing-down / suppression of possibility",
         "equiv": null,
-        "collision": "≠ clinical depression (though structural parallel may exist)",
+        "collision": "!= clinical depression (though structural parallel may exist)",
         "suggest": null
       },
       "suppression": {
@@ -234,11 +278,11 @@
       "oppression": {
         "base": "pressing-against / resistance from outside",
         "equiv": ["Sartre:counter-finality (partial)"],
-        "collision": "≠ political oppression exclusively (though it includes it)",
+        "collision": "!= political oppression exclusively (though it includes it)",
         "suggest": null
       },
-      "_chain_order": "anopression ← expression ← impression ← adpression ↔ compression → depression → suppression → oppression → anapression",
-      "_note": "α parameter = anapressive phase constant (L12 athetic time). σ parameter = anopressive phase constant (L21 synthetic time). See §5.45"
+      "_chain_order": "anopression <- expression <- impression <- adpression <-> compression -> depression -> suppression -> oppression -> anapression",
+      "_note": "alpha parameter = anapressive phase constant (L12 athetic time). sigma parameter = anopressive phase constant (L21 synthetic time). See §5.45"
     },
     "P": {
       "_base": "how-I-act / action-axis / praxis proper",
@@ -263,7 +307,7 @@
       "consummation": {
         "base": "syntegration completing praxitive structures / doing",
         "equiv": null,
-        "collision": "≠ consumption (consumption = using structure; consummation = completing through absorption)",
+        "collision": "!= consumption (consumption = using structure; consummation = completing through absorption)",
         "suggest": null
       },
       "habitation": {
@@ -286,7 +330,7 @@
     "S": {
       "_base": "how-I-create / creation-axis / synthesis at TAPS level",
       "integration": {
-        "base": "bringing-together into whole / L21-direction (env→system)",
+        "base": "bringing-together into whole / L21-direction (env->system)",
         "equiv": null,
         "collision": null,
         "suggest": null
@@ -368,8 +412,8 @@
         "collision": null,
         "suggest": null
       },
-      "_combinatorics": "8 mode configs (2^3) × 6 orderings (3!) = 48 base states. Power-law nesting: R^(I^P) ≠ (R^I)^P. See §5.30",
-      "_death": "collapse of RIP flow function / mode-lock (mode-flip frequency → 0). Not a specific config.",
+      "_combinatorics": "8 mode configs (2^3) x 6 orderings (3!) = 48 base states. Power-law nesting: R^(I^P) != (R^I)^P. See §5.30",
+      "_death": "collapse of RIP flow function / mode-lock (mode-flip frequency -> 0). Not a specific config.",
       "_falsification": "Stage 3X-RIP with F1-F8 regime. Must pass F1, F6, F8 to retain. See §5.30"
     },
     "cross_source": {
@@ -447,6 +491,26 @@
         "maps_to": "conservation law — all paths explored, constructive interference on stationary action",
         "ref": "§5.50",
         "suggest": null
+      },
+      "RB:Level_I": {
+        "maps_to": "intrapersonal / L11 / tau_self",
+        "ref": "docs/references/Ruesch & Bateson",
+        "suggest": null
+      },
+      "RB:Level_II": {
+        "maps_to": "interpersonal / L12+L21 / tau_pair",
+        "ref": "docs/references/Ruesch & Bateson",
+        "suggest": null
+      },
+      "RB:Level_III": {
+        "maps_to": "group / family topology / tau_group",
+        "ref": "docs/references/Ruesch & Bateson",
+        "suggest": null
+      },
+      "RB:Level_IV": {
+        "maps_to": "cultural / L22 / Mode 4 env drift / tau_context",
+        "ref": "docs/references/Ruesch & Bateson",
+        "suggest": "Deep review pending — user believes R&B may inform 3C"
       }
     }
   },
@@ -457,39 +521,60 @@
       "status": "NEW",
       "detail": "All entries created from design doc §4.2-4.8. Dialectic, T, A, P, S, RIP groups and cross_source mappings.",
       "session": "2026-02-28"
+    },
+    {
+      "check": "Stage 3B implementation — concept map unchanged",
+      "status": "PASS",
+      "detail": "All 7 phases were pure implementation of existing concepts (Xi, sigma, trust, mu, families, junction). No new theoretical concepts introduced.",
+      "session": "2026-02-28"
+    },
+    {
+      "check": "R&B communication levels mapping added",
+      "status": "NEW",
+      "detail": "Added RB:Level_I-IV cross_source entries mapping Ruesch & Bateson communication levels to L-matrix channels and trust tiers. Preliminary — deep review pending.",
+      "session": "2026-02-28"
     }
   ],
 
-  "compact_summary": "3B0:DONE|/handoff+/resume:live|cmap:dial+TAPS+RIP+xsrc|§5.46-50:RIP=R/E/P,behab,τ4,0≠null,cons=least-action|next:3B-plan-P1-7|σ-gap:met.py",
+  "compact_summary": "3B:DONE:P1-7|345t|σ(Xi):wired|seed-ent:1e-7|τ:self+pair+CV2|mu-endo:aff-mod|fam:topology+lineage|jnc:symm-trust|R&B:refs-saved|next:explore-all→reflect-Levinas/R&B→TASKS.md",
 
   "codex": {
-    "version": 1,
+    "version": 2,
     "encoding": {
-      "3B0": "Stage 3B Phase 0",
       "3B": "Stage 3B",
+      "3B0": "Stage 3B Phase 0",
       "P1-7": "Phases 1 through 7",
+      "345t": "345 tests passing",
       "cmap": "concept map",
       "dial": "dialectic (thesis/athesis/synthesis/metathesis)",
       "TAPS": "Transvolution/Anopression/Praxis/Syntegration",
       "RIP": "Recursive-Reflective / Iterative-Integrative / Preservative-Praxitive",
       "xsrc": "cross-source mappings",
-      "σ-gap": "sigma feedback not wired into metathetic.py",
       "met.py": "metathetic.py",
-      "τ4": "four-level trust (self/pair/group/context)",
+      "tau4": "four-level trust (self/pair/group/context)",
       "PI": "practico-inert",
       "PX": "praxistatic",
       "R/E/P": "Real/Ego/Probability (RIP ontological registers)",
       "behab": "behabitation (hexis as being-qua-habitation)",
-      "0≠null": "zero is never valid — asymptotic null triggers phase change",
+      "0!=null": "zero is never valid — asymptotic null triggers phase change",
       "cons": "conservation law",
+      "sigma(Xi)": "sigma-TAP feedback loop: B = sigma(Xi) * B_raw",
+      "seed-ent": "seed entropy (per-agent param offsets)",
+      "CV2": "coefficient of variation squared (scale-invariant stability)",
+      "mu-endo": "endogenous mu (death rate modulated by affordance)",
+      "aff-mod": "affordance modulation",
+      "fam": "family groups / topology tracking",
+      "jnc": "junction-mode adjacency metric",
+      "symm-trust": "symmetric trust (average both agents' views)",
+      "R&B": "Ruesch & Bateson (Communication reference material)",
       "§X.Y": "design doc forward note section X.Y"
     },
     "rules": [
       "| separates topics",
       "= marks equivalence or assignment",
       ": marks containment or specification",
-      "→ marks directional mapping",
-      "≠ marks collision/non-equivalence",
+      "-> marks directional mapping",
+      "!= marks collision/non-equivalence",
       "/ separates alternatives or levels",
       "+ joins co-present elements",
       "Abbrevs: T/A/P/S = TAPS letters, R/I/P = RIP positions",
