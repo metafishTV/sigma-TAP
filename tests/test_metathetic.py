@@ -10,6 +10,7 @@ from simulator.metathetic import (
     EnvironmentState,
     MetatheticEnsemble,
     _jaccard,
+    _junction,
     _goal_alignment,
     _agent_weight,
     _temporal_threshold_multiplier,
@@ -1695,6 +1696,87 @@ class TestFamilyGroups(unittest.TestCase):
             self.assertAlmostEqual(s1["k_total"], s2["k_total"], places=10)
             self.assertAlmostEqual(s1["Xi_mean"], s2["Xi_mean"], places=10)
             self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
+
+
+class TestJunctionMetric(unittest.TestCase):
+    """Tests for the continuous junction-mode adjacency metric."""
+
+    def _make_agent(self, agent_id, type_set, steps_since=0, trust_map=None):
+        """Helper to create an agent with specific attributes for junction tests."""
+        a = MetatheticAgent(agent_id=agent_id, type_set=set(type_set), k=0.0, M_local=10.0)
+        a.steps_since_metathesis = steps_since
+        if trust_map is not None:
+            a.trust_map = trust_map
+        return a
+
+    def test_junction_zero_on_disjoint(self):
+        """Disjoint type_sets give junction=0.0 regardless of other factors."""
+        a1 = self._make_agent(0, {1, 2}, steps_since=5)
+        a2 = self._make_agent(1, {3, 4}, steps_since=5)
+        self.assertEqual(_junction(a1, a2), 0.0)
+        # Also with trust_weight > 0
+        self.assertEqual(_junction(a1, a2, trust_weight=1.0), 0.0)
+
+    def test_junction_equals_jaccard_when_same_phase(self):
+        """With trust_weight=0 and identical steps_since_metathesis, junction == jaccard."""
+        a1 = self._make_agent(0, {1, 2, 3}, steps_since=10)
+        a2 = self._make_agent(1, {2, 3, 4}, steps_since=10)
+        expected = _jaccard(a1.type_set, a2.type_set)
+        self.assertAlmostEqual(_junction(a1, a2, trust_weight=0.0), expected, places=10)
+
+    def test_junction_decays_with_temporal_distance(self):
+        """Different steps_since_metathesis values lower junction vs identical."""
+        a1 = self._make_agent(0, {1, 2, 3}, steps_since=0)
+        a2_same = self._make_agent(1, {2, 3, 4}, steps_since=0)
+        a2_far = self._make_agent(2, {2, 3, 4}, steps_since=100)
+        j_same = _junction(a1, a2_same, trust_weight=0.0)
+        j_far = _junction(a1, a2_far, trust_weight=0.0)
+        self.assertGreater(j_same, j_far,
+                           "Junction should decay with temporal distance")
+        # Both should be positive since types overlap
+        self.assertGreater(j_far, 0.0)
+
+    def test_junction_enhanced_by_trust(self):
+        """High trust (> 0.5) increases junction vs trust=0.5 (baseline)."""
+        a1 = self._make_agent(0, {1, 2, 3}, steps_since=5, trust_map={1: 0.9})
+        a2 = self._make_agent(1, {2, 3, 4}, steps_since=5, trust_map={0: 0.9})
+        j_with_trust = _junction(a1, a2, trust_weight=1.0)
+        j_no_trust = _junction(a1, a2, trust_weight=0.0)
+        self.assertGreater(j_with_trust, j_no_trust,
+                           "High trust should enhance junction above baseline")
+
+    def test_junction_weight_zero_preserves_dynamics(self):
+        """junction_weight=0 produces bit-identical trajectories to default (Phase 5)."""
+        kwargs = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        traj_default = MetatheticEnsemble(**kwargs).run(steps=50)
+        traj_jw0 = MetatheticEnsemble(junction_weight=0.0, **kwargs).run(steps=50)
+        for s1, s2 in zip(traj_default, traj_jw0):
+            self.assertAlmostEqual(s1["total_M"], s2["total_M"], places=10)
+            self.assertAlmostEqual(s1["k_total"], s2["k_total"], places=10)
+            self.assertAlmostEqual(s1["Xi_mean"], s2["Xi_mean"], places=10)
+            self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
+
+    def test_junction_weight_nonzero_runs_without_error(self):
+        """Non-zero junction_weight completes 100 steps without error."""
+        ens = MetatheticEnsemble(
+            n_agents=8, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+            junction_weight=0.5,
+            trust_update_rate=0.05,
+        )
+        traj = ens.run(steps=100)
+        self.assertEqual(len(traj), 100)
+        # Basic sanity: all snapshots have required keys
+        for snap in traj:
+            self.assertIn("total_M", snap)
+            self.assertIn("k_total", snap)
 
 
 if __name__ == "__main__":

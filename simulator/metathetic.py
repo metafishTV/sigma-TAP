@@ -411,6 +411,30 @@ def _jaccard(s1: set, s2: set) -> float:
     return len(s1 & s2) / len(s1 | s2)
 
 
+def _junction(a1: MetatheticAgent, a2: MetatheticAgent, trust_weight: float = 0.0) -> float:
+    """Continuous junction metric combining Jaccard + temporal proximity + trust.
+
+    Returns 0.0 for disjoint agents (jaccard=0). Otherwise:
+      junction = jaccard * temporal_factor * trust_factor
+
+    temporal_factor decays with |steps_since_metathesis| difference.
+    trust_factor modulates by pairwise trust when trust_weight > 0.
+
+    With trust_weight=0, same steps_since_metathesis: junction == jaccard.
+    """
+    j = _jaccard(a1.type_set, a2.type_set)
+    if j == 0.0:
+        return 0.0
+    delta = abs(a1.steps_since_metathesis - a2.steps_since_metathesis)
+    temporal_factor = 1.0 / (1.0 + 0.01 * delta)
+    if trust_weight > 0.0:
+        trust_pair = a1.trust_map.get(a2.agent_id, 0.5)
+        trust_factor = 1.0 + trust_weight * (trust_pair - 0.5)
+    else:
+        trust_factor = 1.0
+    return j * temporal_factor * trust_factor
+
+
 # Minimum combined L-matrix events (both agents) before signature
 # classification is used.  Below this, agents' dispositional signatures
 # are dominated by zero-event defaults (all converge to the same
@@ -569,6 +593,7 @@ class MetatheticEnsemble:
         trust_decay_rate: float = 0.0,
         mu_affordance_sensitivity: float = 0.0,
         mu_lower_bound: float | None = None,
+        junction_weight: float = 0.0,
     ):
         self.alpha = alpha
         self.a = a
@@ -591,6 +616,7 @@ class MetatheticEnsemble:
         if mu_lower_bound is not None and mu_lower_bound < 0.0:
             raise ValueError(f"mu_lower_bound must be >= 0, got {mu_lower_bound}")
         self.mu_lower_bound = mu_lower_bound
+        self.junction_weight = junction_weight
 
         self._rng = _random.Random(seed)
         self._next_type_id = n_agents + 1
@@ -982,7 +1008,15 @@ class MetatheticEnsemble:
                     continue
                 effective_threshold = cross_threshold * pair_mult
 
-                if L + G <= (W1 + W2) * effective_threshold:
+                # Junction bonus: when junction_weight > 0, nearby temporally-
+                # aligned agents with mutual trust get a boost to cross-
+                # metathesis eligibility. With junction_weight=0, bonus=0.
+                junction_bonus = 0.0
+                if self.junction_weight > 0.0:
+                    junction_bonus = self.junction_weight * _junction(
+                        a1, a2, trust_weight=self.trust_update_rate
+                    )
+                if L + G + junction_bonus <= (W1 + W2) * effective_threshold:
                     continue
 
                 # Eligible — determine mode.
@@ -1105,10 +1139,13 @@ class MetatheticEnsemble:
             if agent._dormant_steps < agent._RELATIONAL_DECAY_WINDOW:
                 continue
 
-            # Compute Jaccard weights to each active agent
+            # Compute similarity weights to each active agent
             weights = {}
             for other in active:
-                w = _jaccard(agent.type_set, other.type_set)
+                if self.junction_weight > 0.0:
+                    w = _junction(agent, other, trust_weight=self.trust_update_rate)
+                else:
+                    w = _jaccard(agent.type_set, other.type_set)
                 if w > 0:
                     weights[other.agent_id] = w
 
