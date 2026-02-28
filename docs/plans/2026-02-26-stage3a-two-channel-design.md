@@ -1526,3 +1526,104 @@ All forward notes §5.1–§5.45 are bookmarked for later stages. Key allocation
 - §5.39 (transvolution causal constraints)
 - §5.40 (praxis↔syntegration mutual action)
 - §5.41 (law of relativity — needs formalization)
+- §5.46 (R/I/P = Real/Ego/Probability ontological registers)
+- §5.47 (hexis as behabitation — Austin's behabitives extended)
+- §5.48 (four-level trust: τ_self, τ_pair, τ_group, τ_context)
+- §5.49 (zero as metathesis — asymptotic null, never true zero)
+- §5.50 (conservation law = principle of least action — photonic path-finding)
+
+---
+
+## §5.46 R / I / P = Real / Ego / Probability
+
+The RIP modes correlate naturally — without forcing — to ontological registers:
+
+| RIP position | Mode pair | Ontological register | Why |
+|---|---|---|---|
+| **R** (Recursive/Reflective) | Self-referential | **Real** | What refers back to itself has ground — reality IS self-reference |
+| **I** (Iterative/Integrative) | Subject-processing | **I / Ego** | The processing subject that steps through or unifies experience |
+| **P** (Preservative/Praxitive) | Structural possibility | **Probability** | The space of what could be maintained or created |
+
+RIP is a flow through ontological registers: from the real (self-grounded), through the ego (processing subject), into probability (structural possibility). And the reverse: probability (what might be) is processed by the ego (who evaluates) against the real (what grounds). The terms implied this from the start.
+
+This correlation was noted by the user as emergent from the terms themselves — not imposed but discovered. If it holds under testing (Stage 3X-RIP), it suggests RIP has deeper ontological structure than a mere computational convenience.
+
+## §5.47 Hexis as Behabitation
+
+Extending J.L. Austin's **behabitives** (speech acts expressing the attitude of being in social context):
+
+- **Praxis** = **habitation** — active, intentional dwelling in the world. Deliberate, protonomic.
+- **Hexis** = **behabitation** — the mode of *being-qua-habitation*. The autonomic substrate of dwelling. The "be-" prefix marks the ontological register (cf. Heidegger's Sein), distinguishing the mode-of-being from the activity.
+
+Austin's behabitives don't describe or command — they *enact a mode of being*. Similarly, hexis doesn't describe action or direct it — it enacts the automatic ground from which action can arise. Behabitation is hexis experienced from within; habitation is praxis experienced from within.
+
+This is a dividuation of Austin's original usage (expansion through structural splitting) rather than a deviation. The word "behabitive" already contained "be" + "habit" + "-ive" — the extension to "be-habitation" makes explicit what was implicit.
+
+## §5.48 Four-Level Trust Architecture (τ_self, τ_pair, τ_group, τ_context)
+
+Extends §5.20 (τ_pair) and §5.32 (τ_self) with two additional levels:
+
+| Trust level | L-channel | Character | Scale |
+|---|---|---|---|
+| **τ_self** | L11 (self→self) | Self-trust, confidence in own capacity | Singularity (agent) |
+| **τ_pair** | L12/L21 (system↔env) | Inter-agent trust, relational | Dyad |
+| **τ_group** | Aggregate of L12/L21 | Collective trust, emergent from pair dynamics | Ensemble |
+| **τ_context** | L22 (env→env) | Environmental/contextual trust, the ground condition | Field |
+
+### τ_context as Simultaneously A Priori and Constructed
+
+τ_context occupies a paradoxical position:
+- It is **behind** τ_self as a **propulsion** — a condition a priori. You are born into a trust context that precedes you. It affects τ_self as environmental ground.
+- It is **in front** of τ_self as what the agent's **gestures are making**. The agent's actions constitute the very context it inhabits.
+
+τ_context makes τ_self's gestures possible; τ_self's gestures make τ_context actual. This is the praxis↔syntegration cycle (§5.40) at the trust level.
+
+### Scale-Dependent Apparent Ordering
+
+The apparent ordering of trust levels depends on scale of observation:
+- A **particle** may experience τ_self as a priori to τ_context — its own state determines its context-relation. Apparent order: τ_self → τ_context.
+- A **human** experiences τ_context as a priori — born into a world with pre-existing trust configurations. Apparent order: τ_context → τ_self.
+
+Appearances deceive because the ordering is NOT sequential — it is **simultaneous**. The apparent ordering is an artifact of observational scale.
+
+### Trust Fed from Group to Context
+
+If a group is established, τ_group feeds into τ_context (the group's collective trust becomes part of the contextual ground). But τ_context also feeds back into τ_group (the environmental trust field shapes what groups can form). Sequential thinking imposes a false linearity; the actual architecture is circular: τ_self ↔ τ_pair ↔ τ_group ↔ τ_context ↔ τ_self.
+
+> **Implementation note**: τ_group = mean or median of τ_pair values within a cluster. τ_context = a global or environmental trust field, possibly initialized from τ_group values but evolving on its own (slower, L22-speed) timescale. Feed τ_context back into τ_self as a modulating factor on the agent's self-trust floor.
+
+## §5.49 Zero as Metathesis — Asymptotic Null
+
+**Is 0 ever a valid parameter?** No. All dynamics asymptotically approach null, but null itself represents a **metathesis** — a phase change — not a true zero.
+
+Even collapse or annihilation flows into a deeper nest of praxis, because praxis is always conserved (§5.38). What looks like zero is the system crossing a phase boundary into a different mode. The deferred item is always the **consummation/synthesis**, not the praxis itself — praxis continues through the transition.
+
+Implications:
+1. **No parameter should ever reach exactly 0** in the simulation. The seed entropy (§5.36) handles initial conditions; an **asymptotic floor** handles runtime. Below some minimum threshold, the parameter triggers a metathesis event rather than reaching null.
+2. **The annular deadzone** (§5.35) is not zero — it is the phase boundary. The empty center of the donut is not "nothing" but the metathetic transition zone.
+3. **Death** (§5.30) as mode-lock is not zero RIP — it is RIP approaching a phase boundary where mode-flipping capacity collapses into a different kind of process.
+
+> **Implementation note**: Define `EPSILON_FLOOR ≈ 1e-12` (or scale-appropriate). When any parameter approaches this floor, trigger a metathesis event handler rather than allowing it to reach zero. This is consistent with how physical systems work: absolute zero temperature is asymptotically unreachable; what happens near it is phase transitions (Bose-Einstein condensation, superfluidity), not "nothing."
+
+## §5.50 Conservation Law as Principle of Least Action — Photonic Path-Finding
+
+The conservation law (§5.38, §5.41) — **minimal praxis for maximal syntegration** — is structurally identical to the **principle of least action** in physics.
+
+**Fermat's principle**: Light takes the path minimizing travel time.
+**Feynman's path integral**: All paths are praxitively explored; constructive interference (maximal coherent summation = maximal syntegration) occurs along the path of stationary action (minimal praxitive variation).
+**Conservation law**: The system takes the path minimizing praxitive expenditure for maximal syntegrative yield.
+
+These are not analogies — they may be the **same law** expressed in different registers:
+
+| Framework | "Praxis" | "Syntegration" | "Conservation" |
+|---|---|---|---|
+| Classical mechanics | Action (∫L dt) | Trajectory realized | δS = 0 (stationary action) |
+| Optics (Fermat) | Travel time | Light path realized | Minimal time |
+| Quantum (Feynman) | Phase contribution per path | Constructive interference | Stationary phase |
+| sigma-TAP (§5.38) | Praxitive expenditure | Syntegrative yield | Minimal praxis / maximal syntegration |
+
+**Photonic path-finding** is the conservation law operating at the most fundamental physical scale. Light doesn't "know" the shortest path. All paths contribute (all praxis is explored), but the paths that survive (maximal syntegration = constructive interference) are exactly those with minimal praxitive cost (stationary action). The "intelligence" of light is not intelligence at all — it is the conservation law expressing itself.
+
+This suggests that the conservation law, if correct, is not merely an optimization heuristic for the simulation but a candidate **fundamental principle** — the metathetic expression of what physics calls the principle of least action.
+
+> **Status**: Highly speculative. The structural isomorphism is clear, but whether it constitutes identity (same law, different expression) or analogy (similar structure, different substance) requires formalization. Deferred to future theoretical work.
