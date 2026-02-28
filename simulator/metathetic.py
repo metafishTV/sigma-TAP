@@ -58,8 +58,11 @@ class MetatheticAgent:
     Xi_local: float = 0.0  # Cumulative affordance exposure (per-agent)
 
     # -- Per-agent parameter offsets (seed entropy) --------------------------
-    alpha_local: float | None = None  # Per-agent alpha (None = use ensemble default)
-    mu_local: float | None = None     # Per-agent mu (None = use ensemble default)
+    # None = use ensemble default. The ensemble always sets these to concrete
+    # floats during construction; None serves as a safety net for agents
+    # created outside the ensemble (e.g., in tests or future phases).
+    alpha_local: float | None = None  # Per-agent alpha
+    mu_local: float | None = None     # Per-agent mu
 
     # -- L-matrix event ledger (Emery channels) ------------------------------
     # L11: intrapraxis (self-transformation)
@@ -258,6 +261,10 @@ class MetatheticAgent:
         Composite gets union of type_sets and sum of k.
         Absorbed agent goes dormant (state preserved for potential
         recursive re-entry).
+
+        Note: absorber retains its own alpha_local/mu_local (identity
+        persists through absorption). Absorbed agent's params are not
+        merged — this is intentional asymmetry vs novel_cross averaging.
         """
         if a1.M_local >= a2.M_local:
             absorber, absorbed = a1, a2
