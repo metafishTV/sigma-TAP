@@ -744,6 +744,75 @@ Unificity IS that third term: neither agent (unity) nor ensemble
 This is why the Critique remained unfinished — the architecture needed
 the meso- register that Sartre intuited but couldn't formalize.
 
+### 5.18a Term Mapping: Sartre → Metathesis Framework
+
+Full translation table (Sartre on left, our terms on right):
+
+| Sartre (Critique) | Metathesis Framework |
+|---|---|
+| Incarnation | Incarnation |
+| Totalization-of-envelopment | Metathesis-as-enfoldment |
+| Totalization of exteriority | Extensive metathesis = explicate order |
+| Totalization of interiority | Intensive metathesis = implicate order |
+| Anti-labour | Entropy |
+| Immanence | Anapression (pressing in/down, reflective) |
+| Transcendence | Anopression (pressing out/up, projective) |
+| Exteriority of immanence | Explicate order (cf. extensive metathesis) |
+| Transcendent exteriority (unthinkable limit) | Implicate order = anopressive extensivity (projective delimit) |
+| Transcendence & internal limit of practical freedom | Anopression & reflective delimit of praxitive freedom |
+| Unity — Unification | Synthesis — Synthesized |
+| Conflict — Contradiction | Tension — Contra-diction |
+| Totalization & retotalization | Metathesis & remetathesis |
+| Retotalized totalization | Remetathesized metathesis |
+| Alteration & alienation | Alterity & disincarnation |
+| Drift — deviation | Drift — deviation (unchanged) |
+| Anti-dialectic | Syntegrative metathesis |
+| Diachronic totalization | Diachronic metathesis |
+| Synchronic totalization | Synchronic metathesis |
+| Pledge, pledged | Impress, impressed |
+| Practico-inert | Praxistatic |
+| Milieu | Matrix |
+| Ensemble | Network |
+
+**Key architectural implications**:
+
+- Extensive/intensive metathesis maps to L12/L21 channels and to
+  manifest/latent layers (§5.13). The explicate order IS the manifest
+  layer; the implicate order IS the latent layer.
+- Anapression/anopression maps to involution/evolution in the T-letter
+  and specifies the directional vector that "immanence"/"transcendence"
+  leave implicit.
+- "Transcendent exteriority" as "projective delimit" (not "unthinkable
+  limit") is where the framework surpasses Sartre: the infinite is not
+  unthinkable but projectable.
+- Anti-dialectic = syntegrative metathesis confirms §5.11: artifacts
+  do syntegrative metathesis (= anti-dialectic); agents do praxitive
+  syntegration (= dialectic proper).
+- Group-in-fusion = the biuni→poly transition in the vocality spectrum
+  — the moment when serial/pairwise becomes collective/polydirectional.
+- Praxis-process / process-praxis maps to our phenomenological /
+  ontological registers: the same metathesis viewed from within vs.
+  from without.
+
+**Glossary terms near-deployable in the framework**:
+
+- **Active passivity**: agent choosing absorptive cross (freely
+  consenting to inertia for the common praxis). High L21 signature.
+- **Adversity-coefficient** (implying prosperity-coefficient): per-agent
+  environmental resistance parameter. Connected to L22 channel.
+- **Group-in-fusion (gif)**: biuni→poly transition in vocality.
+  Implies institution-in-fusion (iif) and individual-in-fusion.
+- **Hexis**: inert stable condition = praxistatic surplus (§5.13).
+  Confusion with "exis" (vol. 1) reflects real terminological ambiguity.
+- **Passive activity**: what artifacts do — they are passively active.
+  Syntegrative praxis IS passive activity.
+- **Pledged/impressed group**: group constituted by shared impression.
+  L-matrix records impressions.
+- **Gathering**: pre-group state = series capable of becoming a group.
+  Relevant to §5.4 (family group formation).
+- **Negatite**: activity containing negativity integrally. Relevant to
+  novel cross-metathesis (creation through dissolution).
+
 ---
 
 ## 6. Success Criteria
