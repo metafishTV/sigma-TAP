@@ -3,7 +3,7 @@
 
   "session_meta": {
     "date": "2026-02-28",
-    "commit": "ec6b159",
+    "commit": "55ccd05",
     "branch": "main",
     "files_modified": [
       "docs/plans/2026-02-28-memory-buffer-skill-design.md",
@@ -23,7 +23,7 @@
       "Created /handoff and /resume SKILL.md files",
       "Populated initial handoff.json with concept map"
     ],
-    "in_progress": "Testing and committing the skill",
+    "in_progress": null,
     "blocked_by": null
   },
 
@@ -107,7 +107,7 @@
       "ref": "§5.42"
     },
     {
-      "thread": "Memory buffer skill Phase 0 — commit and run first real /handoff",
+      "thread": "Memory buffer skill Phase 0 — COMPLETE. /handoff and /resume ready.",
       "status": "noted",
       "ref": "docs/plans/2026-02-28-memory-buffer-skill-plan.md"
     }
@@ -460,7 +460,7 @@
     }
   ],
 
-  "compact_summary": "3B0:handoff-skill/done|cmap:dial+TAPS+RIP+xsrc|§5.46-50:RIP=R/E/P,behab,τ4,0≠null,cons=least-action|next:3B-plan-P1-7",
+  "compact_summary": "3B0:DONE|/handoff+/resume:live|cmap:dial+TAPS+RIP+xsrc|§5.46-50:RIP=R/E/P,behab,τ4,0≠null,cons=least-action|next:3B-plan-P1-7|σ-gap:met.py",
 
   "codex": {
     "version": 1,
