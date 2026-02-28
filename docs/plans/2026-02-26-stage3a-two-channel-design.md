@@ -859,3 +859,267 @@ Full translation table (Sartre on left, our terms on right):
 - Biunidirectional vs. polydirectional/polyvocal interactivity (§5.14)
 - Containment vs. reference nesting rules for artifacts (§5.14)
 - Meshability (Gruen) replaces joinability (§5.14)
+- Sartre→metathesis term mapping (§5.18, §5.18a)
+- Hexis as processual concept / praxis↔hexis cycle (§5.19)
+- Scarcity-abundance jana / trust metric τ (§5.20)
+- Counter-thesis typology (counter-thesis, -athesis, -synthesis, -metathesis) (§5.21)
+- Endogenous mu / counter-thesis generation by innovation activity (§5.22)
+- The differential as dividuation / agent-project field (§5.23)
+- Practico-inert ↔ praxistatic: ontological ↔ phenomenological tetrad mapping (§5.24)
+- Differential time dilation across L-channels with central synthetic-deferral clock (§5.25)
+- Beneficial vs. detrimental apocalypses / group fusion typology (§5.26)
+- Metathesis/demetathesis dialectic and demetathesis bin (§5.27)
+- Metathematization, drift, M(t)/s(t) split, sigma-TAP math gaps (§5.28)
+- Actor/artifact naming convention (§5.29)
+
+---
+
+## §5.19 Hexis as Processual Concept (Praxis ↔ Hexis Cycle)
+
+Reference: Sartre, *Critique of Dialectical Reason* Vol. 1, concept of hexis/exis.
+
+Hexis is not merely "inert, stable condition opposed to praxis" (Vol. 2 glossary). The fuller picture from Vol. 1: **hexis is what praxis becomes when it is absorbed into the practico-inert field** — actively degraded praxis. Not the absence of action but the *sedimentation* of what was once active freedom into passive disposition.
+
+This gives hexis a **temporal structure**: praxis → hexis is a *transition*, not an opposition. An agent whose TAPS signature has stabilized (approaching consummation-completion, §5.8) is precisely an agent whose praxis is becoming hexis — living activity sedimenting into passive disposition.
+
+**Group-level mapping**: A group-in-fusion is a group *recovering praxis from hexis* — dissolving inert serial dispositions under pressure to become active again. A State is a fused institution; a Society (civilization) is a fused collective. The fusion/dissolution cycle maps to the praxis↔hexis cycle at the group level.
+
+**Implementation note**: the praxis→hexis transition could be detected from TAPS signature stabilization rate. An agent whose signature hasn't changed in N steps despite ongoing events is undergoing hexis. The reverse (hexis→praxis, i.e., group-in-fusion) would be detectable from sudden signature diversification under pressure.
+
+## §5.20 Scarcity-Abundance as Jana / Trust Metric τ
+
+Sartre treats scarcity as a foundational given. The unificity framework reformulates:
+
+**Scarcity and abundance are a jana** — a Janus-type dipole (not a spectrum). Where there is scarcity there is always at least an abundance *of* scarcity; where there is abundance there is always at least a scarcity *of* scarcity itself (which makes abundance fragile). The two faces are simultaneous, not endpoints of a gradient. Jana (or janum) rather than spectrum/spectra.
+
+**Trust metric τ**: a per-agent-pair or per-cluster measure (0 to 1) that modulates the effective scarcity experienced by agents:
+
+```
+effective_scarcity(agent) = resource_pressure / (1 + τ_mean * sharing_coefficient)
+```
+
+A high-trust system (τ → 1) transforms what would be scarcity into effective abundance because agents share and sacrifice. A low-trust system (τ → 0) experiences raw resource pressure. The same M_total *vorhanden* (at hand) looks like abundance or scarcity depending on τ.
+
+**Signification/meaning bridge**: signification is what the metrics say from outside (M_total = 50, Gini = 0.4). Meaning is what those numbers *feel like* from inside the system — and τ is what transforms signification into meaning. Two systems with identical M_total, Gini, and Heaps exponent can have radically different *meanings* for their agents depending on τ. The trust metric would be the first metric closer to meaning than to signification.
+
+**Implementation**: τ accumulates per-agent-pair through successful interactions (cross-metathesis events where both parties benefit or survive), decays in absence of interaction. Feeds into cross-metathesis threshold — high-trust pairs have lower thresholds for cooperation and alliance mode.
+
+**Smooth/striated texture gradients** (Deleuze & Guattari): high trust smooths the field (continuous, flowing, experiential — closer to meaning); low trust striates it (segmented, measured, structural — closer to signification). This could be a correlative bridge metric.
+
+## §5.21 Counter-Thesis Typology
+
+Sartre's "counter-finality" is flat — all unintended consequences are counter-finalities. The metathesis framework gives modal articulation via four types:
+
+| Type | Opposes | Example |
+|------|---------|---------|
+| **Counter-thesis** | A thesis directly | Head-on resistance; a superseded tool opposing its replacement |
+| **Counter-athesis** | A non-thesis (stasis/absence) | Forced activation; something countering a resting state |
+| **Counter-synthesis** | An achieved synthesis | Disintegrating force against an integration; a shattered alliance |
+| **Counter-metathesis** | The process of metathesis itself | Resistance to transformation as such; the most conservative/inertial force |
+
+**Artifact pinning**: counter-theses are tagged to artifacts. An artifact isn't just "an obstacle" — it is a *specific type* of counter-thesis depending on its constitution. A tradition that prevents exploration is a counter-metathesis. A shattered alliance is a counter-synthesis. A failed experiment is a counter-thesis.
+
+**Agent response modes**: when an agent encounters a counter-thesis, four response modes:
+- **Resist** → the counter-thesis becomes a thesis to be overcome
+- **Accept** → it merges with existing structure
+- **Ignore** → it remains latent until conditions change
+- **Dissolve** → it disintegrates and clears
+
+**Key insight**: realizing the source of a limit is simultaneous with realizing how to delimit it. The detection event IS the first step of resolution — no separate "diagnosis" step needed.
+
+Counter-thesis generation could also be an artifact quality/rating function: a master's artifact generates different counter-thesis types than a novice's. A master inspires through craft (counter-thesis to complacency); a novice inspires through audacity (counter-thesis to timidity).
+
+## §5.22 Endogenous Mu / Counter-Thesis Generation by Innovation Activity
+
+Currently mu (extinction rate) is a fixed exogenous parameter. Sartre's analysis of counter-finality as structural (not accidental) suggests mu should be at least **partially endogenous** — generated by agents' own combinatorial activity.
+
+**Mechanism**: innovating produces new sources of decay because becoming better at a given action pushes the boundary of that action to scales affording greater articulation (greater syntegration for less praxis), but the increase of difficulty scales with the increase of counter-theses generated and their type and how those types enter the field.
+
+```
+mu_effective(agent) = mu_base + k_counter * agent.recent_innovation_rate * counter_thesis_type_weight
+```
+
+**Feedback loop**:
+```
+innovation_activity → greater reach → more boundary contact →
+more counter-theses generated (typed) → higher effective mu →
+more disintegration pressure → requires more praxis to survive
+```
+
+The *type* of counter-thesis (§5.21) determines the weight and mode of entry. Counter-metatheses generate the heaviest drag (resistance to change itself); counter-theses generate direct but lighter opposition.
+
+This creates a natural self-limiting dynamic: explosive combinatorial growth generates its own drag. Agents cannot innovate without limit because innovation itself produces the conditions that resist further innovation.
+
+## §5.23 The Differential as Dividuation / Agent-Project Field
+
+**Dividuation** (Bohm's rheomodic term): the structural gap between project and realization is better described as *dividuation* rather than *deviation*. Deviation implies departure from a norm; dividuation implies a constitutive splitting — the project and the realization are always already dividuated. The gap is not error but the condition of their existence as distinct entities. Perpetual serial dividuation.
+
+**Agent-project field**: each actor and artifact should have a field parameter representing the space between the project (what is aimed at) and the field (the materiality it passes through). This is a **possibility space with a fidelity gradient**:
+
+- **Low fidelity** (static/noise): the early, consumptive exploration phase — many possibilities, none resolved. Television static metaphor.
+- **High fidelity**: the consummated, actualized outcome — a specific product, agent, artifact, skill, or habit.
+
+The process of consumptive exploration resolves fidelity, collapsing possibility into actuality.
+
+**Structural constraint**: a task can't make something the task could never make to begin with. The fidelity resolution is bounded by the nature of the process — no miracles, no discontinuous leaps without *some* participation, even indirect (butterfly effect still requires the butterfly). Non-programmed novelty within pre-programmed entropy.
+
+**Adjacent-element generation**: when an agent combines elements, there is a small probability of producing an *adjacent* element rather than the exact target. The fidelity parameter governs this:
+
+```
+fidelity = f(agent.k, agent.trust, artifact.quality, field_distance)
+outcome = target_element    with probability fidelity
+        = adjacent_element  with probability (1 - fidelity)
+```
+
+Where "adjacent" is structurally constrained to the type-space neighborhood of the target. The non-exact target must be *relatable* to the task — something the process could have made, even if it wasn't the explicit goal.
+
+**Mesological gauge**: the differential functions as a mesological gauge constant or gauge function that logs a constant between project and field. The becoming-metathesis is a thetic-athetic-synthetic dialectic moving toward actualization, which is not rigid but a dynamic existent entering into the dynamics of reality upon consummation.
+
+## §5.24 Practico-Inert ↔ Praxistatic: Ontological ↔ Phenomenological Tetrad Mapping
+
+Two complementary field types mapping to the two TAPS registers:
+
+| Field | Forces | Register | Being-mode | Maps to |
+|-------|--------|----------|------------|---------|
+| **Practico-inert** | Centrifugal/centripetal | Ontological tetrad (become/am/act/create) | Dead-becoming | Multiplicity |
+| **Praxistatic** | Conduction | Phenomenological tetrad (grow/feel/see/create) | Living-becoming | Unity |
+| **Together** | — | — | Being-becoming | Unificity (belonging) |
+
+**Motor/gas/lubricant metaphor**:
+- **Practico-inert** = the motor (structural engine of temporalization). Without it, there would be either frozen totality or nothing.
+- **Praxistatic** = the gas/combustion (energetic discharge that makes the motor run). The discharge caused by highly energetic practico-inert fields of mediated adjacency in reciprocal TAPS.
+- **Unificity** = the lubricant (ensures laminar flows propagate smooth).
+
+**Key insight**: without static flux (praxistatic), inert concretions (practico-inert) could never crystallize beyond a mold, could never become other to themselves. If deviation could only deviate, there could never be a place or thing that could return or deviate *again*. Deviation and standardization are two sides of the same coin.
+
+**Praxistatic fields interact with practico-inert fields**: the former are living-becoming, the latter dead-becoming, both are being-becoming, the former is unity, the latter is multiplicity, together they are belonging, unificity.
+
+**Smooth/striated** (Deleuze & Guattari): these textural gradients may provide a bridge/metric between signification and meaning. Smooth = continuous, experiential (closer to meaning/praxistatic); striated = segmented, structural (closer to signification/practico-inert).
+
+## §5.25 Differential Time Dilation Across L-Channels
+
+Four historical time scales mapped to Emery L-matrix channels with Einsteinian gravity analogy:
+
+| Time Scale | Sartre | L-channel | Gravity Analogy | Speed |
+|------------|--------|-----------|-----------------|-------|
+| **Metathetic time** | Time of the system | L22 (env texture) | Highest gravity → slowest time | ~10 steps/tick |
+| **Synthetic time** | Time of secondary systems | L21 (env→sys) | | ~7 steps/tick |
+| **Athetic time** | Time of general/partial events | L12 (sys→env) | | ~3 steps/tick |
+| **Thetic time** | Very swift time of particular actions | L11 (self) | Lowest gravity → fastest time | Every step |
+
+**Central clock**: the time of the constant deferral of synthetic time. Once something is synthesized, it is immediately consummated into the non-synthetic, making room for the next synthesis. This ensures there can never be a final synthesis (which would be a metathesized metathesis — impossible). The deferral creates the ticking.
+
+**Nervous system analogy**: signals arrive from different senses at different rates, staggered, and the brain gates, processes, repackages, and represents them as a unified coherent signal experienced with no delay — but the nervous system has a built-in time delay to accomplish this. The simulation needs the equivalent: a gating mechanism that synchronizes four differential timelines to a central deferral tick.
+
+**Implementation concept**: instead of a single `step` counter, each L-channel has its own clock rate synchronized to the central deferral tick. L11 ticks every step; L22 ticks at env_update_interval. The interaction between strata: fast-time events (L11) accumulate to trigger slow-time transitions (L22); slow-time shifts (L22) suddenly reconfigure conditions for fast-time events (L11).
+
+**Current partial implementation**: env_update_interval=10 in metathetic.py already creates a two-speed system (agent dynamics vs. environmental drift). The expansion would formalize this into four speeds with principled clock ratios.
+
+## §5.26 Beneficial vs. Detrimental Apocalypses / Group Fusion Typology
+
+Apocalypse (Greek: disclosure, revelation) is not inherently destructive. A revelation can be of light or darkness, beginning or end. Every beginning must come from an end; every end must be a beginning.
+
+Two types:
+
+| Type | Pressure source | Orientation | Resource context | Characteristic |
+|------|----------------|-------------|------------------|----------------|
+| **Beneficial (endogenous)** | Internal | External benefit | High mu, abundant resources, high M_t potential | Group fuses *from within* — shared positive vision |
+| **Detrimental (exogenous)** | External | Internal damage | Low mu, scarce resources, low M_t potential | Group fuses *from without* — shared threat response |
+
+**Seriality amplification**:
+- Beneficial: amplifies seriality qua *individuality* and group exchange (individuals become more praxistatically charged as individuals)
+- Detrimental: amplifies seriality qua *collective* and group exchange (individuals become more praxistatically charged as collective members)
+
+**Dissolution vs. retention asymmetry**:
+- After detrimental (external) apocalypse, when pressure eases → groups tend to *dissolve* (common enemy gone)
+- After beneficial (internal) apocalypse, when momentum dies → groups tend to *retain* (shared creation binds)
+
+**Surprise cases** (anomalies worth detecting):
+- Groups that *retain* after trauma (post-war solidarity persisting beyond threat)
+- Groups that *dissolve* after endogenous spiral (team falls apart when project ends)
+
+These would appear as anomalies in signature clustering data — detectable and potentially revealing of deeper dynamics about group durability vs. fragility.
+
+**Unanimous possibility**: unanimous participatory sociality is always an available possibility for a group. The Haudenosaunee (Iroquois Confederacy) attest explicitly to unanimous decision-making over thousands of years.
+
+**Trigger generalization**: the apposite praxis for group-in-fusion need not always be antagonistic. Building projects, clean water initiatives, shared excitement — all can catalyze fusion, particularly when unanimous.
+
+## §5.27 Metathesis / Demetathesis Dialectic and Demetathesis Bin
+
+Four properties of the metathesis/demetathesis dialectic:
+
+1. **Metathesis never completes**, otherwise, annihilation
+2. **Demetathesis never happens to itself** — a breaking down can only stop because of a change in praxis-process
+3. **Demetathesis is a syntegration of metathesis** — the system destabilizes/desituates/defers itself by its own praxis (not an external product but an internal transformation)
+4. **Metathesis is a syntegration of demetathesis** — the system re-stabilizes/resituates/refers in response to instability/desituation/deferral
+
+**Key shift from Sartre**: "product" → "syntegration." Products are external; syntegrations are internal transformations. The system doesn't *produce* instability as output; it *syntegrates* it — makes instability part of its own structure.
+
+**Demetathesis bin**: a reservoir of low-fidelity possibilities that actors cannot access except through a gradient of epiphany events. Two-stage gate:
+
+1. **Virtual possibility** (in demetathesis bin): the possibility exists but the actor doesn't know it can access it
+2. **Actual possibility** (in metathesis bin): the actor has realized the path (the epiphany) and can now attempt synthesis
+3. **Actualized** (in the world): the synthesis is consummated
+
+The realization from demetathesis → metathesis bin isn't necessarily the synthesis of the thing itself — it can be the synthesis of the *grasp of the way* to synthesize the thing. The actor realizes HOW before they DO.
+
+**Epiphany gradient**: some possibilities emerge gradually through accumulated experience ("gradual epiphany" = mastering a craft); others arrive in a flash ("sudden epiphany" = eureka moment). Both legitimate. The gradient could be governed by:
+- Proximity to existing types (closer = more gradual)
+- Time spent in the bin (longer = builds toward sudden)
+- Actor's current praxistatic charge (higher = more receptive)
+- Trust/relational context (supported actors have more epiphanies)
+
+**Anapression of Destiny**: the pressure of the Goal drives the actor to *change how one changes* rather than to overcome a change in the old way. This is a meta-level shift — not "solve this problem differently" but "change the way I approach problems." The demetathesis bin contains precisely these meta-level possibilities.
+
+## §5.28 Metathematization, Drift, M(t)/s(t) Split, Sigma-TAP Math Gaps
+
+**Metathematization**: temporalization = metathematization of praxis, distinct from metathesis. The drift-effect: an actor makes their own history — not a metathesis that's made, not a metathesis that's metathesized, but a metathematization that's synthesized qua metathesis and the deferral of praxis and its syntegration of itself in anopressive transvolutory motion, iterating recursions of preserving metathesis, i.e. of surviving. Metathematization moves in spirals — each circuit passes through the same points but displaced.
+
+**M(t)/s(t) split**: the current codebase uses M(t) as both the possibility space and the actual trajectory. The framework requires distinguishing:
+
+- **M(t)** = the possibility field / axial direction / what-could-be given current parameters. The geodesic. Like light finding the shortest path.
+- **s(t)** = the actual trajectory / realized path / what-is. The path that dividuates from M(t) through incarnation.
+- **sigma(t)** = the coupling/feedback between M(t) and s(t). Currently sigma(Xi) = sigma0 × (1 + gamma × Xi).
+
+**Drift** = differential between axial direction and actual path:
+```
+drift(t) = M(t) - s(t)
+```
+
+The drift is **textured by events**, not by the agent directly. No one right-minded drifts from the goal on purpose — drift is caused by the field (counter-theses, artifacts with hysteresis, environmental pressure), not by agent intention.
+
+**Volume ratio**: the distance or threshold of the space of the actual that dividuates from or towards the goal is determined by the ratio between the M(t) field's volume and the s(t) field's volume as they change over time. Large M(t) volume relative to s(t) = lots of room to deviate = high drift potential. Small ratio = tightly constrained = low drift.
+
+**The spiral unfolds TAPS through the RIP of TAP through TAPS.** (Full RIP definition pending from user — needed to formalize the recursive structure.)
+
+### Sigma-TAP Math Review (Session 2026-02-28)
+
+**Verified correct**:
+1. TAP kernel: `f(M) = alpha * a * (exp(M * ln(1+1/a)) - 1 - M/a)` — algebraically correct via binomial theorem ✓
+2. Sigma feedback: `sigma(Xi) = sigma0 * (1 + gamma * Xi)` — mathematically sound ✓
+3. ODE coupling in continuous.py: correct positive feedback loop ✓
+
+**Architectural gaps identified**:
+1. **Sigma feedback NOT wired into metathetic.py** — agents run raw TAP (sigma=1 effectively). The core sigma-TAP learning loop exists in continuous.py but not in the multi-agent simulation. ⚠️
+2. **No per-agent Xi accumulation** in metathetic.py — agents have k (knowledge) but not Xi (affordance exposure). ⚠️
+3. **No separate s(t)** — M(t) is both ideal and actual trajectory. ⚠️
+4. **No drift metric** — no computation of deviation from ideal trajectory. ⚠️
+5. **No counter-thesis generation** — mu is purely exogenous. ⚠️
+6. **No trust metric** — effective scarcity is uniform across agents. ⚠️
+
+None of these are *errors* — the math does what it says. But the math is incomplete relative to the framework being built. These gaps represent where theoretical architecture has outgrown implementation.
+
+## §5.29 Actor / Artifact Naming Convention
+
+Renaming for clarity:
+
+| Current Term | New Term | Role |
+|---|---|---|
+| MetatheticAgent | **Actor** (praxitive agent) | Does praxitive syntegration (externalizing) |
+| ArtifactAgent (future) | **Artifact** (syntegrative agent) | Does syntegrative praxis (internalizing-holding) |
+
+Both are *agents* in the general sense (they act in the simulation). The distinction is in their mode of agency:
+- **Actors** project outward — their praxis is externalization
+- **Artifacts** hold inward — their praxis is passive activity (Sartre's term), internalizing-holding what actors have externalized
+
+This aligns with §5.11 (praxis assignment) and §5.14 (artifact agents), now with cleaner terminology.
