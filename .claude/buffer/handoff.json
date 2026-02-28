@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+
+  "session_meta": {
+    "date": "2026-02-28",
+    "commit": "ec6b159",
+    "branch": "main",
+    "files_modified": [
+      "docs/plans/2026-02-28-memory-buffer-skill-design.md",
+      "docs/plans/2026-02-28-memory-buffer-skill-plan.md",
+      ".claude/skills/handoff/SKILL.md",
+      ".claude/skills/resume/SKILL.md",
+      ".claude/buffer/handoff.json"
+    ],
+    "tests": "295/295 passing"
+  },
+
+  "active_work": {
+    "current_phase": "Stage 3B Phase 0 — Memory Buffer Skill",
+    "completed_this_session": [
+      "Designed memory buffer skill (Approach A + B element)",
+      "Wrote design doc with full concept map spec",
+      "Created /handoff and /resume SKILL.md files",
+      "Populated initial handoff.json with concept map"
+    ],
+    "in_progress": "Testing and committing the skill",
+    "blocked_by": null
+  },
+
+  "decisions": [
+    {
+      "what": "Memory buffer skill approach",
+      "chose": "Approach A (structured JSON) with Approach B element (compact summary + codex)",
+      "why": "90% value with minimal risk. Structured JSON is readable/debuggable. Compact summary tests compression without risking data loss.",
+      "ref": null
+    },
+    {
+      "what": "Skill scope",
+      "chose": "Project-specific (.claude/skills/ in repo)",
+      "why": "Buffer content is project-specific. Keeps everything self-contained and git-tracked.",
+      "ref": null
+    },
+    {
+      "what": "Concept map vs term map",
+      "chose": "Concept map — allows multi-word concept entries, not just single terms",
+      "why": "Structural concepts like 'totalization-of-envelopment' carry meaning single terms don't",
+      "ref": null
+    },
+    {
+      "what": "Added suggest field to concept map entries",
+      "chose": "Nullable suggest field with null-is-preferred convention",
+      "why": "Allows Claude to flag connections without asserting them. Prevents pressure to fill blanks.",
+      "ref": null
+    },
+    {
+      "what": "Added dialectic as top-level coordinate base",
+      "chose": "thesis/athesis/synthesis/metathesis alongside TAPS and RIP",
+      "why": "Without metathesis, the other three remain serial and diachronic. Metathesis enables synchronicity.",
+      "ref": null
+    },
+    {
+      "what": "R/I/P maps to Real/Ego/Probability",
+      "chose": "Noted as emergent ontological register mapping",
+      "why": "Correlation emerges from the terms themselves without forcing",
+      "ref": "§5.46"
+    },
+    {
+      "what": "Hexis = behabitation, praxis = habitation",
+      "chose": "Austin's behabitives extended to behabitation",
+      "why": "Hexis = being-qua-habitation (autonomic); praxis = habitation (protonomic)",
+      "ref": "§5.47"
+    },
+    {
+      "what": "Four-level trust: τ_self, τ_pair, τ_group, τ_context",
+      "chose": "τ_context is simultaneously a priori and constructed",
+      "why": "Context both conditions and is constituted by agent gestures",
+      "ref": "§5.48"
+    },
+    {
+      "what": "Zero is never a valid parameter",
+      "chose": "Asymptotic approach triggers metathesis/phase change, not null",
+      "why": "Praxis conservation law means zero praxis is impossible",
+      "ref": "§5.49"
+    },
+    {
+      "what": "Conservation law = principle of least action",
+      "chose": "Structural identity (not just analogy) with Fermat/Feynman",
+      "why": "Minimal praxis for maximal syntegration ≡ stationary action",
+      "ref": "§5.50"
+    }
+  ],
+
+  "open_threads": [
+    {
+      "thread": "Stage 3B implementation planning (Phases 1-7)",
+      "status": "noted",
+      "ref": "MEMORY.md Stage 3B section"
+    },
+    {
+      "thread": "Centrifugal/diffuse alternation observation (evolution→anapression→projection→disintegration = out→in→out→in)",
+      "status": "deferred",
+      "ref": null
+    },
+    {
+      "thread": "Turbulence reconception needs full rethink of turbulence.py",
+      "status": "deferred",
+      "ref": "§5.42"
+    },
+    {
+      "thread": "Memory buffer skill Phase 0 — commit and run first real /handoff",
+      "status": "noted",
+      "ref": "docs/plans/2026-02-28-memory-buffer-skill-plan.md"
+    }
+  ],
+
+  "concept_map": {
+    "_meta": {
+      "base_system": "TAPS + RIP + Dialectic (thesis/athesis/synthesis/metathesis)",
+      "version": 1,
+      "last_validated": "2026-02-28"
+    },
+    "dialectic": {
+      "thesis": {
+        "base": "positing / the thetic moment",
+        "maps_to_TAPS": "T (transvolution)",
+        "time_mode": "π (thetic, L11, fastest)",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "athesis": {
+        "base": "counter-positing (apposite, NOT oppositional)",
+        "maps_to_TAPS": "A (anopression)",
+        "time_mode": "α (athetic, L12)",
+        "equiv": null,
+        "collision": "≠ antithesis (antithesis = counter-athesis, a different thing entirely)",
+        "suggest": null
+      },
+      "synthesis": {
+        "base": "combining / integration",
+        "maps_to_TAPS": "S (syntegration)",
+        "time_mode": "σ (synthetic, L21)",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "metathesis": {
+        "base": "context window / before-after frame / enables synchronicity of the other three. Without metathesis, thesis-athesis-synthesis remain serial and diachronic",
+        "maps_to_TAPS": "the M-process framing TAPS itself",
+        "time_mode": "Π (metathetic, L22, slowest)",
+        "equiv": null,
+        "collision": "≠ linguistic metathesis (phoneme transposition)",
+        "suggest": null
+      }
+    },
+    "T": {
+      "_base": "how-I-become / becoming-axis / thesis",
+      "evolution": {
+        "base": "unfolding / multiplicity / explicate direction",
+        "equiv": ["Bohm:explicate order", "extensivity", "exteriority"],
+        "collision": "≠ biological evolution (no telos implied)",
+        "suggest": null
+      },
+      "involution": {
+        "base": "enfolding / unity / implicate direction",
+        "equiv": ["Bohm:implicate order", "intensivity", "interiority"],
+        "collision": null,
+        "suggest": null
+      },
+      "condensation": {
+        "base": "tendency toward actualized structure / unificity",
+        "equiv": ["transvolution consummated", "third irreducible modality"],
+        "collision": "≠ condension (condension = involution specifically, not the consummation)",
+        "suggest": null
+      },
+      "condension": {
+        "base": "specific vector of involution / densification / enfolding",
+        "equiv": ["involution as directed process"],
+        "collision": "≠ condensation (which is the consummation of evolution+involution)",
+        "suggest": null
+      },
+      "transvolution_constraints": {
+        "base": "causal character of directional pairs",
+        "subterms": {
+          "evolution_involution": "timelike (sequential, causal, irreversible)",
+          "expansion_condension": "spacelike (simultaneous, structural, reversible)",
+          "rarefaction_condensation": "lightlike (propagation at boundary of causal reach)"
+        },
+        "ref": "§5.39"
+      }
+    },
+    "A": {
+      "_base": "how-I-am / being-axis / athesis",
+      "_dipoles": {
+        "anopression": "upward/outward pressing (decreasing difficulty, situatedness)",
+        "anapression": "downward/inward pressing (increasing difficulty, desituation)"
+      },
+      "expression": {
+        "base": "outward manifestation / pressing-out",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "impression": {
+        "base": "inward reception / pressing-in",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "adpression": {
+        "base": "pressing-toward / junction of ano+ana",
+        "equiv": ["emergence (ano+ana combined)"],
+        "collision": null,
+        "suggest": null
+      },
+      "compression": {
+        "base": "pressing-together / densification",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "depression": {
+        "base": "pressing-down / suppression of possibility",
+        "equiv": null,
+        "collision": "≠ clinical depression (though structural parallel may exist)",
+        "suggest": null
+      },
+      "suppression": {
+        "base": "pressing-under / holding beneath surface",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "oppression": {
+        "base": "pressing-against / resistance from outside",
+        "equiv": ["Sartre:counter-finality (partial)"],
+        "collision": "≠ political oppression exclusively (though it includes it)",
+        "suggest": null
+      },
+      "_chain_order": "anopression ← expression ← impression ← adpression ↔ compression → depression → suppression → oppression → anapression",
+      "_note": "α parameter = anapressive phase constant (L12 athetic time). σ parameter = anopressive phase constant (L21 synthetic time). See §5.45"
+    },
+    "P": {
+      "_base": "how-I-act / action-axis / praxis proper",
+      "projection": {
+        "base": "throwing-forward / externalizing action",
+        "equiv": ["Sartre:projet"],
+        "collision": null,
+        "suggest": null
+      },
+      "reflection": {
+        "base": "bending-back / internalizing observation",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "consumption": {
+        "base": "praxis consuming syntegrative structures / using",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "consummation": {
+        "base": "syntegration completing praxitive structures / doing",
+        "equiv": null,
+        "collision": "≠ consumption (consumption = using structure; consummation = completing through absorption)",
+        "suggest": null
+      },
+      "habitation": {
+        "base": "praxis as active intentional dwelling (protonomic register)",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "behabitation": {
+        "base": "hexis as being-qua-habitation (autonomic register)",
+        "equiv": ["Austin:behabitives (extended)"],
+        "collision": null,
+        "suggest": null
+      },
+      "_praxis_definition": "the process of projection & reflection in consumptive consummation",
+      "_conservation": "praxis is always conserved (via consummation in laminar flow). See §5.38",
+      "_practico_inert": "gas/fuel — sedimented past praxis storing potential energy. REVERSED from §5.24. See §5.43",
+      "_praxistatic": "engine — active interface transforming stored potential into directed work. See §5.43"
+    },
+    "S": {
+      "_base": "how-I-create / creation-axis / synthesis at TAPS level",
+      "integration": {
+        "base": "bringing-together into whole / L21-direction (env→system)",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "disintegration": {
+        "base": "breaking-apart / redistribution of elements",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "preservation": {
+        "base": "holding-intact / maintaining existing structure",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "synthesis": {
+        "base": "creating-new-from-combined / productive combination",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "fusion": {
+        "base": "convergence toward shared hexitive ground (group level)",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "diffusion": {
+        "base": "divergence into protonomic exploration (group level)",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "_conservation": "syntegration is always consumed (via consumption in turbulent flow). See §5.38",
+      "_law": "minimal praxis for maximal syntegration = variational principle = principle of least action. See §5.50"
+    },
+    "RIP": {
+      "_base": "direction through TAPS space / flow function. TAP=rate, TAPS=position, RIP=direction",
+      "recursive": {
+        "base": "self-entry, depth (R-mode 1)",
+        "ontological_register": "Real",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "reflective": {
+        "base": "self-observation, distance (R-mode 2)",
+        "ontological_register": "Real",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "iterative": {
+        "base": "sequential stepping, repetition with displacement (I-mode 1)",
+        "ontological_register": "Ego",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "integrative": {
+        "base": "unifying, composition (I-mode 2)",
+        "ontological_register": "Ego",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "preservative": {
+        "base": "maintaining structure (P-mode 1)",
+        "ontological_register": "Probability",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "praxitive": {
+        "base": "creating structure (P-mode 2)",
+        "ontological_register": "Probability",
+        "equiv": null,
+        "collision": null,
+        "suggest": null
+      },
+      "_combinatorics": "8 mode configs (2^3) × 6 orderings (3!) = 48 base states. Power-law nesting: R^(I^P) ≠ (R^I)^P. See §5.30",
+      "_death": "collapse of RIP flow function / mode-lock (mode-flip frequency → 0). Not a specific config.",
+      "_falsification": "Stage 3X-RIP with F1-F8 regime. Must pass F1, F6, F8 to retain. See §5.30"
+    },
+    "cross_source": {
+      "Sartre:totalization": {
+        "maps_to": "naive/undifferentiated metathesis",
+        "ref": "§5.18",
+        "suggest": null
+      },
+      "Sartre:totalization_detotalization": {
+        "maps_to": "absorptive/novel cross-metathesis",
+        "ref": "§5.18",
+        "suggest": null
+      },
+      "Sartre:practico-inert": {
+        "maps_to": "gas/fuel (sedimented past praxis)",
+        "ref": "§5.43",
+        "NOTE": "REVERSED from §5.24"
+      },
+      "Sartre:counter-finality": {
+        "maps_to": "counter-thesis typology (participatory, not oppositional)",
+        "ref": "§5.33",
+        "suggest": null
+      },
+      "Sartre:praxis-process": {
+        "maps_to": "phenomenological register",
+        "ref": "§5.18a",
+        "suggest": null
+      },
+      "Bohm:explicate_order": {
+        "maps_to": "extensive metathesis / evolution / exteriority",
+        "ref": "§5.18a",
+        "suggest": null
+      },
+      "Bohm:implicate_order": {
+        "maps_to": "intensive metathesis / involution / interiority",
+        "ref": "§5.18a",
+        "suggest": null
+      },
+      "Bohm:rheomode": {
+        "maps_to": "dividuation (constitutive splitting of project/realization)",
+        "ref": "§5.23",
+        "suggest": null
+      },
+      "Levinas:alterity": {
+        "maps_to": "irreducible otherness in cross-metathesis",
+        "ref": "§5.10",
+        "suggest": null
+      },
+      "Levinas:unicity_paternity": {
+        "maps_to": "unificity (user's term) — non-causal unicity",
+        "ref": null,
+        "suggest": null
+      },
+      "DG:rhizomatic": {
+        "maps_to": "alliance / horizontal / any-to-any (slime mold)",
+        "ref": "§5.10",
+        "suggest": null
+      },
+      "DG:arborescent": {
+        "maps_to": "filiation / vertical / tree / irreversible",
+        "ref": "§5.10",
+        "suggest": null
+      },
+      "Austin:behabitives": {
+        "maps_to": "behabitation (hexis as being-qua-habitation)",
+        "ref": "§5.47",
+        "suggest": null
+      },
+      "Fermat:least_time": {
+        "maps_to": "conservation law (minimal praxis for maximal syntegration)",
+        "ref": "§5.50",
+        "suggest": null
+      },
+      "Feynman:path_integral": {
+        "maps_to": "conservation law — all paths explored, constructive interference on stationary action",
+        "ref": "§5.50",
+        "suggest": null
+      }
+    }
+  },
+
+  "validation_log": [
+    {
+      "check": "Initial population of concept map",
+      "status": "NEW",
+      "detail": "All entries created from design doc §4.2-4.8. Dialectic, T, A, P, S, RIP groups and cross_source mappings.",
+      "session": "2026-02-28"
+    }
+  ],
+
+  "compact_summary": "3B0:handoff-skill/done|cmap:dial+TAPS+RIP+xsrc|§5.46-50:RIP=R/E/P,behab,τ4,0≠null,cons=least-action|next:3B-plan-P1-7",
+
+  "codex": {
+    "version": 1,
+    "encoding": {
+      "3B0": "Stage 3B Phase 0",
+      "3B": "Stage 3B",
+      "P1-7": "Phases 1 through 7",
+      "cmap": "concept map",
+      "dial": "dialectic (thesis/athesis/synthesis/metathesis)",
+      "TAPS": "Transvolution/Anopression/Praxis/Syntegration",
+      "RIP": "Recursive-Reflective / Iterative-Integrative / Preservative-Praxitive",
+      "xsrc": "cross-source mappings",
+      "σ-gap": "sigma feedback not wired into metathetic.py",
+      "met.py": "metathetic.py",
+      "τ4": "four-level trust (self/pair/group/context)",
+      "PI": "practico-inert",
+      "PX": "praxistatic",
+      "R/E/P": "Real/Ego/Probability (RIP ontological registers)",
+      "behab": "behabitation (hexis as being-qua-habitation)",
+      "0≠null": "zero is never valid — asymptotic null triggers phase change",
+      "cons": "conservation law",
+      "§X.Y": "design doc forward note section X.Y"
+    },
+    "rules": [
+      "| separates topics",
+      "= marks equivalence or assignment",
+      ": marks containment or specification",
+      "→ marks directional mapping",
+      "≠ marks collision/non-equivalence",
+      "/ separates alternatives or levels",
+      "+ joins co-present elements",
+      "Abbrevs: T/A/P/S = TAPS letters, R/I/P = RIP positions",
+      "Lowercase = instances, Uppercase = types/categories"
+    ]
+  }
+}
