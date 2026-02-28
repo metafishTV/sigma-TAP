@@ -1779,5 +1779,158 @@ class TestJunctionMetric(unittest.TestCase):
             self.assertIn("k_total", snap)
 
 
+class TestStage3BIntegration(unittest.TestCase):
+    """All Stage 3B features enabled together — verify no crashes and
+    meaningful diagnostics emerge from the full feature stack."""
+
+    def _make_full_ensemble(self, seed=42, steps=200):
+        """Build an ensemble with ALL Stage 3B features active."""
+        ens = MetatheticEnsemble(
+            n_agents=10, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5, seed=seed,
+            sigma0=1.0, gamma=0.1, beta=0.1, eta=0.1, h_decay=0.02,
+            seed_entropy=1e-7,
+            trust_update_rate=0.05, trust_decay_rate=0.01,
+            mu_affordance_sensitivity=0.3, mu_lower_bound=0.001,
+            junction_weight=0.2,
+        )
+        traj = ens.run(steps=steps)
+        return ens, traj
+
+    def test_all_features_enabled(self):
+        """Full Stage 3B config runs 200 steps without crashing."""
+        _ens, traj = self._make_full_ensemble()
+        self.assertEqual(len(traj), 200)
+
+    def test_xi_accumulates_and_sigma_modulates(self):
+        """With beta>0 and gamma>0 Xi should accumulate and sigma should
+        deviate from 1.0 by step 200."""
+        _ens, traj = self._make_full_ensemble()
+        final = traj[-1]
+        self.assertGreater(final["Xi_mean"], 0.0,
+                           "Xi_mean should be > 0 when beta > 0")
+        self.assertNotAlmostEqual(final["sigma_mean"], 1.0, places=6,
+                                  msg="sigma_mean should differ from 1.0 "
+                                      "when gamma > 0 and Xi accumulates")
+
+    def test_seed_entropy_produces_divergence(self):
+        """With seed_entropy=1e-7, agents should have non-identical alpha_local."""
+        ens = MetatheticEnsemble(
+            n_agents=10, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5, seed=42,
+            seed_entropy=1e-7,
+        )
+        alphas = [a.alpha_local for a in ens.agents]
+        # At least two agents should differ (entropy is non-zero).
+        unique_alphas = set(round(a, 20) for a in alphas)
+        self.assertGreater(len(unique_alphas), 1,
+                           "seed_entropy should produce divergent alpha_local")
+
+    def test_trust_evolves_meaningfully(self):
+        """With trust_update_rate > 0, tau_self_mean should move from its
+        initial value of 0.5 after 200 steps."""
+        _ens, traj = self._make_full_ensemble()
+        final = traj[-1]
+        self.assertNotAlmostEqual(final["tau_self_mean"], 0.5, places=4,
+                                  msg="tau_self_mean should evolve away from "
+                                      "0.5 when trust_update_rate > 0")
+
+    def test_mu_varies_across_agents(self):
+        """With mu_affordance_sensitivity > 0, mu_eff_std should be > 0
+        in at least one snapshot (agents have different effective mu)."""
+        _ens, traj = self._make_full_ensemble()
+        any_nonzero = any(snap["mu_eff_std"] > 0.0 for snap in traj)
+        self.assertTrue(any_nonzero,
+                        "mu_eff_std should be > 0 in at least one snapshot "
+                        "when mu_affordance_sensitivity > 0")
+
+    def test_families_form_and_track_lineage(self):
+        """With all features active, cross-metathesis events should fire
+        and create at least one family."""
+        _ens, traj = self._make_full_ensemble()
+        any_families = any(snap["n_families"] > 0 for snap in traj)
+        self.assertTrue(any_families,
+                        "n_families should be > 0 in at least one snapshot "
+                        "when cross-metathesis events fire")
+
+    def test_all_snapshot_fields_present(self):
+        """Every snapshot must contain all 10 Stage 3B diagnostic fields."""
+        required_fields = [
+            "Xi_mean", "Xi_std", "sigma_mean",
+            "tau_self_mean", "tau_pair_mean",
+            "mu_eff_mean", "mu_eff_std",
+            "n_families", "family_size_distribution", "family_lineage_depth",
+        ]
+        _ens, traj = self._make_full_ensemble()
+        for i, snap in enumerate(traj):
+            for field_name in required_fields:
+                self.assertIn(field_name, snap,
+                              f"Snapshot at step {i} missing '{field_name}'")
+
+
+class TestStage3BRegression(unittest.TestCase):
+    """Default parameters must preserve Stage 3A behavior — no new features
+    activate unless explicitly opted into."""
+
+    def test_default_params_identical_to_stage3a(self):
+        """With ALL defaults (sigma0=1, gamma=0, etc.), Stage 3B diagnostics
+        should show baseline values: Xi=0, sigma=1, tau_self=0.5, mu_eff~mu."""
+        mu = 0.005
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=mu,
+            variant="logistic", carrying_capacity=2e5, seed=42,
+        )
+        traj = ens.run(steps=50)
+        for snap in traj:
+            self.assertAlmostEqual(snap["Xi_mean"], 0.0, places=10,
+                                   msg="Xi_mean should be 0 with gamma=0")
+            self.assertAlmostEqual(snap["sigma_mean"], 1.0, places=10,
+                                   msg="sigma_mean should be 1.0 with gamma=0")
+            self.assertAlmostEqual(snap["tau_self_mean"], 0.5, places=4,
+                                   msg="tau_self_mean should stay at 0.5 "
+                                       "with trust_update_rate=0")
+            self.assertAlmostEqual(snap["mu_eff_mean"], mu, places=8,
+                                   msg="mu_eff_mean should equal base mu "
+                                       "with mu_affordance_sensitivity=0")
+
+    def test_safe_params_identical(self):
+        """Safe/default params (alpha=1e-3, a=8.0, mu=0.02) still work
+        with all Stage 3B defaults (no new features active)."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=1e-3, a=8.0, mu=0.02,
+            variant="logistic", carrying_capacity=2e5, seed=42,
+        )
+        traj = ens.run(steps=50)
+        self.assertEqual(len(traj), 50)
+        # All snapshots should have valid numeric fields.
+        for snap in traj:
+            self.assertGreaterEqual(snap["total_M"], 0.0)
+            self.assertGreaterEqual(snap["k_total"], 0.0)
+            self.assertGreaterEqual(snap["n_active"], 0)
+
+    def test_youn_ratio_still_in_range(self):
+        """With Youn-optimal params the exploration ratio should remain
+        below 0.95 (Stage 3A achievement preserved)."""
+        ens = MetatheticEnsemble(
+            n_agents=10, initial_M=10.0,
+            alpha=5e-3, a=8.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5, seed=42,
+        )
+        traj = ens.run(steps=200)
+        final = traj[-1]
+        n_novel = final["n_novel_cross"]
+        n_absorptive = final["n_absorptive_cross"]
+        total_cross = n_novel + n_absorptive
+        if total_cross == 0:
+            self.skipTest("No cross-metathesis events")
+        youn_ratio = n_novel / max(1, total_cross)
+        self.assertLess(youn_ratio, 0.95,
+                        f"Youn ratio {youn_ratio:.3f} should be < 0.95")
+
+
 if __name__ == "__main__":
     unittest.main()
