@@ -1642,13 +1642,22 @@ The foundational ontological triad generating the entire concept map:
 
 **Total configuration space = 1**, but the unific modality is always the most actualized, being the consummation of the combinatorial consumption of the unities (things) and the multiplicities (sets of things). Each modality is a 1' (one-prime) to the total configuration space — not 1/3 of the total but a different *mode* of being-one.
 
+### Processual Dimension
+
+The triad is not just structural but temporal:
+- **Unificity** = always *actualizing* (process, becoming-actual, never fully "done")
+- **Unity** = always *actualized* (state, already-actual, the product)
+- **Multiplicity** = always *virtualizing* (potential, becoming-virtual, the field of unrealized possibility)
+
+Unificity = present-continuous. Unity = past-participle. Multiplicity = future-potential.
+
 ### Holarch Mapping
 
-| Modality | Geometry | Structure | Field |
-|----------|----------|-----------|-------|
-| **Unificity** | Vortical (spiral) | Holarchy | Unific field (context) |
-| **Unity** | Lateral (horizontal) | Holism | Unitive field (vision/representation) |
-| **Multiplicity** | Vertical | Hierarchy | Multiplicative field (ordering) |
+| Modality | Geometry | Structure | Field | Process |
+|----------|----------|-----------|-------|---------|
+| **Unificity** | Vortical (spiral) | Holarchy | Unific field (context) | Actualizing |
+| **Unity** | Lateral (horizontal) | Holism | Unitive field (vision/representation) | Actualized |
+| **Multiplicity** | Vertical | Hierarchy | Multiplicative field (ordering) | Virtualizing |
 
 Vision/representation belongs to the *unitive* field (the field of unity), NOT the unific field. The unific field is the holarchic spiral that *generates* the apparent unity and multiplicity as its lateral and vertical projections.
 
@@ -1676,8 +1685,8 @@ Enjoyment is not psychological but ontological: the agent doesn't first exist an
 
 Time is the agent's deferral of consummation. The agent persists as long as it defers consummation. The temporal state machine (inertial → situated → desituated → established) formalizes the modes of not-yet-being-consummated. Death (disintegration) = consummation completing.
 
-**Consummation = praxis-process**: Praxis reaching its term, becoming complete, sedimenting into process. The living becoming the lived.
-**Consumption = process-praxis**: Sedimented structure taken up into new action. The lived becoming living again.
+**Consummation = praxis-process**: Praxis completing itself through syntegrative structures / doing. Praxis reaching its term, becoming complete, sedimenting into process. The living becoming the lived. Conserved via laminar flow.
+**Consumption = process-praxis**: Process reactivating itself through praxitive structures / using. Sedimented structure taken up into new action. The lived becoming living again. Consumed via turbulent flow.
 
 Note: Levinas himself uses "consummation" in exactly this sense — the term convergence is structural, not coincidental.
 
@@ -1685,12 +1694,16 @@ Note: Levinas himself uses "consummation" in exactly this sense — the term con
 
 > **Source**: Conversation 2026-02-28 (user proposal + refinement)
 
-### P–S Pair (Relational/Interpersonal)
+### P–S Pair (Relational/Interpersonal) — maps to PRAXISTATIC (engine)
+
+The praxistatic = the active interface transforming stored potential into directed work. It IS the P-S pair: action (P) and creation (S) operating on material. Actively-passive — it channels energy but is shaped by what it channels.
 
 - **Praxitive field**: Attached to actors (MetatheticAgent/Actor). Operates primarily on L12 (self→other).
 - **Syntegrative field**: Attached to artifacts (syntegrative agents). Operates primarily on L21 (other→self).
 
-### T–A Pair (Self/Environment) — Dynamic Switch
+### T–A Pair (Self/Environment) — maps to PRACTICO-INERT (gas/fuel), Dynamic Switch
+
+The practico-inert = sedimented past praxis storing potential energy. It IS the T-A pair: the material's own becoming (T) and being (A). Passively-active — it stores energy that can release. The material has its own transvolutory tendency (it *becomes* inert through sedimentation) and its own pressurative state (it *is* pressurized with stored potential).
 
 - **Transvolutory field**: The becoming-dimension.
 - **Pressurative field**: The being-dimension.
@@ -1722,6 +1735,14 @@ The aperture is shaped by:
 4. Seed entropy (irreducible individual variation)
 
 **Fidelity** (§5.23, now systematized): hi-fi = broad aperture, faithful reproduction. Lo-fi = narrow aperture, lossy/compressed reception. Each agent's fidelity is emergent from its aperture function, not set a priori.
+
+### Junction = Involution, Reception = Evolution, History = Transvolution
+
+- **Junction** = involutory motion. Measures closeness, folds *inward* toward a specific pair. Compresses the distributed field into a scalar point of contact. Contains a **vidation parameter** (Bohm rheomode: "to vid" = to perceive) — how seen/unseen the other is to this agent. High vidation = face visible (transcendence cuts through). Low vidation = only façade visible (surface properties, no transcendence). Maps to §5.5 (distance-based observation decay), now grounded in involution architecture.
+- **Reception** = evolutory motion. Measures the broader field, unfolds *outward* from the agent toward the environment. Expands the local position into a vector of what the agent receives.
+- **Together** = transvolutory motion of a history. The agent's history IS the record of involutory encounters (junction) and evolutory sensing (reception) interleaved over time. Neither purely inward nor outward — the spiral of both.
+
+Junction and reception are not separate mechanisms but two faces of the same transvolutory process, just as involution and evolution are two faces of transvolution.
 
 ### Simultaneous Metathesization as Field Smoothing
 
