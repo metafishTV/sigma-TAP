@@ -1874,6 +1874,21 @@ Four deterritorialization forms map to metathetic outcomes:
 3. **Absolute-negative D** = system convergence, homogenization (all signatures → EEXD)
 4. **Absolute-positive D** = novel cross creating genuinely new territory — the *face* event (Levinas)
 
+### Four D Forms = Four L-Channels (Third Independent Tetra-Mapping)
+
+| D&G form | L-channel | Character |
+|----------|-----------|-----------|
+| **Negative D** (compensatory reterritorialization) | **L11** (self) | Agent re-absorbs flight into itself — self-metathesis as reterritorialization |
+| **Positive-relative D** (prevails but segmented) | **L12** (self→other) | Agent projects outward but line stays segmented — directed encounter |
+| **Absolute-negative D** (totalizing overcoding) | **L21** (other→self) | Agent receives/integrates everything into one code — absorption, homogenization |
+| **Absolute-positive D** (connects flights, new earth) | **L22** (environment) | Environmental drift creating genuinely new territory — plane of consistency |
+
+Three independent routes to the same four-part structure: Emery (systems theory), D&G assemblage (Hjelmslev semiotics), D&G deterritorialization (political ontology).
+
+### Vidation → Affordance → Reception (Causal Chain)
+
+**Vidation** (junction's visibility parameter) → **Affordance** (what can be received) → **Reception** (processing of what was received). Vidation sets the aperture width; what passes through constitutes the effective affordance landscape; reception processes the intake. Vidation = gating mechanism (involutory). Reception = processing mechanism (evolutory). Both = transvolutory motion of a history.
+
 ### Conjunction vs Connection — KEY ARCHITECTURAL INSIGHT
 
 D&G explicitly distinguish **conjunction** (blocks, gates, overcodes, axiomatics) from **connection** (creates, multiplies, draws plane of consistency).
