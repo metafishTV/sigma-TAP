@@ -1627,3 +1627,173 @@ These are not analogies — they may be the **same law** expressed in different 
 This suggests that the conservation law, if correct, is not merely an optimization heuristic for the simulation but a candidate **fundamental principle** — the metathetic expression of what physics calls the principle of least action.
 
 > **Status**: Highly speculative. The structural isomorphism is clear, but whether it constitutes identity (same law, different expression) or analogy (similar structure, different substance) requires formalization. Deferred to future theoretical work.
+
+---
+
+## §5.51 Unity–Multiplicity–Unificity: The Foundational Triad
+
+> **Source**: User's Unificity.md + conversation 2026-02-28 (post-Stage 3B reflection)
+
+The foundational ontological triad generating the entire concept map:
+
+- **Unificity** = Unity + Multiplicity. The irreducible third modality. Modality of *context*. Equivalent to Koestler's holon and Sartre's third-party. Only unificities are actual; pure unities and multiplicities are virtual (impossible in actuality).
+- **Unity** = Modality of *things*. Every unity is a multiplicity of at least two.
+- **Multiplicity** = Modality of *sets of things*. Every multiplicity is a unity of at least one.
+
+**Total configuration space = 1**, but the unific modality is always the most actualized, being the consummation of the combinatorial consumption of the unities (things) and the multiplicities (sets of things). Each modality is a 1' (one-prime) to the total configuration space — not 1/3 of the total but a different *mode* of being-one.
+
+### Holarch Mapping
+
+| Modality | Geometry | Structure | Field |
+|----------|----------|-----------|-------|
+| **Unificity** | Vortical (spiral) | Holarchy | Unific field (context) |
+| **Unity** | Lateral (horizontal) | Holism | Unitive field (vision/representation) |
+| **Multiplicity** | Vertical | Hierarchy | Multiplicative field (ordering) |
+
+Vision/representation belongs to the *unitive* field (the field of unity), NOT the unific field. The unific field is the holarchic spiral that *generates* the apparent unity and multiplicity as its lateral and vertical projections.
+
+> **Implementation note**: This triad should sit *above* TAPS, RIP, and Dialectic in the concept map hierarchy. It is the generative structure from which all three coordinate bases unfold.
+
+## §5.52 Serialized Beings (Not Separated Beings)
+
+Levinas's "separation" is spatial and static. **Serialization** captures the temporal, processual individuation where the being constitutes itself *in sequence* through its own unfolding. "Serialized beings" carries both Levinasian separation AND Sartrean seriality (the mode of being-together-while-apart). The serialized being is already *in relation* by virtue of being in a series — the relation doesn't repair a deficiency but is constitutive.
+
+Preferred terminology: **serialized beings** > separated beings.
+
+## §5.53 Living From Metathesis
+
+Levinas's "vivre de..." (living from...) = **living from metathesis**. Structural identification, not analogy.
+
+The agent sustains itself through ongoing engagement with elements — not a single act of appropriation but continuous metathetic engagement. The "from" is both source and mode. The agent's L11 self-metathesis is the internal "coiling" Levinas describes (the I as "pole of a spiral whose coiling and involution is drawn by enjoyment"). L12/L21 cross-metathesis is engagement with alterity. L22 is the environmental drift providing the elemental ground.
+
+Enjoyment is not psychological but ontological: the agent doesn't first exist and then enjoy — it exists *as* the process of living-from-metathesis. Strip metathesis and there is no agent.
+
+## §5.54 Absorptive Cross-Metathesis = Metathematization
+
+**Metathematization** (the temporalization of praxis, the drift-effect spiral) IS absorptive cross-metathesis. It creates the before/after structure through consumption: one agent absorbs another, creating an irreversible temporal event. The drift-effect spiral is successive absorptions constituting the system's history.
+
+## §5.55 Time = Praxitive Deferral
+
+Time is the agent's deferral of consummation. The agent persists as long as it defers consummation. The temporal state machine (inertial → situated → desituated → established) formalizes the modes of not-yet-being-consummated. Death (disintegration) = consummation completing.
+
+**Consummation = praxis-process**: Praxis reaching its term, becoming complete, sedimenting into process. The living becoming the lived.
+**Consumption = process-praxis**: Sedimented structure taken up into new action. The lived becoming living again.
+
+Note: Levinas himself uses "consummation" in exactly this sense — the term convergence is structural, not coincidental.
+
+## §5.56 Field Architecture — Four Fields on Four L-Channels
+
+> **Source**: Conversation 2026-02-28 (user proposal + refinement)
+
+### P–S Pair (Relational/Interpersonal)
+
+- **Praxitive field**: Attached to actors (MetatheticAgent/Actor). Operates primarily on L12 (self→other).
+- **Syntegrative field**: Attached to artifacts (syntegrative agents). Operates primarily on L21 (other→self).
+
+### T–A Pair (Self/Environment) — Dynamic Switch
+
+- **Transvolutory field**: The becoming-dimension.
+- **Pressurative field**: The being-dimension.
+
+Default assignment:
+- **L11**: T-dominant, A-recessive (the agent's self-becoming with internal pressure as background)
+- **L22**: A-dominant, T-recessive (environmental pressure with environmental drift as background)
+
+**Switch condition**: Under extreme internal pressure (anapressive crisis), L11 flips to A-dominant. Under rapid environmental drift, L22 flips to T-dominant. This parallels the P–S field crossing (actors can syntegrate, artifacts can enact praxis).
+
+### Two-Field Computation Architecture
+
+- **Global/nonlocal field** (rhizomatic): Aggregates L11 + L22 channels. Every agent contributes to and draws from the whole. Does not respect topology.
+- **Assembly field**: Aggregates L12 + L21 channels. Computed within topology groups (families, assemblies). Respects proximity. "Differentially isolated" = structurally apart but not disconnected.
+
+## §5.57 Per-Agent Reception Field / Fidelity Band
+
+Each agent has an **aperture function** (fidelity band) that filters the incoming metathetic field differently:
+
+- **L22 channel**: Broadband / high polyvocality (panoptic sensing)
+- **L12 channel**: Narrowband / directed (specific encounter)
+- **L11 channel**: Self-referential (closed loop)
+- **L21 channel**: Medium band / receptive (open to assembly field)
+
+The aperture is shaped by:
+1. L-channel bandwidth (structural, per above)
+2. Trust profile (high τ_self = more selective filtering?)
+3. Temporal state (established agents may have wider aperture)
+4. Seed entropy (irreducible individual variation)
+
+**Fidelity** (§5.23, now systematized): hi-fi = broad aperture, faithful reproduction. Lo-fi = narrow aperture, lossy/compressed reception. Each agent's fidelity is emergent from its aperture function, not set a priori.
+
+### Simultaneous Metathesization as Field Smoothing
+
+Every agent simultaneously attempts to metathesize every other. The overlapping attempts create destructive interference (cf. Feynman path integral, §5.50). What gets through is textured, noised, colored by the field of competing pressures. The smoothing is the computation — no N² pairwise calculation needed, only the aggregate field filtered through each agent's aperture.
+
+### Personal Asymptotic Horizon
+
+Each agent's horizon of possibility is constituted by the field of others' activity. The asymptotic character means no agent ever fully reaches its horizon — it recedes as the agent approaches, because the others who constitute it are themselves moving. This provides radical (heterogeneous) multiplicity without numerical specification.
+
+## §5.58 Façade, Face, and Artifact Agents
+
+From Levinas: the **façade** is surface that conceals (type_set, observable properties). The **face** is transcendence cutting through the surface (the artifact's capacity to exceed its façade — its practico-inert potential releasing effects its creators never intended).
+
+For artifact agent design:
+- Artifact's façade = its type_set and observable properties
+- Artifact's face = its stored praxitive potential (practico-inert energy)
+- Novel cross-metathesis child has genuine face (not a façade recombination of parents)
+- Parents' dormancy = work separating from will (Levinas pp. 226–228)
+
+## §5.59 Homogeneity and Heterogeneity
+
+Numerical (homogeneous) multiplicity is "defenseless against totalization" (Levinas). Radical multiplicity must be heterogeneous. The simulation must produce:
+- Seed entropy = initial heterogeneity
+- Reception field / fidelity band = ongoing heterogeneity (agents receive differently → diverge further over time)
+- The aperture function is the primary mechanism for generating and maintaining heterogeneity
+
+## §5.60 Sartre Conversion Terms (Critique Vol. 2 → sigma-TAP)
+
+| Sartre | sigma-TAP |
+|--------|-----------|
+| Incarnation | incarnation |
+| Totalization-of-envelopment | metathesis-as-enfoldment |
+| Totalization of exteriority | extensive metathesis = explicate order |
+| Totalization of interiority | intensive metathesis = implicate order |
+| Anti-labour | entropy |
+| Immanence | anapression |
+| Transcendence | anopression |
+| Exteriority of immanence | explicate order (cf. extensive metathesis) |
+| Transcendent exteriority | implicate order = anopressive extensivity (a projective delimit) |
+| Transcendence & internal limit of practical freedom | anopression & reflective delimit of praxitive freedom |
+| Unity - Unification | synthesis - synthesized |
+| Conflict - contradiction | tension - contra-diction |
+| Totalization & retotalization | metathesis & remetathesis |
+| Retotalized totalization | remetathesized metathesis |
+| Alteration & alienation | alterity & disincarnation |
+| Drift - deviation | drift - deviation |
+| Anti-dialectic | syntegrative metathesis |
+| Diachronic totalization | diachronic metathesis |
+| Synchronic totalization | synchronic metathesis |
+| Pledge, pledged | impress, impressed |
+| Practico-inert | praxistatic (NOTE: §5.43 mapping under review) |
+| Milieu | matrix |
+| Ensemble | network |
+| Praxis-process | consummation |
+| Process-praxis | consumption |
+
+### Sartre Glossary Terms for Potential Deployment
+
+The following Critique Vol. 1 & 2 glossary terms are candidates for direct or adapted deployment:
+
+- **Active passivity / passive activity**: hexis↔praxis transition. Hexis = passive-activity (being-qua-habitation). Praxis = active-passivity (acting-within-constraints).
+- **Adversity-coefficient**: Environmental resistance parameter. Implies a **prosperity-coefficient** (environmental facilitation).
+- **Alienation** (implies **familiation**): Disincarnation / incarnation pair.
+- **Anti-dialectic**: More than entropy — syntegrative metathesis that undermines its own conditions.
+- **Anti-labour** (implies **anti-praxis**): Object created that enacts counter-finality vs act created that does counter-work.
+- **Apocalypse** (ancient Greek: revelation/unveiling): Novel cross-metathesis as apocalyptic event — unveiling of genuine alterity.
+- **Group-in-fusion** (gif): The moment a serial collective becomes a genuine group. Maps to family formation. Implies **institution-in-fusion** and possibly **individual-in-fusion**.
+- **Gathering**: Pre-group serial collection. The well-mixed pool before family formation.
+- **Mediated reciprocity**: Cross-metathesis mediated through shared type-space. What junction already computes.
+- **Pledged group = impressed group**: Families that persist beyond their formation event.
+- **Hexis / exis**: Vol. 1 uses "exis," Vol. 2 uses "hexis." Both refer to the autonomic register (behabitation).
+- **Organized group**: Family with internal differentiation (roles, structure).
+- **Other-direction**: Orientation toward alterity (L12 channel direction).
+
+> **Status**: These are bookmarked for potential use in Stage 3C+ design. Not all will be implemented — selection depends on which mechanisms prove necessary.

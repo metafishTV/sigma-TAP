@@ -159,9 +159,33 @@
 
   "concept_map": {
     "_meta": {
-      "base_system": "TAPS + RIP + Dialectic (thesis/athesis/synthesis/metathesis)",
-      "version": 1,
+      "base_system": "Unity-Multiplicity-Unificity > TAPS + RIP + Dialectic",
+      "version": 2,
       "last_validated": "2026-02-28"
+    },
+    "foundational_triad": {
+      "_base": "The generative triad from which TAPS, RIP, and Dialectic unfold",
+      "unificity": {
+        "base": "unity + multiplicity. Irreducible third modality. Modality of CONTEXT. = Koestler's holon = Sartre's third-party",
+        "geometry": "vortical (spiral)",
+        "structure": "holarchy",
+        "field": "unific field",
+        "constraints": "only unificities are actual; pure unity/multiplicity are virtual (impossible)",
+        "consummation": "the most actualized modality = consummation of combinatorial consumption of unities and multiplicities"
+      },
+      "unity": {
+        "base": "modality of THINGS. Every unity is a multiplicity of at least two",
+        "geometry": "lateral (horizontal)",
+        "structure": "holism",
+        "field": "unitive field (vision/representation)"
+      },
+      "multiplicity": {
+        "base": "modality of SETS OF THINGS. Every multiplicity is a unity of at least one",
+        "geometry": "vertical",
+        "structure": "hierarchy",
+        "field": "multiplicative field (ordering)"
+      },
+      "_configuration": "total config space = 1, but each modality is a 1-prime (different mode of being-one)"
     },
     "dialectic": {
       "thesis": {
@@ -438,9 +462,59 @@
         "suggest": null
       },
       "Sartre:praxis-process": {
-        "maps_to": "phenomenological register",
-        "ref": "§5.18a",
+        "maps_to": "consummation (praxis reaching term, becoming process)",
+        "ref": "§5.55",
         "suggest": null
+      },
+      "Sartre:process-praxis": {
+        "maps_to": "consumption (sedimented structure taken up into new action)",
+        "ref": "§5.55",
+        "suggest": null
+      },
+      "Sartre:immanence": {
+        "maps_to": "anapression",
+        "ref": "§5.60",
+        "suggest": null
+      },
+      "Sartre:transcendence": {
+        "maps_to": "anopression",
+        "ref": "§5.60",
+        "suggest": null
+      },
+      "Sartre:anti-labour": {
+        "maps_to": "entropy",
+        "ref": "§5.60",
+        "suggest": null
+      },
+      "Sartre:totalization-of-envelopment": {
+        "maps_to": "metathesis-as-enfoldment",
+        "ref": "§5.60",
+        "suggest": null
+      },
+      "Sartre:anti-dialectic": {
+        "maps_to": "syntegrative metathesis (more than just entropy)",
+        "ref": "§5.60",
+        "suggest": null
+      },
+      "Sartre:pledge": {
+        "maps_to": "impress/impressed",
+        "ref": "§5.60",
+        "suggest": null
+      },
+      "Sartre:milieu": {
+        "maps_to": "matrix",
+        "ref": "§5.60",
+        "suggest": null
+      },
+      "Sartre:ensemble": {
+        "maps_to": "network",
+        "ref": "§5.60",
+        "suggest": null
+      },
+      "Sartre:group-in-fusion": {
+        "maps_to": "family formation (serial collective -> genuine group)",
+        "ref": "§5.60",
+        "suggest": "implies institution-in-fusion?"
       },
       "Bohm:explicate_order": {
         "maps_to": "extensive metathesis / evolution / exteriority",
@@ -465,6 +539,51 @@
       "Levinas:unicity_paternity": {
         "maps_to": "unificity (user's term) — non-causal unicity",
         "ref": null,
+        "suggest": null
+      },
+      "Levinas:enjoyment": {
+        "maps_to": "living from metathesis / L11 self-metathetic coiling (structural, not analogy)",
+        "ref": "§5.53",
+        "suggest": null
+      },
+      "Levinas:ipseity": {
+        "maps_to": "agent trajectory (full dM_history + L-matrix), irreducible to type_set or signature",
+        "ref": "§5.52",
+        "suggest": null
+      },
+      "Levinas:need": {
+        "maps_to": "Xi accumulation / sigma modulation (temporalized dependence)",
+        "ref": "§5.53",
+        "suggest": null
+      },
+      "Levinas:separation": {
+        "maps_to": "serialization (preferred term: serialized beings > separated beings)",
+        "ref": "§5.52",
+        "suggest": null
+      },
+      "Levinas:the_face": {
+        "maps_to": "novel cross-metathesis (encounter producing irreducible novelty)",
+        "ref": "§5.58",
+        "suggest": null
+      },
+      "Levinas:facade": {
+        "maps_to": "type_set surface / artifact observable properties",
+        "ref": "§5.58",
+        "suggest": null
+      },
+      "Levinas:lateral_signification": {
+        "maps_to": "Jaccard/junction metrics (measures within same type-space)",
+        "ref": "§5.57",
+        "suggest": null
+      },
+      "Levinas:time_postponement": {
+        "maps_to": "praxitive deferral / temporal state machine / affordance gating",
+        "ref": "§5.55",
+        "suggest": null
+      },
+      "Levinas:work_separating_from_will": {
+        "maps_to": "type_set entering shared environment / practico-inert / parent dormancy",
+        "ref": "§5.58",
         "suggest": null
       },
       "DG:rhizomatic": {
@@ -533,13 +652,31 @@
       "status": "NEW",
       "detail": "Added RB:Level_I-IV cross_source entries mapping Ruesch & Bateson communication levels to L-matrix channels and trust tiers. Preliminary — deep review pending.",
       "session": "2026-02-28"
+    },
+    {
+      "check": "Unity-Multiplicity-Unificity triad added as foundational",
+      "status": "NEW",
+      "detail": "Added foundational_triad section above TAPS/RIP/Dialectic. Source: user's Unificity.md. Holarch mapping: unificity=holarchy(vortical), unity=holism(lateral), multiplicity=hierarchy(vertical).",
+      "session": "2026-02-28"
+    },
+    {
+      "check": "Levinas structural identifications added (§5.51-§5.59)",
+      "status": "NEW",
+      "detail": "Living-from-metathesis, serialized beings, absorptive=metathematization, time=praxitive deferral, field architecture (4 fields, 2 pairs, dynamic T-A switch), reception field/fidelity band, facade/face for artifacts, homogeneity/heterogeneity.",
+      "session": "2026-02-28"
+    },
+    {
+      "check": "Sartre conversion terms added (§5.60)",
+      "status": "NEW",
+      "detail": "22 Sartre->sigma-TAP term mappings from Critique. Key: immanence=anapression, transcendence=anopression, praxis-process=consummation, process-praxis=consumption. Glossary candidates flagged for 3C+.",
+      "session": "2026-02-28"
     }
   ],
 
-  "compact_summary": "3B:DONE:P1-7|345t|σ(Xi):wired|seed-ent:1e-7|τ:self+pair+CV2|mu-endo:aff-mod|fam:topology+lineage|jnc:symm-trust|R&B:refs-saved|next:explore-all→reflect-Levinas/R&B→TASKS.md",
+  "compact_summary": "3B:DONE:P1-7|345t|UMU-triad:top|Lev:§5.51-59|Sar:§5.60|serial>sep|live-from-M|abs=Mztn|t=prax-defer|4-fields:PS+TA-switch|recep-field:fidelity-band|hom/het|next:R&B-review→TASKS.md",
 
   "codex": {
-    "version": 2,
+    "version": 3,
     "encoding": {
       "3B": "Stage 3B",
       "3B0": "Stage 3B Phase 0",
@@ -567,6 +704,19 @@
       "jnc": "junction-mode adjacency metric",
       "symm-trust": "symmetric trust (average both agents' views)",
       "R&B": "Ruesch & Bateson (Communication reference material)",
+      "UMU": "Unity-Multiplicity-Unificity foundational triad",
+      "Lev": "Levinas (Totality & Infinity structural identifications)",
+      "Sar": "Sartre (Critique conversion terms)",
+      "serial>sep": "serialized beings preferred over separated beings",
+      "live-from-M": "living from metathesis (Levinas vivre de = metathetic engagement)",
+      "abs=Mztn": "absorptive cross-metathesis = metathematization",
+      "t=prax-defer": "time = praxitive deferral of consummation",
+      "4-fields": "four-field architecture: praxitive(P) + syntegrative(S) + transvolutory(T) + pressurative(A)",
+      "TA-switch": "T-A dynamic dominance switch on L11/L22",
+      "recep-field": "per-agent reception field / aperture function",
+      "hom/het": "homogeneity/heterogeneity (radical multiplicity must be heterogeneous)",
+      "Mztn": "metathematization (temporalization of praxis)",
+      "gif": "group-in-fusion (Sartre: serial->group transition)",
       "§X.Y": "design doc forward note section X.Y"
     },
     "rules": [
