@@ -871,6 +871,8 @@ Full translation table (Sartre on left, our terms on right):
 - Metathesis/demetathesis dialectic and demetathesis bin (§5.27)
 - Metathematization, drift, M(t)/s(t) split, sigma-TAP math gaps (§5.28)
 - Actor/artifact naming convention (§5.29)
+- RIP flow function: 8 mode configs, 6 orderings, L-matrix mapping, falsification regime (§5.30, Stage 3X-RIP)
+- Condensation/condension/evolution clarification for T-letter (§5.30)
 
 ---
 
@@ -1123,3 +1125,143 @@ Both are *agents* in the general sense (they act in the simulation). The distinc
 - **Artifacts** hold inward — their praxis is passive activity (Sartre's term), internalizing-holding what actors have externalized
 
 This aligns with §5.11 (praxis assignment) and §5.14 (artifact agents), now with cleaner terminology.
+
+## §5.30 RIP Flow Function — Dedicated Stage (Stage 3X-RIP)
+
+> **Dedicated substage**: RIP-to-L-matrix testing, validation, and integration is allocated its own robust dedicated stage (Stage 3X-RIP) rather than being folded into another stage. This isolates the falsification regime and prevents untested RIP assumptions from contaminating other work.
+
+### Definition
+
+**RIP = Recursive/Reflective · Iterative/Integrative · Preservative/Praxitive**
+
+RIP is the **flow function** of TAPS. Where TAPS names the four modal dimensions of a system's dispositional state (the coordinate system), RIP names how the system *moves through* TAPS space (the velocity field). TAP (Kauffman's Theory of the Adjacent Possible) provides the *rate* of movement.
+
+The full architecture: **TAP provides rate, TAPS provides position, RIP provides direction.**
+
+Each RIP position has two modes:
+- **R**: Recursive (self-entry, depth) OR Reflective (self-observation, distance)
+- **I**: Iterative (sequential stepping, repetition with displacement) OR Integrative (unifying, composition)
+- **P**: Preservative (maintaining structure) OR Praxitive (creating structure)
+
+### Combinatorial Space
+
+- **8 mode configurations** (2³ = 8 combinations of which mode each position takes)
+- **6 orderings** (3! permutations of which position is primary/secondary/tertiary)
+- **Total**: 48 possible RIP states (before empirical reduction)
+
+Ordering notation: X^Y^Z means X is **primary** (drives/initiates), Y is **secondary** (mediates/channels), Z is **tertiary** (the aim/horizon). The primary generates the energy, the secondary gives it form, the tertiary gives it direction.
+
+### The 8 Mode Configurations
+
+Each combination must describe what it signifies by virtue of the terms themselves:
+
+**1. Recursive-Iterative-Preservative (Rc·Ir·Pv)**
+The system enters itself, steps through itself, to hold itself together. The homeostatic floor: heartbeat, cell cycle, thermostat. Not death — the *prerequisite* of life. Every living system has this as a substrate. *Homeostasis.*
+
+**2. Recursive-Iterative-Praxitive (Rc·Ir·Px)**
+The system enters itself, steps through itself, to act outward. Drilling, training, developing skill through repetitive self-referential work. A pianist practicing scales. A compiler iterating through code to produce an executable. *Practice / Technique development.*
+
+**3. Recursive-Integrative-Preservative (Rc·Ig·Pv)**
+The system enters itself, unifies what it finds, to maintain its structure. The immune system: recursively identify foreign bodies, integrate them into recognition patterns, preserve the organism. A tradition incorporating new members to preserve continuity. *Healing / Tradition.*
+
+**4. Recursive-Integrative-Praxitive (Rc·Ig·Px)**
+The system enters itself, unifies what it finds, to create something new. The inventor going deep into their own knowledge, synthesizing disparate elements, producing innovation. Depth-first creative search. A dream integrating fragments into new imagery motivating waking action. *Invention / Creative synthesis.*
+
+**5. Reflective-Iterative-Preservative (Rf·Ir·Pv)**
+The system stands back to observe itself, processes step by step, to maintain its structure. Quality control. Auditing. A consciousness maintaining coherence through sequential self-monitoring. A culture periodically reflecting on its practices, iterating through them, preserving what works. *Monitoring / Quality assurance.*
+
+**6. Reflective-Iterative-Praxitive (Rf·Ir·Px)**
+The system stands back to observe itself, processes step by step, to act. Strategic planning. A general surveying the field, working through options sequentially, executing. Science at its most disciplined: observe, hypothesize step by step, experiment. *Strategy / Scientific method.*
+
+**7. Reflective-Integrative-Preservative (Rf·Ig·Pv)**
+The system stands back, sees the whole, brings things together, to maintain something essential. Wisdom. Philosophical contemplation. An elder integrating a lifetime of experience to preserve knowledge for the next generation. Meditation that integrates scattered experience into preserved equanimity. *Wisdom / Contemplative preservation.*
+
+**8. Reflective-Integrative-Praxitive (Rf·Ig·Px)**
+The system stands back, sees the whole, brings things together, to create. The painter stepping back from the canvas (reflection), seeing how everything relates (integration), making the next mark (praxis). The full creative cycle at its most articulate. *Full creative cycle / Praxis consummated.*
+
+### The 6 Orderings
+
+**R^I^P — Self-reference drives processing toward structural stance.**
+The system begins with *itself*, processes *through* that self-encounter, arrives at a structural orientation. Self-originating action. Generative because the agent is the source — nothing external needed. When preservative: homeostasis from within. When praxitive: creativity from self-encounter. Potentially the most generative ordering because the system is self-starting.
+
+**R^P^I — Self-reference drives structural stance toward processing.**
+The system begins with itself, immediately takes a structural stance (preserve or create), and the aim is processing. Self-motivated structuring that seeks method. An artist with a vision (R→P) seeking technique (→I).
+
+**I^R^P — Processing drives self-reference toward structural stance.**
+The system begins by *doing*, encounters itself through doing, arrives at a stance. Learning through doing. Apprenticeship: iterate the craft, discover yourself in it, find what to preserve or create.
+
+**I^P^R — Processing drives structural stance toward self-reference.**
+The system begins by doing, takes a position, and the aim is self-knowledge. Doing that becomes self-knowledge. Trial and error leading to self-understanding. Praxis that teaches the agent who they are.
+
+**P^R^I — Structural stance drives self-reference toward processing.**
+The system begins from commitment (preserve or create), encounters itself in that commitment, aims at processing. Committed self-discovery seeking method. A revolutionary (Px) reflecting on their position (R) seeking means to realize it (I).
+
+**P^I^R — Structural stance drives processing toward self-reference.**
+The system begins from commitment, processes iteratively or integratively, aims at self-reference. Action seeking self-knowledge through method. A craftsperson (P) practicing (I) to understand themselves (R). Praxis iterating toward wisdom.
+
+### Death in RIP Terms
+
+No single RIP configuration = death. Death is the **collapse of the RIP flow function itself** — when no configuration is viable, when the system can no longer recurse OR reflect, iterate OR integrate, preserve OR create. Death is the absence of RIP, not a particular value of it.
+
+Alternatively: death is the **loss of the capacity to shift modes**. A system frozen at Rc·Ir·Pv that CANNOT become Rf·Ig·Px is not dead yet, but approaching hexis. The dying process is mode-lock — when the mode-flip frequency approaches zero. Life = the capacity to shift modes. Death = mode-lock completed.
+
+### RIP ↔ L-Matrix (Speculative — Subject to Falsification)
+
+Tentative mapping (to be tested, not assumed):
+
+| RIP Position | Possible L-channel | Rationale |
+|---|---|---|
+| R (Recursive/Reflective) | L11 (self→self) | Self-referential processing |
+| I (Iterative/Integrative) | L21 (env→system) | Processing received input |
+| P (Preservative/Praxitive) | L12 (system→env) | Structural output |
+| — (context) | L22 (env texture) | Field in which RIP operates |
+
+**WARNING**: This mapping is speculative. The modes within each position (Recursive vs Reflective, etc.) may flip the channel orientation. Reflective might map to L21 (receiving from the field) rather than L11. This is why the falsification regime (below) is non-negotiable.
+
+### Condensation / Condension / Evolution Clarification
+
+The T-letter triad has deeper structure than I/E/T:
+
+| Direction | Term | Maps to | Order (Bohm) |
+|---|---|---|---|
+| **Involution** | Condension (specific vector) | Unity | Implicate (enfolding, densification) |
+| **Evolution** | Diffusion (specific vector) | Multiplicity | Explicate (unfolding, diffusion) |
+| **Transvolution** | Condensation (tendency) | Unificity | Actualized structure (consummation of both) |
+
+Transvolution is NOT "balanced between I and E" — it is their *consummation*, a third irreducible thing. This is consistent with unificity being irreducible to unity + multiplicity.
+
+### Stage 3X-RIP: Dedicated Falsification and Integration Stage
+
+**Prerequisites**: Stages 3A (complete), 3B (topology/trust/endogenous mu), enough simulation data to classify agent behavior.
+
+**Scope**: Wire RIP flow function into the simulation, validate against L-matrix data, falsify or confirm each component.
+
+#### Strict Falsification Regime
+
+**F1. Redundancy test**: Can the 8 mode configurations be distinguished empirically from agent behavior, or do some collapse into identical dynamics? **Method**: run paired simulations with agents assigned specific RIP configs; measure whether output distributions differ significantly (p < 0.01). If indistinguishable pairs exist, collapse them and note the reduced effective dimensionality.
+
+**F2. Ordering significance test**: Does ordering (R^I^P vs I^R^P vs P^R^I etc.) produce measurably different dynamics, or only mode configuration matters? **Method**: hold mode configuration constant, permute orderings, measure trajectory divergence. If orderings don't matter, RIP reduces from 48 to 8 states.
+
+**F3. Completeness test**: Are there observed agent dynamics that NO RIP configuration can describe? **Method**: catalog all observed trajectory shapes from prior stages; attempt to fit each with at least one RIP configuration; any unclassifiable trajectory falsifies completeness and requires extending RIP.
+
+**F4. Non-degeneracy test**: Do all configurations actually occur in unconstrained simulation, or do dynamics converge to a small subset? **Method**: run long simulations with diverse initial conditions; catalog emergent RIP states; measure effective dimensionality. If agents settle into only 2-3 states, the others are mathematical artifacts without operational meaning.
+
+**F5. L-matrix correspondence test**: Does the tentative R↔L11, I↔L21, P↔L12 mapping hold? **Method**: track per-agent L-matrix channels alongside RIP-classified behavior; compute mutual information between each R/I/P mode and each L-channel. The mapping must be non-arbitrary.
+
+**F6. TAPS orthogonality test**: Is RIP genuinely independent of TAPS, or derivable from TAPS alone? **Method**: compute mutual information between RIP state and TAPS signature. If MI approaches the entropy of RIP, it is redundant with TAPS and should be eliminated or reformulated.
+
+**F7. Death-is-absence test**: Is death best described as absence of RIP flow (mode-lock) rather than a specific configuration? **Method**: examine agents approaching disintegration; determine whether they occupy a specific RIP state or whether RIP dynamics simply stop (mode-flip frequency → 0).
+
+**F8. Predictive power test**: Does knowing RIP state improve prediction of next TAPS transition beyond TAPS alone? **Method**: build two predictors — TAPS-only and TAPS+RIP. If TAPS+RIP doesn't improve accuracy, RIP is descriptive but not functionally useful and should be deferred.
+
+**Pass criteria**: RIP is retained if it passes F1 (distinguishability), F6 (orthogonality from TAPS), AND F8 (predictive power). Failing any of these three is grounds for reformulation or rejection. F2-F5 and F7 inform the *shape* of RIP but don't determine whether it exists.
+
+### Open Questions (To Be Resolved During Stage 3X-RIP)
+
+1. **Is RIP 3-positional or should it be 4-positional?** TAPS has 4 letters. A flow vector in 4D space needs only 3 independent components to specify direction — this could explain the asymmetry structurally.
+
+2. **Discrete states or continuous manifold?** The 48 states may be vertices of a continuous space rather than discrete bins. The "varying degrees of control & articulation" language suggests continuous weighting.
+
+3. **How does RIP relate to the demetathesis bin (§5.27)?** The transition from virtual to actual possibility (epiphany) might be a specific RIP transition. Gradual epiphany = smooth RIP rotation; sudden epiphany = RIP phase flip.
+
+4. **Can RIP be detected from existing simulation data?** Or does it require new state variables? If detectable from L-matrix + TAPS alone, it may be an emergent property rather than an assigned one.
