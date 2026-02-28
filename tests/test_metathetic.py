@@ -1145,5 +1145,111 @@ class TestEnvTransitionPerAgent(unittest.TestCase):
                            "Env transitions happened but no agent recorded L22")
 
 
+class TestSigmaWiring(unittest.TestCase):
+    """Phase 1: Sigma-TAP feedback wired into multi-agent layer."""
+
+    def test_xi_local_attribute_exists(self):
+        """MetatheticAgent has Xi_local attribute defaulting to 0.0."""
+        agent = MetatheticAgent(agent_id=0, type_set={1}, k=0.0, M_local=10.0)
+        self.assertEqual(agent.Xi_local, 0.0)
+
+    def test_defaults_recover_stage3a(self):
+        """With default sigma params (gamma=0, beta=0, eta=0),
+        simulation is bit-identical to a run without sigma wiring."""
+        kwargs = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        traj = MetatheticEnsemble(**kwargs).run(steps=50)
+        for snap in traj:
+            self.assertAlmostEqual(snap["Xi_mean"], 0.0)
+            self.assertAlmostEqual(snap["Xi_std"], 0.0)
+            self.assertAlmostEqual(snap["sigma_mean"], 1.0)
+
+    def test_xi_accumulates_with_beta(self):
+        """When beta > 0, Xi should accumulate from birth term exposure."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42, beta=0.1, sigma0=1.0, gamma=0.0,
+        )
+        traj = ens.run(steps=30)
+        self.assertGreater(traj[-1]["Xi_mean"], 0.0)
+
+    def test_sigma_modulates_with_gamma(self):
+        """When gamma > 0 and beta > 0, sigma should exceed 1.0."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42, beta=0.1, gamma=0.1, sigma0=1.0,
+        )
+        traj = ens.run(steps=30)
+        self.assertGreater(traj[-1]["sigma_mean"], 1.0)
+
+    def test_negative_gamma_decreases_sigma(self):
+        """Negative gamma should decrease sigma below sigma0."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42, beta=0.1, gamma=-0.5, sigma0=1.0,
+        )
+        traj = ens.run(steps=30)
+        self.assertLessEqual(traj[-1]["sigma_mean"], 1.0)
+
+    def test_h_decay_compresses_xi(self):
+        """H feedback with eta > 0 should slow Xi growth.
+
+        H = -h_decay * Xi is negative when Xi > 0.
+        With eta > 0, the term eta * H < 0 drags Xi back toward zero,
+        compressing its growth relative to an eta=0 baseline.
+        """
+        ens_no_h = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42, beta=0.1, eta=0.0,
+        )
+        ens_with_h = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42, beta=0.1, eta=0.5, h_decay=0.02,
+        )
+        traj_no = ens_no_h.run(steps=30)
+        traj_with = ens_with_h.run(steps=30)
+        self.assertLess(traj_with[-1]["Xi_mean"], traj_no[-1]["Xi_mean"])
+
+    def test_snapshot_has_xi_fields(self):
+        """Snapshot includes Xi_mean, Xi_std, sigma_mean."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=1e-3, a=8.0, mu=0.02, seed=42,
+        )
+        traj = ens.run(steps=10)
+        for snap in traj:
+            self.assertIn("Xi_mean", snap)
+            self.assertIn("Xi_std", snap)
+            self.assertIn("sigma_mean", snap)
+
+    def test_seed_reproducibility_with_sigma(self):
+        """Two identical sigma runs produce identical results."""
+        kwargs = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42, sigma0=1.0, gamma=0.1, beta=0.1,
+        )
+        traj1 = MetatheticEnsemble(**kwargs).run(steps=30)
+        traj2 = MetatheticEnsemble(**kwargs).run(steps=30)
+        for s1, s2 in zip(traj1, traj2):
+            self.assertAlmostEqual(s1["Xi_mean"], s2["Xi_mean"], places=10)
+            self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
+
+
 if __name__ == "__main__":
     unittest.main()

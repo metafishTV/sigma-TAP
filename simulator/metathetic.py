@@ -27,6 +27,7 @@ from typing import Sequence
 
 from .tap import compute_birth_term
 from .analysis import classify_regime, adaptive_xi_plateau_threshold
+from .sigma_tap import sigma_linear, xi_update_two_channel
 
 
 # ---------------------------------------------------------------------------
@@ -52,6 +53,9 @@ class MetatheticAgent:
     steps_since_metathesis: int = 0
     _dormant_steps: int = 0
     _affordance_ticks: list[int] = field(default_factory=list)
+
+    # -- Sigma-TAP feedback state -------------------------------------------
+    Xi_local: float = 0.0  # Cumulative affordance exposure (per-agent)
 
     # -- L-matrix event ledger (Emery channels) ------------------------------
     # L11: intrapraxis (self-transformation)
@@ -528,6 +532,11 @@ class MetatheticEnsemble:
         self_meta_threshold: float = 0.5,
         affordance_min_cluster: int = 2,
         seed: int | None = None,
+        sigma0: float = 1.0,
+        gamma: float = 0.0,
+        beta: float = 0.0,
+        eta: float = 0.0,
+        h_decay: float = 0.02,
     ):
         self.alpha = alpha
         self.a = a
@@ -538,6 +547,11 @@ class MetatheticEnsemble:
         self.env_update_interval = env_update_interval
         self.self_meta_threshold = self_meta_threshold
         self.affordance_min_cluster = affordance_min_cluster
+        self.sigma0 = sigma0
+        self.gamma = gamma
+        self.beta = beta
+        self.eta = eta
+        self.h_decay = h_decay
 
         self._rng = _random.Random(seed)
         self._next_type_id = n_agents + 1
@@ -628,7 +642,14 @@ class MetatheticEnsemble:
             if not math.isfinite(f):
                 f = 0.0
 
-            B = min(f, m_cap)
+            B_raw = min(f, m_cap)
+
+            # Sigma-TAP feedback: sigma(Xi) modulates innovation rate.
+            # With gamma=0.0 (default), sigma_val=sigma0=1.0, recovering
+            # exact pre-sigma behavior: B = 1.0 * B_raw = B_raw.
+            sigma_val = sigma_linear(agent.Xi_local, self.sigma0, self.gamma)
+            B = sigma_val * B_raw
+
             D = self.mu * agent.M_local
             dM = B - D
 
@@ -639,6 +660,14 @@ class MetatheticEnsemble:
             agent.M_local = min(m_cap, max(0.0, agent.M_local + dM))
             agent.k += max(0.0, B)
             agent.steps_since_metathesis += 1
+
+            # Xi accumulation: two-channel update.
+            # With beta=0.0 and eta=0.0 (defaults), Xi stays at 0.0,
+            # so sigma stays at sigma0=1.0: exact backward compatibility.
+            H = -self.h_decay * agent.Xi_local
+            agent.Xi_local = xi_update_two_channel(
+                agent.Xi_local, self.beta, B, self.eta, H
+            )
 
     def _update_affordance_ticks(self) -> None:
         """Compute and record affordance tick for each active agent."""
@@ -990,6 +1019,20 @@ class MetatheticEnsemble:
             snapshot["affordance_mean"] = (
                 sum(active_scores) / len(active_scores) if active_scores else 0.0
             )
+
+            # Sigma-TAP feedback diagnostics.
+            active_xi = [a.Xi_local for a in active]
+            if active_xi:
+                xi_mean = sum(active_xi) / len(active_xi)
+                xi_var = sum((x - xi_mean) ** 2 for x in active_xi) / len(active_xi)
+                snapshot["Xi_mean"] = xi_mean
+                snapshot["Xi_std"] = math.sqrt(xi_var)
+                active_sigma = [sigma_linear(a.Xi_local, self.sigma0, self.gamma) for a in active]
+                snapshot["sigma_mean"] = sum(active_sigma) / len(active_sigma)
+            else:
+                snapshot["Xi_mean"] = 0.0
+                snapshot["Xi_std"] = 0.0
+                snapshot["sigma_mean"] = self.sigma0
 
             # TAPS signature distribution for active agents.
             sig_counts: dict[str, int] = {}
