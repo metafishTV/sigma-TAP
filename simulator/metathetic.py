@@ -68,6 +68,9 @@ class MetatheticAgent:
     tau_self: float = 0.5  # Self-trust: trajectory stability -> confidence
     trust_map: dict[int, float] = field(default_factory=dict)  # Pairwise trust by agent_id
 
+    # -- Family group membership (purely observational) ----------------------
+    family_id: int | None = None  # Family group ID (None = unassigned)
+
     # -- L-matrix event ledger (Emery channels) ------------------------------
     # L11: intrapraxis (self-transformation)
     n_self_metatheses_local: int = 0
@@ -630,6 +633,12 @@ class MetatheticEnsemble:
         self.n_types_lost = 0
         self.k_lost = 0.0
 
+        # Family tracking (purely observational — does not change dynamics).
+        self._family_counter: int = 0
+        self._families: dict[int, dict] = {}
+        # Each family: {"members": set[int], "parent_families": set[int],
+        #               "formation_step": int, "formed_by": str}
+
         # Rolling history for regime classification (C1 fix: need ≥3 points
         # for classify_regime and adaptive_xi_plateau_threshold).
         self._m_history: list[float] = []
@@ -813,6 +822,71 @@ class MetatheticEnsemble:
             current = absorber.trust_map.get(absorbed_id, 0.5)
             absorber.trust_map[absorbed_id] = min(1.0, current + self.trust_update_rate)
 
+    # -- Family tracking helpers (purely observational) ----------------------
+
+    def _new_family(self, step: int, formed_by: str,
+                    parent_families: set[int] | None = None) -> int:
+        """Create a new family and return its ID."""
+        self._family_counter += 1
+        fid = self._family_counter
+        self._families[fid] = {
+            "members": set(),
+            "parent_families": parent_families or set(),
+            "formation_step": step,
+            "formed_by": formed_by,
+        }
+        return fid
+
+    def _assign_family(self, agent: MetatheticAgent, family_id: int) -> None:
+        """Assign an agent to a family."""
+        # Remove from old family if present.
+        if agent.family_id is not None and agent.family_id in self._families:
+            self._families[agent.family_id]["members"].discard(agent.agent_id)
+        agent.family_id = family_id
+        if family_id in self._families:
+            self._families[family_id]["members"].add(agent.agent_id)
+
+    def _family_lineage_depth(self, family_id: int,
+                              visited: set[int] | None = None) -> int:
+        """Compute recursive lineage depth of a family."""
+        if visited is None:
+            visited = set()
+        if family_id in visited or family_id not in self._families:
+            return 0
+        visited.add(family_id)
+        parents = self._families[family_id]["parent_families"]
+        if not parents:
+            return 1
+        return 1 + max(self._family_lineage_depth(pid, visited)
+                       for pid in parents)
+
+    def _track_absorptive_family(self, a1: MetatheticAgent,
+                                 a2: MetatheticAgent) -> None:
+        """Track family formation for absorptive cross-metathesis."""
+        absorber = a1 if a1.active else a2
+        absorbed = a2 if a1.active else a1
+        parent_fams: set[int] = set()
+        if absorber.family_id is not None:
+            parent_fams.add(absorber.family_id)
+        if absorbed.family_id is not None:
+            parent_fams.add(absorbed.family_id)
+        if parent_fams:
+            step_proxy = len(self._m_history)
+            fid = self._new_family(step_proxy, "absorptive_cross", parent_fams)
+            self._assign_family(absorber, fid)
+
+    def _track_novel_family(self, a1: MetatheticAgent, a2: MetatheticAgent,
+                            child: MetatheticAgent) -> None:
+        """Track family formation for novel cross-metathesis."""
+        parent_fams: set[int] = set()
+        if a1.family_id is not None:
+            parent_fams.add(a1.family_id)
+        if a2.family_id is not None:
+            parent_fams.add(a2.family_id)
+        step_proxy = len(self._m_history)
+        fid = self._new_family(step_proxy, "novel_cross", parent_fams)
+        self._assign_family(child, fid)
+
     def _check_self_metathesis(self) -> None:
         """Mode 1: Self-metathesis for each active agent.
 
@@ -840,6 +914,12 @@ class MetatheticEnsemble:
                 agent.self_metathesize(self._next_type_id)
                 self._next_type_id += 1
                 self.n_self_metatheses += 1
+                # Family tracking: self-metathesis creates a family if agent
+                # has none.
+                if agent.family_id is None:
+                    step_proxy = len(self._m_history)
+                    fid = self._new_family(step_proxy, "self_metathesis")
+                    self._assign_family(agent, fid)
 
     def _check_cross_metathesis(self) -> None:
         """Modes 2 & 3: Pairwise cross-metathesis checks.
@@ -930,6 +1010,7 @@ class MetatheticEnsemble:
                         MetatheticAgent.absorptive_cross(a1, a2)
                         self.n_absorptive_cross += 1
                         self._update_pair_trust(a1.agent_id, a2.agent_id, "absorptive")
+                        self._track_absorptive_family(a1, a2)
                     elif sig_sim <= 1:
                         # High tension: different signatures → novel.
                         # β·B channel — exploration across boundaries.
@@ -945,6 +1026,7 @@ class MetatheticEnsemble:
                         if self.trust_update_rate > 0.0:
                             child.trust_map[a1.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
                             child.trust_map[a2.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
+                        self._track_novel_family(a1, a2, child)
                     else:
                         # Mid tension (2 matches): L vs G tiebreak;
                         # ties (L == G) route to novel.
@@ -952,6 +1034,7 @@ class MetatheticEnsemble:
                             MetatheticAgent.absorptive_cross(a1, a2)
                             self.n_absorptive_cross += 1
                             self._update_pair_trust(a1.agent_id, a2.agent_id, "absorptive")
+                            self._track_absorptive_family(a1, a2)
                         else:
                             self._next_agent_id += 1
                             child = MetatheticAgent.novel_cross(
@@ -965,12 +1048,14 @@ class MetatheticEnsemble:
                             if self.trust_update_rate > 0.0:
                                 child.trust_map[a1.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
                                 child.trust_map[a2.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
+                            self._track_novel_family(a1, a2, child)
                 else:
                     # Insufficient event history — L vs G fallback.
                     if L > G:
                         MetatheticAgent.absorptive_cross(a1, a2)
                         self.n_absorptive_cross += 1
                         self._update_pair_trust(a1.agent_id, a2.agent_id, "absorptive")
+                        self._track_absorptive_family(a1, a2)
                     else:
                         self._next_agent_id += 1
                         child = MetatheticAgent.novel_cross(
@@ -984,6 +1069,7 @@ class MetatheticEnsemble:
                         if self.trust_update_rate > 0.0:
                             child.trust_map[a1.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
                             child.trust_map[a2.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
+                        self._track_novel_family(a1, a2, child)
 
                 # One cross-metathesis per step to avoid cascading.
                 return
@@ -1205,6 +1291,30 @@ class MetatheticEnsemble:
             else:
                 snapshot["mu_eff_mean"] = self.mu
                 snapshot["mu_eff_std"] = 0.0
+
+            # Family group diagnostics (purely observational).
+            # Active families: those with at least one active member.
+            active_ids = {a.agent_id for a in active}
+            active_families: set[int] = set()
+            for fid, fam in self._families.items():
+                if fam["members"] & active_ids:
+                    active_families.add(fid)
+            snapshot["n_families"] = len(active_families)
+
+            # Family size distribution: {size: count}.
+            size_dist: dict[int, int] = {}
+            for fid in active_families:
+                size = len(self._families[fid]["members"] & active_ids)
+                size_dist[size] = size_dist.get(size, 0) + 1
+            snapshot["family_size_distribution"] = size_dist
+
+            # Max lineage depth across active families.
+            if active_families:
+                snapshot["family_lineage_depth"] = max(
+                    self._family_lineage_depth(fid) for fid in active_families
+                )
+            else:
+                snapshot["family_lineage_depth"] = 0
 
             # TAPS signature distribution for active agents.
             sig_counts: dict[str, int] = {}

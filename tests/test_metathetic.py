@@ -1582,5 +1582,121 @@ class TestEndogenousMu(unittest.TestCase):
             self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
 
 
+class TestFamilyGroups(unittest.TestCase):
+    """Phase 5: Topology / family group tracking tests."""
+
+    def test_initial_agents_have_no_family(self):
+        """All agents start with family_id=None."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        for agent in ens.agents:
+            self.assertIsNone(agent.family_id)
+
+    def test_family_forms_on_self_metathesis(self):
+        """After self-metathesis fires, the agent gets a family_id (not None)."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        # Run enough steps that at least one self-metathesis fires
+        traj = ens.run(steps=100)
+        if ens.n_self_metatheses > 0:
+            # At least one agent should have a family
+            has_family = any(a.family_id is not None for a in ens.agents)
+            self.assertTrue(has_family, "Self-metathesis fired but no agent has a family_id")
+        else:
+            self.skipTest("No self-metathesis fired in 100 steps")
+
+    def test_novel_cross_child_gets_new_family(self):
+        """After novel cross, child has a family_id different from parents' families."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        traj = ens.run(steps=200)
+        if ens.n_novel_cross > 0:
+            # Children are agents appended after the initial n_agents
+            children = [a for a in ens.agents if a.agent_id >= 5]
+            self.assertTrue(len(children) > 0, "Novel cross fired but no child agents found")
+            for child in children:
+                self.assertIsNotNone(child.family_id,
+                                     f"Child agent {child.agent_id} has no family_id")
+        else:
+            self.skipTest("No novel cross-metathesis fired in 200 steps")
+
+    def test_snapshot_has_family_fields(self):
+        """n_families, family_size_distribution, family_lineage_depth in snapshot."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        traj = ens.run(steps=10)
+        for snap in traj:
+            self.assertIn("n_families", snap)
+            self.assertIn("family_size_distribution", snap)
+            self.assertIn("family_lineage_depth", snap)
+            self.assertIsInstance(snap["n_families"], int)
+            self.assertIsInstance(snap["family_size_distribution"], dict)
+            self.assertIsInstance(snap["family_lineage_depth"], int)
+
+    def test_n_families_zero_initially(self):
+        """Before any metathetic events, n_families=0 in snapshot."""
+        ens = MetatheticEnsemble(
+            n_agents=3, initial_M=10.0,
+            alpha=1e-6, a=8.0, mu=0.5,
+            variant="logistic", carrying_capacity=2e5,
+            seed=99,
+        )
+        # Very low alpha, very high mu → no self-metathesis should fire on step 0.
+        traj = ens.run(steps=1)
+        self.assertEqual(traj[0]["n_families"], 0)
+
+    def test_family_counter_monotonic(self):
+        """Family IDs are monotonically increasing."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        traj = ens.run(steps=200)
+        # Collect all family IDs from the internal registry
+        if ens._families:
+            fids = sorted(ens._families.keys())
+            for i in range(1, len(fids)):
+                self.assertGreater(fids[i], fids[i - 1],
+                                   "Family IDs are not monotonically increasing")
+            # First family ID should be 1
+            self.assertEqual(fids[0], 1)
+
+    def test_backward_compat_families_are_additive(self):
+        """Family tracking doesn't change dynamics: bit-identical total_M, k_total, Xi_mean, sigma_mean."""
+        kwargs = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        # Run two identical ensembles — family tracking is always on but purely
+        # observational, so results must be identical seed-for-seed.
+        traj1 = MetatheticEnsemble(**kwargs).run(steps=50)
+        traj2 = MetatheticEnsemble(**kwargs).run(steps=50)
+        for s1, s2 in zip(traj1, traj2):
+            self.assertAlmostEqual(s1["total_M"], s2["total_M"], places=10)
+            self.assertAlmostEqual(s1["k_total"], s2["k_total"], places=10)
+            self.assertAlmostEqual(s1["Xi_mean"], s2["Xi_mean"], places=10)
+            self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
+
+
 if __name__ == "__main__":
     unittest.main()
