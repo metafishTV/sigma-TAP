@@ -730,7 +730,11 @@ class MetatheticEnsemble:
             tail = agent.dM_history[-5:]
             mean_dM = sum(tail) / len(tail)
             variance = sum((x - mean_dM) ** 2 for x in tail) / len(tail)
-            stability = 1.0 / (1.0 + variance)
+            # Use coefficient of variation (squared) so stability is
+            # scale-invariant — raw variance would be near-zero only for
+            # artificially small dM values, not realistic TAP dynamics.
+            cv_sq = variance / (mean_dM ** 2 + 1e-10)
+            stability = 1.0 / (1.0 + cv_sq)
             if mean_dM > 0:
                 # Positive stable trajectory: increase trust
                 agent.tau_self = min(
@@ -745,12 +749,16 @@ class MetatheticEnsemble:
     def _decay_trust(self) -> None:
         """Decay all trust values toward 0.5 baseline.
 
+        Applies to ALL non-dissolved agents (active and dormant) so that
+        dormant agents' trust values don't freeze indefinitely.
         When trust_decay_rate=0, this is a no-op.
         """
         if self.trust_decay_rate == 0.0:
             return
         baseline = 0.5
-        for agent in self._active_agents():
+        for agent in self.agents:
+            if agent._dissolved:
+                continue
             # Decay tau_self toward baseline
             diff = agent.tau_self - baseline
             agent.tau_self = baseline + diff * (1.0 - self.trust_decay_rate)
@@ -777,9 +785,12 @@ class MetatheticEnsemble:
             return
 
         if event_type == "absorptive":
-            # Absorber trusts absorbed slightly more
+            # Absorber trusts absorbed slightly more.
+            # Must be called AFTER absorptive_cross() which sets absorbed.active=False.
             absorber = a1 if a1.active else a2
-            absorbed_id = a2.agent_id if a1.active else a1.agent_id
+            if not absorber.active:
+                return  # Both dormant — should not happen; skip safely
+            absorbed_id = a2.agent_id if absorber is a1 else a1.agent_id
             current = absorber.trust_map.get(absorbed_id, 0.5)
             absorber.trust_map[absorbed_id] = min(1.0, current + self.trust_update_rate)
 
@@ -913,8 +924,8 @@ class MetatheticEnsemble:
                         self.agents.append(child)
                         self.n_novel_cross += 1
                         if self.trust_update_rate > 0.0:
-                            child.trust_map[a1.agent_id] = 0.5 + self.trust_update_rate
-                            child.trust_map[a2.agent_id] = 0.5 + self.trust_update_rate
+                            child.trust_map[a1.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
+                            child.trust_map[a2.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
                     else:
                         # Mid tension (2 matches): L vs G tiebreak;
                         # ties (L == G) route to novel.
@@ -933,8 +944,8 @@ class MetatheticEnsemble:
                             self.agents.append(child)
                             self.n_novel_cross += 1
                             if self.trust_update_rate > 0.0:
-                                child.trust_map[a1.agent_id] = 0.5 + self.trust_update_rate
-                                child.trust_map[a2.agent_id] = 0.5 + self.trust_update_rate
+                                child.trust_map[a1.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
+                                child.trust_map[a2.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
                 else:
                     # Insufficient event history — L vs G fallback.
                     if L > G:
@@ -952,8 +963,8 @@ class MetatheticEnsemble:
                         self.agents.append(child)
                         self.n_novel_cross += 1
                         if self.trust_update_rate > 0.0:
-                            child.trust_map[a1.agent_id] = 0.5 + self.trust_update_rate
-                            child.trust_map[a2.agent_id] = 0.5 + self.trust_update_rate
+                            child.trust_map[a1.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
+                            child.trust_map[a2.agent_id] = min(1.0, 0.5 + self.trust_update_rate)
 
                 # One cross-metathesis per step to avoid cascading.
                 return
