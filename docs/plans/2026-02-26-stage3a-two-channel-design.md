@@ -1818,3 +1818,91 @@ The following Critique Vol. 1 & 2 glossary terms are candidates for direct or ad
 - **Other-direction**: Orientation toward alterity (L12 channel direction).
 
 > **Status**: These are bookmarked for potential use in Stage 3C+ design. Not all will be implemented — selection depends on which mechanisms prove necessary.
+
+## §5.61 Deleuze & Guattari — ATP Conclusion: Concrete Rules and Abstract Machines
+
+> **Source**: A Thousand Plateaus, final chapter + conversation 2026-02-28
+
+### Strata and Double Articulation
+
+Every agent has double articulation:
+- **Content** = type_set, M_local, material properties (what it IS)
+- **Expression** = TAPS signature, trust profile, temporal state (how it APPEARS)
+
+These are genuinely distinct (signature not derivable from type_set) but presuppose each other. Cross-metathesis = **transcoding** (passage between milieus). Jaccard measures content overlap; signature similarity measures expression overlap — different measurements of different articulations.
+
+L-channel architecture as strata: L11 = epistratic (deepest self-layer), L12/L21 = parastratic (lateral communication between strata), L22 = stratum of strata (meta-layer).
+
+### Tetravalent Assemblage = L-Matrix
+
+The D&G assemblage has four components on two axes. These map to the L-channels:
+
+| Assemblage component | L-channel | sigma-TAP |
+|---------------------|-----------|-----------|
+| Content (bodies, actions) | L11 | Self-material, what the agent IS |
+| Expression (enunciation) | L12 | What the agent projects outward |
+| Territory (integration) | L21 | What the agent receives/integrates |
+| Deterritorialization (flight) | L22 | Environmental drift carrying agent away |
+
+This convergence from independent routes (D&G via Hjelmslev semiotics, sigma-TAP via Emery L-matrix) is a strong structural signal.
+
+### Three Lines = Three Metathetic Modes
+
+| D&G line type | Character | sigma-TAP event | Danger |
+|---------------|-----------|------------------|--------|
+| Molar/segmentary | Arborescent, striated, countable | Absorptive cross (consolidation, filiation) | Rigidity (all absorbed into one) |
+| Molecular/rhizomatic | Diagonal, smooth, fuzzy | Novel cross (alliance, new connections) | Chaotic dissolution |
+| Lines of flight | Escape, absolute deterritorialization | Disintegration + redistribution | Death (complete disintegration) |
+
+Critical: "there is an arborification of multiplicities" — the island effect (affordance → 0) is precisely arborification. Rhizomatic connections get segmented into striated isolation.
+
+### Plane of Consistency = Global/Nonlocal Field
+
+The plane of consistency operates beneath formed structures. Selection criterion: **"that which increases the number of connections at each level."** This IS the conservation law: minimal praxis for maximal syntegration. Syntegration = connection-increase.
+
+### Four Deterritorializations = Holarch Map (Independent Convergence)
+
+| D&G form | Character | sigma-TAP | Holarch |
+|----------|-----------|-----------|---------|
+| Absolute movement | Body *as multiple*, smooth space, **vortex** | Unificity | Holarchy (vortical) |
+| Relative movement | Body *as One*, striated space, linear | Unity | Holism (lateral) |
+| (implicit) | Field of virtual potential | Multiplicity | Hierarchy (vertical) |
+
+Four deterritorialization forms map to metathetic outcomes:
+1. **Negative D** = absorptive cross into existing family (reterritorialized, no real change)
+2. **Positive-relative D** = novel cross within known topology
+3. **Absolute-negative D** = system convergence, homogenization (all signatures → EEXD)
+4. **Absolute-positive D** = novel cross creating genuinely new territory — the *face* event (Levinas)
+
+### Conjunction vs Connection — KEY ARCHITECTURAL INSIGHT
+
+D&G explicitly distinguish **conjunction** (blocks, gates, overcodes, axiomatics) from **connection** (creates, multiplies, draws plane of consistency).
+
+Our current **junction metric** is computationally a *conjunction*: a gate that blocks or allows based on pre-existing proximity. It doesn't create connections.
+
+The **reception field** (§5.57) is a *connection* mechanism: it creates new pathways by allowing agents to receive signals across the metathetic field. The transition from junction to reception = transition from conjunction to connection = transition from axiomatics to plane of consistency.
+
+**3C direction**: Move from conjunction-based interaction to connection-based interaction, where junction becomes one component (involutory face) of a richer transvolutory field that includes reception (evolutory face).
+
+### Three Abstract Machine Types in sigma-TAP
+
+| D&G machine type | sigma-TAP mechanism | Function |
+|-------------------|---------------------|----------|
+| Machines of consistency | Sigma feedback, trust, reception field | Connection-increasing |
+| Machines of stratification | Temporal state machine, family topology | Organizing/layering |
+| Overcoding machines | Convergence tendency, absorption dynamics | Totalizing/homogenizing |
+
+### Four Diagnostic Meters — Candidate Snapshot Metrics
+
+| D&G meter | Measures | sigma-TAP diagnostic |
+|-----------|----------|---------------------|
+| **Axiomatics** | Connection blockage | Affordance → 0 (island effect) |
+| **Stratometer** | Organizational rigidity | Signature diversity declining |
+| **Segmentometer** | Reterritorialization into black holes | Family isolation, no cross-family events |
+| **Deleometer** | Destructive flight | Disintegration cascades, mass death |
+
+### Concrete Rules of Caution
+
+"You don't reach the BwO, and its plane of consistency, by wildly destratifying." Confirmed by exploration run: gamma=0.1 caused sigma to explode to 169×. Moderate values (gamma=0.005, sigma ≈ 1.6) are the cautious approach. **Destratification must be gradual.**
+
+> **Status**: Structural mappings confirmed by independent convergence (D&G via semiotics, sigma-TAP via systems theory). The conjunction→connection transition is a key architectural principle for Stage 3C. Diagnostic meters are candidates for implementation.
