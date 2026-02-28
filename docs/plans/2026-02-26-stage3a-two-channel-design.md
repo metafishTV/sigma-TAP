@@ -1265,3 +1265,5 @@ Transvolution is NOT "balanced between I and E" — it is their *consummation*, 
 3. **How does RIP relate to the demetathesis bin (§5.27)?** The transition from virtual to actual possibility (epiphany) might be a specific RIP transition. Gradual epiphany = smooth RIP rotation; sudden epiphany = RIP phase flip.
 
 4. **Can RIP be detected from existing simulation data?** Or does it require new state variables? If detectable from L-matrix + TAPS alone, it may be an emergent property rather than an assigned one.
+
+5. **Power-law nesting (deferred)**: The 8 mode configurations and 6 orderings documented above are **base combinations**. The full RIP combinatorial includes power-law nesting: R^(I^P) ≠ (R^I)^P — the power structure allows functions to be governed by nested functions. A primary RIP function (e.g., R) can have the others as power laws, and powers can have powers. This creates recursive depth: RIP flows that describe their own flow, enabling self-referential configurations consistent with metathematization (§5.28). The base combinations determine the powered combinations — mapping the base level first, then exploring nesting, is the correct staging.
