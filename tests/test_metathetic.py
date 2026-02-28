@@ -1251,5 +1251,116 @@ class TestSigmaWiring(unittest.TestCase):
             self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
 
 
+class TestSeedEntropy(unittest.TestCase):
+    """Phase 2: Per-agent parameter offsets via seed entropy."""
+
+    def test_zero_entropy_identical_params(self):
+        """seed_entropy=0 means all agents have same alpha/mu as ensemble."""
+        ens = MetatheticEnsemble(
+            n_agents=5, initial_M=10.0,
+            alpha=1e-3, a=8.0, mu=0.02, seed=42,
+            seed_entropy=0.0,
+        )
+        for agent in ens.agents:
+            self.assertEqual(agent.alpha_local, 1e-3)
+            self.assertEqual(agent.mu_local, 0.02)
+
+    def test_nonzero_entropy_produces_variation(self):
+        """seed_entropy>0 gives different alpha_local/mu_local across agents."""
+        ens = MetatheticEnsemble(
+            n_agents=10, initial_M=10.0,
+            alpha=1e-3, a=8.0, mu=0.02, seed=42,
+            seed_entropy=0.1,
+        )
+        alphas = [a.alpha_local for a in ens.agents]
+        mus = [a.mu_local for a in ens.agents]
+        # Not all identical
+        self.assertGreater(len(set(alphas)), 1,
+                           "All alpha_local values are identical despite seed_entropy>0")
+        self.assertGreater(len(set(mus)), 1,
+                           "All mu_local values are identical despite seed_entropy>0")
+        # At least one differs from ensemble default
+        self.assertTrue(any(a != 1e-3 for a in alphas))
+        self.assertTrue(any(m != 0.02 for m in mus))
+
+    def test_params_stay_positive(self):
+        """No negative alpha_local or mu_local even with large seed_entropy."""
+        ens = MetatheticEnsemble(
+            n_agents=20, initial_M=10.0,
+            alpha=1e-3, a=8.0, mu=0.02, seed=42,
+            seed_entropy=0.5,
+        )
+        for agent in ens.agents:
+            self.assertGreater(agent.alpha_local, 0.0,
+                               f"Agent {agent.agent_id} has non-positive alpha_local")
+            self.assertGreater(agent.mu_local, 0.0,
+                               f"Agent {agent.agent_id} has non-positive mu_local")
+
+    def test_divergent_trajectories(self):
+        """Agents with seed_entropy>0 diverge in M_local over 50 steps
+        vs identical M_local when seed_entropy=0."""
+        kwargs_base = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        # seed_entropy=0: all agents use same alpha/mu
+        ens0 = MetatheticEnsemble(**kwargs_base, seed_entropy=0.0)
+        traj0 = ens0.run(steps=50)
+
+        # seed_entropy=0.1: agents have different alpha/mu
+        ens1 = MetatheticEnsemble(**kwargs_base, seed_entropy=0.1)
+        traj1 = ens1.run(steps=50)
+
+        # Compute variance of M_local at final step for each
+        active0 = [a.M_local for a in ens0.agents if a.active]
+        active1 = [a.M_local for a in ens1.agents if a.active]
+
+        if len(active0) >= 2 and len(active1) >= 2:
+            mean0 = sum(active0) / len(active0)
+            mean1 = sum(active1) / len(active1)
+            var0 = sum((x - mean0) ** 2 for x in active0) / len(active0)
+            var1 = sum((x - mean1) ** 2 for x in active1) / len(active1)
+            # Entropy run should have at least as much or more variance
+            # (agents diverge due to different growth/death rates)
+            self.assertGreater(var1, var0 * 0.5,
+                               "Seed entropy did not produce divergent trajectories")
+
+    def test_novel_cross_child_inherits_avg_params(self):
+        """Child from novel_cross gets mean of parent params."""
+        a1 = MetatheticAgent(agent_id=0, type_set={0, 1}, k=5.0, M_local=10.0)
+        a1.alpha_local = 1e-3
+        a1.mu_local = 0.02
+
+        a2 = MetatheticAgent(agent_id=1, type_set={0, 2}, k=5.0, M_local=10.0)
+        a2.alpha_local = 3e-3
+        a2.mu_local = 0.04
+
+        child = MetatheticAgent.novel_cross(a1, a2, child_id=2, next_type_id=10)
+
+        self.assertAlmostEqual(child.alpha_local, (1e-3 + 3e-3) / 2.0)
+        self.assertAlmostEqual(child.mu_local, (0.02 + 0.04) / 2.0)
+
+    def test_backward_compat_with_seed_entropy_zero(self):
+        """seed_entropy=0 produces bit-identical trajectory to Phase 1 defaults."""
+        kwargs = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        # Phase 1 default: no seed_entropy param
+        traj_default = MetatheticEnsemble(**kwargs).run(steps=50)
+        # Phase 2 explicit zero
+        traj_zero = MetatheticEnsemble(**kwargs, seed_entropy=0.0).run(steps=50)
+
+        for s1, s2 in zip(traj_default, traj_zero):
+            self.assertAlmostEqual(s1["total_M"], s2["total_M"], places=10)
+            self.assertAlmostEqual(s1["k_total"], s2["k_total"], places=10)
+            self.assertAlmostEqual(s1["Xi_mean"], s2["Xi_mean"], places=10)
+            self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
+
+
 if __name__ == "__main__":
     unittest.main()

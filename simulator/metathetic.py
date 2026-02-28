@@ -57,6 +57,10 @@ class MetatheticAgent:
     # -- Sigma-TAP feedback state -------------------------------------------
     Xi_local: float = 0.0  # Cumulative affordance exposure (per-agent)
 
+    # -- Per-agent parameter offsets (seed entropy) --------------------------
+    alpha_local: float | None = None  # Per-agent alpha (None = use ensemble default)
+    mu_local: float | None = None     # Per-agent mu (None = use ensemble default)
+
     # -- L-matrix event ledger (Emery channels) ------------------------------
     # L11: intrapraxis (self-transformation)
     n_self_metatheses_local: int = 0
@@ -294,6 +298,12 @@ class MetatheticAgent:
             M_local=a1.M_local + a2.M_local,
             active=True,
         )
+
+        # Child inherits mean of parent per-agent params (seed entropy).
+        if a1.alpha_local is not None and a2.alpha_local is not None:
+            child.alpha_local = (a1.alpha_local + a2.alpha_local) / 2.0
+        if a1.mu_local is not None and a2.mu_local is not None:
+            child.mu_local = (a1.mu_local + a2.mu_local) / 2.0
 
         a1.n_novel_cross_local += 1
         a2.n_novel_cross_local += 1
@@ -537,6 +547,7 @@ class MetatheticEnsemble:
         beta: float = 0.0,
         eta: float = 0.0,
         h_decay: float = 0.02,
+        seed_entropy: float = 0.0,
     ):
         self.alpha = alpha
         self.a = a
@@ -552,6 +563,7 @@ class MetatheticEnsemble:
         self.beta = beta
         self.eta = eta
         self.h_decay = h_decay
+        self.seed_entropy = seed_entropy
 
         self._rng = _random.Random(seed)
         self._next_type_id = n_agents + 1
@@ -562,12 +574,19 @@ class MetatheticEnsemble:
         self.agents: list[MetatheticAgent] = []
         for i in range(n_agents):
             types = {0, i + 1}
-            self.agents.append(MetatheticAgent(
+            agent = MetatheticAgent(
                 agent_id=i,
                 type_set=types,
                 k=0.0,
                 M_local=initial_M * (0.8 + 0.4 * self._rng.random()),
-            ))
+            )
+            if seed_entropy > 0.0:
+                agent.alpha_local = max(1e-12, alpha * (1.0 + seed_entropy * self._rng.gauss(0, 1)))
+                agent.mu_local = max(1e-12, mu * (1.0 + seed_entropy * self._rng.gauss(0, 1)))
+            else:
+                agent.alpha_local = alpha
+                agent.mu_local = mu
+            self.agents.append(agent)
 
         self.env = EnvironmentState(
             a_env=a,
@@ -630,9 +649,10 @@ class MetatheticEnsemble:
         m_cap prevents explosive TAP dynamics from causing overflow.
         """
         for agent in self._active_agents():
+            alpha_eff = agent.alpha_local if agent.alpha_local is not None else self.alpha
             f = compute_birth_term(
                 agent.M_local,
-                alpha=self.alpha,
+                alpha=alpha_eff,
                 a=self.env.a_env,
                 variant=self.variant,
                 alpha1=self.alpha1,
@@ -650,7 +670,8 @@ class MetatheticEnsemble:
             sigma_val = sigma_linear(agent.Xi_local, self.sigma0, self.gamma)
             B = sigma_val * B_raw
 
-            D = self.mu * agent.M_local
+            mu_eff_local = agent.mu_local if agent.mu_local is not None else self.mu
+            D = mu_eff_local * agent.M_local
             dM = B - D
 
             agent.dM_history.append(dM)
