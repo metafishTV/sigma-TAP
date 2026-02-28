@@ -418,9 +418,11 @@ def _junction(a1: MetatheticAgent, a2: MetatheticAgent, trust_weight: float = 0.
       junction = jaccard * temporal_factor * trust_factor
 
     temporal_factor decays with |steps_since_metathesis| difference.
-    trust_factor modulates by pairwise trust when trust_weight > 0.
+    trust_factor modulates by symmetric pairwise trust (average of both
+    agents' views) when trust_weight > 0. Clamped non-negative.
 
     With trust_weight=0, same steps_since_metathesis: junction == jaccard.
+    Symmetric: _junction(a1, a2) == _junction(a2, a1).
     """
     j = _jaccard(a1.type_set, a2.type_set)
     if j == 0.0:
@@ -428,8 +430,11 @@ def _junction(a1: MetatheticAgent, a2: MetatheticAgent, trust_weight: float = 0.
     delta = abs(a1.steps_since_metathesis - a2.steps_since_metathesis)
     temporal_factor = 1.0 / (1.0 + 0.01 * delta)
     if trust_weight > 0.0:
-        trust_pair = a1.trust_map.get(a2.agent_id, 0.5)
-        trust_factor = 1.0 + trust_weight * (trust_pair - 0.5)
+        # Symmetric: average both agents' views of each other.
+        t1 = a1.trust_map.get(a2.agent_id, 0.5)
+        t2 = a2.trust_map.get(a1.agent_id, 0.5)
+        trust_pair = (t1 + t2) / 2.0
+        trust_factor = max(0.0, 1.0 + trust_weight * (trust_pair - 0.5))
     else:
         trust_factor = 1.0
     return j * temporal_factor * trust_factor
