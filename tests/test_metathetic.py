@@ -1362,5 +1362,114 @@ class TestSeedEntropy(unittest.TestCase):
             self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
 
 
+class TestTrustMetrics(unittest.TestCase):
+    """Phase 3: Trust metrics (tau_self, trust_map)."""
+
+    def _make_ensemble(self, **overrides):
+        defaults = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        defaults.update(overrides)
+        return MetatheticEnsemble(**defaults)
+
+    def test_default_trust_unchanged(self):
+        """trust_update_rate=0 keeps tau_self at 0.5 and trust_map empty."""
+        ens = self._make_ensemble(trust_update_rate=0.0, trust_decay_rate=0.0)
+        ens.run(steps=50)
+        for agent in ens.agents:
+            self.assertEqual(agent.tau_self, 0.5,
+                             f"Agent {agent.agent_id} tau_self changed from 0.5")
+            self.assertEqual(len(agent.trust_map), 0,
+                             f"Agent {agent.agent_id} trust_map is non-empty")
+
+    def test_tau_self_in_snapshot(self):
+        """Snapshots contain tau_self_mean and tau_pair_mean keys."""
+        ens = self._make_ensemble()
+        traj = ens.run(steps=5)
+        for snap in traj:
+            self.assertIn("tau_self_mean", snap)
+            self.assertIn("tau_pair_mean", snap)
+
+    def test_tau_self_increases_on_stable_growth(self):
+        """Stable positive trajectory increases tau_self above 0.5."""
+        ens = self._make_ensemble(trust_update_rate=0.1)
+        # Manually set up an agent with stable positive history
+        agent = ens.agents[0]
+        agent.dM_history = [1.0, 1.1, 1.2, 1.3, 1.4]
+        old_tau = agent.tau_self
+        ens._update_trust_self()
+        self.assertGreater(agent.tau_self, old_tau,
+                           "tau_self did not increase on stable positive growth")
+
+    def test_trust_map_populated_after_cross(self):
+        """Cross-metathesis with trust_update_rate>0 populates trust_map."""
+        ens = self._make_ensemble(
+            n_agents=10, trust_update_rate=0.2,
+            alpha=5e-3, a=8.0, mu=0.005,
+        )
+        ens.run(steps=200)
+        # Check if any agent has a non-empty trust_map
+        any_trust = any(len(a.trust_map) > 0 for a in ens.agents)
+        total_cross = ens.n_absorptive_cross + ens.n_novel_cross
+        if total_cross > 0:
+            self.assertTrue(any_trust,
+                            "No trust_map populated despite cross-metathesis events")
+
+    def test_trust_decay_toward_baseline(self):
+        """trust_decay_rate>0 moves tau_self toward 0.5 baseline."""
+        ens = self._make_ensemble(trust_decay_rate=0.1)
+        agent = ens.agents[0]
+        agent.tau_self = 0.9  # Far above baseline
+        ens._decay_trust()
+        self.assertLess(agent.tau_self, 0.9,
+                        "tau_self did not decay toward baseline")
+        self.assertGreater(agent.tau_self, 0.5,
+                           "tau_self decayed past baseline")
+
+    def test_tau_bounds(self):
+        """tau_self stays in [0.0, 1.0] even with extreme inputs."""
+        ens = self._make_ensemble(trust_update_rate=0.5)
+        agent = ens.agents[0]
+        # Push toward upper bound
+        agent.tau_self = 0.99
+        agent.dM_history = [100.0, 100.0, 100.0, 100.0, 100.0]
+        for _ in range(20):
+            ens._update_trust_self()
+        self.assertLessEqual(agent.tau_self, 1.0)
+        self.assertGreaterEqual(agent.tau_self, 0.0)
+
+        # Push toward lower bound
+        agent.tau_self = 0.01
+        agent.dM_history = [-100.0, -50.0, -200.0, -10.0, -300.0]
+        for _ in range(20):
+            ens._update_trust_self()
+        self.assertLessEqual(agent.tau_self, 1.0)
+        self.assertGreaterEqual(agent.tau_self, 0.0)
+
+    def test_backward_compat_no_trust(self):
+        """trust_update_rate=0.0 produces bit-identical trajectory to Phase 2 defaults."""
+        kwargs = dict(
+            n_agents=5, initial_M=10.0,
+            alpha=5e-3, a=3.0, mu=0.005,
+            variant="logistic", carrying_capacity=2e5,
+            seed=42,
+        )
+        # Phase 2 baseline: no trust params
+        traj_base = MetatheticEnsemble(**kwargs).run(steps=50)
+        # Phase 3 explicit zeros
+        traj_trust = MetatheticEnsemble(
+            **kwargs, trust_update_rate=0.0, trust_decay_rate=0.0
+        ).run(steps=50)
+
+        for s1, s2 in zip(traj_base, traj_trust):
+            self.assertAlmostEqual(s1["total_M"], s2["total_M"], places=10)
+            self.assertAlmostEqual(s1["k_total"], s2["k_total"], places=10)
+            self.assertAlmostEqual(s1["Xi_mean"], s2["Xi_mean"], places=10)
+            self.assertAlmostEqual(s1["sigma_mean"], s2["sigma_mean"], places=10)
+
+
 if __name__ == "__main__":
     unittest.main()

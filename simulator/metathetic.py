@@ -64,6 +64,10 @@ class MetatheticAgent:
     alpha_local: float | None = None  # Per-agent alpha
     mu_local: float | None = None     # Per-agent mu
 
+    # -- Trust metrics -------------------------------------------------------
+    tau_self: float = 0.5  # Self-trust: trajectory stability -> confidence
+    trust_map: dict[int, float] = field(default_factory=dict)  # Pairwise trust by agent_id
+
     # -- L-matrix event ledger (Emery channels) ------------------------------
     # L11: intrapraxis (self-transformation)
     n_self_metatheses_local: int = 0
@@ -555,6 +559,8 @@ class MetatheticEnsemble:
         eta: float = 0.0,
         h_decay: float = 0.02,
         seed_entropy: float = 0.0,
+        trust_update_rate: float = 0.0,
+        trust_decay_rate: float = 0.0,
     ):
         self.alpha = alpha
         self.a = a
@@ -571,6 +577,8 @@ class MetatheticEnsemble:
         self.eta = eta
         self.h_decay = h_decay
         self.seed_entropy = seed_entropy
+        self.trust_update_rate = trust_update_rate
+        self.trust_decay_rate = trust_decay_rate
 
         self._rng = _random.Random(seed)
         self._next_type_id = n_agents + 1
@@ -708,6 +716,73 @@ class MetatheticEnsemble:
             if len(agent._affordance_ticks) > agent._AFFORDANCE_WINDOW:
                 agent._affordance_ticks = agent._affordance_ticks[-agent._AFFORDANCE_WINDOW:]
 
+    def _update_trust_self(self) -> None:
+        """Update each agent's self-trust based on trajectory stability.
+
+        Stable positive trajectories increase tau_self; unstable/negative
+        trajectories decrease it.  When trust_update_rate=0, this is a no-op.
+        """
+        if self.trust_update_rate == 0.0:
+            return
+        for agent in self._active_agents():
+            if len(agent.dM_history) < 3:
+                continue
+            tail = agent.dM_history[-5:]
+            mean_dM = sum(tail) / len(tail)
+            variance = sum((x - mean_dM) ** 2 for x in tail) / len(tail)
+            stability = 1.0 / (1.0 + variance)
+            if mean_dM > 0:
+                # Positive stable trajectory: increase trust
+                agent.tau_self = min(
+                    1.0, agent.tau_self + self.trust_update_rate * stability
+                )
+            else:
+                # Negative/stagnant trajectory: decrease trust
+                agent.tau_self = max(
+                    0.0, agent.tau_self - self.trust_update_rate * (1.0 - stability)
+                )
+
+    def _decay_trust(self) -> None:
+        """Decay all trust values toward 0.5 baseline.
+
+        When trust_decay_rate=0, this is a no-op.
+        """
+        if self.trust_decay_rate == 0.0:
+            return
+        baseline = 0.5
+        for agent in self._active_agents():
+            # Decay tau_self toward baseline
+            diff = agent.tau_self - baseline
+            agent.tau_self = baseline + diff * (1.0 - self.trust_decay_rate)
+            # Decay trust_map entries toward baseline
+            to_remove = []
+            for aid, val in agent.trust_map.items():
+                new_val = baseline + (val - baseline) * (1.0 - self.trust_decay_rate)
+                if abs(new_val - baseline) < 1e-6:
+                    to_remove.append(aid)
+                else:
+                    agent.trust_map[aid] = new_val
+            for aid in to_remove:
+                del agent.trust_map[aid]
+
+    def _update_pair_trust(self, a1_id: int, a2_id: int, event_type: str) -> None:
+        """Update pairwise trust after a cross-metathesis event."""
+        if self.trust_update_rate == 0.0:
+            return
+        # Find the relevant agents (they may be dormant now)
+        agent_by_id = {a.agent_id: a for a in self.agents}
+        a1 = agent_by_id.get(a1_id)
+        a2 = agent_by_id.get(a2_id)
+        if a1 is None or a2 is None:
+            return
+
+        if event_type == "absorptive":
+            # Absorber trusts absorbed slightly more
+            absorber = a1 if a1.active else a2
+            absorbed_id = a2.agent_id if a1.active else a1.agent_id
+            current = absorber.trust_map.get(absorbed_id, 0.5)
+            absorber.trust_map[absorbed_id] = min(1.0, current + self.trust_update_rate)
+
     def _check_self_metathesis(self) -> None:
         """Mode 1: Self-metathesis for each active agent.
 
@@ -824,6 +899,7 @@ class MetatheticEnsemble:
                         # η·H channel — densification within shared space.
                         MetatheticAgent.absorptive_cross(a1, a2)
                         self.n_absorptive_cross += 1
+                        self._update_pair_trust(a1.agent_id, a2.agent_id, "absorptive")
                     elif sig_sim <= 1:
                         # High tension: different signatures → novel.
                         # β·B channel — exploration across boundaries.
@@ -836,12 +912,16 @@ class MetatheticEnsemble:
                         self._next_type_id += 1
                         self.agents.append(child)
                         self.n_novel_cross += 1
+                        if self.trust_update_rate > 0.0:
+                            child.trust_map[a1.agent_id] = 0.5 + self.trust_update_rate
+                            child.trust_map[a2.agent_id] = 0.5 + self.trust_update_rate
                     else:
                         # Mid tension (2 matches): L vs G tiebreak;
                         # ties (L == G) route to novel.
                         if L > G:
                             MetatheticAgent.absorptive_cross(a1, a2)
                             self.n_absorptive_cross += 1
+                            self._update_pair_trust(a1.agent_id, a2.agent_id, "absorptive")
                         else:
                             self._next_agent_id += 1
                             child = MetatheticAgent.novel_cross(
@@ -852,11 +932,15 @@ class MetatheticEnsemble:
                             self._next_type_id += 1
                             self.agents.append(child)
                             self.n_novel_cross += 1
+                            if self.trust_update_rate > 0.0:
+                                child.trust_map[a1.agent_id] = 0.5 + self.trust_update_rate
+                                child.trust_map[a2.agent_id] = 0.5 + self.trust_update_rate
                 else:
                     # Insufficient event history — L vs G fallback.
                     if L > G:
                         MetatheticAgent.absorptive_cross(a1, a2)
                         self.n_absorptive_cross += 1
+                        self._update_pair_trust(a1.agent_id, a2.agent_id, "absorptive")
                     else:
                         self._next_agent_id += 1
                         child = MetatheticAgent.novel_cross(
@@ -867,6 +951,9 @@ class MetatheticEnsemble:
                         self._next_type_id += 1
                         self.agents.append(child)
                         self.n_novel_cross += 1
+                        if self.trust_update_rate > 0.0:
+                            child.trust_map[a1.agent_id] = 0.5 + self.trust_update_rate
+                            child.trust_map[a2.agent_id] = 0.5 + self.trust_update_rate
 
                 # One cross-metathesis per step to avoid cascading.
                 return
@@ -1005,6 +1092,10 @@ class MetatheticEnsemble:
             # 2b. Update affordance ticks before metathesis checks.
             self._update_affordance_ticks()
 
+            # 2c. Update trust metrics.
+            self._update_trust_self()
+            self._decay_trust()
+
             # 3. Metathetic transitions (Modes 1-3).
             self._check_self_metathesis()
             self._check_cross_metathesis()
@@ -1061,6 +1152,18 @@ class MetatheticEnsemble:
                 snapshot["Xi_mean"] = 0.0
                 snapshot["Xi_std"] = 0.0
                 snapshot["sigma_mean"] = self.sigma0
+
+            # Trust diagnostics.
+            active_tau = [a.tau_self for a in active]
+            snapshot["tau_self_mean"] = (
+                sum(active_tau) / len(active_tau) if active_tau else 0.5
+            )
+            all_pair_vals: list[float] = []
+            for a in active:
+                all_pair_vals.extend(a.trust_map.values())
+            snapshot["tau_pair_mean"] = (
+                sum(all_pair_vals) / len(all_pair_vals) if all_pair_vals else 0.5
+            )
 
             # TAPS signature distribution for active agents.
             sig_counts: dict[str, int] = {}
