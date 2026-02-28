@@ -862,18 +862,23 @@ class MetatheticEnsemble:
 
     def _track_absorptive_family(self, a1: MetatheticAgent,
                                  a2: MetatheticAgent) -> None:
-        """Track family formation for absorptive cross-metathesis."""
+        """Track family formation for absorptive cross-metathesis.
+
+        Must be called AFTER absorptive_cross() which sets absorbed.active=False.
+        Absorber is identified by checking which agent is still active.
+        Always creates a family — even for first-generation absorbers with no
+        prior lineage (matching novel_cross and self_metathesis patterns).
+        """
         absorber = a1 if a1.active else a2
-        absorbed = a2 if a1.active else a1
+        other = a2 if a1.active else a1
         parent_fams: set[int] = set()
         if absorber.family_id is not None:
             parent_fams.add(absorber.family_id)
-        if absorbed.family_id is not None:
-            parent_fams.add(absorbed.family_id)
-        if parent_fams:
-            step_proxy = len(self._m_history)
-            fid = self._new_family(step_proxy, "absorptive_cross", parent_fams)
-            self._assign_family(absorber, fid)
+        if other.family_id is not None:
+            parent_fams.add(other.family_id)
+        step_proxy = len(self._m_history)
+        fid = self._new_family(step_proxy, "absorptive_cross", parent_fams)
+        self._assign_family(absorber, fid)
 
     def _track_novel_family(self, a1: MetatheticAgent, a2: MetatheticAgent,
                             child: MetatheticAgent) -> None:

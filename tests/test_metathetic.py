@@ -1619,18 +1619,17 @@ class TestFamilyGroups(unittest.TestCase):
             n_agents=5, initial_M=10.0,
             alpha=5e-3, a=3.0, mu=0.005,
             variant="logistic", carrying_capacity=2e5,
-            seed=42,
+            seed=5,  # seed=5 reliably triggers novel cross events
         )
         traj = ens.run(steps=200)
-        if ens.n_novel_cross > 0:
-            # Children are agents appended after the initial n_agents
-            children = [a for a in ens.agents if a.agent_id >= 5]
-            self.assertTrue(len(children) > 0, "Novel cross fired but no child agents found")
-            for child in children:
-                self.assertIsNotNone(child.family_id,
-                                     f"Child agent {child.agent_id} has no family_id")
-        else:
-            self.skipTest("No novel cross-metathesis fired in 200 steps")
+        self.assertGreater(ens.n_novel_cross, 0,
+                           "Expected novel cross events with seed=5")
+        # Children are agents appended after the initial n_agents
+        children = [a for a in ens.agents if a.agent_id >= 5]
+        self.assertTrue(len(children) > 0, "Novel cross fired but no child agents found")
+        for child in children:
+            self.assertIsNotNone(child.family_id,
+                                 f"Child agent {child.agent_id} has no family_id")
 
     def test_snapshot_has_family_fields(self):
         """n_families, family_size_distribution, family_lineage_depth in snapshot."""
