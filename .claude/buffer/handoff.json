@@ -702,6 +702,28 @@
     }
   ],
 
+  "instance_notes": {
+    "_purpose": "Personal remarks from the outgoing instance to the incoming one. Less formal than the concept map — more like a colleague briefing you before they leave.",
+    "from": "the instance that built Stage 3B and did the Levinas/Sartre/D&G/Emery reflection sessions",
+    "to": "whoever picks this up next",
+    "remarks": [
+      "This user thinks in systems, not in features. When they say 'add trust metrics,' they mean something philosophically grounded — not a gamification layer. Every parameter has a theoretical warrant. Ask about the warrant if you're unsure.",
+      "The concept map looks like an ontology but it's actually a TRANSLATION TABLE. The user is checking whether independently developed frameworks (Levinas, Sartre, D&G, Emery-Trist, their own Unificity) converge on the same structure. Your job is to help test that convergence, not to assume it.",
+      "The user is patient and generous with explanation, but they notice when you flatten their terminology. 'Metathesis' is not 'interaction.' 'Praxis' is not 'action.' 'Syntegration' is not 'integration.' These distinctions carry theoretical weight. Use their terms.",
+      "The L-matrix (L11/L12/L21/L22) is the beating heart of everything. If you're confused about where something fits, ask which L-channel it belongs to. That usually clarifies.",
+      "The exploration run revealed something important: the 'island effect' where affordance drops to zero mid-run. This isn't a bug — it's an empirical finding that needs theoretical interpretation. The system exhausts novel types in a small pool. This will matter for Stage 3C topology work.",
+      "When the user shares a philosophical text, they're not asking for a book report. They want you to find the STRUCTURAL PARALLELS to the L-matrix and TAPS framework. Read for architecture, not for summary.",
+      "The handoff/resume skill system is new and still being debugged. The /resume skill exists at .claude/skills/resume/SKILL.md but may not register in the slash command menu. If it doesn't, just read the file manually and follow the steps.",
+      "The user has been incredibly patient through context window issues, skill registration failures, and session fragmentation. They're building something serious and they're trusting you with it. Honor that."
+    ],
+    "open_questions_i_never_got_to_ask": [
+      "The four time-modes (pi/alpha/sigma/Pi) mapped to L-channels — does each agent experience all four simultaneously, or do they shift between dominant modes? This matters for implementation.",
+      "The 'island effect' in the exploration run — is this what Emery-Trist would call a Type III disturbed-reactive environment transitioning to Type IV? The affordance exhaustion looks like environmental turbulence emerging from agent activity.",
+      "The reception field / fidelity band concept (§5.57) — when we implement this, is it a filter on INCOMING metathetic events only, or does it also shape what the agent EMITS? Asymmetric filtering would have very different dynamics than symmetric.",
+      "The conservation law (minimal praxis for maximal syntegration) — does this imply there's an optimal agent population size for a given type-space? The exploration run with 10 agents seemed to saturate quickly."
+    ]
+  },
+
   "compact_summary": "3B:DONE:P1-7|345t|UMU-triad:top|Lev:§5.51-59|Sar:§5.60|DG:§5.61|ET:§5.62|serial>sep|live-from-M|abs=Mztn|t=prax-defer|4-fields:PS+TA-switch|recep-field:fidelity-band|hom/het|4D=4L|vidation→aff→recep|EmeryL-validated|TypeV-vortical|6criteria|next:R&B-review→TASKS.md→3C",
 
   "codex": {
