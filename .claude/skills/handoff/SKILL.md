@@ -114,10 +114,24 @@ Write the complete JSON to `.claude/buffer/handoff.json`. The schema:
 }
 ```
 
-Preserve the existing concept_map entries — only modify entries that changed this session.
-Preserve the orientation section — only update if theoretical framing shifted this session.
-Preserve the dialogue_trace sessions — APPEND your session entry, don't replace previous ones.
-The instance_notes section should be REPLACED each session (it's from YOU, not cumulative).
+**Cumulative sections** (APPEND only — never delete previous entries):
+- `decisions` — append new decisions. Previous decisions are historical record.
+- `validation_log` — append new entries. This is an audit trail.
+- `dialogue_trace.sessions` — append your session entry. Never remove previous sessions.
+- `dialogue_trace.recurring_patterns` — add new patterns, refine existing ones, never delete.
+- `concept_map` — preserve all entries. Only modify entries that changed this session.
+- `codex.encoding` — add new abbreviations. Never remove existing ones (other sections may reference them).
+
+**Preserve-but-updatable sections** (keep, modify only if something shifted):
+- `orientation` — only update if theoretical framing shifted this session.
+- `codex.rules` — only update if encoding conventions changed.
+
+**Replace-each-session sections** (fresh each handoff):
+- `session_meta` — current session only.
+- `active_work` — current state only.
+- `open_threads` — current statuses (but preserve completed threads for context).
+- `instance_notes` — personal to the outgoing instance, replaced each time.
+- `compact_summary` — regenerated from current state.
 
 ### 11. Commit
 
