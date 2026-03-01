@@ -38,6 +38,17 @@
     "next_session_first_action": "R&B deep review (docs/references/ has PDFs). Then TASKS.md generation, then Stage 3C planning."
   },
 
+  "orientation": {
+    "_purpose": "WHY the mappings matter — not just what they are. Read this before the concept map.",
+    "core_insight": "sigma-TAP is not a standard agent-based model. It models PRAXIS (how agents become through action) using the L-matrix as its fundamental accounting unit. Every interaction is classified into one of four channels (L11=self-self, L12=self-other, L21=other-self, L22=env-env). The philosophical sources (Levinas, Sartre, D&G, Emery-Trist) are not decoration — they independently converge on this same 4-channel structure from different directions, which is the user's key claim.",
+    "why_levinas": "Levinas provides the ETHICAL ground: cross-metathesis is not symmetric exchange but asymmetric encounter with irreducible otherness. This is why absorptive cross-metathesis (larger absorbs smaller) and novel cross-metathesis (both parents dormant, child spawns) are fundamentally different events, not just parameter variations.",
+    "why_sartre": "Sartre provides the PROCESSUAL ground: praxis-process (consummation) and process-praxis (consumption) are the two directions of the praxis cycle. The practico-inert (sedimented past action = gas/fuel) and praxistatic (active transformation interface = engine) map to the T-A and P-S field pairs respectively.",
+    "why_dg": "D&G provide the TOPOLOGICAL ground: the tetravalent assemblage (content/expression/territory/deterritorialization) maps to the L-matrix, and conjunction (blocking/gating) vs connection (creative multiplication) is the key distinction for Stage 3C — current junction metric is conjunction only.",
+    "why_emery": "Emery-Trist provide the EMPIRICAL ground: the original L11/L12/L21/L22 framework from organizational systems theory (1965) independently uses the same channel structure. Type V vortical environment = the user's unificity/holarchy level.",
+    "user_framework": "The user's own framework (Unificity.md) sits ABOVE all of these: Unity-Multiplicity-Unificity is the foundational triad from which TAPS, RIP, and Dialectic unfold. The user is not merely importing philosophy — they have an original theoretical system that they are mapping these sources against for mutual validation.",
+    "practical_warning": "Do NOT introduce novel claims or impose standard ABM assumptions. The user cares deeply about terminological precision and theoretical fidelity. When in doubt, quote the user's terms back and ask for clarification rather than paraphrasing into generic language."
+  },
+
   "decisions": [
     {
       "what": "Memory buffer skill approach",
@@ -128,21 +139,26 @@
   "open_threads": [
     {
       "thread": "Stage 3B implementation — ALL 7 PHASES COMPLETE. 50 new tests, 345 total.",
-      "status": "noted",
+      "status": "completed",
       "ref": "Plan: C:\\Users\\user\\.claude\\plans\\shiny-beaming-tide.md"
     },
     {
-      "thread": "Exploration run: enable all Stage 3B features, examine trajectory, contrast with Youn empirical data",
-      "status": "noted",
+      "thread": "Exploration run — COMPLETED. sigma=0.005 gives 1.6x growth (0.1 explodes). More survivors (4v2), fewer absorptions (1v3), 3x signature diversity, 'island effect' (affordance→0 mid-run), trust climbs to ~0.98.",
+      "status": "completed",
       "ref": null
     },
     {
-      "thread": "Reflection & discussion: Levinas material + R&B review for 3C relevance. R&B mapping: Level I->L11, II->L12/L21, III->family groups, IV->L22",
-      "status": "noted",
-      "ref": "docs/references/"
+      "thread": "Levinas reflection — COMPLETED (§5.51-59). Sartre conversion terms — COMPLETED (§5.60). D&G ATP — COMPLETED (§5.61). Emery-Trist — COMPLETED (§5.62).",
+      "status": "completed",
+      "ref": "docs/plans/2026-02-26-stage3a-two-channel-design.md"
     },
     {
-      "thread": "TASKS.md generation — deferred until AFTER reflection/discussion",
+      "thread": "R&B deep review — NEXT ACTION. PDFs in docs/references/ not yet analyzed. Preliminary mapping (Level I→L11, II→L12/L21, III→family groups, IV→L22) is UNTESTED HYPOTHESIS — must verify against actual text. User believes R&B may reshape 3C roadmap.",
+      "status": "noted",
+      "ref": "docs/references/Ruesch & Bateson, Communication, excerpt, pg. 196-237.pdf"
+    },
+    {
+      "thread": "TASKS.md — DOES NOT EXIST YET. Intentionally deferred until after R&B review because R&B findings could reshape Stage 3C scope.",
       "status": "deferred",
       "ref": null
     },
