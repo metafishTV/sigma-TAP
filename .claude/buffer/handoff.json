@@ -3,7 +3,7 @@
 
   "session_meta": {
     "date": "2026-02-28",
-    "commit": "3268be4",
+    "commit": "fd24b05",
     "branch": "main",
     "files_modified": [
       "simulator/metathetic.py",
@@ -34,7 +34,8 @@
       "Preserved R&B reference materials in docs/references/ (commit 515049b)"
     ],
     "in_progress": null,
-    "blocked_by": null
+    "blocked_by": null,
+    "next_session_first_action": "R&B deep review (docs/references/ has PDFs). Then TASKS.md generation, then Stage 3C planning."
   },
 
   "decisions": [
@@ -670,10 +671,22 @@
       "status": "NEW",
       "detail": "22 Sartre->sigma-TAP term mappings from Critique. Key: immanence=anapression, transcendence=anopression, praxis-process=consummation, process-praxis=consumption. Glossary candidates flagged for 3C+.",
       "session": "2026-02-28"
+    },
+    {
+      "check": "D&G ATP conclusion added (§5.61)",
+      "status": "NEW",
+      "detail": "Tetravalent assemblage=L-matrix, conjunction vs connection, three abstract machines, four diagnostic meters. Four D forms = four L-channels (3rd independent tetra-mapping). Vidation→affordance→reception chain.",
+      "session": "2026-02-28"
+    },
+    {
+      "check": "Emery-Trist L-network validation (§5.62)",
+      "status": "NEW",
+      "detail": "Original L11/L12/L21/L22 confirmed matching. Type V vortical (Babüroğlu 1988). Six criteria → agent viability diagnostic. Two-stage active adaptation (L21 learning + L11 redesign). Three frozen maladaptive states.",
+      "session": "2026-02-28"
     }
   ],
 
-  "compact_summary": "3B:DONE:P1-7|345t|UMU-triad:top|Lev:§5.51-59|Sar:§5.60|serial>sep|live-from-M|abs=Mztn|t=prax-defer|4-fields:PS+TA-switch|recep-field:fidelity-band|hom/het|next:R&B-review→TASKS.md",
+  "compact_summary": "3B:DONE:P1-7|345t|UMU-triad:top|Lev:§5.51-59|Sar:§5.60|DG:§5.61|ET:§5.62|serial>sep|live-from-M|abs=Mztn|t=prax-defer|4-fields:PS+TA-switch|recep-field:fidelity-band|hom/het|4D=4L|vidation→aff→recep|EmeryL-validated|TypeV-vortical|6criteria|next:R&B-review→TASKS.md→3C",
 
   "codex": {
     "version": 3,
@@ -717,6 +730,12 @@
       "hom/het": "homogeneity/heterogeneity (radical multiplicity must be heterogeneous)",
       "Mztn": "metathematization (temporalization of praxis)",
       "gif": "group-in-fusion (Sartre: serial->group transition)",
+      "DG": "Deleuze & Guattari (A Thousand Plateaus)",
+      "ET": "Emery & Trist (causal texture / L-network)",
+      "4D=4L": "four deterritorialization forms = four L-channels",
+      "TypeV": "Type V vortical environment (Babüroğlu 1988)",
+      "6criteria": "Emery six criteria for agent viability",
+      "vidation": "visibility parameter on junction (Bohm rheomode)",
       "§X.Y": "design doc forward note section X.Y"
     },
     "rules": [
