@@ -1921,3 +1921,77 @@ The **reception field** (§5.57) is a *connection* mechanism: it creates new pat
 "You don't reach the BwO, and its plane of consistency, by wildly destratifying." Confirmed by exploration run: gamma=0.1 caused sigma to explode to 169×. Moderate values (gamma=0.005, sigma ≈ 1.6) are the cautious approach. **Destratification must be gradual.**
 
 > **Status**: Structural mappings confirmed by independent convergence (D&G via semiotics, sigma-TAP via systems theory). The conjunction→connection transition is a key architectural principle for Stage 3C. Diagnostic meters are candidates for implementation.
+
+## §5.62 Emery & Trist L-Network: Original Framework Validation
+
+> **Source**: opensystemstheory.org mining + web search, conversation 2026-02-28
+
+### Original L-Framework (Emery & Trist, 1965)
+
+Our L-matrix IS the original Emery-Trist framework. Confirmed definitions:
+
+| Channel | Emery & Trist (1965) | sigma-TAP |
+|---------|---------------------|-----------|
+| **L11** | Internal interdependencies within the system | Self-metathesis, τ_self |
+| **L12** | Planning — system outputs to environment | Self→other, expression |
+| **L21** | Learning — environment inputs to system | Other→self, reception |
+| **L22** | Causal texture — environment-to-environment | Environmental drift, τ_context |
+
+**Mutual determination principle** (Emery): L11 and L22 are complementary, mutually determining. Neither can be characterized without the other. This validates our global/nonlocal field (L11+L22) architecture.
+
+### Five Environmental Types → Agent State Classification
+
+| Type | Name | Character | sigma-TAP mapping |
+|------|------|-----------|-------------------|
+| I | Placid, Randomized | Static, scattered | Inertial state |
+| II | Placid, Clustered | Patterns, strategy | Situated state |
+| III | Disturbed-Reactive | Competitive, tactical | Desituated state |
+| IV | Turbulent | L22 overwhelms L11/L12/L21 | High-sigma regime |
+| V | **Vortical** (Babüroğlu 1988) | Beyond turbulence, frozen states | System convergence/collapse |
+
+### Type V Vortical: Fourth Independent Convergence
+
+Babüroğlu (1988) extended Emery-Trist to a fifth type: the **vortical** environment. Three maladaptive frozen states:
+
+1. **Monothematic Dogmatism** → signature convergence (all EEXD)
+2. **Polarization** → family isolation (island effect)
+3. **Stalemate** → affordance → 0 (zero cross-metathesis)
+
+The word "vortical" is the same geometry mapped to **unificity** in our holarch framework. Four independent convergences: Emery-Trist systems theory → Babüroğlu vortical → user's unificity → D&G absolute movement. Same spiral/vortex geometry for highest complexity.
+
+### Two-Stage Active Adaptation
+
+- **Stage 1** (Search Conference): Examine system in environment, elicit ideal-seeking. Maps to L21 learning + L22 scanning.
+- **Stage 2** (Participative Design Workshop): Redesign own structure. Maps to L11 self-metathesis.
+
+Active adaptive = knowing AND influencing L22. Agents must not only receive from global field but contribute back explicitly.
+
+### Six Criteria → Agent Viability Diagnostic
+
+Emery's six psychological requirements map to agent viability conditions:
+
+**Optimizable (balance needed):**
+1. Elbow room (autonomy) → seed entropy + per-agent param offsets
+2. Continual learning → L21 reception, Xi accumulation
+3. Variety → type_set diversity, signature heterogeneity
+
+**Maximal (more is better):**
+4. Mutual support → τ_pair, trust, family membership
+5. Meaningfulness → affordance_score > 0 (agent's types matter)
+6. Desirable future → sigma(Xi) > 1 (positive growth trajectory)
+
+An agent satisfying all six = viable. Failure on any = at risk. Composite viability metric from six independent dimensions.
+
+### Turbulence: L22 Overwhelms
+
+In Type IV, L22 overwhelms L11/L12/L21. Confirmed by exploration run: gamma=0.1 → sigma explodes. Emery's solution: **shared values as stabilizer**. Agents sharing values (high signature similarity, high τ_pair, family) create stable subfield within turbulence = what families do in our system.
+
+### Implications for Stage 3C
+
+1. **Viability diagnostic**: Six criteria as composite agent health metric
+2. **Environmental type classifier**: Snapshot metric classifying sim state as Type I–V
+3. **Vortical/frozen state detection**: Dogmatism, polarization, stalemate as diagnostics
+4. **Active adaptation feedback**: Make L22 contribution explicit
+5. **L11-L22 mutual determination**: Compute together, not independently (validates global field)
+
+> **Sources**: [Emery & Trist 1965](https://journals.sagepub.com/doi/10.1177/001872676501800103), [Babüroğlu 1988](https://journals.sagepub.com/doi/10.1177/001872678804100301), [Annotated Causal Texture](https://www.breadtagsagas.com/annotated-emery-and-trist-causal-texture-paper/), [De Guerre 2002](https://ecclectica.brandonu.ca/issues/2002/4/deguerre.pdf), [Coevolving Wiki](https://www.wiki.coevolving.com/causal-texture-theory.html), [opensystemstheory.org](https://opensystemstheory.org)
