@@ -57,7 +57,25 @@ Present the remarks and open questions to the user:
 
 These questions are worth surfacing — the user may want to address them, and they show where the previous instance's understanding had edges.
 
-### 6. Check validation warnings
+### 6. Read dialogue trace
+
+If the buffer has a `dialogue_trace` section, read it carefully. This captures how the conversation actually developed across sessions — not just what was decided, but how ideas evolved through exchange.
+
+Present the most recent session's arc and key moments, plus the recurring patterns:
+```
+## Conversation trajectory
+**Most recent session**: [arc summary]
+Key moments:
+- [moment 1]
+- [moment 2]
+
+**Recurring patterns to be aware of:**
+- [pattern]
+```
+
+For earlier sessions, present a brief one-line summary of each arc. The full detail is there if needed but don't overwhelm the user at startup.
+
+### 7. Check validation warnings
 
 Review the validation_log. If any entries have status `CHANGED`, `NEW`, or `NEEDS_USER_INPUT`, surface them:
 ```
@@ -67,15 +85,15 @@ Review the validation_log. If any entries have status `CHANGED`, `NEW`, or `NEED
 - [NEEDS_USER_INPUT] [detail]
 ```
 
-### 7. Decode compact summary
+### 8. Decode compact summary
 
 Read the codex, then decode the compact_summary. Present the decoded version as a quick orientation line.
 
-### 8. Read orientation and MEMORY.md
+### 9. Read orientation and MEMORY.md
 
 Read the `orientation` section of the buffer for the theoretical framing (WHY the mappings matter, not just what they are). Then read MEMORY.md for the persistent project context. The buffer is the session delta; MEMORY.md is the project baseline.
 
-### 9. Confirm
+### 10. Confirm
 
 Tell the user: "Context reconstructed from [date] handoff. Ready to continue from [current_phase]."
 

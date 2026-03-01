@@ -67,7 +67,22 @@ Include:
 
 Be honest. If something confused you, say so. If a mapping felt forced, flag it. The next instance benefits more from your candor than from false confidence.
 
-### 8. Generate compact summary
+### 8. Update dialogue trace
+
+The `dialogue_trace` section captures HOW the conversation developed — the trajectory of ideas, not just the endpoints. This is the most lossy part of context transfer.
+
+Add a new entry to the `sessions` array for THIS session. Include:
+- **session**: A label (date + brief description)
+- **arc**: 1-2 sentences describing the overall shape of the conversation — what it was about, how it moved
+- **key_moments**: 3-6 specific moments where something important happened — a concept crystallized, a correction was made, a mapping was discovered, a question opened a new line of thinking. Be concrete: what was said, what shifted.
+
+Also update `recurring_patterns` if you noticed new ones, or if existing patterns played out differently.
+
+**Do NOT summarize** — trace. The difference: a summary says "we discussed trust metrics." A trace says "user proposed trust as a modulator, I suggested raw variance, user pointed out scale-dependence, we converged on CV-squared." The trace preserves the intellectual movement.
+
+Preserve all previous session entries — this section IS cumulative (unlike instance_notes which get replaced).
+
+### 9. Generate compact summary
 
 Write a single dense line using the codex encoding. Format:
 - `|` separates topics
@@ -78,7 +93,7 @@ Write a single dense line using the codex encoding. Format:
 
 Update the codex if you introduced any new abbreviations.
 
-### 9. Write the buffer
+### 10. Write the buffer
 
 Write the complete JSON to `.claude/buffer/handoff.json`. The schema:
 
@@ -90,8 +105,9 @@ Write the complete JSON to `.claude/buffer/handoff.json`. The schema:
   "active_work": { "current_phase", "completed_this_session", "in_progress", "blocked_by" },
   "decisions": [{ "what", "chose", "why", "ref" }],
   "open_threads": [{ "thread", "status", "ref" }],
-  "concept_map": { "_meta", "dialectic", "T", "A", "P", "S", "RIP", "cross_source" },
+  "concept_map": { "_meta", "foundational_triad", "dialectic", "T", "A", "P", "S", "RIP", "cross_source" },
   "validation_log": [{ "check", "status", "detail", "session" }],
+  "dialogue_trace": { "sessions": [{ "session", "arc", "key_moments" }], "recurring_patterns" },
   "instance_notes": { "from", "to", "remarks", "open_questions_i_never_got_to_ask" },
   "compact_summary": "<encoded string>",
   "codex": { "version", "encoding", "rules" }
@@ -100,9 +116,10 @@ Write the complete JSON to `.claude/buffer/handoff.json`. The schema:
 
 Preserve the existing concept_map entries — only modify entries that changed this session.
 Preserve the orientation section — only update if theoretical framing shifted this session.
+Preserve the dialogue_trace sessions — APPEND your session entry, don't replace previous ones.
 The instance_notes section should be REPLACED each session (it's from YOU, not cumulative).
 
-### 10. Commit
+### 11. Commit
 
 Run:
 ```bash
@@ -110,6 +127,6 @@ git add .claude/buffer/handoff.json
 git commit -m "handoff: <brief description of session>"
 ```
 
-### 11. Confirm
+### 12. Confirm
 
 Tell the user: "Handoff buffer written and committed. The next instance can run `/resume` to reconstruct context."
