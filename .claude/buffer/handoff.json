@@ -3,19 +3,35 @@
 
   "session_meta": {
     "date": "2026-02-28",
-    "commit": "c3090cf",
+    "commit": "fd24b05",
     "branch": "main",
-    "files_modified": [],
-    "tests": "345/345 passing",
-    "note": "Minimal session — skill troubleshooting only, no code changes"
+    "files_modified": [
+      "simulator/metathetic.py",
+      "tests/test_metathetic.py",
+      ".gitignore",
+      "docs/references/Ruesch & Bateson, Communication, excerpt, pg. 196-237.pdf",
+      "docs/references/Ruesch & Bateson, Communication, excerpt, pg. 283-299 - Conclusion.pdf",
+      "docs/references/COMMUNICATION_NETWORKS_and_LEVELS_Jakobs.pdf",
+      "docs/references/Bateson table.png",
+      "docs/plans/2026-02-25-p4-reproducibility-auditability.md",
+      "outputs/figures/taps_correlation.png",
+      "outputs/figures/taps_texture.png"
+    ],
+    "tests": "345/345 passing"
   },
 
   "active_work": {
-    "current_phase": "Stage 3B COMPLETE — post-reflection phase, awaiting R&B review + TASKS.md",
+    "current_phase": "Stage 3B COMPLETE — all 7 phases implemented and verified",
     "completed_this_session": [
-      "Verified /handoff and /resume skills exist at .claude/skills/{handoff,resume}/SKILL.md",
-      "Confirmed skill registration works after directory access",
-      "Validated 345/345 tests still passing"
+      "Stage 3B Phase 1: Sigma wiring + per-agent Xi (commit 41956b7)",
+      "Stage 3B Phase 2: Seed entropy with per-agent alpha/mu offsets (commits 1c8b355, ac5c6a5)",
+      "Stage 3B Phase 3: Trust metrics tau_self + tau_pair (commits a4664f2, d46afa7)",
+      "Stage 3B Phase 4: Endogenous mu from affordance modulation (commits d801ce3, bb70004)",
+      "Stage 3B Phase 5: Topology / family group tracking (commits 69d0cf9, 018dd80)",
+      "Stage 3B Phase 6: Junction-mode adjacency metric (commits 3285286, 274b014)",
+      "Stage 3B Phase 7: Integration tests + regression verification (commit 3a2a1b8)",
+      "Housekeeping: .gitignore, stale file cleanup, push 14 commits (commit 3268be4)",
+      "Preserved R&B reference materials in docs/references/ (commit 515049b)"
     ],
     "in_progress": null,
     "blocked_by": null,
@@ -24,14 +40,90 @@
 
   "decisions": [
     {
-      "what": "No new decisions this session",
-      "chose": "N/A — minimal session for skill troubleshooting",
-      "why": "Previous decisions preserved in git history (commit fd24b05)",
+      "what": "Memory buffer skill approach",
+      "chose": "Approach A (structured JSON) with Approach B element (compact summary + codex)",
+      "why": "90% value with minimal risk. Structured JSON is readable/debuggable. Compact summary tests compression without risking data loss.",
+      "ref": null
+    },
+    {
+      "what": "Skill scope",
+      "chose": "Project-specific (.claude/skills/ in repo)",
+      "why": "Buffer content is project-specific. Keeps everything self-contained and git-tracked.",
+      "ref": null
+    },
+    {
+      "what": "Concept map vs term map",
+      "chose": "Concept map — allows multi-word concept entries, not just single terms",
+      "why": "Structural concepts like 'totalization-of-envelopment' carry meaning single terms don't",
+      "ref": null
+    },
+    {
+      "what": "Added suggest field to concept map entries",
+      "chose": "Nullable suggest field with null-is-preferred convention",
+      "why": "Allows Claude to flag connections without asserting them. Prevents pressure to fill blanks.",
+      "ref": null
+    },
+    {
+      "what": "Added dialectic as top-level coordinate base",
+      "chose": "thesis/athesis/synthesis/metathesis alongside TAPS and RIP",
+      "why": "Without metathesis, the other three remain serial and diachronic. Metathesis enables synchronicity.",
+      "ref": null
+    },
+    {
+      "what": "R/I/P maps to Real/Ego/Probability",
+      "chose": "Noted as emergent ontological register mapping",
+      "why": "Correlation emerges from the terms themselves without forcing",
+      "ref": "§5.46"
+    },
+    {
+      "what": "Hexis = behabitation, praxis = habitation",
+      "chose": "Austin's behabitives extended to behabitation",
+      "why": "Hexis = being-qua-habitation (autonomic); praxis = habitation (protonomic)",
+      "ref": "§5.47"
+    },
+    {
+      "what": "Four-level trust: tau_self, tau_pair, tau_group, tau_context",
+      "chose": "tau_context is simultaneously a priori and constructed",
+      "why": "Context both conditions and is constituted by agent gestures",
+      "ref": "§5.48"
+    },
+    {
+      "what": "Zero is never a valid parameter",
+      "chose": "Asymptotic approach triggers metathesis/phase change, not null",
+      "why": "Praxis conservation law means zero praxis is impossible",
+      "ref": "§5.49"
+    },
+    {
+      "what": "Conservation law = principle of least action",
+      "chose": "Structural identity (not just analogy) with Fermat/Feynman",
+      "why": "Minimal praxis for maximal syntegration = stationary action",
+      "ref": "§5.50"
+    },
+    {
+      "what": "Trust stability metric: CV-squared vs raw variance",
+      "chose": "Coefficient of variation squared: cv_sq = var / (mean^2 + eps)",
+      "why": "Raw variance is scale-dependent; dM values easily 1-100 making stability always near-zero. CV^2 is scale-invariant.",
+      "ref": "Phase 3 code quality review"
+    },
+    {
+      "what": "Junction metric: symmetric vs asymmetric trust",
+      "chose": "Symmetric: average of both agents' trust views",
+      "why": "Asymmetric junction would make cross-metathesis eligibility depend on evaluation order. Symmetry is more principled.",
+      "ref": "Phase 6 code quality review"
+    },
+    {
+      "what": "Absorptive family creation: conditional vs unconditional",
+      "chose": "Always create family on absorptive cross (unconditional)",
+      "why": "Conditional guard silently skipped first-generation agents, creating data integrity gap. Novel cross and self-metathesis were already unconditional.",
+      "ref": "Phase 5 code quality review"
+    },
+    {
+      "what": "Post-3B sequencing",
+      "chose": "Housekeeping -> exploration run -> Levinas/R&B reflection -> TASKS.md",
+      "why": "R&B and Levinas material could reshape 3C roadmap, so TASKS.md comes AFTER discussion, not before.",
       "ref": null
     }
   ],
-
-  "prior_decisions_ref": "See commit fd24b05 handoff.json for full decision history (14 decisions from Stage 3B + reflection sessions)",
 
   "open_threads": [
     {
@@ -591,16 +683,10 @@
       "status": "NEW",
       "detail": "Original L11/L12/L21/L22 confirmed matching. Type V vortical (Babüroğlu 1988). Six criteria → agent viability diagnostic. Two-stage active adaptation (L21 learning + L11 redesign). Three frozen maladaptive states.",
       "session": "2026-02-28"
-    },
-    {
-      "check": "Concept map unchanged — minimal session (skill troubleshooting)",
-      "status": "PASS",
-      "detail": "No new concepts introduced. /handoff and /resume skills confirmed working. 345/345 tests passing.",
-      "session": "2026-02-28"
     }
   ],
 
-  "compact_summary": "3B:DONE:P1-7|345t|skills:handoff+resume:verified|cmap:PASS|next:R&B-review→TASKS.md→3C",
+  "compact_summary": "3B:DONE:P1-7|345t|UMU-triad:top|Lev:§5.51-59|Sar:§5.60|DG:§5.61|ET:§5.62|serial>sep|live-from-M|abs=Mztn|t=prax-defer|4-fields:PS+TA-switch|recep-field:fidelity-band|hom/het|4D=4L|vidation→aff→recep|EmeryL-validated|TypeV-vortical|6criteria|next:R&B-review→TASKS.md→3C",
 
   "codex": {
     "version": 3,
