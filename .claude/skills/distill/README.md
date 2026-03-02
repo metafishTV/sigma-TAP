@@ -13,10 +13,12 @@ Processing scholarly sources for a research project is repetitive: extract text,
 ```
 
 **First run on a new project** triggers one-time differentiation (~2 minutes):
-1. Audits available PDF tools (PyMuPDF, pdftotext, Pillow, etc.)
+1. Audits available PDF tools (PyMuPDF, pdftotext, pdfplumber, Pillow, Docling, Marker, GROBID)
 2. Scans the project for existing directories and indexes
-3. Asks 3-4 setup questions (framework name, distillation mode, path confirmation)
+3. Asks 4-7 setup questions (framework name, distillation mode, paths, specialist tool preferences)
 4. Generates a project-specific `SKILL.md` tailored to your project
+
+**Note**: If pdfplumber is not installed, the first run will prompt you to install it — it's the primary table extraction tool and is strongly recommended.
 
 **After differentiation**, every `/distill` invocation produces two files:
 - A **distillation** — neutral scholarly extraction, usable by any project
@@ -73,16 +75,29 @@ The user reviews the interpretation before any automated updates fire.
 
 ## PDF Extraction Pipeline
 
-Four-tier fallback strategy. The skill moves to the next tier only on failure of the current one.
+Two-phase content-aware routing. PyMuPDF scans every page first, then routes to specialist tools based on detected content.
 
-| Tier | Tool | Capability | When used |
-|------|------|-----------|-----------|
-| 1 | PyMuPDF (fitz) | Text + figures + tables | Primary (if installed) |
-| 2 | pdftotext (Poppler) | Text only | PyMuPDF fails |
-| 3 | Claude built-in reader | Text (20-page chunks) | Both above fail |
-| 4 | User intervention | Manual | All automated tiers fail |
+| Phase | Tool | Role | Status |
+|-------|------|------|--------|
+| 1 (always) | PyMuPDF | Scanner + primary text extractor | Required |
+| 2A | pdfplumber | Table extraction | Required |
+| 2B | Docling | Complex layout, OCR, complex tables | Highly recommended (demand-install) |
+| 2C | Marker | Equations → LaTeX | Optional (demand-install) |
+| 2D | GROBID | Scholarly paper structure/metadata | Optional (requires Docker) |
+| Fallback | pdftotext / Claude reader / user | When PyMuPDF fails entirely | Available |
 
-**Figure handling**: When images are detected or text extraction returns empty (scanned PDF), pages are rendered as images and decomposed through Claude's vision capability. Figures are described textually and cross-referenced to key concepts.
+**How routing works**: Phase 1 scans each page for tables, multi-column layout, scanned/empty pages, and equations. Phase 2 routes flagged pages to the best available specialist:
+- **Tables** → pdfplumber (required), escalates to Docling for complex cases
+- **Multi-column layout** → Docling for correct reading order
+- **Scanned pages** → Docling OCR, or Claude vision fallback
+- **Equations** → Marker for LaTeX preservation, or high-resolution vision fallback
+- **Scholarly papers** → GROBID for structured metadata (if enabled)
+
+Routes are not mutually exclusive — a page can trigger multiple specialists, merged by priority (Docling > Marker > pdfplumber > PyMuPDF).
+
+**Demand-install**: Specialist tools that are not installed but would improve output are offered for installation at the point of need. The user can accept, defer to next time, or decline permanently.
+
+**Figure handling**: When images are detected or specialist tools are unavailable for scanned/equation pages, pages are rendered as images and decomposed through Claude's vision capability. Equation pages render at dpi=200 for better symbol resolution.
 
 The project SKILL.md records which tools are available on your machine (detected during differentiation).
 
@@ -110,10 +125,18 @@ After the user reviews the interpretation, three automated updates fire (drawn f
 - **Focused**: User specifies extraction priorities each time
 - **Ask each time**: Prompt on each invocation
 
+**Specialist tools** (set during differentiation or on demand):
+- **pdfplumber**: Required for table extraction. Prompted for install if missing on first run.
+- **Docling**: Highly recommended for complex layouts, OCR, and multi-column PDFs. ~500MB model download on first use. Offered when relevant content is detected (demand-install).
+- **Marker**: Optional for equation-heavy content. Converts PDFs to Markdown with LaTeX. Offered when equations are detected (demand-install).
+- **GROBID**: Optional for scholarly paper metadata (citations, bibliographies, section structure). Requires Docker (~2GB). Enabled during differentiation if needed.
+
+Each tool's status is recorded in the project skill's tooling profile as `installed`, `demand-install`, or `never`.
+
 **To use in your own project**:
 1. Copy the global skill file (`~/.claude/skills/distill/SKILL.md`) to the target machine
 2. Run `/distill` on any source — differentiation triggers automatically
-3. Answer the 3-4 setup questions (framework name, mode, paths)
+3. Answer the 4-7 setup questions (framework name, mode, paths, tool preferences)
 4. A project-specific SKILL.md is generated at `<repo>/.claude/skills/distill/SKILL.md`
 
 The project skill grows its own terminology glossary and known-issues log with each distillation.
@@ -136,4 +159,10 @@ If the buffer system is not installed, the skill still works — it skips the bu
 
 **Can I edit the project SKILL.md?** — Yes. The terminology glossary and known-issues log are designed to be curated. The tooling profile can be updated if you install new tools.
 
-**Distillation seems incomplete** — Check which extraction tier was used (logged in Known Issues). Higher tiers lose more layout information. Consider installing PyMuPDF for best results.
+**Distillation seems incomplete** — Check which extraction route was used (logged in Known Issues). Fallback routes lose more layout information. Consider installing pdfplumber (tables) and Docling (layout/OCR) for best results.
+
+**"Docling is downloading models"** — Normal on first use. Docling downloads ~500MB of AI models which are then cached locally. Subsequent runs use the cached models and are much faster.
+
+**GROBID / Docker setup** — GROBID runs as a Docker container. If you said "yes" to GROBID during differentiation but Docker isn't running, the skill will attempt to start the container automatically. If Docker itself isn't installed, GROBID is skipped and the standard pipeline handles the PDF.
+
+**Equations look wrong** — If Marker isn't installed, equations are extracted via vision at dpi=200. This is reasonably accurate but may have transcription errors. Install Marker (`pip install marker-pdf`) for native LaTeX extraction.
