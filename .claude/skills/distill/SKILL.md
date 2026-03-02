@@ -530,6 +530,7 @@ Read `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\M
 | Inline Python regex escaping: bash mangles backslashes in scan code | Always write scan/extraction code to temporary .py script files. Added to skill execution instructions | 2026-03-02 |
 | cluster_drawings() tolerance=5 works cleanly for Turchin 2013 (all 14 figures = vector, one cluster each) | Default tolerance validated. Academic papers with different chart styles may need adjustment | 2026-03-02 |
 | Text-only tables (Tables 1-3) detected via orphan caption heuristic, not cluster_drawings | Tables with no visual bbox require caption-based detection channel. Tables 1-2 not auto-detected (caption format mismatch) — kept full-page fallback | 2026-03-02 |
+| Pure-text items (equations, text tables) invisible to cluster_drawings() AND get_images() — zero detections | These items have no vector/raster elements. Use text-block coordinate cropping: get_text("dict") → find caption/equation lines by y-position → build manual crop rect → get_pixmap(clip=rect). Three extraction channels needed: (1) vector via cluster_drawings, (2) raster via get_images, (3) text-block coordinate cropping for equations + text-only tables | 2026-03-02 |
 
 ### Error Logging
 
