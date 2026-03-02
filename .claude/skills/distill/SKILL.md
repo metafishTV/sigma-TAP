@@ -181,19 +181,46 @@ Linear fallback (unchanged):
 
 ### Figure Handling Pipeline
 
-**When to trigger**: Embedded images detected, OR Route D fallback (scanned pages without Docling), OR Route E fallback (equation pages without Marker), OR source is a standalone image file.
+**When to trigger**: Figure/table pages identified during Phase 1 scan, OR Route D fallback (scanned pages), OR Route E fallback (equation pages), OR standalone image file.
 
-1. **Extract/screenshot**: Use `page.get_pixmap(dpi=150)` to render pages as images (PyMuPDF). Save to `docs/references/distilled/figures/[Source-Label]/` — e.g., `docs/references/distilled/figures/Turchin-2013-SocialPressures/page_16.png`. Create the directory if needed. For equation pages, use dpi=200.
-2. **Decompose**: Present the image to Claude's vision via the Read tool. Extract:
-   - Caption and title
-   - Axis labels and scales (if chart/graph)
-   - Data relationships shown
-   - Visual structure and layout
-   - Legend entries
-3. **Describe**: Write both an image reference AND a textual description in the "Figures, Tables & Maps" section. The image reference makes the figure visually accessible to future sessions; the text decomposition provides searchable content and alt-text. See Output Template for format.
-4. **Cross-reference**: Note which Key Concepts each figure illustrates or extends.
-5. **Flag failures**: If a figure can't be parsed, note it for user review.
-6. **Equation figures**: When Route E falls back to vision (Marker unavailable), render equation-heavy pages at dpi=200 (higher than standard 150) for better symbol resolution. Note in the distillation that equations were vision-extracted and may contain transcription errors.
+**Two modes**: Cropped (default) and Full-page (fallback).
+
+#### Cropped Figure Extraction (default)
+
+Write the extraction code to a temporary script (`_distill_figures.py`) and execute it. Do NOT run inline — same escaping concerns as the scan script.
+
+**Detection channels** (run on every page):
+1. **Vector drawings**: `page.cluster_drawings(x_tolerance=5, y_tolerance=5)` — bounding rectangles for charts, graphs, diagrams. Filter: area > 5% of page area.
+2. **Raster images**: `page.get_images(full=True)` + `page.get_image_bbox(img)` — embedded JPEG/PNG. Same 5% filter.
+3. **Caption-based tables**: Scan text blocks (`page.get_text("dict")`) for `^(Figure|Fig\.|Table)\s+(\d+)` pattern. Table captions not matched to any visual element → text-only tables; crop from caption through table body.
+
+**Caption association**: For each visual element, find the nearest matching caption within 80pt below (allow 20pt overlap above). Extend crop to include full caption. If no caption matched → label as `visual_NN`.
+
+**Crop and render**: `page.get_pixmap(clip=crop_rect, dpi=200)` — higher DPI than old full-page (150) because cropped area is smaller; file sizes stay comparable.
+
+**File naming**: `{type}_{NN}_p{P}.png`
+- `fig_02_p16.png` = Figure 2 from page 16
+- `tab_03_p34.png` = Table 3 from page 34
+- `visual_01_p5.png` = uncaptioned visual element
+- `page_13_equations_dpi200.png` = equation page (full-page, unchanged)
+
+**Manifest**: Script writes `_manifest.json` listing all extracted items with page, label, crop coordinates, caption text. Read this to drive the Decompose step.
+
+**Tolerance tuning**: Default `x/y_tolerance=5` works for most academic PDFs. If a known-figure page returns zero clusters → increase to 10-15. If fragments → decrease to 3. Note adjustments in Known Issues.
+
+#### Full-Page Fallback
+
+Triggers when: cropped extraction finds zero figures on a page that should have them, scanned pages (Route D), or equation pages (Route E).
+
+Use `page.get_pixmap(dpi=150)` for standard fallback, `dpi=200` for equation pages. Naming: `page_{P}.png` or `page_{P}_equations_dpi200.png`.
+
+#### Post-Extraction Steps
+
+1. **Decompose**: Read each cropped image via Read tool. Extract caption, axes, data relationships, structure, legend.
+2. **Describe**: Write image reference + textual description in Figures section. Use new filename convention.
+3. **Cross-reference**: Map to Key Concepts.
+4. **Flag failures**: Note unparseable figures for user review.
+5. **Equation figures**: Render at dpi=200, note vision-extraction caveat.
 
 For **non-PDF images** (PNG, JPG, etc.): Use the Read tool directly on the image file. Claude's multimodal capability handles decomposition.
 
@@ -247,7 +274,7 @@ Produce the distillation in this exact structure. Mandatory sections ALWAYS appe
 [For each figure/table/map:]
 ### [Figure/Table N]: [Title or description]
 
-![Figure N](figures/[Source-Label]/page_NN.png)
+![Figure N](figures/[Source-Label]/fig_NN_pP.png)
 
 - **What it shows**: [textual decomposition of visual content]
 - **Key data points**: [specific values, relationships, patterns visible]
@@ -276,7 +303,7 @@ Note: The image reference embeds the rendered page for visual inspection by futu
 
 **NOTE**: The distillation file contains NO project-specific interpretation. It is a neutral, portable scholarly artifact. The sigma-TAP reading goes in the interpretation file (see below).
 
-**Figure storage convention**: Rendered figures are saved in `docs/references/distilled/figures/[Source-Label]/` (one subdirectory per source). File naming: `page_NN.png` where NN is the 1-indexed page number.
+**Figure storage convention**: Rendered figures saved in `docs/references/distilled/figures/[Source-Label]/`. File naming: `{type}_{NN}_p{P}.png` — e.g., `fig_02_p16.png` (Figure 2, page 16), `tab_03_p34.png` (Table 3, page 34). Fallback: `visual_{seq}_p{P}.png` (uncaptioned) or `page_{P}.png` / `page_{P}_equations_dpi200.png` (full-page). Extraction script also writes `_manifest.json` listing all items.
 
 ### Style Conventions
 
@@ -354,11 +381,21 @@ Text extraction returns empty string:
     → If pdftotext also returns empty, confirmed scanned. Figure Pipeline.
 
 Figure extraction fails:
-├─ get_pixmap() throws MemoryError
-│   → Reduce DPI: try dpi=100, then dpi=72. Try individual pages.
-├─ get_images() returns empty but pages have visuals
-│   → Visuals are drawn (not embedded images). Use get_pixmap() on full page.
-└─ Read tool can't parse the image
+├─ cluster_drawings() returns empty on page with known figure
+│   → Increase tolerance: try x/y_tolerance=10, then 15.
+│     If still empty → unusual encoding. Fall back to full-page render.
+├─ cluster_drawings() returns too many clusters (fragments)
+│   → Decrease tolerance to 3. Or merge overlapping/adjacent (within 20pt) clusters.
+├─ Caption not matched to visual element
+│   → Increase CAPTION_SEARCH_PTS from 80 to 120. Check caption format
+│     (some PDFs use "Fig." or "TABLE" — extend regex if needed).
+├─ get_pixmap(clip=...) throws MemoryError
+│   → Reduce DPI to 150, then 100. Cropped renders use less memory than full-page.
+├─ get_images() + cluster_drawings() both return empty but page has visuals
+│   → Unusual PDF encoding. Fall back to full-page render for that page.
+├─ Table detection misses a table
+│   → Table lacks standard caption prefix. Fall back to full-page for that page.
+└─ Read tool can't parse the cropped image
     → Note for user: "Figure on page N could not be decomposed. Manual review needed."
 
 Claude reader issues:
@@ -491,6 +528,8 @@ Read `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\M
 | UnicodeEncodeError: Greek Ψ character crashes Windows cp1252 console | Always write extracted text to UTF-8 file, never print to stdout. Added to skill extraction instructions | 2026-03-02 |
 | pdftoppm not available on this Windows machine | Claude reader (Route G step 2) requires Poppler. Use PyMuPDF get_pixmap() + Read tool as equivalent fallback. Added to troubleshooting tree | 2026-03-02 |
 | Inline Python regex escaping: bash mangles backslashes in scan code | Always write scan/extraction code to temporary .py script files. Added to skill execution instructions | 2026-03-02 |
+| cluster_drawings() tolerance=5 works cleanly for Turchin 2013 (all 14 figures = vector, one cluster each) | Default tolerance validated. Academic papers with different chart styles may need adjustment | 2026-03-02 |
+| Text-only tables (Tables 1-3) detected via orphan caption heuristic, not cluster_drawings | Tables with no visual bbox require caption-based detection channel. Tables 1-2 not auto-detected (caption format mismatch) — kept full-page fallback | 2026-03-02 |
 
 ### Error Logging
 
