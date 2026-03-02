@@ -46,6 +46,21 @@ This section grows as distillations add project-relevant terms.
 
 When invoked, follow this complete process.
 
+### Extraction Passes
+
+Text extraction is the first pass, but not the only one. After extracting raw text, perform two additional analytic passes before writing the distillation:
+
+**Pass 1 — Text extraction**: Raw content from the PDF pipeline (see below).
+
+**Pass 2 — Meaning/significance extraction**: Re-read the extracted text asking: *What does this mean for the author's own project?* Do not stop at surface definitions. For each key concept, identify the *role* it plays in the argument — is it a premise, a mechanism, an implication, a boundary condition? This pass feeds the Key Concepts table's Significance column and the Core Argument section.
+
+**Pass 3 — Style detection**: Characterize the source's register and voice. Record in the distillation header:
+- **Register**: analytic philosophy / continental phenomenology / empirical social science / formal-mathematical / practitioner-applied / mixed
+- **Tone**: personal/reflexive vs. impersonal/objective
+- **Density**: technical (specialist audience) vs. accessible (general audience)
+
+This matters because future readers need to know *how* to interpret the concepts — a Levinas distillation and a Turchin distillation use the same template but the interpretive frame is entirely different.
+
 ### PDF Extraction Pipeline
 
 Use this tiered strategy. Move to the next tier ONLY on failure of the current one. Never retry the same tier on the same error.
@@ -75,7 +90,9 @@ pdftotext -layout "source.pdf" -
 - Plain text only — no figure extraction capability
 - Good for text-heavy PDFs where PyMuPDF fails on encoding
 
-**Tier 3: Claude Built-in PDF Reader — SECOND FALLBACK**
+**Tier 3: Claude Built-in PDF Reader — LAST RESORT BEFORE USER**
+
+⚠️ **Use with caution.** When Claude reads a PDF via the Read tool, the full content enters the context window with less controlled extraction than Tiers 1-2. Prefer exhausting Tiers 1 and 2 before falling back here. Only use Tier 3 when both PyMuPDF and pdftotext have genuinely failed.
 
 - Use the Read tool with `pages` parameter
 - Chunk into 20-page batches: pages "1-20", then "21-40", etc.
@@ -115,10 +132,13 @@ Produce the distillation in this exact structure. Mandatory sections ALWAYS appe
 > Source: [full citation — author, title, publication, year, page count]
 > Date distilled: [YYYY-MM-DD]
 > Distilled by: Claude (via distill skill)
+> Register: [analytic / continental / empirical / formal-mathematical / practitioner / mixed]
+> Tone: [personal-reflexive / impersonal-objective / mixed]
+> Density: [technical-specialist / accessible-general / mixed]
 
 ## Core Argument
 
-[1-3 paragraphs: What is this source fundamentally arguing? What is its core contribution? Preserve the author's logic chain — do not editorialize.]
+[1-3 paragraphs: What is this source fundamentally arguing? What is its core contribution? Preserve the author's logic chain — do not editorialize. Go beyond surface claims to extract the meaning and significance of the argument for the author's own project.]
 
 ## Key Concepts
 
@@ -146,9 +166,13 @@ Produce the distillation in this exact structure. Mandatory sections ALWAYS appe
 
 [Reproduce key equations in LaTeX notation. Explain variables and significance.]
 
-## Methodology & Empirical Data               ← CONDITIONAL: only if empirical/experimental content exists
+## Theoretical & Methodological Implications   ← MANDATORY
 
-[Data sources, sample sizes, methods, key findings with numbers.]
+[What method does this source employ — dialectical, phenomenological, formal-mathematical, empirical-statistical, case-study, simulation, mixed? What are the methodological implications of the argument? What does the method assume, and what does it preclude? Every source has a method, even when unstated.]
+
+## Empirical Data                              ← CONDITIONAL: only if source is experimental/quantitative
+
+[Data sources, sample sizes, methods, key findings with numbers. Separate from the theoretical-methodological section because not all sources produce data, but all sources have methodological commitments.]
 
 ## sigma-TAP Integration Points               ← MANDATORY
 
