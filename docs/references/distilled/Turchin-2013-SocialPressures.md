@@ -117,7 +117,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Table 1: Regression Analysis Results
 
-![Table 1](figures/Turchin-2013-SocialPressures/page_30.png)
+![Table 1](figures/Turchin-2013-SocialPressures/tab_01_p30.png)
 
 - **Key findings**: All predictors significant: GDP/capita α=0.60±0.07, D/S β=1.65±0.31, min. wage γ=0.45±0.08. ARIMA(1,0,1) error: AR1=0.74, MA1=0.65. AIC confirms all three needed.
 
@@ -131,7 +131,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Table 2: Millionaire Proportions, 1983–2007
 
-![Table 2](figures/Turchin-2013-SocialPressures/page_33.png)
+![Table 2](figures/Turchin-2013-SocialPressures/tab_02_p33.png)
 
 - **Key findings**: Households >$1M net worth: 2.9% → 6.3%; >$5M: 0.29% → 1.26%; >$10M: 0.08% → 0.40%. Expansion rates bracket model's predicted elite growth.
 
@@ -187,11 +187,17 @@ Note: Each image reference (`![...](...)`) embeds the rendered page for visual i
 
 ### General Real Wage Model (Eq. 1)
 
-![Equations page](figures/Turchin-2013-SocialPressures/page_13_equations_dpi200.png)
+![Eq. 1](figures/Turchin-2013-SocialPressures/eq_01_p9.png)
 
 $$W_{t-\tau} = a \left(\frac{G_t}{N_t}\right)^\alpha \left(\frac{D_t}{S_t}\right)^\beta C_t^\gamma$$
 
-Three multiplicative factors: GDP/capita (productivity), labor D/S (market), non-market forces (C). Lag τ ≈ 5yr = wage stickiness. Log-linear form (Eq. 2) → standard regression with ARIMA errors.
+Three multiplicative factors: GDP/capita (productivity), labor D/S (market), non-market forces (C). Lag τ ≈ 5yr = wage stickiness.
+
+### Log-Linear Form (Eq. 2)
+
+![Eq. 2](figures/Turchin-2013-SocialPressures/eq_02_p10.png)
+
+Log-linear form → standard regression with ARIMA errors.
 
 ### Elite Population Dynamics (Eqs. 3–4)
 
@@ -200,6 +206,8 @@ $$\dot{E} = rE + \mu N \quad;\quad \mu = \mu_0 \left(\frac{w_0}{w} - 1\right)$$
 w < w₀ → μ > 0 (net upward mobility → elite expansion). w > w₀ → μ < 0 (net downward). Relative elite numbers: ė = μ (assuming similar natural growth rates).
 
 ### Relative Elite Income (Eq. 5)
+
+![Eq. 5](figures/Turchin-2013-SocialPressures/eq_05_p13.png)
 
 $$\varepsilon = \frac{1 - w\lambda}{e}$$
 
