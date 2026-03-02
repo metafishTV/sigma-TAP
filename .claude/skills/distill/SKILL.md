@@ -52,7 +52,9 @@ Text extraction is the first pass, but not the only one. After extracting raw te
 
 **Pass 1 — Text extraction**: Raw content from the PDF pipeline (see below).
 
-**Pass 2 — Meaning/significance extraction**: Re-read the extracted text asking: *What does this mean for the author's own project?* Do not stop at surface definitions. For each key concept, identify the *role* it plays in the argument — is it a premise, a mechanism, an implication, a boundary condition? This pass feeds the Key Concepts table's Significance column and the Core Argument section.
+**Pass 2a — Internal significance**: Re-read the extracted text asking: *What does this concept mean within this source?* Do not stop at surface definitions. For each key concept, identify the *role* it plays in the author's argument — is it a load-bearing premise, a derived mechanism, an implication, a boundary condition, a conclusion? Understand the source on its own terms, in its own internal logic. This pass feeds the Key Concepts table's Significance column and the Core Argument section.
+
+**Pass 2b — Project significance**: Re-read the extracted concepts asking: *What does this mean for sigma-TAP?* Does it map to something already in the framework (TAPS, RIP, L-matrix, dialectic)? Does it challenge, extend, or confirm an existing mapping? A concept can be a minor footnote in the source but a major discovery for the project, or vice versa. This pass feeds the sigma-TAP Integration Points section and candidate forward notes.
 
 **Pass 3 — Style detection**: Characterize the source's register and voice. Record in the distillation header:
 - **Register**: analytic philosophy / continental phenomenology / empirical social science / formal-mathematical / practitioner-applied / mixed
