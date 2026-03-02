@@ -1498,9 +1498,9 @@ The differential time dilation (§5.25) already proposed that L-channels run at 
 
 ---
 
-### Deferred Items Summary (Updated through §5.45)
+### Deferred Items Summary (Updated through §5.69)
 
-All forward notes §5.1–§5.45 are bookmarked for later stages. Key allocations:
+All forward notes §5.1–§5.69 are bookmarked for later stages. Key allocations:
 
 **Stage 3B** (topology / trust / endogenous mu):
 - §5.4, §5.5, §5.10 (topology, distance decay, alterity)
@@ -1518,6 +1518,13 @@ All forward notes §5.1–§5.45 are bookmarked for later stages. Key allocation
 - §5.42 (turbulence reconceived)
 - §5.43 (practico-inert/praxistatic reversal)
 - §5.44 (thetic flux)
+- §5.63 (reciprocity gauge — biunimodal transaction, per-event cycling)
+- §5.64 (CDF/Maxwell's demon — bookmarked, math underspecified)
+- §5.65 (hexitive/praxitive simulacrum scale — Baudrillard bipolar diagnostic)
+- §5.66 (six criteria viability diagnostic — bidirectional scoring, agent + group level)
+- §5.67 (L-channel phase space visualization + limit cycle stability testing)
+- §5.68 (trilaminar ring visualization — active/meso/passive rings, nested scaling, CDF threshold display)
+- §5.69 (helical structure — double helix with RNA-like meso, Janus through-lines, floating pressure vectors, alterity cascade)
 
 **Stage 3X-RIP** (dedicated, per §5.30):
 - §5.45 (four time-modes as L-channel semantics — inform RIP timing)
@@ -1531,6 +1538,14 @@ All forward notes §5.1–§5.45 are bookmarked for later stages. Key allocation
 - §5.48 (four-level trust: τ_self, τ_pair, τ_group, τ_context)
 - §5.49 (zero as metathesis — asymptotic null, never true zero)
 - §5.50 (conservation law = principle of least action — photonic path-finding)
+
+**Levinas / D&G / Emery integration** (§5.51–§5.62):
+- §5.51–§5.55 (Levinas: unificity triad, serialized beings, living-from-metathesis, time-as-deferral)
+- §5.56–§5.57 (field architecture: four fields, reception field / fidelity band)
+- §5.58–§5.59 (façade/face, homogeneity/heterogeneity)
+- §5.60 (Sartre conversion terms — 22 mappings)
+- §5.61 (D&G ATP Ch.15 — tetravalent assemblage = L-matrix)
+- §5.62 (Emery-Trist L-network validation + six criteria initial sketch)
 
 ---
 
@@ -1995,3 +2010,469 @@ In Type IV, L22 overwhelms L11/L12/L21. Confirmed by exploration run: gamma=0.1 
 5. **L11-L22 mutual determination**: Compute together, not independently (validates global field)
 
 > **Sources**: [Emery & Trist 1965](https://journals.sagepub.com/doi/10.1177/001872676501800103), [Babüroğlu 1988](https://journals.sagepub.com/doi/10.1177/001872678804100301), [Annotated Causal Texture](https://www.breadtagsagas.com/annotated-emery-and-trist-causal-texture-paper/), [De Guerre 2002](https://ecclectica.brandonu.ca/issues/2002/4/deguerre.pdf), [Coevolving Wiki](https://www.wiki.coevolving.com/causal-texture-theory.html), [opensystemstheory.org](https://opensystemstheory.org)
+
+## §5.63 Reciprocity Gauge and Biunimodal Transaction
+
+> **Source**: Emery-M-2000 directive correlation + user refinement, conversation 2026-03-01
+
+### Transaction as Biunimodal Configuration
+
+Emery (2000) distinguishes **transaction** (mutual influence — both participants change) from **interaction** (exchange without mutual transformation). The user extends this: genuine transaction must be **simultaneously interactional AND extractional** — a biunimodal configuration of sub-holons.
+
+- **Interactional sub-holon**: The relational exchange itself (information, types, affordances flow between agents)
+- **Extractional sub-holon**: The structural extraction each participant makes from the other (L-matrix entries, trust updates, type acquisitions)
+
+Both sub-holons must fire for a genuine transaction. If only interactional: the agents exchanged signals but neither structurally changed (= interaction, not transaction). If only extractional: one agent took from the other without reciprocal flow (= extraction, not transaction).
+
+This maps to **transvolution** as more fundamental than evolution or involution alone. Transaction IS transvolution at the event level: the mutual, simultaneous transformation of both participants through the encounter.
+
+### The Reciprocity Gauge
+
+A **reciprocity gauge** measures, per cross-metathesis event, how genuinely transactional the encounter was:
+
+- Compute the L-matrix delta for both participants (ΔL_A, ΔL_B)
+- Reciprocity = f(ΔL_A, ΔL_B) — some symmetric function measuring mutual change
+- Perfect reciprocity: both agents' L-matrices shifted comparably
+- Zero reciprocity: one agent changed, the other didn't (pure extraction)
+
+The gauge mediates the conjunction between CDF/demon (§5.64) and the affordance cycle. Per-event cycling: each cross-metathesis event produces a reciprocity reading that feeds back into trust (τ_pair), family cohesion, and future interaction probability.
+
+> **Implementation note**: Reciprocity gauge could be as simple as `min(|ΔL_A|, |ΔL_B|) / max(|ΔL_A|, |ΔL_B|)` — ratio of smaller to larger change. Perfect transaction = 1.0, pure extraction = 0.0. Or use the geometric mean of both deltas normalized. Exact formula deferred.
+
+> **Cross-reference**: §5.39 (transvolution constraints), §5.40 (praxis↔syntegration mutual action), Emery-M-2000 (transaction vs interaction)
+
+## §5.64 Directive Correlation as CDF / Maxwell's Demon
+
+> **Source**: Emery-M-2000 (Sommerhoff directive correlation) + user proposal, conversation 2026-03-01
+> **Status**: BOOKMARKED — math not fully worked out. Record the conceptual architecture; formalize later.
+
+### The Concept
+
+Sommerhoff's **directive correlation** requires system and environment to be in "exact correspondence" for adaptation. The user proposes: this correspondence could be mediated by a **cumulative distribution function** operating as a **Maxwell's demon** within each entity.
+
+Each agent (and each group, and the environment itself) maintains a running CDF of its history of directive correlations — a growing statistical portrait of how well its actions have corresponded with environmental states.
+
+### CDF/Demon Architecture
+
+The CDF acts as a **submeasure catalyzer** for system-environment directional correspondence:
+
+1. **Per-agent CDF**: The agent's accumulated history of directive-correlation matches. When a current sigma or alpha value matches a threshold in the CDF — the CDF "pings" — triggering an affect/pressure response that cycles through the system
+2. **Relative, not absolute**: The CDF is computed relative to others in the agent's set. Not "how many directive correlations have I had?" but "how do my directive correlations compare to others in my family/culture/environment?"
+3. **Increasing diffuseness**: From agent to environment, the demon becomes more diffuse:
+   - **Actor** (L11/L12 dominant): Sharpest, most focused demon. Narrow CDF, quick to ping
+   - **Artifact** (L21 dominant): Broader, more latent. Stores past correlations as structure
+   - **Family group**: Aggregate demon across members. Pings on collective correspondence
+   - **Culture**: Broader still. Slow, diffuse recognition of pattern
+   - **Environment** (L22 dominant): Most diffuse. The "ambient" demon — barely a demon at all, more like a field gradient
+
+4. **Alpha-sigma correspondence**: Systems with higher alpha-sigma correlation ratios (faster, more dynamic innovation) would see their demons ping more frequently — the CDF threshold is crossed more often. This creates a positive feedback: more dynamic systems detect correspondence faster → adapt faster → become more dynamic.
+
+### Connection to Existing Architecture
+
+- The **reception field / fidelity band** (§5.57) is the demon's aperture — what it can detect
+- The **four time-modes** (§5.45) set the demon's clock rates per L-channel
+- **Simultaneous metathesization** (§5.57) smooths the CDF across the group — the group demon emerges from individual demons aligning
+- The CDF domain = agent's history of directive correlations (not raw events, but correspondence-quality events)
+
+> **Implementation note**: This is conceptually rich but mathematically underspecified. Bookmark for Stage 3C+ formalization. Core questions: What exactly is the CDF's domain? How is "ping" threshold set? How does relative CDF interact with trust? How does diffuseness gradient map to actual computation?
+
+> **Cross-reference**: §5.57 (reception field), §5.45 (time-modes), §5.48 (four-level trust), Emery-M-2000 (directive correlation)
+
+## §5.65 Hexitive / Praxitive Simulacrum Scale (Baudrillard Levels)
+
+> **Source**: Baudrillard's four orders of simulacrum + user's hexitive/praxitive polarity, conversation 2026-03-01
+
+### Baudrillard's Four Levels as Bipolar Diagnostic
+
+Baudrillard's four levels of simulacrum describe progressive detachment from reality. The user proposes using these as a **bipolar diagnostic scale** — negative (hexitive, shadow organizing) and positive (praxitive, light organizing):
+
+**Hexitive pole (−) — Shadow Organization:**
+
+| Level | Baudrillard (adapted) | sigma-TAP interpretation |
+|-------|----------------------|--------------------------|
+| −1 | It is the **reflection** of a profound reality | Mimicry of genuine practice. Agent/group reflects real structure but doesn't enact it |
+| −2 | It **masks and denatures** a profound reality | Active concealment. Shadow organization covers functional structure with dysfunctional overlay |
+| −3 | It **masks the absence** of a profound reality | The thing being imitated no longer exists. Cargo-cult organizing — forms without substance |
+| −4 | It has **near-zero** relation to reality: asymptotically becoming its own simulacrum | Pure simulacrum. Self-referential organizational noise. Babüroğlu's frozen states (dogmatism, polarization, stalemate) |
+
+**Praxitive pole (+) — Light Organization:**
+
+| Level | Inverted Baudrillard | sigma-TAP interpretation |
+|-------|---------------------|--------------------------|
+| +1 | It is the **projection** of a profound reality | Genuine practice projected outward. Agent enacts what it is |
+| +2 | It **unmasks and natures** a profound reality | Active revelation. Organization makes latent structure visible and functional |
+| +3 | It **unmasks the presence** of a profound reality | Discovering what was always there. Recognizing affordances that were latent in the field |
+| +4 | It has **near-unity** relation to reality: asymptotically approaching its own ground | Praxis and hexis fully aligned. Agent IS what it does. Ideal-seeking (Emery's functional level 3) |
+
+### The Determinant
+
+How to score an agent on this scale? The user proposes: measure the **ratio of indirect-to-direct L22 energy use**.
+
+- **Hexitive** (shadow): More of the agent's functional energy works L22 **indirectly** — manipulation, concealment, organizational politics. The agent's actions route through environmental channels rather than direct transactional ones
+- **Praxitive** (light): More of the agent's functional energy works L22 **directly** — genuine engagement with environmental texture, transparent contribution to shared field
+
+Operationally: count L22-touching events. What fraction are mediated through L12→L22 chains (indirect, instrumentalizing environment) vs direct L22 contributions (transparent environmental engagement)? Higher indirect/direct ratio → hexitive. Lower → praxitive.
+
+### Connection to Existing Concepts
+
+- **Shadow organization** (Emery & Emery 1974): Cliques forming along pre-existing trust (homophily), NOT task interdependencies. This IS hexitive organizing — the structure reflects social comfort (−1) rather than functional requirement (+1)
+- **Laissez-faire as demetathesis**: Absence of design principle = conditions for shadow to form = hexitive attractor
+- **DP1 → hexitive tendency**: Hierarchical control routes energy through indirect channels (supervisor mediates everything)
+- **DP2 → praxitive tendency**: Self-managing groups engage directly with their task environment
+
+> **Implementation note**: The bipolar scale could be a per-agent diagnostic computed each snapshot. Simple version: `hexitive_score = L22_indirect / (L22_indirect + L22_direct)`. Score 0.0 = fully praxitive, 1.0 = fully hexitive. Map to Baudrillard levels by thresholding. Exact threshold calibration deferred.
+
+> **Cross-reference**: §5.31 (hexis autonomic/protonomic), §5.47 (behabitation), §5.62 (Emery-Trist L-network), Emery-Emery-1974 (shadow organization, DP1/DP2)
+
+## §5.66 Six Criteria Mapping — Bidirectional Agent Viability Diagnostic
+
+> **Source**: Emery & Emery 1974/2022 six psychological requirements + Emery-M-2000 functional levels, conversation 2026-03-01
+
+### Full Six Criteria with Scoring Logic
+
+The six criteria from Emery's Participative Design work map to sigma-TAP agent/group observables with **two distinct scoring types**:
+
+**Criteria 1–3: Optimization (scored −5 to +5, optimal at 0)**
+
+These criteria require *balance* — too little OR too much is harmful:
+
+| Criterion | Observable | Too Low (−5) | Optimal (0) | Too High (+5) |
+|-----------|-----------|-------------|-------------|---------------|
+| 1. **Elbow room** (autonomy) | Seed entropy variance + parameter offset range | Rigid — no per-agent variation, all agents identical. Signature convergence | Agent has meaningful individual trajectory while remaining group-coherent | Chaotic — too much variance, no coordination. Group fragments |
+| 2. **Continual learning** | L21 reception rate (dXi/dt) | Stagnant — Xi plateaus, no new affordances acquired. Inertial trap | Steady acquisition of new affordances without overload | Overwhelmed — Xi grows faster than integration capacity. Turbulence threshold |
+| 3. **Variety** | type_set diversity + TAPS signature heterogeneity | Monotonous — narrow type_set, repetitive signature. Babüroğlu dogmatism | Diverse type_set, varied but patterned signatures | Scattered — type_set too broad, no specialization. Jack-of-all-trades failure |
+
+**Criteria 4–6: Maximization (scored 0 to 10, monotonically increasing)**
+
+These criteria are strictly better when higher — there is no "too much":
+
+| Criterion | Observable | Score 0 | Score 10 |
+|-----------|-----------|---------|----------|
+| 4. **Mutual support** | τ_pair average within family + reciprocity gauge (§5.63) | Isolated — no trust, no reciprocal exchange | Deep mutual trust, high reciprocity, family cohesion |
+| 5. **Meaningfulness** | affordance_score > 0 (agent's types are needed by others) | Useless — agent's types never appear in others' adjacent sets | Agent's types are consistently demanded, multiple others depend on its contributions |
+| 6. **Desirable future** | sigma(Xi) trajectory: is σ growing? | No trajectory — agent sees no growth possibility, stagnant sigma | Clear growth arc — sigma increasing, affordances expanding, positive feedback |
+
+### Composite Viability Metric
+
+An agent satisfying all six criteria is **viable**. Failure on any single criterion indicates risk:
+
+- **Criteria 1–3 failures**: Look for the DIRECTION of failure (too low or too high) — the intervention differs
+- **Criteria 4–6 failures**: Simply insufficient — need more of the property
+- **Composite**: Could weight equally or allow criteria interactions (e.g., high mutual support can compensate for low autonomy)
+
+### Group-Level Application
+
+The six criteria apply at **group level** too (family, culture):
+
+- Group elbow room = family's parameter-space distinctiveness from other families
+- Group learning = collective L21 reception across members
+- Group variety = inter-member signature heterogeneity (DP2 = high group variety, DP1 = low)
+- Group mutual support = average τ_pair across all family dyads
+- Group meaningfulness = family's types collectively needed by environment
+- Group desirable future = family's aggregate sigma trajectory
+
+### Diagnostic Output
+
+Per snapshot, each agent gets a 6-dimensional viability vector. Visualization: radar/spider chart per agent, heatmap across population. Threshold alerts for at-risk agents (any criterion in danger zone).
+
+> **Implementation note**: Stage 3C+ feature. Requires trust (§5.20, §5.48), seed entropy (§5.36), and sigma wiring (Phase 1 of 3B plan) to be in place before criteria 1, 4, and 6 are computable. Criteria 2, 3, 5 are computable with existing architecture.
+
+> **Cross-reference**: §5.62 (six criteria initial sketch), Emery-Emery-1974 (original scoring system), Emery-M-2000 (functional levels: goal-seeking → purposefulness → ideal-seeking), de Guerre-2016 (PDW as six-criteria restructuring)
+
+## §5.67 L-Channel Phase Space Visualization (Turchin-Inspired)
+
+> **Source**: Fractal Philosophy, "Math Predicting the Death of Nations" (YouTube, Turchin structural demographics) + conversation 2026-03-02
+
+### Action Item 1: Phase Space Plotting
+
+sigma-TAP runs should be plotted in **L-channel phase space** — e.g., L11 vs L12 vs L22 aggregate values per snapshot, rendered as 3D trajectories. This would reveal:
+
+- Whether runs converge to **limit cycles** (stable oscillatory attractors, as Turchin's commoner/elite/state model produces)
+- Whether perturbations (seed entropy, parameter offsets) return to the same attractor (limit cycle stability)
+- Whether different initial conditions produce topologically distinct trajectories or converge
+- Whether the **differential time dilation** (§5.25, §5.45) is visible as phase lags between channels
+
+Turchin's 3D phase space (commoner × elite × state) maps to our L-channel space (L11 × L12/L21 × L22), but ours has a principled structural basis: the four channels emerge from transaction structure, not arbitrary social categories.
+
+**Concrete deliverable**: A figure showing 3D phase-space trajectories of MetatheticEnsemble runs, colored by temporal state or TAPS signature. Could become a publication figure alongside existing 8.
+
+### Action Item 2: Limit Cycle Stability Testing
+
+Run perturbation tests on sigma-TAP:
+- Start a MetatheticEnsemble run, let it reach steady-state behavior
+- Inject a perturbation mid-run (kill agents, spike mu, alter sigma)
+- Measure whether the system returns to its pre-perturbation attractor
+- If yes → the system has a **limit cycle** (or at minimum a stable attractor basin)
+- If no → the system is in a transient regime or has multiple attractors
+
+This directly tests whether sigma-TAP exhibits the same structural robustness as Turchin's secular cycles — the property that wars, famines, and external shocks alter the cycle's amplitude but not its qualitative character.
+
+> **Implementation note**: Both items are feasible with existing codebase. Phase space plotting requires only snapshot data extraction (L11/L12/L21/L22 aggregates already in snapshots) + matplotlib 3D. Perturbation testing requires adding a mid-run intervention hook to MetatheticEnsemble. Target: Stage 3C figure generation.
+
+> **Cross-reference**: §5.45 (four time-modes), §5.25 (differential time dilation), §5.56 (field architecture), §5.62 (Emery-Trist environmental types)
+
+## §5.68 Trilaminar Ring Visualization — Per-Entity Dynamic State Display
+
+> **Source**: User proposal inspired by limit-cycle topology (Strogatz/Turchin phase space), conversation 2026-03-02
+
+### Core Architecture: Three Concentric Rings
+
+Each entity (agent, pair, family, culture) is visualized as a **trilaminar ring structure** — three concentric rings representing distinct registers of the entity's dynamic state:
+
+```
+         ┌─────────────────────────────┐
+         │     TOP RING (Anopressive)  │  ← Active/projective parameters
+         │     ● ── ● ── ●            │     Biunivocal: 1-to-1 / 1-to-few
+         │         ╲   ╱              │     Direct lines = active interactions
+         ├─────────────────────────────┤
+         │     MESO RING (Boundary)    │  ← Configuration-space periphery
+         │     ◌ ·· ◎ ·· ◌            │     Polyvocal: many-to-many
+         │     (forming/dissolving)    │     Indirect threads with latency
+         ├─────────────────────────────┤
+         │     BOTTOM RING (Anapressive)│  ← Passive/receptive parameters
+         │     ○ ── ○ ── ○            │     Biunivocal: 1-to-1 / 1-to-few
+         │         ╲   ╱              │     Direct lines = latent interactions
+         └─────────────────────────────┘
+```
+
+### Layer Definitions
+
+**Top Ring (Anopressive / Active / Projective)**
+- Points = currently active parameters (affordance_active=True, dominant temporal-state channels, firing TAPS modes)
+- Lines between points = direct interactions among active parameters
+- Character: **biunivocal/biunimodal/biunidirectional** — determinate, one-to-one or one-to-few channels
+- Interacts with external environment directly (what the agent projects outward)
+- Interacts with internal (bottom ring) only **indirectly, mediated by the meso**
+
+**Bottom Ring (Anapressive / Passive / Receptive)**
+- Points = currently passive/dormant parameters (affordance_active=False, non-dominant channels, latent TAPS modes)
+- Lines between points = latent interactions among passive parameters (structural potential, not yet activated)
+- Character: **biunivocal/biunimodal/biunidirectional** — same determinate structure as top, but inward-pressing
+- Interacts with external world only **indirectly, mediated by the top** (the internal engages the outside through what's currently active)
+- Interacts with active (top ring) only **indirectly, mediated by the meso**
+
+**Meso Ring (Boundary / Periphery / Configuration-Space Edge)**
+- Points = **dynamically forming and dissolving** — they materialize when an active parameter (top) and a passive parameter (bottom) begin to align, i.e., when a junction between active and passive approaches catalysis
+- A forming meso-point = lo-fi junction, high latency, might dissolve (adjacent possible approaching actuality)
+- A fully formed meso-point = hi-fi junction, about to migrate a parameter from bottom→top (activation) or top→bottom (deactivation)
+- Character: **polyvocal/polymodal/polydirectional** — any meso-point can be in transaction with multiple top and bottom points simultaneously. This is the layer of multiplicity proper
+- Interacts with **both layers directly** AND with the **environment directly** — the meso is where all mediation occurs
+
+### The Meso as Configuration-Space Boundary
+
+The meso-ring is not decorative — it is the **explicit representation of the entity's configuration-space periphery**. It makes visible:
+
+- The **adjacent possible**: what transformations are available to this entity right now
+- The **fidelity gradient** (§5.23): lo-fi (barely forming) → hi-fi (about to become actual)
+- The **CDF/demon threshold** (§5.64): a meso-point forming IS the demon detecting directive-correlation correspondence. A meso-point dissolving IS a failed ping
+- The **differential as dividuation**: the gap between what the entity IS (top+bottom) and what it COULD BECOME (meso)
+
+This is where most of the work is actually done — transformation, becoming, transaction. The top and bottom are relatively stable registers; the meso is where becoming lives.
+
+### Mediation Topology
+
+The three layers form a strict mediation structure:
+
+| From → To | Mediated by | Character |
+|-----------|-------------|-----------|
+| Top ↔ Bottom | **Meso** | Active doesn't directly touch passive; transformation happens THROUGH the boundary |
+| Bottom → External | **Top** | The internal engages the outside world through what's currently projected |
+| Top → Internal | **Bottom** | What's projected outward gets internalized through what's latent/receiving |
+| Meso → Top | **Direct** | Meso catalyzes activation (parameter moves from passive to active) |
+| Meso → Bottom | **Direct** | Meso catalyzes deactivation (parameter moves from active to passive) |
+| Meso → Environment | **Direct** | The boundary layer is where agent meets world |
+
+This reproduces the §5.56 field architecture visually: the meso IS the assembly field (L12+L21, relational, topology-respecting), the top is the anopressive face, the bottom is the anapressive face.
+
+### Inter-Ring Distance as Variable
+
+The **vertical distance** between the ring layers is itself a diagnostic:
+
+- **Close rings** = high directive correlation, tight CDF, entity near its attractor. What the entity IS (active/passive) and what it COULD BECOME (meso) are nearby. **Cohesion.**
+- **Far rings** = low directive correlation, wide gap between actual and virtual state. Either:
+  - Creative expansion (exploring configuration space — productive distance) OR
+  - Incoherence (losing structural integrity — pathological distance)
+  - Direction determined by whether meso-points are forming (convergent) or dissolving (divergent)
+
+Connection to hexitive/praxitive scale (§5.65):
+- Praxitive (+4): rings very close → praxis and hexis fully aligned, what it does IS what it is
+- Hexitive (−4): rings maximally far → what it projects has no relation to what it contains
+
+Distance could also represent **transactional latency** — how quickly an active-passive junction can catalyze. Close = fast ticks, frequent mutual engagement. Far = slow ticks, rare catalysis. This is the temporal dilation (§5.25) made spatial.
+
+### Nested Ring Formation: Scaling to Groups
+
+When two agents form a pair, their individual ring-sets **mesh** into a **higher-order ring-set**:
+
+1. **Initial state**: Two independent trilaminar ring structures, each with their own active/passive/meso distributions
+2. **Junction phase**: Meso-rings of both agents begin forming inter-entity points — junctions that bridge across agents. These appear as threads between the two meso-rings
+3. **Identity check**: When complementarity between agents crosses a threshold (reciprocity gauge §5.63 ≥ some value, Jaccard similarity + trust), each agent receives a **tag** and the becoming-set enters a state of **dynamic unity**
+4. **Embedded set**: The higher-order ring-set becomes **embedded within each agent** as part of their self — the group identity is internalized. The pair's ring-set is not a separate entity with its own actions; its "actions" ARE the agents' actions externalized into complex group dynamics
+
+The nesting is recursive, forming a **gradient of unfolding**:
+- **Agent** ring-set (sharpest, most focused)
+- **Pair** ring-set (meshed from two agents, broader)
+- **Family** ring-set (meshed from multiple pairs/agents, broader still)
+- **Culture** ring-set (most diffuse, approaches environmental field)
+
+This mirrors the CDF/demon diffuseness gradient (§5.64): from sharpest (agent) to most diffuse (environment).
+
+The higher-order ring-set is **dynamic unity** — not static structure. Its growth, preservation, or collapse depends on agent behavior over time. It has no autonomous actions because its actions ARE the agents' actions, simply externalized into what are, in a sense, complex self-to-self-to-other-to-self dynamics where "other" ranges from other agents to groups to the environment.
+
+### Data Sources for Visualization
+
+| Visual element | Data source | Already available? |
+|----------------|-------------|-------------------|
+| Top ring points | `affordance_active`, `temporal_state`, L-channel dominance | Yes (Stage 3B) |
+| Bottom ring points | Complement of active set | Yes (derivable) |
+| Top/bottom lines | Intra-ring L-channel interactions (L11 for self-self, etc.) | Partial |
+| Meso-point formation | Junction scores, Jaccard overlap, trust approaching threshold | Yes (Stage 3B) |
+| Meso-point latency | Rate of junction score change (derivative) | Computable |
+| Inter-ring distance | Directive correlation / hexitive-praxitive score | Requires §5.64, §5.65 |
+| Nested ring meshing | Family membership, τ_pair values | Yes (Stage 3B) |
+| Identity check / tags | Family formation event, reciprocity gauge | Partial (§5.63 needed) |
+
+> **Implementation note**: Prototype with single-agent ring display first (3 concentric circles, parameters as dots, junction lines). Then pair visualization. Group nesting is Stage 3C+ at earliest. Rendering could use matplotlib polar plots or a dedicated D3.js/Three.js interactive viewer. The trilaminar structure is novel — no existing visualization library provides this directly, but it's composable from standard graph-rendering primitives.
+
+> **Cross-reference**: §5.23 (differential as dividuation / fidelity gradient), §5.56 (field architecture — assembly field / global field), §5.57 (reception field / fidelity band), §5.64 (CDF/demon per L-stratum), §5.65 (hexitive/praxitive scale → ring distance)
+
+### Addendum: Ring-Volution Identity (conversation 2026-03-02)
+
+The three rings are not merely *analogous to* the three -volutions — they ARE the three -volutions given spatial form:
+
+| Ring | -Volution | Direction | Character |
+|------|-----------|-----------|-----------|
+| **Top** | **Evolution** (outward unfolding) | Anopressive — pressing outward, projecting | What the entity unfolds into the world |
+| **Bottom** | **Involution** (inward folding) | Anapressive — pressing inward, receiving | What the entity folds inward from the world |
+| **Meso** | **Transvolution** (mutual crossing) | Neither purely in nor out — the boundary where both directions meet and transform each other | Where becoming happens; the configuration-space periphery |
+
+This confirms §5.39 (transvolution constraints) and §5.63 (transaction as transvolution at event level): transvolution is more fundamental than evolution or involution alone, just as the meso-ring is where the actual work happens while top and bottom are the relatively stable registers it mediates between.
+
+> **Implication**: The trilaminar ring is not a visualization convenience but a topological representation of the three processual modes. Any visualization tool that renders these rings is simultaneously rendering the -volution structure of the entity's praxis.
+
+## §5.69 Helical Structure: Double Helix with RNA-like Meso Wrapping
+
+> **Source**: User theoretical proposals + assistant refinement, conversation 2026-03-02 (extends §5.68 trilaminar ring theory)
+
+### Syntegration Mapping to Rings
+
+The four syntegrative modes (§S in TAPS) map onto the trilaminar ring architecture — but not as fixed assignments. They describe what each ring DOES when the entity is syntegrating:
+
+| Syntegrative mode | Ring layer | Character |
+|-------------------|-----------|-----------|
+| **Integration** (bringing-together) | **Upper ring** (anopressive) | Active unification — gathering elements into coherent projected structure |
+| **Preservation** (maintaining-intact) | **Lower ring** (anapressive) | Holding structure — latent patterns maintained as stable reservoir |
+| **Synthesis** (creating-new) | **Meso ring** (boundary) | Novel combination at the periphery — where active and passive meet to produce what neither contained alone |
+| **Disintegration** (breaking-apart) | **Through-line** | Not bound to any ring — the decay/redistribution dynamic (mu) that connects all layers and entities as a base interaction |
+
+Disintegration is the **through-line**: the constant background process by which every layer and entity changes, plastically, as both it and others change over time. When one layer changes, the others change with it. When one entity changes, all other entities in its set are affected because the alterity flows differently per change — and the change in the set affects other sets by changing the environment in which all sets, conjuncted directly or not, exist.
+
+### Praxis Mapping to Rings
+
+Similarly, the four praxitive modes (§P in TAPS) map onto the ring structure:
+
+| Praxitive mode | Ring layer | Character |
+|----------------|-----------|-----------|
+| **Projection** (throwing-forward) | **Upper ring** (anopressive) | Externalizing action — the entity projects outward through its active parameters |
+| **Reflection** (bending-back) | **Lower ring** (anapressive) | Internalizing observation — the entity reflects inward through its latent/receptive parameters |
+| **Consumption** (using structure) | **Meso ring** (boundary) | Where sedimented structure is taken up into new action — the boundary is where practico-inert becomes praxistatic |
+| **Consummation** (completing action) | **Through-line** | The paired through-line with disintegration — praxis reaching term, completing through absorption, becoming sedimented |
+
+### The Janus Through-Lines
+
+Disintegration and consummation form a **Janus pair** — two faces of the same through-line, functioning **without** (externally, between layers/strata/entities):
+
+- **Consummation**: Praxis completing itself — the positive face. An entity's action reaches term, becoming sedimented structure that feeds back into the system
+- **Disintegration**: Structure redistributing — the corresponding face. The mu-decay that prevents permanent crystallization, keeping the system in motion
+
+Meanwhile, synthesis and consumption function **within** (internally, inside layers/strata/entities):
+
+- **Synthesis** (meso): New structure arising from the meeting of active and passive at the boundary
+- **Consumption** (meso): Existing structure being taken up and used by ongoing praxis at the boundary
+
+The within/without partition:
+
+| Location | Syntegrative mode | Praxitive mode | Character |
+|----------|-------------------|----------------|-----------|
+| **Within** (inside layers) | Synthesis | Consumption | Internal operations — what happens at the boundary between active and passive |
+| **Without** (between entities) | Disintegration | Consummation | External dynamics — the through-lines connecting entities through mutual alteration |
+
+### Seven Floating Pressure Vectors
+
+The seven pressure parameters (expression, impression, adpression, compression, depression, suppression, oppression — see §A concept map) are **not bound to specific rings**. They float across all rings, plotted as points based on their current active/passive disposition within a given ring system and in relation to others.
+
+However, there are **tendency zones**:
+
+| Ring | Tendency | Why |
+|------|----------|-----|
+| **Upper ring** | **Anopressive tendency** | Active/projective parameters naturally press outward-upward |
+| **Lower ring** | **Anapressive tendency** | Passive/receptive parameters naturally press inward-downward |
+| **Meso ring** | **Unific transitive zone** | Both tendencies exist simultaneously as one — the meso is where anopressive and anapressive meet and transform each other. This is the unific zone proper |
+
+The seven pressure vectors manifest/latent, active/passive at a given timestep based on how the anopressive and anapressive zones and their functions/dispositions are currently configured. No pressure parameter is permanently anchored to one ring — they flow through the entire ring system.
+
+### The Double Helix
+
+The trilaminar ring structure, when extended through time, implies a **helical structure**. But not a triple helix — a **double helix with an RNA-like meso wrapping**.
+
+**The two primary strands (antiparallel helices):**
+
+1. **Upper strand** (anopressive/projective/evolutionary) — the entity's active, outward-facing trajectory through time
+2. **Lower strand** (anapressive/receptive/involutionary) — the entity's passive, inward-facing trajectory through time
+
+These two strands are **antiparallel**: when the upper strand is in a phase of intense projection, the lower strand is in a phase of deep reception, and vice versa. They wind around each other as the entity moves through temporal steps.
+
+**The meso wrapping (RNA-like structure):**
+
+The meso layer is **not a third independent strand**. It is a wrapping structure determined by the configuration of the two primary strands — analogous to how RNA is produced by and wraps around the DNA double helix, mediating between it and the larger cellular machinery.
+
+The meso:
+- Is **produced by** the two primary strands (its points form/dissolve based on active-passive junctions between upper and lower)
+- **Wraps around or meshes** the two strands (it is the boundary layer that mediates their interaction)
+- **Mediates** between the double helix and the external environment (just as RNA mediates between DNA and the ribosome)
+- Is **more transient** than the primary strands (meso-points forming and dissolving, RNA being transcribed and degraded)
+- **Carries the functional information** outward (what the entity actually DOES in the world passes through the meso)
+
+This is not mere analogy — the structural dynamics genuinely parallel molecular biology:
+- DNA double helix = stable genetic record → upper/lower rings as stable parameter registers
+- RNA = transient functional mediator → meso ring as dynamic boundary/periphery
+- Hydrogen bonds = cross-bridges holding the strands together → pressure vectors linking upper and lower through the meso
+
+### Seven Pressure Vectors as Cross-Bridges
+
+The seven pressure parameters function as **cross-bridges** running between and along the two helical strands — structurally equivalent to the hydrogen bonds that hold the two strands of DNA together:
+
+- Each pressure vector connects a point on the upper strand to a point on the lower strand (or to the meso wrapping in between)
+- The cross-bridges are what give the double helix its structural integrity
+- When cross-bridges weaken (pressure vectors become misaligned or latent), the strands begin to separate — ring distance increases (§5.68), coherence drops
+- When cross-bridges strengthen (pressure vectors activate and align), the strands are held tight — ring distance decreases, coherence increases
+
+The seven vectors don't all bridge simultaneously. At any timestep, some are active cross-bridges, some are latent (potential bridges), and some are in the meso wrapping (being transcribed into functional form). Their distribution across the helix is what gives each entity its characteristic dynamic profile.
+
+### The Alterity Cascade
+
+The helical structure makes the **alterity cascade** visible:
+
+1. **Agent change**: One entity's helix shifts (a pressure vector activates, a meso-point forms or dissolves)
+2. **Set reconfiguration**: The change alters the cross-bridges between this entity and others in its set — the inter-entity meso threads (§5.68 nested ring formation) reconfigure
+3. **Environmental alteration**: The set change alters the L22 field, changing the environmental texture for all entities
+4. **All-sets-affected**: Every set within the altered environment adjusts its helical configuration in response — finely or grossly, depending on proximity and coupling strength
+
+Each change propagates through the alterity cascade at rates determined by the four time-modes (§5.45): L11 (fastest, self-adjustment) → L12 (expression adjustment) → L21 (reception adjustment) → L22 (slowest, environmental re-texturing).
+
+### Connection to Existing Architecture
+
+| Helical concept | Existing reference | How it connects |
+|-----------------|-------------------|-----------------|
+| Double helix = upper/lower strands | §5.68 (trilaminar rings) | Rings extended through time |
+| RNA-like meso wrapping | §5.64 (CDF/demon) | Meso wrapping = the demon's functional output |
+| Cross-bridges = pressure vectors | §A concept map (seven pressures) | Pressures as structural bonds, not just forces |
+| Antiparallel strands | §5.56 (field architecture) | Global/nonlocal field (L11+L22) = one strand's register; assembly field (L12+L21) = the other's |
+| Alterity cascade | §5.63 (reciprocity gauge) | Each cascade step produces a reciprocity reading |
+| Within/without partition | §5.55 (consummation/consumption) | Praxis-process and process-praxis as external/internal respectively |
+| Janus through-lines | §5.43 (practico-inert reversal) | Consummation = gas/fuel cycle; disintegration = entropy cycle |
+| Floating pressure vectors | §5.45 (four time-modes) | Each vector's clock rate depends on which L-channel it's currently traversing |
+
+> **Implementation note**: The helical structure is primarily a theoretical and visualization framework. Implementation would extend the trilaminar ring visualization (§5.68) into a temporal dimension — the rings at each timestep forming slices of the helix. The cross-bridge distribution could be computed from existing pressure parameter data. Full helical rendering would require 3D visualization (Three.js or similar). This is a Stage 3C+ visualization target, not a core simulation mechanism — the simulation produces the data; the helix is how we SEE it.
+
+> **Cross-reference**: §5.68 (trilaminar rings — the per-timestep slice), §5.56 (field architecture — the strand-level registers), §5.45 (four time-modes — cascade propagation rates), §5.55 (consummation/consumption — the within/without partition), §5.43 (practico-inert/praxistatic — Janus through-line energetics), §5.63 (reciprocity gauge — cascade measurement), §5.64 (CDF/demon — meso wrapping as functional output)
