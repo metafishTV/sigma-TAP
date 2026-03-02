@@ -1,7 +1,7 @@
 # Distillation Skill — Design Document
 
 **Date**: 2026-03-02
-**Status**: Approved by user, ready for implementation
+**Status**: Implemented (2026-03-02)
 **Purpose**: Formalize the iterated source-distillation process as a two-file skill — a shareable global launcher that differentiates into project-specific operational instances
 
 ---
