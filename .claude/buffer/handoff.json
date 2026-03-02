@@ -20,10 +20,11 @@
       "outputs/figures/taps_correlation.png",
       "outputs/figures/taps_texture.png"
     ],
-    "tests": "345/345 passing",
-    "sessions_since_full_scan": 0,
-    "full_scan_threshold": 5
+    "tests": "345/345 passing"
   },
+
+  "sessions_since_full_scan": 0,
+  "full_scan_threshold": 5,
 
   "active_work": {
     "current_phase": "Stage 3B COMPLETE — all 7 phases implemented and verified",
