@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "layer": "cold",
+
+  "dialogue_trace": {
+    "_purpose": "How the conversation actually developed — the trajectory of ideas, not just the endpoints. Most lossy part of context transfer.",
+    "sessions": [
+      {
+        "id": "c:1",
+        "session": "Stage 3B implementation (earlier sessions, pre-reflection)",
+        "arc": "Purely engineering. 7 phases: sigma wiring, seed entropy, trust, endogenous mu, topology/families, junction, integration tests. Strict plan with code review between phases. User learning Claude Code for the first time.",
+        "key_moments": [
+          "Phase 1: sigma(Xi) multiplier was the critical missing piece — agents ran raw TAP without feedback. ~100 lines changed everything.",
+          "Phase 3: switched raw variance to CV-squared because dM values span orders of magnitude.",
+          "Phase 5: absorptive cross-metathesis bug — wasn't creating families unconditionally, silently skipping first-gen agents.",
+          "Phase 6: symmetric trust chosen over asymmetric to avoid evaluation-order dependence."
+        ]
+      },
+      {
+        "id": "c:2",
+        "session": "Exploration run + Levinas reflection (2026-02-28, first half)",
+        "arc": "Transition from engineering to theory. First MetatheticEnsemble run with all 3B features. Then Levinas excerpts (T&I pp. 114-121, 191-193, 220-232) for deep philosophical mapping.",
+        "key_moments": [
+          "sigma=0.1 caused explosive 169x growth. Dialed to 0.005 for 1.6x. Discovered 'island effect' — affordance drops to zero mid-run as agents exhaust novel types.",
+          "User's correction: 'separated beings should be SERIALIZED beings' — temporal/processual, not spatial.",
+          "User insisted 'living from metathesis' is STRUCTURAL IDENTIFICATION with Levinas's 'vivre de...' — not analogy.",
+          "22 Sartre conversion terms (§5.60) — systematic mapping from Critique Vol.2 Appendix."
+        ]
+      },
+      {
+        "id": "c:3",
+        "session": "Unificity.md + field architecture (2026-02-28, second half)",
+        "arc": "User shared foundational text (Unificity.md). Co-creative session building four-field architecture. Most generative exchange.",
+        "key_moments": [
+          "Unity-Multiplicity-Unificity revealed as triad ABOVE TAPS/RIP/Dialectic. User corrected me — I had TAPS as top level.",
+          "Four-field architecture emerged collaboratively: I proposed praxitive+syntegrative; user added transvolutory+pressurative and T-A switch.",
+          "Consummation/consumption distinction refined through several rounds.",
+          "User introduced 'vidation' (Bohm rheomode). Chain: vidation -> affordance -> reception crystallized."
+        ]
+      },
+      {
+        "id": "c:4",
+        "session": "D&G ATP + Emery-Trist mining (2026-02-28, final stretch)",
+        "arc": "Two more sources mined for structural convergence. D&G produced conjunction/connection distinction for 3C. Emery-Trist validated L-matrix against original source. Hit context limits.",
+        "key_moments": [
+          "D&G tetravalent assemblage maps to L-matrix — SECOND independent tetra-mapping. Four D forms = THIRD convergence (user caught it, I missed it).",
+          "Conjunction vs connection: current junction = CONJUNCTION (gate). Reception field = CONNECTION (creative multiplier). 3C = transition from conjunction-only to both.",
+          "Emery-Trist L11/L12/L21/L22 matches original 1965 framework. Type V vortical = unificity/holarchy.",
+          "Session hit context limits during mining. Agreed to handoff rather than force through."
+        ]
+      },
+      {
+        "id": "c:5",
+        "session": "Handoff refinement (2026-02-28, continued from context overflow)",
+        "arc": "Meta-session: improving handoff system. Buffer patch, skill troubleshooting, overwrite recovery, iterative improvement from test instance feedback.",
+        "key_moments": [
+          "New instance test revealed 4 gaps: exploration run status, R&B tentativeness, §5.61-62 in MEMORY.md, TASKS.md existence. All patched.",
+          "Added orientation section — WHY each source matters, not just mappings.",
+          "User asked for instance_notes — personal colleague-to-colleague briefing.",
+          "User asked for dialogue_trace — trajectory of ideas as most lossy transfer element."
+        ]
+      }
+    ],
+    "recurring_patterns": [
+      "User introduces concepts casually, reveals full depth 2-3 exchanges later. Don't rush to map; let user unfold.",
+      "Corrections are never dismissive — 'no, it's more like...' gives a richer version. Corrections ARE the theoretical work.",
+      "User tests convergence by sharing source texts to see if I find structural parallels independently.",
+      "Multiple independent convergences on L-matrix from different sources is the core methodological claim.",
+      "User thinks ahead of conversation — has a destination but lets the path develop organically."
+    ]
+  },
+
+  "archived_decisions": [
+    { "id": "c:d1", "what": "Memory buffer skill approach", "chose": "Approach A (structured JSON) with Approach B element (compact summary + codex)", "why": "90% value with minimal risk. Structured JSON is readable/debuggable.", "ref": null, "session": "2026-02-28" },
+    { "id": "c:d2", "what": "Skill scope", "chose": "Project-specific (.claude/skills/ in repo)", "why": "Buffer content is project-specific. Keeps everything self-contained and git-tracked.", "ref": null, "session": "2026-02-28" },
+    { "id": "c:d3", "what": "Concept map vs term map", "chose": "Concept map — allows multi-word entries", "why": "Structural concepts like 'totalization-of-envelopment' carry meaning single terms don't", "ref": null, "session": "2026-02-28" },
+    { "id": "c:d4", "what": "Added suggest field to concept map entries", "chose": "Nullable suggest field with null-is-preferred convention", "why": "Allows Claude to flag connections without asserting them. Prevents pressure to fill blanks.", "ref": null, "session": "2026-02-28" },
+    { "id": "c:d5", "what": "Added dialectic as top-level coordinate base", "chose": "thesis/athesis/synthesis/metathesis alongside TAPS and RIP", "why": "Without metathesis, the other three remain serial and diachronic.", "ref": null, "session": "2026-02-28" },
+    { "id": "c:d6", "what": "R/I/P maps to Real/Ego/Probability", "chose": "Noted as emergent ontological register mapping", "why": "Correlation emerges from the terms themselves without forcing", "ref": "§5.46", "session": "2026-02-28" },
+    { "id": "c:d7", "what": "Hexis = behabitation, praxis = habitation", "chose": "Austin's behabitives extended to behabitation", "why": "Hexis = being-qua-habitation (autonomic); praxis = habitation (protonomic)", "ref": "§5.47", "session": "2026-02-28" },
+    { "id": "c:d8", "what": "Four-level trust: tau_self, tau_pair, tau_group, tau_context", "chose": "tau_context is simultaneously a priori and constructed", "why": "Context both conditions and is constituted by agent gestures", "ref": "§5.48", "session": "2026-02-28" },
+    { "id": "c:d9", "what": "Zero is never a valid parameter", "chose": "Asymptotic approach triggers metathesis/phase change, not null", "why": "Praxis conservation law means zero praxis is impossible", "ref": "§5.49", "session": "2026-02-28" }
+  ],
+
+  "superseded_mappings": [
+    {
+      "id": "c:s1",
+      "what": "Practico-inert mapping",
+      "original": "§5.24: practico-inert = motor/engine, praxistatic = gas/fuel",
+      "superseded_by": "§5.43: practico-inert = gas/fuel (sedimented past praxis), praxistatic = engine (active interface)",
+      "reason": "Reversal during Sartre deep review. §5.43 is canonical.",
+      "session": "2026-02-28"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "layer": "warm",
+
+  "concept_map": {
+    "_meta": { "base_system": "Unity-Multiplicity-Unificity > TAPS + RIP + Dialectic", "version": 2, "last_validated": "2026-03-02" },
+
+    "foundational_triad": [
+      { "id": "w:1", "term": "unificity", "base": "unity + multiplicity. Irreducible third modality = context = Koestler's holon = Sartre's third-party. Geometry: vortical. Structure: holarchy. Field: unific. Only unificities are actual; pure unity/multiplicity are virtual", "equiv": [], "suggest": null },
+      { "id": "w:2", "term": "unity", "base": "modality of THINGS. Every unity is a multiplicity of at least two. Geometry: lateral. Structure: holism. Field: unitive (vision/representation)", "equiv": [], "suggest": null },
+      { "id": "w:3", "term": "multiplicity", "base": "modality of SETS OF THINGS. Every multiplicity is a unity of at least one. Geometry: vertical. Structure: hierarchy. Field: multiplicative (ordering)", "equiv": [], "suggest": null },
+      { "id": "w:4", "_meta": "generative triad from which TAPS, RIP, and Dialectic unfold. Config space = 1, each modality is a 1-prime (different mode of being-one)" }
+    ],
+
+    "dialectic": [
+      { "id": "w:5", "term": "thesis", "base": "positing / the thetic moment", "maps_to_TAPS": "T (transvolution)", "time_mode": "pi (thetic, L11, fastest)", "equiv": [], "suggest": null },
+      { "id": "w:6", "term": "athesis", "base": "counter-positing (apposite, NOT oppositional)", "maps_to_TAPS": "A (anopression)", "time_mode": "alpha (athetic, L12)", "equiv": [], "collision": "!= antithesis (antithesis = counter-athesis)", "suggest": null },
+      { "id": "w:7", "term": "synthesis", "base": "combining / integration", "maps_to_TAPS": "S (syntegration)", "time_mode": "sigma (synthetic, L21)", "equiv": [], "suggest": null },
+      { "id": "w:8", "term": "metathesis", "base": "context window / before-after frame / enables synchronicity of the other three", "maps_to_TAPS": "the M-process framing TAPS itself", "time_mode": "Pi (metathetic, L22, slowest)", "equiv": [], "collision": "!= linguistic metathesis", "suggest": null }
+    ],
+
+    "T": [
+      { "id": "w:9", "term": "evolution", "base": "unfolding / multiplicity / explicate direction", "equiv": ["Bohm:explicate order", "extensivity", "exteriority"], "collision": "!= biological evolution (no telos)", "suggest": null },
+      { "id": "w:10", "term": "involution", "base": "enfolding / unity / implicate direction", "equiv": ["Bohm:implicate order", "intensivity", "interiority"], "suggest": null },
+      { "id": "w:11", "term": "condensation", "base": "tendency toward actualized structure / unificity", "equiv": ["transvolution consummated", "third irreducible modality"], "collision": "!= condension", "suggest": null },
+      { "id": "w:12", "term": "condension", "base": "specific vector of involution / densification / enfolding", "equiv": ["involution as directed process"], "collision": "!= condensation", "suggest": null },
+      { "id": "w:13", "term": "transvolution_constraints", "base": "causal character of directional pairs: evo/invo=timelike, expansion/condension=spacelike, rarefaction/condensation=lightlike", "ref": "§5.39", "suggest": null },
+      { "id": "w:14", "_meta": "how-I-become / becoming-axis / thesis" }
+    ],
+
+    "A": [
+      { "id": "w:15", "term": "expression", "base": "outward manifestation / pressing-out", "equiv": [], "suggest": null },
+      { "id": "w:16", "term": "impression", "base": "inward reception / pressing-in", "equiv": [], "suggest": null },
+      { "id": "w:17", "term": "adpression", "base": "pressing-toward / junction of ano+ana", "equiv": ["emergence (ano+ana combined)"], "suggest": null },
+      { "id": "w:18", "term": "compression", "base": "pressing-together / densification", "equiv": [], "suggest": null },
+      { "id": "w:19", "term": "depression", "base": "pressing-down / suppression of possibility", "equiv": [], "collision": "!= clinical depression (though structural parallel may exist)", "suggest": null },
+      { "id": "w:20", "term": "suppression", "base": "pressing-under / holding beneath surface", "equiv": [], "suggest": null },
+      { "id": "w:21", "term": "oppression", "base": "pressing-against / resistance from outside", "equiv": ["Sartre:counter-finality (partial)"], "collision": "!= political oppression exclusively", "suggest": null },
+      { "id": "w:22", "_meta": "how-I-am / being-axis / athesis. Dipoles: anopression (upward/outward, decreasing difficulty) and anapression (downward/inward, increasing difficulty). Chain: anopression <- expression <- impression <- adpression <-> compression -> depression -> suppression -> oppression -> anapression. Alpha = anapressive phase constant (L12). Sigma = anopressive phase constant (L21). See §5.45" }
+    ],
+
+    "P": [
+      { "id": "w:23", "term": "projection", "base": "throwing-forward / externalizing action", "equiv": ["Sartre:projet"], "suggest": null },
+      { "id": "w:24", "term": "reflection", "base": "bending-back / internalizing observation", "equiv": [], "suggest": null },
+      { "id": "w:25", "term": "consumption", "base": "praxis consuming syntegrative structures / using", "equiv": [], "collision": "!= consummation", "suggest": null },
+      { "id": "w:26", "term": "consummation", "base": "syntegration completing praxitive structures / doing", "equiv": [], "collision": "!= consumption", "suggest": null },
+      { "id": "w:27", "term": "habitation", "base": "praxis as active intentional dwelling (protonomic register)", "equiv": [], "suggest": null },
+      { "id": "w:28", "term": "behabitation", "base": "hexis as being-qua-habitation (autonomic register)", "equiv": ["Austin:behabitives (extended)"], "suggest": null },
+      { "id": "w:29", "_meta": "how-I-act / action-axis / praxis proper. Definition: the process of projection & reflection in consumptive consummation. Praxis always conserved (via consummation in laminar flow, §5.38). Practico-inert = gas/fuel (sedimented past praxis). Praxistatic = engine (active interface). REVERSED from §5.24, see §5.43" }
+    ],
+
+    "S": [
+      { "id": "w:30", "term": "integration", "base": "bringing-together into whole / L21-direction (env->system)", "equiv": [], "suggest": null },
+      { "id": "w:31", "term": "disintegration", "base": "breaking-apart / redistribution of elements", "equiv": [], "suggest": null },
+      { "id": "w:32", "term": "preservation", "base": "holding-intact / maintaining existing structure", "equiv": [], "suggest": null },
+      { "id": "w:33", "term": "synthesis", "base": "creating-new-from-combined / productive combination", "equiv": [], "suggest": null },
+      { "id": "w:34", "term": "fusion", "base": "convergence toward shared hexitive ground (group level)", "equiv": [], "suggest": null },
+      { "id": "w:35", "term": "diffusion", "base": "divergence into protonomic exploration (group level)", "equiv": [], "suggest": null },
+      { "id": "w:36", "_meta": "how-I-create / creation-axis / synthesis at TAPS level. Syntegration always consumed (via consumption in turbulent flow, §5.38). Law: minimal praxis for maximal syntegration = variational principle = principle of least action (§5.50)" }
+    ],
+
+    "RIP": [
+      { "id": "w:37", "term": "recursive", "base": "self-entry, depth (R-mode 1)", "register": "Real", "equiv": [], "suggest": null },
+      { "id": "w:38", "term": "reflective", "base": "self-observation, distance (R-mode 2)", "register": "Real", "equiv": [], "suggest": null },
+      { "id": "w:39", "term": "iterative", "base": "sequential stepping, repetition with displacement (I-mode 1)", "register": "Ego", "equiv": [], "suggest": null },
+      { "id": "w:40", "term": "integrative", "base": "unifying, composition (I-mode 2)", "register": "Ego", "equiv": [], "suggest": null },
+      { "id": "w:41", "term": "preservative", "base": "maintaining structure (P-mode 1)", "register": "Probability", "equiv": [], "suggest": null },
+      { "id": "w:42", "term": "praxitive", "base": "creating structure (P-mode 2)", "register": "Probability", "equiv": [], "suggest": null },
+      { "id": "w:43", "_meta": "direction through TAPS space / flow function. TAP=rate, TAPS=position, RIP=direction. 8 configs (2^3) x 6 orderings (3!) = 48 states. R^(I^P) != (R^I)^P. Death = mode-lock (flip freq -> 0). Falsification: Stage 3X-RIP with F1-F8 (§5.30)" }
+    ],
+
+    "cross_source": [
+      { "id": "w:44", "key": "Sartre:totalization", "maps_to": "naive/undifferentiated metathesis", "ref": "§5.18", "suggest": null },
+      { "id": "w:45", "key": "Sartre:totalization_detotalization", "maps_to": "absorptive/novel cross-metathesis", "ref": "§5.18", "suggest": null },
+      { "id": "w:46", "key": "Sartre:practico-inert", "maps_to": "gas/fuel (sedimented past praxis)", "ref": "§5.43", "NOTE": "REVERSED from §5.24", "suggest": null },
+      { "id": "w:47", "key": "Sartre:counter-finality", "maps_to": "counter-thesis typology (participatory, not oppositional)", "ref": "§5.33", "suggest": null },
+      { "id": "w:48", "key": "Sartre:praxis-process", "maps_to": "consummation (praxis reaching term, becoming process)", "ref": "§5.55", "suggest": null },
+      { "id": "w:49", "key": "Sartre:process-praxis", "maps_to": "consumption (sedimented structure taken up into new action)", "ref": "§5.55", "suggest": null },
+      { "id": "w:50", "key": "Sartre:immanence", "maps_to": "anapression", "ref": "§5.60", "suggest": null },
+      { "id": "w:51", "key": "Sartre:transcendence", "maps_to": "anopression", "ref": "§5.60", "suggest": null },
+      { "id": "w:52", "key": "Sartre:anti-labour", "maps_to": "entropy", "ref": "§5.60", "suggest": null },
+      { "id": "w:53", "key": "Sartre:totalization-of-envelopment", "maps_to": "metathesis-as-enfoldment", "ref": "§5.60", "suggest": null },
+      { "id": "w:54", "key": "Sartre:anti-dialectic", "maps_to": "syntegrative metathesis (more than just entropy)", "ref": "§5.60", "suggest": null },
+      { "id": "w:55", "key": "Sartre:pledge", "maps_to": "impress/impressed", "ref": "§5.60", "suggest": null },
+      { "id": "w:56", "key": "Sartre:milieu", "maps_to": "matrix", "ref": "§5.60", "suggest": null },
+      { "id": "w:57", "key": "Sartre:ensemble", "maps_to": "network", "ref": "§5.60", "suggest": null },
+      { "id": "w:58", "key": "Sartre:group-in-fusion", "maps_to": "family formation (serial collective -> genuine group)", "ref": "§5.60", "suggest": "implies institution-in-fusion?" },
+      { "id": "w:59", "key": "Bohm:explicate_order", "maps_to": "extensive metathesis / evolution / exteriority", "ref": "§5.18a", "suggest": null },
+      { "id": "w:60", "key": "Bohm:implicate_order", "maps_to": "intensive metathesis / involution / interiority", "ref": "§5.18a", "suggest": null },
+      { "id": "w:61", "key": "Bohm:rheomode", "maps_to": "dividuation (constitutive splitting of project/realization)", "ref": "§5.23", "suggest": null },
+      { "id": "w:62", "key": "Levinas:alterity", "maps_to": "irreducible otherness in cross-metathesis", "ref": "§5.10", "suggest": null },
+      { "id": "w:63", "key": "Levinas:unicity_paternity", "maps_to": "unificity (user's term) — non-causal unicity", "ref": null, "suggest": null },
+      { "id": "w:64", "key": "Levinas:enjoyment", "maps_to": "living from metathesis / L11 self-metathetic coiling (structural, not analogy)", "ref": "§5.53", "suggest": null },
+      { "id": "w:65", "key": "Levinas:ipseity", "maps_to": "agent trajectory (full dM_history + L-matrix), irreducible to type_set or signature", "ref": "§5.52", "suggest": null },
+      { "id": "w:66", "key": "Levinas:need", "maps_to": "Xi accumulation / sigma modulation (temporalized dependence)", "ref": "§5.53", "suggest": null },
+      { "id": "w:67", "key": "Levinas:separation", "maps_to": "serialization (preferred term: serialized beings > separated beings)", "ref": "§5.52", "suggest": null },
+      { "id": "w:68", "key": "Levinas:the_face", "maps_to": "novel cross-metathesis (encounter producing irreducible novelty)", "ref": "§5.58", "suggest": null },
+      { "id": "w:69", "key": "Levinas:facade", "maps_to": "type_set surface / artifact observable properties", "ref": "§5.58", "suggest": null },
+      { "id": "w:70", "key": "Levinas:lateral_signification", "maps_to": "Jaccard/junction metrics (measures within same type-space)", "ref": "§5.57", "suggest": null },
+      { "id": "w:71", "key": "Levinas:time_postponement", "maps_to": "praxitive deferral / temporal state machine / affordance gating", "ref": "§5.55", "suggest": null },
+      { "id": "w:72", "key": "Levinas:work_separating_from_will", "maps_to": "type_set entering shared environment / practico-inert / parent dormancy", "ref": "§5.58", "suggest": null },
+      { "id": "w:73", "key": "DG:rhizomatic", "maps_to": "alliance / horizontal / any-to-any (slime mold)", "ref": "§5.10", "suggest": null },
+      { "id": "w:74", "key": "DG:arborescent", "maps_to": "filiation / vertical / tree / irreversible", "ref": "§5.10", "suggest": null },
+      { "id": "w:75", "key": "Austin:behabitives", "maps_to": "behabitation (hexis as being-qua-habitation)", "ref": "§5.47", "suggest": null },
+      { "id": "w:76", "key": "Fermat:least_time", "maps_to": "conservation law (minimal praxis for maximal syntegration)", "ref": "§5.50", "suggest": null },
+      { "id": "w:77", "key": "Feynman:path_integral", "maps_to": "conservation law — all paths explored, constructive interference on stationary action", "ref": "§5.50", "suggest": null },
+      { "id": "w:78", "key": "RB:Level_I", "maps_to": "intrapersonal / L11 / tau_self", "ref": "docs/references/Ruesch & Bateson", "suggest": null },
+      { "id": "w:79", "key": "RB:Level_II", "maps_to": "interpersonal / L12+L21 / tau_pair", "ref": "docs/references/Ruesch & Bateson", "suggest": null },
+      { "id": "w:80", "key": "RB:Level_III", "maps_to": "group / family topology / tau_group", "ref": "docs/references/Ruesch & Bateson", "suggest": null },
+      { "id": "w:81", "key": "RB:Level_IV", "maps_to": "cultural / L22 / Mode 4 env drift / tau_context", "ref": "docs/references/Ruesch & Bateson", "suggest": null },
+      { "id": "w:82", "key": "Emery:DP1", "maps_to": "hierarchical topology attractor / redundancy of parts / filiation / arborescent", "ref": "Emery-Emery-1974", "suggest": null },
+      { "id": "w:83", "key": "Emery:DP2", "maps_to": "self-managing topology attractor / redundancy of functions / alliance / rhizomatic", "ref": "Emery-Emery-1974", "suggest": null },
+      { "id": "w:84", "key": "Emery:laissez_faire", "maps_to": "demetathesis / absence of design principle / temporal state 0 (disintegrated)", "ref": "Emery-Emery-1974", "suggest": null },
+      { "id": "w:85", "key": "Emery:six_criteria_optimization", "maps_to": "agent-level: elbow room=L11 proportion, learning=dK/dt, variety=type diversity", "ref": "Emery-Emery-1974", "suggest": null },
+      { "id": "w:86", "key": "Emery:six_criteria_maximization", "maps_to": "group-emergent: mutual support=reciprocal L12/L21, meaningfulness=group M contribution, desirable future=temporal trajectory", "ref": "Emery-Emery-1974", "suggest": null },
+      { "id": "w:87", "key": "Emery:directive_correlation", "maps_to": "sigma(Xi) mechanism — system-environment correspondence for adaptation", "ref": "Emery-M-2000 (Sommerhoff 1969)", "suggest": null },
+      { "id": "w:88", "key": "Emery:transaction_not_interaction", "maps_to": "cross-metathesis must change BOTH participants, not just transfer information", "ref": "Emery-M-2000", "suggest": null },
+      { "id": "w:89", "key": "Emery:unitas_multiplex", "maps_to": "L11 system principle / TAPS signature as agent identity", "ref": "Emery-M-2000 (Angyal 1941)", "suggest": null },
+      { "id": "w:90", "key": "Emery:ideal_seeking", "maps_to": "DP2 enables ideal-seeking (one more degree of freedom than purposefulness)", "ref": "Emery-M-2000", "suggest": "functional level hierarchy: goal-seeking < purposefulness < ideal-seeking" },
+      { "id": "w:91", "key": "Emery:thin_red_line", "maps_to": "contextualism (Pepper) — only world hypothesis handling novelty and change = TAP's ever-expanding config space", "ref": "Emery-M-2000", "suggest": null },
+      { "id": "w:92", "key": "Emery:joint_optimization", "maps_to": "sigma(Xi) as joint optimization — social system (interaction) x technical system (TAP dynamics)", "ref": "Emery-M-2000", "suggest": null },
+      { "id": "w:93", "key": "Emery:tele_and_tinny", "maps_to": "demetathesis cascade — self-amplifying DP1 pathology spiral (irreversible without structural intervention)", "ref": "deGuerre-2016 Fig 3.1", "suggest": null },
+      { "id": "w:94", "key": "Emery:SC_then_PDW", "maps_to": "sigma feedback + trust THEN topology / two-stage = L22 scanning then intra-L11 restructuring", "ref": "deGuerre-2016 Fig 3.2", "suggest": null },
+      { "id": "w:95", "key": "Emery:shadow_organization", "maps_to": "pathological topology — cliques form along pre-existing trust (homophily) not task interdependencies", "ref": "Emery-Emery-1974", "suggest": null },
+      { "id": "w:96", "key": "Emery:skills_matrix", "maps_to": "type_set overlap analysis / proficiency scoring (0/x/xx) / minimum redundancy rule", "ref": "Emery-Emery-1974", "suggest": null },
+      { "id": "w:97", "key": "Emery:transaction_biunimodal", "maps_to": "simultaneous interactional + extractional sub-holons; transaction = transvolution at event level", "ref": "§5.63", "suggest": null },
+      { "id": "w:98", "key": "Emery:reciprocity_gauge", "maps_to": "per-event measure of mutual L-matrix change (DL_A vs DL_B); feeds trust and family cohesion", "ref": "§5.63", "suggest": null },
+      { "id": "w:99", "key": "Emery:directive_correlation_CDF", "maps_to": "running CDF as Maxwell's demon at each L-stratum; relative to set; increasing diffuseness agent->environment", "ref": "§5.64", "suggest": "BOOKMARKED — math underspecified. Formalize in 3C+." },
+      { "id": "w:100", "key": "Baudrillard:simulacrum_levels", "maps_to": "hexitive(-1 to -4) / praxitive(+1 to +4) bipolar diagnostic; shadow vs light organizing", "ref": "§5.65", "suggest": "determinant = indirect-to-direct L22 energy ratio" },
+      { "id": "w:101", "key": "Turchin:secular_cycles", "maps_to": "limit cycles in L-channel phase space; commoner/elite/state -> L11/L12-L21/L22 decomposition", "ref": "§5.67", "suggest": "Turchin's arbitrary social categories vs our principled L-channel decomposition" },
+      { "id": "w:102", "key": "Turchin:elite_overproduction", "maps_to": "demetathesis cascade / hexitive overaccumulation / Tele-and-Tinny spiral", "ref": "§5.65, §5.67", "suggest": null },
+      { "id": "w:103", "key": "Turchin:PSI", "maps_to": "Political Stress Indicator (MMP x EMP x SFD); three compartments map to L-channel groupings", "ref": "§5.67, Turchin-2013", "suggest": null },
+      { "id": "w:104", "key": "Turchin:asabiyya", "maps_to": "trust metrics (tau_pair, tau_group) strengthened by shared L22 pressure, weakened by comfort", "ref": "Turchin-2009", "suggest": "Ibn Khaldun's group solidarity = emergent family cohesion under environmental pressure" },
+      { "id": "w:105", "key": "Turchin:mirror_empires", "maps_to": "coupled L-matrix systems with L22 channels in anti-phase competition; coupled limit cycles", "ref": "§5.67, Turchin-2009", "suggest": null },
+      { "id": "w:106", "key": "Turchin:multilevel_selection", "maps_to": "conservation law (§5.38/§5.50): groups minimizing internal praxis while maximizing syntegration outcompete", "ref": "Turchin-Gavrilets-2009", "suggest": "cooperate to compete = absorptive vs novel cross-metathesis tension" },
+      { "id": "w:107", "key": "Turchin:dunbar_limit", "maps_to": "junction capacity limit for biunivocal rings; meso-ring (polyvocal) enables scaling beyond ~150", "ref": "§5.68, Turchin-Gavrilets-2009", "suggest": null },
+      { "id": "w:108", "key": "Turchin:hierarchical_scaling_law", "maps_to": "nested ring formation (§5.68) — each level adds a ring-set layer; log-linear pop vs levels", "ref": "§5.68, Turchin-Gavrilets-2009 Fig.2", "suggest": null },
+      { "id": "w:109", "key": "Viz:trilaminar_rings", "maps_to": "per-entity: anopressive(top) / meso(boundary) / anapressive(bottom); nested for groups", "ref": "§5.68", "suggest": "meso = config-space periphery = CDF demon threshold = assembly field" },
+      { "id": "w:110", "key": "Viz:ring_volution_identity", "maps_to": "top=evolution, bottom=involution, meso=transvolution (structural identity, not analogy)", "ref": "§5.68, §5.39", "suggest": null },
+      { "id": "w:111", "key": "Viz:helical_structure", "maps_to": "double helix (upper=anopressive + lower=anapressive antiparallel) with RNA-like meso wrapping", "ref": "§5.69", "suggest": "meso = RNA (transient functional mediator); pressure vectors = hydrogen bonds" },
+      { "id": "w:112", "key": "Viz:janus_through_lines", "maps_to": "consummation+disintegration=external through-lines; synthesis+consumption=internal meso operations", "ref": "§5.69", "suggest": "within/without partition" },
+      { "id": "w:113", "key": "Viz:floating_pressure_vectors", "maps_to": "seven pressure parameters as cross-bridges between helical strands; tendency zones (upper=ano, lower=ana, meso=unific)", "ref": "§5.69", "suggest": null },
+      { "id": "w:114", "key": "Viz:syntegration_ring_mapping", "maps_to": "integration=upper, preservation=lower, synthesis=meso, disintegration=through-line", "ref": "§5.69", "suggest": null },
+      { "id": "w:115", "key": "Viz:praxis_ring_mapping", "maps_to": "projection=upper, reflection=lower, consumption=meso, consummation=through-line", "ref": "§5.69", "suggest": null }
+    ]
+  },
+
+  "decisions_archive": [
+    { "id": "w:d1", "what": "Trust stability metric: CV-squared vs raw variance", "chose": "CV^2 = var / (mean^2 + eps)", "why": "Scale-invariant; raw variance fails with dM 1-100 range", "ref": "Phase 3 review", "session": "2026-02-28" },
+    { "id": "w:d2", "what": "Junction metric: symmetric vs asymmetric trust", "chose": "Symmetric (average both agents' views)", "why": "Asymmetric makes cross-metathesis eligibility depend on evaluation order", "ref": "Phase 6 review", "session": "2026-02-28" },
+    { "id": "w:d3", "what": "Absorptive family creation: conditional vs unconditional", "chose": "Unconditional (always create family on absorptive cross)", "why": "Conditional guard silently skipped first-gen agents", "ref": "Phase 5 review", "session": "2026-02-28" },
+    { "id": "w:d4", "what": "Post-3B sequencing", "chose": "Housekeeping -> exploration -> Levinas/R&B reflection -> TASKS.md", "why": "R&B/Levinas material could reshape 3C roadmap", "ref": null, "session": "2026-02-28" }
+  ],
+
+  "validation_log": [
+    { "id": "w:v1", "check": "Initial population of concept map", "status": "NEW", "detail": "All entries from design doc §4.2-4.8. Dialectic, T, A, P, S, RIP and cross_source.", "session": "2026-02-28" },
+    { "id": "w:v2", "check": "Stage 3B implementation — concept map unchanged", "status": "PASS", "detail": "All 7 phases were pure implementation. No new theoretical concepts.", "session": "2026-02-28" },
+    { "id": "w:v3", "check": "R&B communication levels mapping added", "status": "NEW", "detail": "RB:Level_I-IV cross_source entries. Preliminary — deep review pending.", "session": "2026-02-28" },
+    { "id": "w:v4", "check": "Unity-Multiplicity-Unificity triad added as foundational", "status": "NEW", "detail": "Source: Unificity.md. Holarch: unificity=holarchy(vortical), unity=holism(lateral), multiplicity=hierarchy(vertical).", "session": "2026-02-28" },
+    { "id": "w:v5", "check": "Levinas structural identifications (§5.51-§5.59)", "status": "NEW", "detail": "Living-from-metathesis, serialized beings, absorptive=metathematization, time=praxitive deferral, 4 fields, reception field, facade/face.", "session": "2026-02-28" },
+    { "id": "w:v6", "check": "Sartre conversion terms (§5.60)", "status": "NEW", "detail": "22 Sartre->sigma-TAP mappings. Key: immanence=anapression, transcendence=anopression, praxis-process=consummation.", "session": "2026-02-28" },
+    { "id": "w:v7", "check": "D&G ATP conclusion (§5.61)", "status": "NEW", "detail": "Tetravalent assemblage=L-matrix, conjunction vs connection, 4 diagnostic meters. 4 D forms = 4 L-channels (3rd independent tetra-mapping).", "session": "2026-02-28" },
+    { "id": "w:v8", "check": "Emery-Trist L-network validation (§5.62)", "status": "NEW", "detail": "Original L11/L12/L21/L22 confirmed. Type V vortical. Six criteria. Two-stage active adaptation. Three frozen maladaptive states.", "session": "2026-02-28" },
+    { "id": "w:v9", "check": "OST deep dive — 4 new sources, 16 Emery mappings", "status": "NEW", "detail": "Distilled: opensystemstheory.org, Emery-M-2000, Emery-Emery-1974/2022, deGuerre-2016. Total distilled sources: 20.", "session": "2026-03-01" },
+    { "id": "w:v10", "check": "Forward notes §5.63-§5.66 + 4 new cross-source", "status": "NEW", "detail": "Reciprocity gauge, CDF/Maxwell's demon, simulacrum scale, six criteria diagnostic. Added: transaction_biunimodal, reciprocity_gauge, directive_correlation_CDF, simulacrum_levels.", "session": "2026-03-01" },
+    { "id": "w:v11", "check": "Turchin analysis + trilaminar rings (§5.67-§5.68)", "status": "NEW", "detail": "L-channel phase space + limit cycles. Trilaminar ring: ano/meso/ana. Inter-ring distance = directive correlation. Nested rings for groups. Added: secular_cycles, elite_overproduction, trilaminar_rings.", "session": "2026-03-02" },
+    { "id": "w:v12", "check": "3 Turchin papers + ring-volution identity + 7 cross-source", "status": "NEW", "detail": "Turchin 2013, Turchin-Gavrilets 2009, Turchin JGH 2009. Ring-volution: top=evolution, bottom=involution, meso=transvolution. Total sources: 23.", "session": "2026-03-02" },
+    { "id": "w:v13", "check": "Helical structure (§5.69) + 5 concept entries", "status": "NEW", "detail": "Double helix with RNA-like meso. Syntegration/praxis ring mappings. Janus through-lines. Seven pressure vectors as cross-bridges. Alterity cascade.", "session": "2026-03-02" }
+  ]
+}
