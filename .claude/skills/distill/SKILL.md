@@ -74,6 +74,8 @@ Two-phase strategy: PyMuPDF scans every page first (fast content detection), the
 
 #### Phase 1: PyMuPDF Detection Scan
 
+**Execution note**: Write the scan code below to a temporary Python script file (e.g., `_distill_scan.py` in the repo root) and execute it via `python _distill_scan.py "source.pdf"`. Do NOT run as inline Python in bash — regex patterns containing backslashes, braces, and Unicode escapes are mangled by shell string escaping. Delete the script after the scan completes.
+
 Always runs first. Produces a per-page content profile:
 
 ```python
@@ -124,6 +126,8 @@ for i, page in enumerate(doc):
 ```
 
 Present the scan summary to the user: "[N] pages scanned: [T] text, [X] tables, [L] complex layout, [S] scanned/empty, [E] equations."
+
+**Text extraction**: Write a temporary extraction script (e.g., `_distill_extract.py`) that saves all page text to a temporary file with `open("_distill_text.txt", "w", encoding="utf-8")`. Do NOT print extracted text to stdout — non-ASCII characters (Greek letters, mathematical symbols, diacritics) will raise UnicodeEncodeError on Windows systems using cp1252 console encoding. Read the output file with the Read tool. Delete both the script and text file after distillation is complete.
 
 #### Phase 2: Content-Based Routing
 
@@ -179,14 +183,14 @@ Linear fallback (unchanged):
 
 **When to trigger**: Embedded images detected, OR Route D fallback (scanned pages without Docling), OR Route E fallback (equation pages without Marker), OR source is a standalone image file.
 
-1. **Extract/screenshot**: Use `page.get_pixmap(dpi=150)` to render pages as images (PyMuPDF). Save to temp location or present directly.
+1. **Extract/screenshot**: Use `page.get_pixmap(dpi=150)` to render pages as images (PyMuPDF). Save to `docs/references/distilled/figures/[Source-Label]/` — e.g., `docs/references/distilled/figures/Turchin-2013-SocialPressures/page_16.png`. Create the directory if needed. For equation pages, use dpi=200.
 2. **Decompose**: Present the image to Claude's vision via the Read tool. Extract:
    - Caption and title
    - Axis labels and scales (if chart/graph)
    - Data relationships shown
    - Visual structure and layout
    - Legend entries
-3. **Describe**: Write a textual description for the "Figures, Tables & Maps" section.
+3. **Describe**: Write both an image reference AND a textual description in the "Figures, Tables & Maps" section. The image reference makes the figure visually accessible to future sessions; the text decomposition provides searchable content and alt-text. See Output Template for format.
 4. **Cross-reference**: Note which Key Concepts each figure illustrates or extends.
 5. **Flag failures**: If a figure can't be parsed, note it for user review.
 6. **Equation figures**: When Route E falls back to vision (Marker unavailable), render equation-heavy pages at dpi=200 (higher than standard 150) for better symbol resolution. Note in the distillation that equations were vision-extracted and may contain transcription errors.
@@ -242,9 +246,14 @@ Produce the distillation in this exact structure. Mandatory sections ALWAYS appe
 
 [For each figure/table/map:]
 ### [Figure/Table N]: [Title or description]
+
+![Figure N](figures/[Source-Label]/page_NN.png)
+
 - **What it shows**: [textual decomposition of visual content]
 - **Key data points**: [specific values, relationships, patterns visible]
 - **Connection to argument**: [how this visual supports the core argument]
+
+Note: The image reference embeds the rendered page for visual inspection by future sessions. The text decomposition provides searchable content and alt-text. Both required — image alone loses searchability; text alone loses spatial/visual information.
 
 ## Figure ↔ Concept Contrast                  ← CONDITIONAL: only if Figures section exists
 
@@ -266,6 +275,25 @@ Produce the distillation in this exact structure. Mandatory sections ALWAYS appe
 ```
 
 **NOTE**: The distillation file contains NO project-specific interpretation. It is a neutral, portable scholarly artifact. The sigma-TAP reading goes in the interpretation file (see below).
+
+**Figure storage convention**: Rendered figures are saved in `docs/references/distilled/figures/[Source-Label]/` (one subdirectory per source). File naming: `page_NN.png` where NN is the 1-indexed page number.
+
+### Style Conventions
+
+**Optimization target**: Maximum fidelity in minimum tokens. These distillations are machine-readable knowledge artifacts for future Claude instances — the human reads the original paper. Optimize for density and zero-attrition reconstruction, not for human readability.
+
+**Default throughout all sections** — use concise symbolic notation:
+- Comparisons: `>$1M`, `<50 chars`, `~5 years`, `≈0.5`
+- Statistics: `R²=0.98`, `±0.07`, `N=41`, `p<0.01`
+- Operations: `×2`, `÷3`, `→` for "leads to" or "maps to"
+- Ranges: `1790–1880`, `2–4×`
+- Percentages and ratios: `54%`, `3:1`
+- Lists over paragraphs where content is enumerable
+- Tables over prose where content has parallel structure
+
+**Exception — full prose ONLY where symbolic notation genuinely cannot capture the nuance**: Core argumentative logic chains (Core Argument section) and methodological reasoning (Theoretical & Methodological Implications) where causal/temporal relationships require natural language to avoid ambiguity. Even in these sections, prefer concise sentences over verbose exposition.
+
+Equations section uses LaTeX notation throughout.
 
 ### sigma-TAP Interpretation File
 
@@ -334,10 +362,18 @@ Figure extraction fails:
     → Note for user: "Figure on page N could not be decomposed. Manual review needed."
 
 Claude reader issues:
+├─ "pdftoppm" not found / not recognized
+│   → The Read tool's PDF rendering depends on pdftoppm (part of Poppler utilities).
+│     If not installed: use PyMuPDF's get_pixmap() to render pages as images instead,
+│     then read the images via the Read tool. This is the Figure Pipeline approach and
+│     produces equivalent results. Alternatively, install Poppler:
+│     Linux: apt install poppler-utils / Windows: choco install poppler or scoop install poppler
 ├─ "exceeds" or "too large"
 │   → Use pages parameter. Chunk: "1-20", "21-40", etc.
 ├─ "cannot read" or empty result
-│   → Try explicit pages: "1-5" first. If works, continue chunking. If not, report failure to user for manual intervention.
+│   → Try explicit pages: "1-5" first. If works, continue chunking. If not,
+│     fall back to PyMuPDF text extraction + Figure Pipeline for image pages.
+│     Report failure to user only if all extraction routes fail.
 └─ Timeout or very slow
     → Reduce chunk size to 10 pages. Try again.
 
@@ -381,6 +417,19 @@ GROBID issues:
 │   → Use what was parsed (title, abstract, bibliography). Fill gaps from PyMuPDF.
 └─ GROBID timeout (>120s for the PDF)
     → Skip GROBID. Log in Known Issues. Proceed with standard pipeline.
+
+Encoding / platform issues:
+├─ UnicodeEncodeError with Greek, math, or diacritical characters
+│   → NEVER print extracted text to stdout. Always write to file with encoding="utf-8".
+│     This is a Windows console limitation (cp1252 cannot represent Unicode math/Greek).
+│     Read the output file with the Read tool instead.
+├─ Inline Python regex fails with "unbalanced parenthesis" or similar
+│   → Bash string escaping mangles regex backslashes and braces.
+│     Always write Python code to a temporary .py script file and execute it.
+│     Delete the script after use.
+└─ Path contains spaces (common on Windows: "C:\Users\user\Documents\New folder\...")
+    → Always quote file paths in Python scripts and bash commands.
+      Use raw strings or forward slashes in Python: r"C:\path\to\file" or "C:/path/to/file".
 ```
 
 ### Post-Distillation Updates
@@ -438,6 +487,10 @@ Read `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\M
 | Issue | Resolution | Date |
 |-------|-----------|------|
 | pdfplumber not installed | Tables extract as raw text only. Install: `pip install pdfplumber` | 2026-03-02 |
+| Table heuristic false-positive: flagged 41/41 pages on Turchin 2013 (academic text with paragraph indentation triggers "2+ left-edge x-columns") | Accept: heuristic over-triggers on academic PDFs. Consider tightening to 3+ distinct columns for future refinement | 2026-03-02 |
+| UnicodeEncodeError: Greek Ψ character crashes Windows cp1252 console | Always write extracted text to UTF-8 file, never print to stdout. Added to skill extraction instructions | 2026-03-02 |
+| pdftoppm not available on this Windows machine | Claude reader (Route G step 2) requires Poppler. Use PyMuPDF get_pixmap() + Read tool as equivalent fallback. Added to troubleshooting tree | 2026-03-02 |
+| Inline Python regex escaping: bash mangles backslashes in scan code | Always write scan/extraction code to temporary .py script files. Added to skill execution instructions | 2026-03-02 |
 
 ### Error Logging
 
