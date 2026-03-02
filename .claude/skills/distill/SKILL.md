@@ -42,6 +42,8 @@ Grows with each distillation.
 | metathesis | Generalized process of chained continuity through processual degrees of synthesis | Core framework |
 | practico-inert | Gas/fuel — sedimented past praxis storing potential energy | Sartre (via §5.43) |
 | unificity | Unity + Multiplicity — irreducible third modality = context | User's framework |
+| biunivocal | Determined two-directional flow (toward source + toward project simultaneously) | Distill skill architecture |
+| polyvocal | Non-determined flow — readable in any direction by any project | Distill skill architecture |
 
 ## Distillation Process
 
@@ -180,7 +182,7 @@ Produce the distillation in this exact structure. Mandatory sections ALWAYS appe
 
 ### sigma-TAP Interpretation File
 
-After completing the distillation, write a SEPARATE file for sigma-TAP's reading of this source.
+The distillation is polyvocal (non-determined flow). The interpretation is biunivocal (determined flow — simultaneously toward the source and toward sigma-TAP). Hold both directions concurrently when writing.
 
 Write to: `docs/references/interpretations/[Source-Label].md`
 
