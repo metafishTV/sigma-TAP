@@ -1,198 +1,104 @@
-# Information Storage, Loop Motifs, and Clustered Structure in Complex Networks — Distillation
+# Lizier-2012-InfoStorage-LoopMotifs — Distillation
 
-**Source**: Lizier, J.T., Atay, F.M. & Jost, J. "Information storage, loop motifs, and clustered structure in complex networks." *Physical Review E* 86, 026110 (2012).
+> Source: Joseph T. Lizier, Fatihcan M. Atay, and Jürgen Jost, "Information storage, loop motifs and clustered structure in complex networks," *Physical Review E* 86, 026110, 2012. 5pp.
+> Date distilled: 2026-03-02
+> Distilled by: Claude (via distill skill v5)
+> Register: formal-mathematical
+> Tone: impersonal-objective
+> Density: technical-specialist (assumes information theory, linear algebra, network science)
 
-**Relationship to other Lizier distillations**: This is the FOUNDATIONAL paper. The 2023 PNAS paper (Lizier et al., "Analytic relationship of relative synchronizability to network structure and motifs") is the generalization and extension of this work — [21] in this paper's reference list. The slideshow (Slide 22) cites this paper directly as the interpretive ground for the "information storage motifs" concept.
+## Core Argument
 
-**Core contribution**: Proves analytically that **active information storage** at individual network nodes is dominated by **directed cycle motifs** (feedback loops) and **feedforward loop motifs**. These weighted motif counts are positively correlated with local information storage capability. Establishes the direct relationship between **clustering coefficient** and information storage. Explains why clustered structure is prevalent in biological and artificial networks: it serves the computational function of local information storage.
+Information storage capability at individual network nodes is analytically dominated by two types of local motifs: directed cycles (feedback loops) and feedforward loop motifs. Using a discrete-time linear Gaussian autoregressive model on networks, the authors derive closed-form expansions of active information storage $A(X_i)$ at each node $i$ in terms of weighted motif counts. The key result (Eq. 12): $A^{**}(X_i) = \frac{1}{2}(w^{cyc}_{i,2}(w^{cyc}_{i,2} + 2w^{fwd\prime}_{i,4}) + (w^{fwd}_{i,3})^2 + (w^{cyc}_{i,3})^2)$ — storage is a sum of squared and cross-multiplied loop motif counts. No non-loop structure appears.
 
----
+Directed cycles enable distributed storage: node $i$ sends information to neighbors and retrieves it via feedback loops at later times — information literally cycles. Feedforward loops enable transient storage: dual paths of different lengths deliver the same information to $i$ at two different time steps — temporal echoes. Both mechanisms predict that clustered network structure promotes information storage — confirmed numerically through Watts-Strogatz small-world transitions where storage monotonically decreases as clustering is randomized ($p: 0 \to 1$).
 
-## 1. Setup: Linear Gaussian Network Dynamics
+The results offer a computational explanation for the prevalence of reciprocal links and three-node motifs in biological networks (mammalian cortex, gene regulatory networks) and the superior memory performance of recurrent vs. feedforward artificial neural networks. Critically, eigenvalue analysis cannot capture these effects: isospectral networks can have differing $\langle A(X_i) \rangle$, and feedforward motifs have only zero eigenvalues yet contribute measurably to storage.
 
-Same discrete-time framework as the 2023 paper:
+## Key Concepts
 
-**Eq. 1**: X(n+1) = X(n) × C + R(n)
+| Concept | Definition | Significance |
+|---------|-----------|--------------|
+| Active information storage $A(X_i)$ | Mutual information between joint past states $x^{(k)}_n$ and next state $x_{n+1}$ at node $i$, as $k \to \infty$ | Primary measure; node-local (unlike eigenvalue methods), model-free, directly maps to local motifs |
+| Autoregressive network model | $X(n+1) = X(n) \times C + R(n)$; $C$ = weighted adjacency, $R$ = Gaussian noise | Analytical framework; stationary iff spectral radius $\rho(C) < 1$ |
+| Covariance series $\Omega$ | $\Omega = \sum_{u=0}^{\infty} (C^u)^T C^u$; lagged: $\Omega(s) = \Omega C^s$ | Bridge between network structure ($C$) and information-theoretic quantities |
+| Directed cycles $w^{cyc}_{i,2}$, $w^{cyc}_{i,3}$ | Weighted sum of 2-node reciprocal links ($\sum C_{ij}C_{ji}$) and 3-node directed cycles at node $i$ | Dominant storage mechanism: information cycles through feedback loops; $w^{cyc}_{i,2}$ alone captures the largest component ($A^*$) |
+| Feedforward loop motifs $w^{fwd}_{i,3}$, $w^{fwd}_{i,4}$ | Weighted sum of 3/4-node feedforward structures: dual paths of different lengths converging at $i$ | Secondary storage mechanism: same information arrives at $i$ at two different times via different-length paths |
+| Directed effects $w^{sqr}_{i,1}$ | $\sum_{j \neq i} C^2_{ji}$ — sum of squared incoming weights at node $i$ | Enters $\Omega(0)_{ii}$; cancels in final $A^{**}$ via Eq. 13 decomposition |
+| Estimate $A^*(X_i)$ | $\frac{1}{2}(w^{cyc}_{i,2})^2$ — accurate to $O(\epsilon^4)$, two-node motifs only | Captures largest storage component; reciprocal links dominate |
+| Estimate $A^{**}(X_i)$ | Full three-node expansion (Eq. 12) — accurate to $O(\epsilon^6)$ | Adds feedforward and 3-cycle contributions; close numerical approximation to true $A$ |
+| Clustering coefficient $\tilde{C}^{in}_i$ | Weighted directed clustering coefficient for $w^{fwd}_{i,3}$ motifs (Fagiolo 2007) | Direct proportionality: $w^{fwd}_{i,3} = \tilde{C}^{in}_i K(K-1)c^2$ for equal weights; nodes with higher clustering store more |
+| Watts-Strogatz transition | Ring network ($N=100$, $K=4$ directed), sources randomized with probability $p$ | Validation: $p=0$ (regular lattice) = max clustering + max $A$; $p=1$ (random) = min both |
+| Eigenvalue limitation | Dominant $\lambda$ of $C$ bounds correlation decay but cannot differentiate storage across networks with same $\lambda$ | $A(X_i)$ strictly more informative: feedforward motif $w^{fwd}_{i,3}$ has only zero eigenvalues yet stores information |
+| Excess entropy $E$ | Total mutual information between past and future; $A(X)$ is sub-component | $A$ captures stored information in use in the next state — directly comparable to information transfer |
 
-Where C = [C_ji] is the N×N connectivity matrix, R(n) is uncorrelated mean-zero unit-variance Gaussian noise.
+## Figures, Tables & Maps
 
-**Covariance matrix** (power series, Eq. 2):
+### Figure 1: Loop Motifs Implicated in Information Storage
 
-Ω = I + C^T C + (C²)^T C² + ... = Σ_{u=0}^∞ (C^u)^T C^u
+![Figure 1](figures/Lizier-2012-InfoStorage-LoopMotifs/fig_01_p3.png)
 
-Stationary when |λ| < 1 for all eigenvalues of C (spectral radius ρ(C) < 1).
+- **What it shows**: Five motif structures at node $i$: (a) $w^{cyc}_{i,2}$ = 2-node directed cycle (reciprocal link); (b) $w^{cyc}_{i,3}$ = 3-node directed cycle; (c) $w^{fwd}_{i,3}$ = 3-node feedforward loop; (d) $w^{fwd}_{i,4}$ = 4-node feedforward loop; (e) $w^{sqr}_{i,1}$ = directed effects
+- **Key data points**: Each motif labeled with weighted sum notation; arrows show directed edges; node $i$ is the measurement point in all cases. Motifs (a)-(d) are the loop structures; (e) is the non-loop baseline
+- **Connection to argument**: These are the exact structural elements in the analytic expansion of $A(X_i)$. Directed cycles (a,b) enable information cycling; feedforward loops (c,d) enable delayed re-arrival of same information at different times
 
-**Lagged covariance** (Eq. 3, this paper's contribution):
+### Figure 2: Information Storage Through Small-World Transition
 
-Ω(s) = X(n)^T X(n+s) = Ω C^s
+![Figure 2](figures/Lizier-2012-InfoStorage-LoopMotifs/fig_02_p4.png)
 
-This is important: the lagged autocovariance at a node is what determines its information storage capacity.
+- **What it shows**: Four normalized curves vs. rewiring probability $p$ (log scale): $A$ (true storage, $k=30$), $A^{**}$ (3-node estimate), $A^*$ (2-node estimate), $\tilde{C}^{in}$ (clustering coefficient). $N=100$, $K=4$, equal weights $c=0.5/K$, 10 network realizations per $p$
+- **Key data points**: All start ≈1.0 at $p \approx 0.01$, decrease monotonically to ≈0 at $p=1$. $A^{**}$ tracks $A$ closely; $A^*$ captures dominant trend but underestimates; $\tilde{C}^{in}$ mirrors $A$ decay almost exactly
+- **Connection to argument**: Validates predictions: (1) estimates approximate well, (2) three-node motifs contribute measurably ($A^{**} > A^*$), (3) clustering ≈ storage, (4) randomization destroys both simultaneously
 
----
+## Figure ↔ Concept Contrast
 
-## 2. Active Information Storage A(X_i)
+- Figure 1 → Directed cycles ($w^{cyc}_{i,2}$, $w^{cyc}_{i,3}$): Diagrams (a) and (b) show structural paths enabling information cycling through feedback loops
+- Figure 1 → Feedforward loops ($w^{fwd}_{i,3}$, $w^{fwd}_{i,4}$): Diagrams (c) and (d) show dual-path structures for temporal echo storage
+- Figure 1 → Directed effects ($w^{sqr}_{i,1}$): Diagram (e) — baseline incoming signal strength, cancels out of final estimate
+- Figure 2 → Clustering coefficient: $\tilde{C}^{in}$ curve overlaps $A$, confirming $w^{fwd}_{i,3} = \tilde{C}^{in}_i K(K-1)c^2$
+- Figure 2 → Estimates $A^*$, $A^{**}$: Gap between curves shows three-node motifs add storage beyond reciprocal links alone
+- Figure 2 → Eigenvalue limitation: dominant $\lambda$ is identical for all $p$ values (fixed weighted in-degree $cK$), yet $A$ varies dramatically — eigenvalues are blind to the structural differences driving storage
 
-**Definition**: The average mutual information between a node's joint past k states x^(k)_n = {x_{n-k+1}, ..., x_n} and its next state x_{n+1}, as k → ∞.
+## Equations & Formal Models
 
-**Eq. 4**: A(X) = H(X) - H_μ(X)
+### Autoregressive Process
+$$X(n+1) = X(n) \times C + R(n) \tag{1}$$
+$C = [C_{ji}]$: $N \times N$ weighted adjacency matrix. $R(n)$: uncorrelated mean-zero unit-variance Gaussian noise. Stationary iff $\rho(C) < 1$.
 
-Where:
-- H(X) = entropy of the variable (uncertainty about next state)
-- H_μ(X) = entropy rate (residual uncertainty given full past)
-- A(X) = the reduction in uncertainty about the next state gained from knowing the past = **stored information in use**
+### Covariance Series
+$$\Omega = \sum_{u=0}^{\infty} (C^u)^T C^u \tag{2}$$
+$$\Omega(s) = \Omega C^s \tag{3}$$
+Eq. 3 is this paper's contribution: lagged autocovariance determines information storage capability.
 
-**Advantages over eigenvalue-based decay rates**:
-1. Measures storage at **each node** (not network-wide)
-2. Direct measure of information (not inference)
-3. Model-free — applicable to nonlinear time-series
-4. Can be analytically related to **local network motifs**
+### Active Information Storage
+$$A(X) = H(X) - H_\mu(X) \tag{4}$$
+$$H_\mu(X) = \lim_{k \to \infty} H(X^{(k+1)}) - H(X^{(k)}) \tag{5}$$
+$$A(X_i) = \lim_{k \to \infty} \frac{1}{2} \ln\left(\frac{|\Omega(0)_{ii}| \cdot |M_i(k)|}{|M_i(k+1)|}\right) \tag{6}$$
+$M_i(k)$: $k \times k$ symmetric Toeplitz autocovariance matrix built from $\Omega(s)_{ii}$ terms.
 
-**Computation** (Eq. 6):
+### Motif Expansion of Autocovariance
+$$\Omega(0)_{ii} = 1 + w^{sqr}_{i,1} + O(\epsilon^4) \tag{7}$$
+$$\Omega(1)_{ii} = w^{fwd}_{i,3} + O(\epsilon^5) \tag{8}$$
+$$\Omega(2)_{ii} = w^{cyc}_{i,2} + w^{fwd}_{i,4} + O(\epsilon^6) \tag{9}$$
+$$\Omega(3)_{ii} = w^{cyc}_{i,3} + O(\epsilon^5) \tag{10}$$
+$\Omega(s \geq 4)_{ii}$: $O(\epsilon^4)$ or smaller — enters $A$ below $O(\epsilon^6)$. Only loop motifs of length $s$ contribute to $\Omega(s \geq 1)_{ii}$.
 
-A(X_i) = lim_{k→∞} ½{ln(|Ω(0)_{ii}| |M_i(k)| / |M_i(k+1)|)}
+### Storage Estimates
+$$A^*(X_i) = \frac{1}{2}(w^{cyc}_{i,2})^2 \tag{11}$$
+$$A^{**}(X_i) = \frac{1}{2}\left(w^{cyc}_{i,2}(w^{cyc}_{i,2} + 2w^{fwd\prime}_{i,4}) + (w^{fwd}_{i,3})^2 + (w^{cyc}_{i,3})^2\right) \tag{12}$$
+$$w^{fwd}_{i,4} = w^{sqr}_{i,1} \cdot w^{cyc}_{i,2} + w^{fwd\prime}_{i,4} \tag{13}$$
+$w^{fwd\prime}_{i,4}$ adds restriction $g \neq i$, factoring out the reducible component.
 
-Where M_i(k) is the k×k symmetric Toeplitz autocovariance matrix built from Ω(s)_{ii} terms.
+## Theoretical & Methodological Implications
 
----
+**Method**: Analytic expansion of information-theoretic measures on linear Gaussian network dynamics, following Barnett et al. (2009, 2011). Combines closed-form derivation (motif expansion to $O(\epsilon^6)$) with numerical validation (Watts-Strogatz, $N=100$, 10 realizations/point).
 
-## 3. Analytic Expansion: Motifs Emerge from Autocovariance
+**Strengths**: Node-local measure vs. network-global eigenvalue methods. Model-free formulation applicable beyond linear Gaussian case. Direct structural interpretation: each expansion term maps to a specific network motif. Sub-component of excess entropy $E$ — directly comparable to information transfer.
 
-Expanding Ω(s)_{ii} (assuming no self-connections, C_{ii} → 0):
+**Limitations**: Analytic results strictly valid for linear interactions only, though argued as approximations in the weakly coupled near-linear regime. Self-connections $C_{ii} \to 0$ for tractability. Expansion to $O(\epsilon^6)$ only — higher-order motifs at $O(\epsilon^8)+$. Numerical validation limited to equal-weight networks. 5-page Letter format — extended treatment deferred to [21].
 
-- **Ω(0)_{ii}** = 1 + Σ_{j≠i} C²_{ji} + O(ε⁴) = 1 + **w^sqr_{i,1}** + O(ε⁴)
-  - w^sqr_{i,1} = sum of squared incoming weights = **directed effects** (Fig. 1e)
+**Key methodological claim**: $A(X_i)$ captures storage invisible to eigenvalue analysis. Feedforward motif $w^{fwd}_{i,3}$ has only zero eigenvalues yet contributes measurably. Isospectral networks can have differing $\langle A(X_i) \rangle$. Separates computational perspective (per-node storage) from spectral perspective (network-wide persistent memory).
 
-- **Ω(1)_{ii}** = Σ_{j≠i; l≠j,i} C_{li} C_{lj} C_{ji} + O(ε⁵) = **w^fwd_{i,3}** + O(ε⁵)
-  - w^fwd_{i,3} = **feedforward loop motifs of length 3** (Fig. 1c): dual paths from l to i of different lengths
+**Connection to TSE complexity**: Same motifs drive both $A(X_i)$ and Tononi-Sporns-Edelman complexity with different contributions, suggesting TSE complexity contains a significant information storage component. Aligns with information-geometric framework (Ay et al. 2011).
 
-- **Ω(2)_{ii}** = Σ_{j≠i} C_{ij} C_{ji} + Σ C_{li}C_{lg}C_{gj}C_{ji} + O(ε⁶) = **w^cyc_{i,2}** + **w^fwd_{i,4}** + O(ε⁶)
-  - w^cyc_{i,2} = **directed 2-cycles** (reciprocal links, Fig. 1a): i→j→i feedback loops
-  - w^fwd_{i,4} = **feedforward loop motifs of length 4** (Fig. 1d): longer dual paths
-
-- **Ω(3)_{ii}** = Σ_{j≠i; l≠j,i} C_{il} C_{lj} C_{ji} + O(ε⁵) = **w^cyc_{i,3}** + O(ε⁵)
-  - w^cyc_{i,3} = **directed 3-cycles** (Fig. 1b): i→j→l→i triangular feedback loops
-
-- **Ω(s≥4)_{ii}** = O(ε⁴) or smaller — enters A(X_i) below O(ε⁶)
-
-**Key insight**: Only loop motifs appear in the lagged autocovariance terms. Each Ω(s≥1)_{ii} is determined entirely by feedback loops and feedforward loops of length s involving node i. Non-loop walks do NOT contribute to a node's self-prediction.
-
----
-
-## 4. Main Results: Two Approximations
-
-### A*(X_i) — accurate to highest-order 2-node motif contribution (O(ε⁴)):
-
-**Eq. 11**: A*(X_i) = ½ (w^cyc_{i,2})²
-
-Information storage is dominated by the **square of the reciprocal link count**. The reciprocal connection i↔j is the most basic feedback loop and the single largest contributor to storage.
-
-### A**(X_i) — accurate to highest-order 3-node motif contribution (O(ε⁶)):
-
-**Eq. 12**: A**(X_i) = ½ (w^cyc_{i,2}(w^cyc_{i,2} + 2w^fwd_{i,4}') + (w^fwd_{i,3})² + (w^cyc_{i,3})²)
-
-Where w^fwd_{i,4}' = w^fwd_{i,4} with additional restriction g≠i (separating the reducible component).
-
-**All terms are products of loop motif weighted counts.** No non-loop structure appears.
-
----
-
-## 5. Two Types of Information Storage Motifs
-
-### Type 1: Directed Cycles (Feedback Loops)
-
-- w^cyc_{i,2}: Reciprocal links i↔j. Node i sends information to j, retrieves it one step later.
-- w^cyc_{i,3}: Triangular cycles i→j→l→i. Information cycles through three nodes and returns.
-
-**Mechanism**: Information literally cycles — node i stores information distributedly in its neighbors, who return it via the loop. This is **distributed temporal storage**.
-
-### Type 2: Feedforward Loop Motifs
-
-- w^fwd_{i,3}: Dual paths from l to i of different lengths (one direct, one via j). Same information arrives at i at two different times.
-- w^fwd_{i,4}': Longer dual paths with the same temporal duplication effect.
-
-**Mechanism**: Information from a source l arrives at i at two different time steps via paths of different lengths. This means i's state at time n contains information that will be **echoed** at time n+s — effectively storing information that was "in transit" in the network. This is **path-based temporal storage**.
-
----
-
-## 6. Clustering Coefficient Connection
-
-The three-node motifs can be expressed as weighted clustering coefficients:
-
-w^fwd_{i,3} = C̃^in_i × K(K-1)c² (for equal edge weights c)
-
-Where C̃^in_i is the directed clustering coefficient for incoming feedforward motifs. **Nodes with higher clustering coefficient store more information.** This is the direct analytic link between clustered structure and computational function.
-
----
-
-## 7. Small-World Transition Results (Fig. 2)
-
-N=100 Watts-Strogatz ring network, K=4 directed incoming links, equal weights c = 0.5/K, randomization p from 0.01 to 1.
-
-**Key observations**:
-
-1. **A(X_i) decreases monotonically with p**: Regular lattices (p=0) have maximum information storage; fully random networks (p=1) have minimum. Because randomization destroys the loop motifs that store information.
-
-2. **A* provides reasonable approximation**: Reciprocal links (w^cyc_{i,2}) provide the largest storage component.
-
-3. **A** improves from A* to A***: Including 3-node motifs improves accuracy significantly but with diminishing returns.
-
-4. **Clustering coefficient C̃^in tracks A closely**: Almost overlapping curves — confirming the direct relationship.
-
-5. **Eigenvalues CANNOT differentiate**: With fixed weighted in-degree cK, λ is the same for ALL networks regardless of p. Eigenvalues are blind to the structural differences that drive information storage. (Same finding as the 2023 paper's Fig. 4.)
-
----
-
-## 8. Eigenvalue Blindness (Extended)
-
-"It is easy to produce examples of isospectral networks (i.e. with the same eigenvalues) with differing ⟨A(X_i)⟩, showing that ⟨A(X_i)⟩ is not directly determined by the eigenvalues."
-
-Eigenvalues capture persistent memory in feedback loops but **do not capture transient storage in feedforward motifs** — the network of motif w^fwd_{i,3} has only zero eigenvalues. This is a fundamental limitation of spectral analysis.
-
----
-
-## 9. Relationship to TSE Complexity
-
-The same motifs that underpin information storage also drive TSE (Tononi-Sporns-Edelman) complexity, though with different precise contributions. This suggests TSE complexity "contains a significant flavor of information storage capability." Aligns with information-geometric insights (Ay et al. 2011).
-
----
-
-## Figures in the Paper
-
-### Figure 1: Storage Motifs
-
-Five panels showing the motifs implicated in information storage at node i:
-- **(a) w^cyc_{i,2}**: Directed 2-cycle (reciprocal link). Two nodes i, j with bidirectional edges i→j and j→i. The simplest feedback loop. Color-coded: blue node i, orange node j.
-- **(b) w^cyc_{i,3}**: Directed 3-cycle. Three nodes i, j, l forming a directed triangle i→j→l→i. Color: blue i, orange j, green l.
-- **(c) w^fwd_{i,3}**: Feedforward loop of length 3. Node l connects to both j and i; j connects to i. Dual paths: l→i (direct, length 1) and l→j→i (length 2). Same information arrives at i at two different times.
-- **(d) w^fwd_{i,4}**: Feedforward loop of length 4. Four nodes with dual paths of different lengths converging at i.
-- **(e) w^sqr_{i,1}**: Directed effects (squared incoming weights). Two nodes i, j with single directed edge j→i. Contributes to Ω(0)_{ii} (instantaneous autocovariance) but not to lagged terms.
-
-**sigma-TAP relevance**: These five motifs are the complete vocabulary of information storage structures at the 2-3 node level. (a) and (b) are the L11 self-loop and the L12/L21 reciprocal channel. (c) and (d) are the feedforward structures that create temporal echoes — information arriving at an agent at different times from different paths. (e) is the baseline incoming signal strength.
-
-### Figure 2: Small-World Transition
-
-Plot showing A, A*, A**, and C̃^in (all normalized to p=0 values) vs randomization parameter p on log scale. All four curves decrease monotonically from ~1.0 at p=0.01 to near 0 at p=1. A** tracks A much more closely than A*. C̃^in almost overlaps with A.
-
-**sigma-TAP relevance**: This is the complement to Lizier 2023 Fig. 4. The 2023 paper showed ⟨σ²⟩ (deviation from sync) DECREASING with randomization (random = more synchronizable). This paper shows A (information storage) ALSO decreasing with randomization. The two move TOGETHER: clustered/regular networks store more information locally AND are less globally synchronizable. They are two faces of the same structural coin.
-
----
-
-## Key Concepts for sigma-TAP Integration
-
-1. **Information storage = the computational function of the practico-inert**. Lizier proves that loop motifs literally store information — past states remain predictive of future states because feedback/feedforward structures create temporal echoes. In sigma-TAP, the practico-inert (sedimented past praxis) IS this stored information. An agent's L-matrix history creates the loop structures that make its past predictive of its future. TAPS signature persistence is active information storage in Lizier's precise sense.
-
-2. **Two storage mechanisms map to two L-matrix dynamics**:
-   - **Directed cycles** (w^cyc) = feedback loops where information literally circulates. Maps to L11 (self-metathesis loops) and L12/L21 reciprocal channels. The agent sends information out and receives it back.
-   - **Feedforward loops** (w^fwd) = dual-path temporal echoes where the same information arrives at different times. Maps to the differential time dilation mechanism (§5.25): when the same metathetic event reaches an agent via π (fast, L11) and Π (slow, L22) channels at different times, it creates a feedforward storage structure.
-
-3. **Clustering coefficient = direct proxy for information storage**. This is architecturally important: when we implement topology (family groups), the clustering coefficient of the agent network becomes a MEASURE of local information storage capacity. High clustering = high local storage = strong local identity = resistant to global homogenization.
-
-4. **Storage and synchronizability are complementary, not opposed**. Regular/clustered networks store more information locally AND are less globally synchronizable. These are not trade-offs but two aspects of the same structure. In sigma-TAP: the family group architecture that stores local identity (high A) is the same architecture that resists global convergence (high ⟨σ²⟩). The Youn ratio (0.60) calibrates the balance point between these two inseparable properties.
-
-5. **Eigenvalue blindness confirmed from the information-theoretic side**. Isospectral networks can have different information storage. Feedforward motifs have zero eigenvalues but non-zero storage. This double confirmation (from both sync and storage perspectives) means spectral methods are fundamentally inadequate for characterizing sigma-TAP network dynamics.
-
-6. **Reciprocal links are the dominant storage mechanism**. A*(X_i) = ½(w^cyc_{i,2})² — the square of the reciprocal link count dominates. For sigma-TAP: the bidirectional L12/L21 pair (absorptive cross-metathesis where agent i absorbs from j, and at another time j absorbs from i) is the single strongest generator of local information storage. This is why asymmetric cross-metathesis (§5.10, initiator ≠ responder) doesn't destroy storage — it's the reciprocal PAIR over time that matters, not symmetry at each instant.
-
-7. **Feedforward storage = the mechanism behind the annular distribution**. The w^fwd motifs create temporal echoes: information from source l arrives at i via paths of different lengths = at different times. In sigma-TAP: this is the mechanism by which adjacent-element generation (§5.23) operates — new types don't appear from nowhere but echo through the network via different temporal paths, arriving at the agent's aperture at different moments. The annular distribution's sweet-spot radius may correspond to the optimal feedforward path length for storage.
-
-8. **Reference [21] = the 2023 PNAS paper**. This paper explicitly names its forthcoming extension as [21]: "Analytic relationships between information dynamics and network structure." This became the Lizier et al. 2023 PNAS paper that generalizes from information storage to synchronizability, extends to continuous-time, removes the no-self-connection assumption, and handles the full asymmetric case. The intellectual arc: 2012 (information storage via loop motifs) → 2023 (synchronizability via dual walk motifs) → forthcoming (synchronizability with coupling delays).
+**Biological implications**: Explains prevalence of reciprocal links ($w^{cyc}_{i,2}$) and connected three-node motifs in mammalian cortex (Song et al. 2005, Sporns 2011); of $w^{fwd}_{i,3}$ in gene regulatory networks (Milo et al. 2002); and superior memory in recurrent vs. feedforward ANNs (echo state networks, Elman networks).

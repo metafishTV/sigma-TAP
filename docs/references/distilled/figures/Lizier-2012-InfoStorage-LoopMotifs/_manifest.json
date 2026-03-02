@@ -1,0 +1,16 @@
+[
+  {
+    "page": 3,
+    "label": "fig_01",
+    "type": "drawing",
+    "filename": "fig_01_p3.png",
+    "caption": "FIG. 1. Motifs implicated in calculation of information storage"
+  },
+  {
+    "page": 4,
+    "label": "fig_02",
+    "type": "drawing",
+    "filename": "fig_02_p4.png",
+    "caption": "FIG. 2. Information storage and relation to clustering coefficient through a small-world transition"
+  }
+]

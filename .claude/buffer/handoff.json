@@ -132,10 +132,15 @@
 
   "concept_map_digest": {
     "_meta": {
-      "total_entries": 115,
+      "total_entries": 119,
       "last_validated": "2026-03-02"
     },
-    "recent_changes": [],
+    "recent_changes": [
+      "w:116 Lizier2012:ActiveInfoStorage → practico-inert = stored information",
+      "w:117 Lizier2012:ClusteringCoefficient → family group clustering as storage proxy",
+      "w:118 Lizier2012:LoopRequirement → conservation law: only loops build identity",
+      "w:119 Lizier2012:FeedforwardEchoes → differential time dilation = feedforward echo"
+    ],
     "flagged": []
   },
 
