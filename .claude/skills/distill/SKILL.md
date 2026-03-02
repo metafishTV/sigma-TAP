@@ -202,7 +202,8 @@ Write the extraction code to a temporary script (`_distill_figures.py`) and exec
 - `fig_02_p16.png` = Figure 2 from page 16
 - `tab_03_p34.png` = Table 3 from page 34
 - `visual_01_p5.png` = uncaptioned visual element
-- `page_13_equations_dpi200.png` = equation page (full-page, unchanged)
+- `eq_01_p9.png` = Equation 1 from page 9 (text-block coordinate crop)
+- `page_{P}.png` = full-page fallback (last resort only — verification gate should catch most)
 
 **Manifest**: Script writes `_manifest.json` listing all extracted items with page, label, crop coordinates, caption text. Read this to drive the Decompose step.
 
@@ -213,6 +214,36 @@ Write the extraction code to a temporary script (`_distill_figures.py`) and exec
 Triggers when: cropped extraction finds zero figures on a page that should have them, scanned pages (Route D), or equation pages (Route E).
 
 Use `page.get_pixmap(dpi=150)` for standard fallback, `dpi=200` for equation pages. Naming: `page_{P}.png` or `page_{P}_equations_dpi200.png`.
+
+#### Crop Verification Gate (mandatory)
+
+**Run AFTER extraction, BEFORE decomposition. Do NOT skip.**
+
+Visually inspect EVERY extracted image using the Read tool:
+
+1. **Read each PNG** (multimodal). For each image, check for full-page indicators:
+   - ❌ Running header/footer (author name, journal title, page number at top/bottom)
+   - ❌ Body text paragraphs (continuous prose not part of figure/table content)
+   - ❌ Height ≫ content (large whitespace margins, or tall aspect ratio ≈ full page)
+   - ✅ PASS: Only figure/chart/table/equation content + caption visible
+
+2. **If full-page detected** → auto-fix before user ever sees it:
+   - Run `page.get_text("dict")` on that page to get text-block y-positions
+   - Identify content region boundaries (caption start → table/figure end)
+   - Re-crop with tighter coordinates → `page.get_pixmap(clip=rect, dpi=200)`
+   - Re-verify the new crop. Log fix in Known Issues.
+
+3. **If auto-fix fails** (content inseparable from body text):
+   - Keep as full-page with `page_{P}.png` naming
+   - Add note in distillation: "Full-page render — content not separable from body text"
+   - Log in Known Issues with page number and reason
+
+4. **Pure-text items** (equations, text-only tables) will have ZERO vector/raster elements — `cluster_drawings()` and `get_images()` both return empty. These MUST be caught here, not left as full-page fallbacks. Use text-block coordinate cropping:
+   - `page.get_text("dict")` → find caption/equation markers by y-position
+   - Build manual crop Rect from text block boundaries
+   - `page.get_pixmap(clip=rect, dpi=200)`
+
+**This gate exists because the user should NEVER have to point out that a full page was rendered instead of a cropped figure.** If they do, the gate was skipped or failed — log the failure mode in Known Issues immediately.
 
 #### Post-Extraction Steps
 
@@ -532,6 +563,16 @@ Read `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\M
 | Text-only tables (Tables 1-3) detected via orphan caption heuristic, not cluster_drawings | Tables with no visual bbox require caption-based detection channel. Tables 1-2 not auto-detected (caption format mismatch) — kept full-page fallback | 2026-03-02 |
 | Pure-text items (equations, text tables) invisible to cluster_drawings() AND get_images() — zero detections | These items have no vector/raster elements. Use text-block coordinate cropping: get_text("dict") → find caption/equation lines by y-position → build manual crop rect → get_pixmap(clip=rect). Three extraction channels needed: (1) vector via cluster_drawings, (2) raster via get_images, (3) text-block coordinate cropping for equations + text-only tables | 2026-03-02 |
 
-### Error Logging
+### Error Logging (mandatory)
 
-After each distillation, note which extraction tier succeeded and any troubleshooting paths taken. Add entries to Known Issues for recurring problems so future distillations start with the right tier.
+**Every distillation MUST end with an error log update.** This is not optional.
+
+After each distillation, record in Known Issues:
+1. **Extraction tier used** (which Route, which detection channels succeeded/failed)
+2. **Troubleshooting paths taken** (what was tried, what worked, what didn't)
+3. **New issues discovered** (with resolution or "OPEN" if unresolved)
+4. **Verification gate results** (how many items passed on first check, how many needed re-crop, how many fell back to full-page)
+
+If no new issues were encountered, add a single row: `| [Source Label]: clean run | All extraction channels nominal, verification gate passed N/N items | [date] |`
+
+**The purpose of this log is cumulative learning.** Each distillation makes the next one faster by pre-loading solutions. An instance that skips logging forces the next instance to rediscover the same problems from scratch.
