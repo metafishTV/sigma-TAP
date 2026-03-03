@@ -132,14 +132,19 @@
 
   "concept_map_digest": {
     "_meta": {
-      "total_entries": 119,
+      "total_entries": 124,
       "last_validated": "2026-03-02"
     },
     "recent_changes": [
       "w:116 Lizier2012:ActiveInfoStorage → practico-inert = stored information",
       "w:117 Lizier2012:ClusteringCoefficient → family group clustering as storage proxy",
       "w:118 Lizier2012:LoopRequirement → conservation law: only loops build identity",
-      "w:119 Lizier2012:FeedforwardEchoes → differential time dilation = feedforward echo"
+      "w:119 Lizier2012:FeedforwardEchoes → differential time dilation = feedforward echo",
+      "w:120 Lizier2023Slideshow:InfoStorageSyncTriangle → Youn ratio = balance point of storage-sync-biology triangle",
+      "w:121 Lizier2023Slideshow:ModularityEffect → family groups within vs between similarity",
+      "w:122 Lizier2023Slideshow:EigenvalueBlindness → spectral limitation (confirms w:118)",
+      "w:123 Lizier2023Slideshow:CouplingDelays → differential time dilation (anticipated)",
+      "w:124 Lizier2023Slideshow:ContinuousVsDiscrete → two sigma-TAP layers capture different motif structures"
     ],
     "flagged": []
   },
