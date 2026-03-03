@@ -555,6 +555,29 @@ Then read `.claude/buffer/handoff.json` (hot layer) and update `concept_map_dige
 
 Read `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\MEMORY.md`. From the **interpretation file**, ONLY add concepts that are genuinely new, significant, and sigma-TAP-relevant. If uncertain, note in Open Questions.
 
+**4. Convergence Web Update**
+
+From the interpretation file's Project Significance table and Integration Points, identify inter-source connections:
+- For each concept mapped with relationship "confirms" or "extends": check if the confirmed/extended concept came from a DIFFERENT source
+- If so: create a convergence web entry in `.claude/buffer/handoff-warm.json` → `convergence_web.entries[]`
+
+Tetradic entry structure (mirrors metathetic dialectics):
+```json
+{
+  "id": "cw:N",
+  "thesis": { "ref": "w:X", "label": "SourceA:Concept" },
+  "athesis": { "ref": "w:Y", "label": "SourceB:Concept" },
+  "synthesis": "[type_tag] What RELATES them — the shared structural ground (involutory)",
+  "metathesis": "What EACH does independently in its own domain — their separate real-world functions that happen to converge (evolutory)"
+}
+```
+
+Type tags: `[independent_convergence]`, `[complementarity]`, `[elaboration]`, `[tension]`, `[genealogy]`.
+
+Update `.claude/buffer/handoff.json` → `convergence_web_digest`:
+- Increment `_meta.total_entries`
+- If new entry creates a new thematic cluster, add to `clusters` array
+
 ### Known Issues
 
 (This section grows as distillations encounter and resolve tool-specific problems)

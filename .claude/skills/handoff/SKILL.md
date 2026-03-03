@@ -30,6 +30,27 @@ The warm layer's `concept_map` uses these groups (matching the project's theoret
 }
 ```
 
+The warm layer also has a top-level `convergence_web` section (inter-source linkages, tetradic structure):
+
+```json
+{
+  "convergence_web": {
+    "_meta": { "total_entries": 22, "last_validated": "2026-03-02" },
+    "entries": [
+      {
+        "id": "cw:N",
+        "thesis": { "ref": "w:X", "label": "SourceA:Concept" },
+        "athesis": { "ref": "w:Y", "label": "SourceB:Concept" },
+        "synthesis": "[type_tag] What RELATES them — shared structural ground (involutory)",
+        "metathesis": "What EACH does independently — separate real-world functions (evolutory)"
+      }
+    ]
+  }
+}
+```
+
+The hot layer has a `convergence_web_digest` parallel to `concept_map_digest`.
+
 ### Group Descriptions
 
 - **foundational_triad**: Unity, Multiplicity, Unificity — the generative triad from which TAPS, RIP, and Dialectic unfold

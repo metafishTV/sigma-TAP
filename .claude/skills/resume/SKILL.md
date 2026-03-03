@@ -38,6 +38,19 @@ When following flagged pointers (Step 4), prioritize:
 2. Any entry with `suggest` ≠ null (pending user confirmation)
 3. Entries in `foundational_triad` or base system groups (changes need user input)
 
+### Convergence Web Focus
+
+Read `convergence_web_digest` from the hot layer. Present cluster summary:
+
+```
+## Convergence web (inter-source linkages)
+**Total entries**: [N] across [M] clusters
+**Clusters**: [list cluster names]
+**Flagged**: [any flagged entries needing review]
+```
+
+If `flagged` is non-empty, read the flagged entries from the warm layer's `convergence_web.entries[]` and surface for user review.
+
 ### Forward Notes
 
 Surface any `ref` fields containing `§5.XX` — these are bookmarked ideas from `docs/plans/2026-02-26-stage3a-two-channel-design.md`.

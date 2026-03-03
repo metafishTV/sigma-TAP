@@ -154,6 +154,171 @@
     ]
   },
 
+  "convergence_web": {
+    "_meta": {
+      "description": "Inter-source linkages: tetradic structure mirroring metathetic dialectics. Thesis/athesis = two source concepts. Synthesis = what RELATES them (common ground, involutory). Metathesis = what EACH does independently (separate real-world functions, evolutory).",
+      "type_tags": ["independent_convergence", "complementarity", "elaboration", "tension", "genealogy"],
+      "total_entries": 22,
+      "last_validated": "2026-03-02"
+    },
+    "entries": [
+      {
+        "id": "cw:1",
+        "thesis": { "ref": "w:116", "label": "Lizier2012:ActiveInfoStorage" },
+        "athesis": { "ref": "w:46", "label": "Sartre:practico-inert" },
+        "synthesis": "[independent_convergence] Stored past as identity mechanism — neither tradition cites the other; info-theoretic expansion and dialectical analysis arrive at the same structural principle independently",
+        "metathesis": "A(Xi) measures past-predictability via loop motifs in network topology (comp. neuroscience). Practico-inert stores sedimented praxis as potential energy (critical theory). Each operates in its own domain — one computable, one phenomenological — yet both ground §5.24/§5.43"
+      },
+      {
+        "id": "cw:2",
+        "thesis": { "ref": "w:118", "label": "Lizier2012:LoopRequirement" },
+        "athesis": { "ref": "w:98", "label": "Emery:reciprocity_gauge" },
+        "synthesis": "[independent_convergence] Bidirectional interaction as necessary condition for persistent structure",
+        "metathesis": "Loops are the only motifs that build A(Xi) > 0; unidirectional paths contribute nothing (info theory). Reciprocity gauge measures transaction health; non-reciprocal exchanges degrade the system (org theory). Both ground conservation law §5.43"
+      },
+      {
+        "id": "cw:3",
+        "thesis": { "ref": "w:118", "label": "Lizier2012:LoopRequirement" },
+        "athesis": { "ref": "w:88", "label": "Emery:transaction_not_interaction" },
+        "synthesis": "[independent_convergence] Mutual change as the threshold for structural contribution",
+        "metathesis": "Unidirectional information transfer builds zero storage in network dynamics. Interaction without mutual change is not a transaction in sociotechnical systems. Each defines a minimum bar for 'real' exchange in its own domain"
+      },
+      {
+        "id": "cw:4",
+        "thesis": { "ref": "w:116", "label": "Lizier2012:ActiveInfoStorage" },
+        "athesis": { "ref": "w:65", "label": "Levinas:ipseity" },
+        "synthesis": "[complementarity] Self-constancy — the agent remaining recognizably itself across time",
+        "metathesis": "A(Xi) quantifies self-predictability from network structure (computable, graph-theoretic). Ipseity is the phenomenological structure of selfhood as irreducible trajectory (lived, first-person). TAPS signature persistence is where they meet"
+      },
+      {
+        "id": "cw:5",
+        "thesis": { "ref": "w:119", "label": "Lizier2012:FeedforwardEchoes" },
+        "athesis": { "ref": "w:71", "label": "Levinas:time_postponement" },
+        "synthesis": "[complementarity] Temporal deferral — information/experience arriving at different times from a single event",
+        "metathesis": "Feedforward loops create temporal echoes: same perturbation arrives via different-length paths (network dynamics). Time as deferral of consummation: the agent persists by not completing (phenomenology). §5.25 differential time dilation"
+      },
+      {
+        "id": "cw:6",
+        "thesis": { "ref": "w:121", "label": "Lizier2023Slideshow:ModularityEffect" },
+        "athesis": { "ref": "w:82", "label": "Emery:DP1/DP2" },
+        "synthesis": "[complementarity] Local cohesion + global coordination as dual requirement",
+        "metathesis": "Modularity enhances sync within modules but decreases it across the network — mathematical consequence of motif structure (network dynamics). DP2 defines self-managing groups with purposeful inter-group linking as organizational design principle (sociotechnical theory). Family group architecture §5.4"
+      },
+      {
+        "id": "cw:7",
+        "thesis": { "ref": "w:121", "label": "Lizier2023Slideshow:ModularityEffect" },
+        "athesis": { "ref": "w:104", "label": "Turchin:asabiyya" },
+        "synthesis": "[independent_convergence] External pressure strengthening internal cohesion",
+        "metathesis": "Clustered topology increases local synchronizability via closed walk motifs (network science). Asabiyya = group solidarity forged at the frontier under shared threat (cliodynamics). tau_group + L22 pressure"
+      },
+      {
+        "id": "cw:8",
+        "thesis": { "ref": "w:117", "label": "Lizier2012:ClusteringCoefficient" },
+        "athesis": { "ref": "w:107", "label": "Turchin:dunbar_limit" },
+        "synthesis": "[complementarity] Upper bound on dense reciprocal structure",
+        "metathesis": "Clustering coefficient measures local loop density as computable storage proxy (graph theory). Dunbar number ~150 = maximum group size sustaining full reciprocity (cognitive anthropology). Junction capacity = where clustering can no longer be maintained via direct links"
+      },
+      {
+        "id": "cw:9",
+        "thesis": { "ref": "w:120", "label": "Lizier2023Slideshow:InfoStorageSyncTriangle" },
+        "athesis": { "ref": "w:106", "label": "Turchin:multilevel_selection" },
+        "synthesis": "[independent_convergence] Trade-off between local identity and global coordination",
+        "metathesis": "Storage-sync complementarity: more local storage = less global synchronizability (information theory). Multilevel selection: groups minimizing internal conflict outcompete (historical dynamics). Youn ratio (0.60) calibrates this balance"
+      },
+      {
+        "id": "cw:10",
+        "thesis": { "ref": "w:78", "label": "RB:Level_I-IV" },
+        "athesis": { "ref": "w:82", "label": "Emery:DP1/DP2+causal_texture" },
+        "synthesis": "[genealogy] Documented intellectual lineage — Emery explicitly builds on R&B + Pepper's contextualism",
+        "metathesis": "R&B (1951): four communication levels (within-self, self-other, other-self, cultural field) in group dynamics (psychology). Emery-Trist (1965): causal textures + design principles for sociotechnical systems (org theory). L-matrix genealogy: R&B -> Emery -> sigma-TAP"
+      },
+      {
+        "id": "cw:11",
+        "thesis": { "ref": "w:78", "label": "RB:Level_I-IV" },
+        "athesis": { "ref": "w:73", "label": "DG:rhizomatic/arborescent" },
+        "synthesis": "[independent_convergence] Four-fold structure for describing system dynamics",
+        "metathesis": "R&B: four communication channels in group process (psychology). D&G: tetravalent assemblage with four D-forms — deterritorialization, reterritorialization, decoding, overcoding (philosophy). Fourth independent tetra-mapping alongside Emery + Lizier"
+      },
+      {
+        "id": "cw:12",
+        "thesis": { "ref": "w:81", "label": "RB:Level_IV" },
+        "athesis": { "ref": "w:104", "label": "Turchin:asabiyya" },
+        "synthesis": "[complementarity] Shared context as constitutive force",
+        "metathesis": "Level IV = cultural/contextual communication enveloping and conditioning all other levels (communication theory). Asabiyya = group solidarity forged by shared frontier experience under external pressure (cliodynamics). L22 / tau_context"
+      },
+      {
+        "id": "cw:13",
+        "thesis": { "ref": "w:44", "label": "Sartre:totalization/detotalization" },
+        "athesis": { "ref": "w:64", "label": "Levinas:enjoyment" },
+        "synthesis": "[tension] Engagement with otherness — but they DISAGREE about its character",
+        "metathesis": "Totalization: incorporating otherness into self-project, the dialectical engine of history (Sartre, critical theory). Enjoyment: living FROM the other without totalizing, nourishment that preserves alterity (Levinas, phenomenology). Cross-metathesis must preserve both modes"
+      },
+      {
+        "id": "cw:14",
+        "thesis": { "ref": "w:48", "label": "Sartre:praxis-process/process-praxis" },
+        "athesis": { "ref": "w:59", "label": "Bohm:explicate/implicate" },
+        "synthesis": "[complementarity] Bidirectional fold — outward and inward as complementary movements",
+        "metathesis": "Consummation (praxis->process) and consumption (process->praxis): dialectical cycle of action becoming structure and structure becoming action (Sartre, social philosophy). Explication (unfold) and implication (enfold): physical order-unfolding cycle (Bohm, quantum ontology). T-axis in TAPS"
+      },
+      {
+        "id": "cw:15",
+        "thesis": { "ref": "w:47", "label": "Sartre:counter-finality" },
+        "athesis": { "ref": "w:102", "label": "Turchin:elite_overproduction" },
+        "synthesis": "[complementarity] Self-undermining success — system generating its own destabilizers",
+        "metathesis": "Counter-finality: practico-inert redirecting praxis against its original intention (Sartre, dialectical reason). Elite overproduction: social mobility system producing more elites than positions, creating revolutionary pressure (Turchin, cliodynamics). §5.65 demetathesis cascade"
+      },
+      {
+        "id": "cw:16",
+        "thesis": { "ref": "w:84", "label": "Emery:laissez_faire" },
+        "athesis": { "ref": "w:47", "label": "Sartre:counter-finality" },
+        "synthesis": "[independent_convergence] Systemic self-defeat as fundamental failure mode",
+        "metathesis": "Laissez-faire: absence of design principle -> pathological drift, system degrades via neglect (Emery, organizational ecology). Counter-finality: practico-inert actively redirects praxis against itself (Sartre, dialectical reason). Shadow organization (w:95) is the organizational form"
+      },
+      {
+        "id": "cw:17",
+        "thesis": { "ref": "w:76", "label": "Fermat/Feynman:least_action" },
+        "athesis": { "ref": "w:106", "label": "Turchin:multilevel_selection" },
+        "synthesis": "[complementarity] Optimization under constraint — minimal expenditure for maximal effect",
+        "metathesis": "Least action: light/particles follow the path minimizing action integral (physics, variational calculus). Multilevel selection: groups minimizing internal conflict outcompete in inter-group competition (cliodynamics). Conservation law §5.43"
+      },
+      {
+        "id": "cw:18",
+        "thesis": { "ref": "w:76", "label": "Fermat/Feynman:least_action" },
+        "athesis": { "ref": "w:118", "label": "Lizier2012:LoopRequirement" },
+        "synthesis": "[complementarity] Efficiency = investing only in what builds structure",
+        "metathesis": "Least action: nature selects the extremal path among all possible paths (physics). Loop requirement: only closed-walk motifs contribute to A(Xi); non-loop paths build zero storage (information theory). Conservation law's info-theoretic formalization"
+      },
+      {
+        "id": "cw:19",
+        "thesis": { "ref": "w:85", "label": "Emery:six_criteria" },
+        "athesis": { "ref": "w:64", "label": "Levinas:enjoyment" },
+        "synthesis": "[independent_convergence] Minimal viability conditions for a persisting agent — neither tradition cites the other",
+        "metathesis": "Six criteria: elbow room, learning, mutual support, meaningfulness etc. as design requirements for sustainable work (organizational psychology). Enjoyment/dwelling/nourishment as phenomenological conditions of interiority (continental philosophy). §5.66 viability diagnostic"
+      },
+      {
+        "id": "cw:20",
+        "thesis": { "ref": "w:69", "label": "Levinas:facade" },
+        "athesis": { "ref": "w:96", "label": "Emery:skills_matrix" },
+        "synthesis": "[complementarity] Observable surface vs underlying capacity",
+        "metathesis": "Facade = type_set surface presenting itself to the world; face exceeds facade via practico-inert potential (phenomenology). Skills matrix = proficiency grid (0/x/xx) mapping observable competency (organizational design). §5.58 artifact vs actor distinction"
+      },
+      {
+        "id": "cw:21",
+        "thesis": { "ref": "w:124", "label": "Lizier2023Slideshow:ContinuousVsDiscrete" },
+        "athesis": { "ref": "w:48", "label": "Sartre:praxis-process/process-praxis" },
+        "synthesis": "[complementarity] Two registers (continuous flow vs discrete event) capturing different aspects of the same dynamics",
+        "metathesis": "Continuous-time dynamics: different-length walk pairs contribute via binomial weighting, richer motif structure (network dynamics). Consummation/consumption: praxis->process and process->praxis as dialectical cycle (social philosophy). Two sigma-TAP layers are structurally non-redundant"
+      },
+      {
+        "id": "cw:22",
+        "thesis": { "ref": "w:123", "label": "Lizier2023Slideshow:CouplingDelays" },
+        "athesis": { "ref": "w:71", "label": "Levinas:time_postponement" },
+        "synthesis": "[complementarity] Multi-rate temporal structure as constitutive of identity",
+        "metathesis": "Coupling delays: different channels contribute to synchronizability at different timescales; forthcoming Lizier-Atay-Jost paper (network dynamics). Time as praxitive deferral: agent persists by not completing, consummation deferred = life continuing (phenomenology). Four time-modes at different rates §5.25"
+      }
+    ]
+  },
+
   "decisions_archive": [
     { "id": "w:d1", "what": "Trust stability metric: CV-squared vs raw variance", "chose": "CV^2 = var / (mean^2 + eps)", "why": "Scale-invariant; raw variance fails with dM 1-100 range", "ref": "Phase 3 review", "session": "2026-02-28" },
     { "id": "w:d2", "what": "Junction metric: symmetric vs asymmetric trust", "chose": "Symmetric (average both agents' views)", "why": "Asymmetric makes cross-metathesis eligibility depend on evaluation order", "ref": "Phase 6 review", "session": "2026-02-28" },
