@@ -1,140 +1,71 @@
-# Deleuze & Guattari (1980) — A Thousand Plateaus, Chapter 15: Concrete Rules and Abstract Machines
+# Deleuze-Guattari-ATP-Ch15 — Distillation
 
-**Source**: Gilles Deleuze & Félix Guattari, *A Thousand Plateaus: Capitalism and Schizophrenia*, trans. Brian Massumi (Minneapolis: University of Minnesota Press, 1987), pp. 501–514. Final chapter recapitulating the entire work's conceptual apparatus.
+> Source: Gilles Deleuze & Félix Guattari, *A Thousand Plateaus: Capitalism and Schizophrenia*, trans. Brian Massumi (Minneapolis: University of Minnesota Press, 1987), Chapter 15: "Conclusion: Concrete Rules and Abstract Machines," pp. 501–514. 14 pages.
+> Date distilled: 2026-03-02
+> Distilled by: Claude (via distill skill v5)
+> Register: continental / post-structuralist
+> Tone: impersonal-objective (theoretical third person, declarative)
+> Density: technical-specialist (requires familiarity with D&G's conceptual apparatus; this chapter recapitulates the entire work)
 
-**Core contribution**: Provides the conceptual vocabulary for understanding territorialization/deterritorialization, molar/molecular lines, rhizomatic vs. arborescent organization, and the tetravalent assemblage — all of which map onto sigma-TAP's alliance/filiation, cross-metathesis, and field architecture.
+## Core Argument
 
----
+Chapter 15 is a recapitulation of the entire conceptual apparatus of *A Thousand Plateaus*, organized through six lettered entries (S/A/R/C/D/M) that together describe a unified ontology of how reality is organized, how entities operate within that organization, and how transformation occurs.
 
-## S — Strata and Stratification
+The argument proceeds through nested scales. **Strata** (S) are the primary organizational principle — phenomena of thickening, accumulation, and coding that create ordered reality from chaos. Every stratum exhibits *double articulation*: what is articulated is always a **content** (pragmatic, material) and an **expression** (semiotic, signifying), which are really distinct from each other even though form and substance are not. The distribution of content/expression varies across strata (linearization on organic strata, superlinearity on anthropomorphic strata), creating different molar/molecular combinations at each level.
 
-Strata are phenomena of *thickening* on the Body of the earth — accumulations, coagulations, sedimentations, foldings. They are simultaneously molecular and molar. Three traditional strata: physicochemical, organic, anthropomorphic ("alloplastic").
+**Assemblages** (A) are produced within strata but operate in decoded zones. They are fundamentally territorial — the first concrete rule is to discover what territoriality they envelop. The assemblage is **tetravalent**, divided along two axes: (1) content vs. expression, and (2) territoriality vs. deterritorialization. These four aspects are irreducible: one cannot understand an assemblage without simultaneously ascertaining what is said (enunciation), what is done (machinic), what territory is held, and what lines of flight carry it away.
 
-Each stratum = coded milieus + formed substances. Forms/substances and codes/milieus are not really distinct but are "abstract components of every articulation." A stratum possesses diverse formal Types of organization and substantial Modes of development, divided into *parastrata* (alongside) and *epistrata* (upon) — themselves potentially strata (the list is never exhaustive). Despite diversity, each stratum retains *unity of composition* relating to formal traits and substantial elements common across it.
+The chapter then describes three kinds of **lines** (R) composing assemblages: molar/segmentary lines (arborescent, subordinated to the One), molecular/rhizomatic lines (passing between things, smooth space, multiplicities taking on their own consistency), and lines of flight (carrying assemblages away). Crucially, these are not simply opposed types but *mutually immanent* — there is always an arborification of rhizomes and a rhizomatic escape from trees. Each kind of line carries its own danger: segmentation imposes homogeneity, molecular lines ferry micro-black holes, lines of flight risk becoming lines of destruction.
 
-**Key properties**:
-- Strata are *extremely mobile*. One can serve as substratum of another, or collide, independently of evolutionary order.
-- Between strata: *interstratic phenomena* — transcodings, passages between milieus, intermixings. Rhythms pertain to these interstratic movements.
-- Stratification = creation of the world from chaos, continual and renewed.
-- Articulation is always *double articulation* (double pincer): what is articulated is a **content** and an **expression**. Form and substance are not really distinct, but content and expression *are* — real distinction, reciprocal presupposition, only isomorphy between them.
-- The distribution of content and expression varies across strata: "linearization" of expression on the organic stratum, "superlinearity" on anthropomorphic strata. Molar/molecular combinations differ accordingly.
+The **plane of consistency** (C) is the ontological ground — opposed to the plane of organization/development, it consists of speed/slowness relations between unformed elements (longitude) and compositions of intensive affects (latitude). Its construction follows a selection rule: what is retained is only what increases the number of connections at each level of division or composition.
 
-**Destratification warning**: Outside or absent strata, there are no forms, substances, organization, development, content, or expression — "we are disarticulated." Every destratification must observe *concrete rules of extreme caution*: too-sudden destratification may be suicidal or cancerous — ending in chaos/destruction, or locking back into even more rigid strata that lose diversity, differentiation, and mobility.
+**Deterritorialization** (D) is the movement of leaving territory — the operation of the line of flight. Four forms are distinguished: (1) negative D, where compensatory reterritorialization obstructs the line of flight; (2) relative positive D, where D prevails but the line of flight is segmented; (3) absolute creative D, relating a multiple body to smooth space as vortex, creating a new earth; (4) absolute destructive D, where the absolute becomes encompassing/totalizing, lines of flight turn into lines of death. These four forms are not evolutionary stages but coexisting tendencies that confront and combine.
 
----
+Finally, **abstract machines** (M) operate within assemblages as their cutting edges of decoding and deterritorialization. They are always singular and immanent — not Platonic Ideas but consolidated aggregates of matters-functions (phylum and diagram). Three types overlap: machines of consistency (singular, mutant, multiplied connections), machines of stratification (form/substance organization), and axiomatic/overcoding machines (totalizations, homogenizations, conjunctions of closure). All are linked in the mechanosphere.
 
-## A — Assemblages
+## Key Concepts
 
-Assemblages are *produced in the strata but operate in zones where milieus become decoded*. They begin by extracting a **territory** from milieus. Every assemblage is basically territorial — the first concrete rule is to discover what territoriality it envelops. "Home." Territory is made of decoded fragments borrowed from milieus that assume the value of "properties" — even rhythms take on new meaning (refrains). The territory makes the assemblage, goes beyond mere "behavior."
+| Concept | Definition | Significance |
+|---------|-----------|--------------|
+| Strata / stratification | Phenomena of thickening on the Body of the earth: accumulations, coagulations, sedimentations, foldings. Three major strata: physicochemical, organic, anthropomorphic. Each = coded milieus + formed substances | Primary organizational principle. Reality is created from chaos via stratification. Strata are extremely mobile — can serve as substratum, collide independently of evolutionary order |
+| Double articulation | Every articulation separates content (pragmatic, material) from expression (semiotic, signifying). Real distinction, reciprocal presupposition, only isomorphy. Distribution varies across strata | Fundamental structural principle. Content and expression are really distinct even though form and substance are not. This asymmetry generates the tetravalent assemblage |
+| Assemblage (tetravalent) | Produced in strata, operates in decoded zones. Divided along two axes: (1) content/expression, (2) territoriality/deterritorialization. Simultaneously machinic assemblage + assemblage of enunciation | Central analytical unit. The tetravalence is irreducible — four aspects must be ascertained simultaneously. "What is said and what is done" |
+| Territory / territorialization | Territory made of decoded fragments borrowed from milieus that assume value of "properties." Territory makes the assemblage, goes beyond mere "behavior." First concrete rule: discover what territoriality the assemblage envelops | Starting point of analysis. Every assemblage is basically territorial — "home." Territory is inseparable from deterritorialization as code from decoding |
+| Deterritorialization (D) | Movement by which one leaves the territory. Operation of the line of flight. Four forms: negative (reterritorialization obstructs), relative positive (D prevails but segmented), absolute creative (vortex, new earth), absolute destructive (totalizing, lines of death) | The engine of transformation. D necessarily proceeds via relative D (not transcendent). Reterritorialization = differential relations internal to D itself, not return to territory |
+| Reterritorialization | Compensatory overlay on D that obstructs or segments the line of flight. Anything can serve: being, object, book, apparatus, system. Land ownership is reterritorializing, not territorial | Not the opposite of D but an internal moment of it. Expresses differential relations within D. The State apparatus operates via D-then-reterritorialization |
+| Molar lines (arborescent) | Line subordinated to point; forms contour; striated space; countable multiplicity subordinated to the One. Segmentary, circular, binary systems | First kind of line. Danger: imposes homogeneity, striation |
+| Molecular lines (rhizomatic) | Line passes between things, between points; smooth space; multiplicity takes on its own consistency. Masses/packs not classes; anomalous/nomadic; becoming/transformation; fuzzy aggregates | Second kind of line. Danger: carries micro-black holes |
+| Lines of flight | Third kind of line that carries assemblages away. Lines of deterritorialization | Danger: risk abandoning creative potential, becoming lines of death/destruction (fascism) |
+| Mutual immanence (molar/molecular) | Not simply two opposed types but arborification of multiplicities (rhizome black holes resonate → segments → striation) and conversely, rhizomatic escape (stems leave trees, masses escape, connections jump and uproot) | Not a binary. Oscillation between tree lines (segment/stratify) and lines of flight (carry away). Multiplicity types issue from each other |
+| Plane of consistency / Body without Organs | Opposed to plane of organization/development. Knows nothing of substance and form. Consists of: (1) speed/slowness relations between unformed elements (longitude), (2) compositions of intensive affects (latitude). Ties heterogeneous elements *as such* | Ontological ground for creation. "Never unifications, never totalizations, but rather consistencies or consolidations." Haecceities, events, smooth spaces inscribed on this plane |
+| Selection rule | What is retained/preserved/created = only what increases the number of connections at each level of division or composition, in ascending and descending order | The constructive principle of the plane of consistency. Eliminates empty/cancerous bodies, homogeneous surfaces, lines of death |
+| Abstract machine | Not Platonic Idea but singular, immanent operation within assemblages. Consolidated aggregate of matters-functions (phylum + diagram). Consists of unformed matters and nonformal functions. Always dated and named (Einstein machine, Webern machine) | Fourth aspect of assemblages — cutting edges of decoding and D. Three types: consistency (singular/mutant), stratification (form/substance), axiomatic (totalizations/overcodings). All intertwined in mechanosphere |
+| Smooth space / striated space | Smooth: populated by nomadic multiplicities, occupied as vortex, absolute D. Striated: measured by straight lines, subdivided homogeneously, relative D | Not a binary opposition but mutual immanence — smooth composed from within striated, striated reimposed on smooth |
+| Destratification warning | Every destratification must observe concrete rules of extreme caution. Too-sudden destratification → suicidal or cancerous: chaos/destruction, or locking into more rigid strata that lose diversity, differentiation, mobility | A structural warning against uncontrolled transformation. The term "concrete rules" appears in the chapter title — this is a prescription, not just description |
+| Conjunction vs connection | Conjunction: blocking, gating, closure — axiomatics that cause blockages. Connection: creative multiplication, increasing connections | A distinction the text makes repeatedly. Conjunction = stratifying/overcoding operation. Connection = consistency/creation operation |
+| Coefficients / quantitative analysis | Assemblages can be quantified relative to abstract machines. Coefficients bear on: territory/D/reterritorialization/earth/Cosmos, molar/molecular/flight lines, assemblage–plane relations | D&G assert the possibility of quantitative (not just qualitative) analysis of assemblages — schizoanalysis is "also a quantitative analysis" |
 
-### The Tetravalent Assemblage
+## Figures, Tables & Maps
 
-Two axes of division, producing four aspects:
+### Visual 1: "Computer Einstein"
 
-**Axis 1 — Content and Expression**:
-Inasmuch as they are territorial, assemblages belong to strata. Under this aspect, expression becomes a *semiotic system* (regime of signs) and content becomes a *pragmatic system* (actions and passions). Double articulation: face-hand, gesture-word. The assemblage is simultaneously and inseparably a *machinic assemblage* (of content) and an *assemblage of enunciation* (of expression). "In each case, it is necessary to ascertain both what is said and what is done."
+![Visual 1](figures/Deleuze-Guattari-ATP-Ch15/visual_01_p1.png)
 
-**Axis 2 — Territoriality and Deterritorialization**:
-Territoriality is only a first aspect. The other is constituted by *lines of deterritorialization* that cut across and carry the assemblage away. These lines are very diverse:
-- Some open the territorial assemblage onto *other assemblages* (e.g., territorial refrain → courtship or group refrain).
-- Others operate directly upon territoriality, opening it onto "a land that is eccentric, immemorial, or yet to come."
-- Still others open assemblages onto *abstract and cosmic machines*.
+- **What it shows**: A halftone dot-matrix portrait of Albert Einstein, rendered as if by early computer graphics — rows of varying-density dots composing the face
+- **Key data points**: The image is labeled "Computer Einstein" on page 501 (chapter title page)
+- **Connection to argument**: Einstein is named as one of the "abstract machines" — "the Einstein abstract machine" (p. 511). The portrait's rendering via computational dot patterns visually enacts the concept: a singular machinic operation (the Einstein machine) producing form from unformed matters exhibiting degrees of intensity
 
-Territory is inseparable from deterritorialization, as code is inseparable from decoding. Following deterritorialization lines, the assemblage no longer presents distinct content/expression but only *unformed matters, destratified forces, and functions*.
+## Figure ↔ Concept Contrast
 
-**Summary**: The assemblage is tetravalent — (1) content, (2) expression, (3) territoriality, (4) deterritorialization.
+- Visual 1 → Abstract machine: Einstein is explicitly named as an abstract machine. The computational rendering style — form emerging from aggregated intensities (dot densities) — visually embodies the concept of unformed matters exhibiting degrees of intensity composing a diagram
+- Visual 1 → Phylum/diagram: The halftone process = phylum (matter-movement bearing singularities) + diagram (function-expression distributing intensities)
 
----
+## Theoretical & Methodological Implications
 
-## R — Rhizome (Three Kinds of Lines)
+D&G employ a method that is itself an instance of what it describes: the chapter does not argue linearly but proceeds through a **recapitulatory assemblage** — six lettered entries (S/A/R/C/D/M) that form a plateau, each presupposing and cross-referencing the others. This is neither deductive nor inductive but *rhizomatic*: any entry can be read first, each connects to all others, the whole is a plane of consistency rather than a hierarchy of premises→conclusions.
 
-**Molar lines (first kind)**: Line subordinated to point; diagonal subordinated to horizontal/vertical; line forms contour; space is striated; countable multiplicity subordinated to the One. These form segmentary, circular, binary, *arborescent* systems.
+The method is **constructivist** rather than representational. The text does not describe pre-existing entities but constructs conceptual machines that are themselves abstract machines — singular, dated (1980), named (the Deleuze-Guattari machine). The concepts are presented as tools for analysis ("schizoanalysis") rather than truths to be demonstrated.
 
-**Molecular lines (second kind, "rhizome" type)**: Diagonal frees itself, breaks, twists. Line no longer forms contour but passes *between* things, between points. Belongs to *smooth space*. The multiplicity is no longer subordinated to the One but takes on consistency of its own. Multiplicities of masses/packs, not classes; anomalous and nomadic, not normal or legal; of becoming/transformation, not countable elements; fuzzy aggregates, not exact.
+Methodologically, the chapter asserts that analysis must be simultaneously **qualitative** (what kind of lines, what type of abstract machine) and **quantitative** (coefficients measuring proximity to the abstract machine, metrics on components). This dual insistence — that assemblages are both qualitatively typed and quantitatively measurable — is unusual in continental philosophy and opens the conceptual apparatus to formal application.
 
-**Mutual immanence**: Not simply arborescent vs. rhizomatic multiplicities, but *arborification of multiplicities* (rhizome black holes begin to resonate, stems form segments that striate). Conversely, stems always take leave of trees, masses escape, connections jump tree to tree and uproot. Rhizome lines oscillate between tree lines (that segment/stratify them) and *lines of flight* (that carry them away).
-
-**Three lines, three dangers**: Segmented lines impose striation and homogeneous space. Molecular lines ferry micro-black holes. Lines of flight risk abandoning creative potential and turning into lines of death/destruction (fascism).
-
----
-
-## C — Plane of Consistency (Body without Organs)
-
-Opposed to the plane of organization and development (which concerns form, substance, subject). The plane of consistency "knows nothing of substance and form." Haecceities inscribed on this plane are modes of individuation proceeding *neither by form nor by subject*.
-
-The plane consists in: (1) relations of *speed and slowness* between unformed elements (longitude), and (2) compositions of corresponding *intensive affects* (latitude). Consistency ties together heterogeneous, disparate elements *as such* — consolidation of fuzzy aggregates (rhizome-type multiplicities). "Never unifications, never totalizations, but rather consistencies or consolidations."
-
-Inscribed on the plane: haecceities, events, incorporeal transformations; nomadic essences (vague yet rigorous); *continuums of intensities* or continuous variations (beyond constants and variables); becomings that have neither culmination nor subject but draw one another into *zones of proximity or undecidability*; smooth spaces composed from within striated space.
-
-**Selection rule**: What is retained/preserved/created = only that which *increases the number of connections* at each level of division or composition (in both ascending and descending order). What cannot be divided without changing in nature, or enter a larger composition without requiring a new criterion of comparison.
-
----
-
-## D — Deterritorialization (Four Forms)
-
-D = the movement by which "one" leaves the territory. The operation of the line of flight. Four forms that confront and combine:
-
-**1. Negative D**: D overlaid by compensatory *reterritorialization* that obstructs the line of flight. Anything can serve as reterritorialization — a being, object, book, apparatus, system. The State apparatus performs D but immediately overlays it with reterritorialization on property, work, money. (Land ownership is not territorial but *reterritorializing*.) The signifying regime attains high D but sets up reterritorializations on signified and signifier, blocking the line of flight.
-
-**2. Relative (positive) D**: D prevails over reterritorializations (which play only secondary role), but the line of flight is *segmented* — divided into successive proceedings, sinking into black holes, potentially ending in generalized black hole (catastrophe). The regime of subjective signs: passional and consciousness-related D, positive but only relatively.
-
-These two forms are not in simple evolutionary relation — the second may break from or lead into the first.
-
-**3. Absolute D (creative)**: Relates a body considered as *multiple* to a smooth space occupied as a *vortex*. Connects lines of flight, raises them to the power of an abstract vital line, draws a plane of consistency. Creates a new earth, a universe — not just reterritorialization. But absolute D necessarily *proceeds by way of* relative D (because it is not transcendent).
-
-**4. Absolute D (negative/destructive)**: The absolute made "encompassing," totalizing — overcoding the earth, conjugating lines of flight to stop/destroy them. Lines of flight turn into lines of death/destruction. The earth girded, overcoded, as object of mortuary and suicidal organization.
-
-**Key structural relations**:
-- Territory is inseparable from vectors of deterritorialization working it from within (supple/marginal/itinerant).
-- D is inseparable from correlative reterritorializations — reterritorialization expresses *differential relations internal to D itself*, not a return to territory.
-- The earth is not the opposite of D but is "Deterritorialization par excellence" — it belongs to the Cosmos, exists only in the movement of D. "D can be called the creator of the earth."
-
----
-
-## M — Abstract Machines (Diagram and Phylum)
-
-No Platonic Idea — abstract machines operate *within* concrete assemblages as the fourth aspect (cutting edges of decoding and deterritorialization). They draw these edges, open territorial assemblages to something else. Always *singular and immanent*.
-
-Abstract machines know nothing of forms and substances — they consist of *unformed matters* and *nonformal functions*. Every abstract machine = consolidated aggregate of matters-functions (*phylum* and *diagram*). On a technological plane: not formed substances (aluminum, wire) or organizing forms (programs, prototypes) but composites of unformed matters exhibiting degrees of intensity (resistance, conductivity, speed, induction) and diagrammatic functions exhibiting differential equations or tensors.
-
-Abstract machines are dated and named (the Einstein machine, the Webern machine) — not because they refer to people but because names and dates refer to *singularities of the machines*.
-
-**Content-expression at the level of the abstract machine**: In one sense, the distinction becomes irrelevant (no longer having forms/substances). Content and expression attain highest relativity, becoming "functives of one and the same function." But in another sense, the distinction is *recreated* at the level of **traits**: traits of content (unformed matters/intensities) and traits of expression (nonformal functions/tensors). These assign dissymmetrical roles as elements of a single becoming.
-
-### Quantitative Analysis of Assemblages
-
-Coefficients quantify assemblages relative to the abstract machine. These bear on: varying components (territory, D, reterritorialization, earth, Cosmos); entangled lines (molar, molecular, flight); relations between assemblage and plane of consistency (phylum and diagram).
-
-**General rule**: An assemblage is closer to the abstract machine the more *lines without contour passing between things* it has, and the more *power of metamorphosis* it enjoys.
-
-### Three Types of Abstract Machines
-
-1. **Machines of consistency**: Singular, mutant, with multiplied connections. Draw the plane of consistency.
-2. **Machines of stratification**: Surround the plane of consistency with another plane (substance-form, content-expression). Preside over stratic organization.
-3. **Axiomatic/overcoding machines**: Perform totalizations, homogenizations, conjunctions of closure. Compensate for D with reterritorializations, for decodings with overcodings.
-
-All three types overlap and intertwine. "Every abstract machine is linked to other abstract machines" — they are inseparably political, economic, scientific, artistic, ecological, cosmic, perceptive, affective, active, thinking, physical, semiotic. **Mechanosphere**.
-
----
-
-## Key Concepts for sigma-TAP Integration
-
-1. **Alliance = rhizomatic (horizontal, any-to-any)**: Molecular lines passing between things, jumping tree to tree. Maps to L12 cross-metathesis — agents forming connections across type boundaries, slime-mold-like lateral association.
-
-2. **Filiation = arborescent (vertical, irreversible)**: Molar lines subordinated to points, forming contours and hierarchies. Maps to lineage trees, family groups, arborescent descent.
-
-3. **Tetravalent assemblage as structural template**: Content (pragmatic/actions) × expression (semiotic/signs), territory × deterritorialization. The four-field architecture (Praxitive + Syntegrative + Transvolutory + Pressurative) maps onto this tetravalence.
-
-4. **Four forms of D**: Negative D (reterritorialization blocks flight) maps to overconservation/rigidity. Relative positive D (segmented flight) maps to partial innovation captured by existing structures. Absolute creative D maps to genuine paradigm shift. Absolute destructive D maps to catastrophic collapse — lines of flight becoming lines of death.
-
-5. **Destratification requires caution**: Too-sudden destratification is suicidal or cancerous. This directly maps to the apocalypse mechanisms in sigma-TAP — beneficial vs. detrimental dissolution depends on whether concrete rules are observed.
-
-6. **Selection rule for the plane of consistency**: What is retained = only what increases connections at each level. This maps to the conservation law (minimal praxis for maximal syntegration) — the variational principle selecting for maximum connectivity.
-
-7. **Smooth space vs. striated space**: Smooth = occupied by vortex, populated by nomadic multiplicities (absolute D). Striated = measured by straight lines, subdivided homogeneously (relative D). The global/nonlocal field (L11+L22, rhizomatic) corresponds to smooth space; the assembly field (L12+L21, topology-respecting) corresponds to striated space.
-
-8. **Molar/molecular immanence**: Not simply opposed types but mutually immanent — arborification of rhizomes, rhizomatic escape from trees. This oscillation maps to the hexis-praxis cycle: group-level fusion (molecular smoothing) and diffusion (molar re-stratification).
-
-9. **Abstract machine = consolidated matters-functions**: Not transcendent ideas but singular, dated, immanent operations within assemblages. Maps to the TAPS signature as a concrete machine arising from specific agent history — not a universal type but a trajectory-specific configuration.
-
-10. **Three dangers of lines**: Segmented lines impose homogeneity; molecular lines carry micro-black holes (local collapses); lines of flight risk becoming lines of destruction. Maps to three failure modes in sigma-TAP: rigidity (overconservation), local collapse (black-hole accumulation), and catastrophic dissolution (demetathesis without syntegration).
+The text operates at maximum generality: the same vocabulary (strata, assemblage, D, lines, abstract machines) applies to organisms, social formations, language, music, art, warfare, the State, psychosis, metallurgy, the earth, and the Cosmos. This is neither metaphor nor homology but a claim about the real structure of reality at all scales — what D&G call the mechanosphere.

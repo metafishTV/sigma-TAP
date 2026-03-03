@@ -29,7 +29,7 @@ All distilled versions are in `distilled/` subdirectory. Distilled files are AI-
 | File | Author | Status | Distilled | Mapped To | Notes |
 |---|---|---|---|---|---|
 | Totality And Infinity_Levinas (3 excerpts) | Levinas | distilled | [Levinas-Totality-and-Infinity.md](distilled/Levinas-Totality-and-Infinity.md) | §5.51-59, cross_source: Levinas:* | Three excerpts combined: pp. 114-121 (interiority, separation, enjoyment, dwelling), pp. 191-193 (will and reason, ethical freedom), pp. 220-232 (work/facade/face, paternity/fecundity, time as deferral, infinite time) |
-| A Thousand Plateaus, final chapter.pdf | Deleuze & Guattari | distilled | [Deleuze-Guattari-ATP-Ch15.md](distilled/Deleuze-Guattari-ATP-Ch15.md) | §5.61, cross_source: DG:* | Topological ground: tetravalent assemblage = L-matrix, conjunction vs connection, 4D = 4L. Chapter 15 "Conclusion: Concrete Rules and Abstract Machines." Strata/BwO/abstract machines, four axioms, machinic assemblages |
+| A Thousand Plateaus, final chapter.pdf | Deleuze & Guattari | distilled | [Deleuze-Guattari-ATP-Ch15.md](distilled/Deleuze-Guattari-ATP-Ch15.md) | §5.61, cross_source: DG:* | **v5 re-distill** + [interpretation](interpretations/Deleuze-Guattari-ATP-Ch15.md). Ch15 "Conclusion: Concrete Rules and Abstract Machines." Tetravalent assemblage = L-matrix (4th independent convergence). 15 project mappings, 13 new cross_source entries. Selection rule = conservation law. Four forms of D extend binary apocalypse. Smooth/striated = global/assembly field (rhizomatic ↔ smooth ↔ global). Computer Einstein figure extracted |
 
 ## Communication Theory
 
@@ -76,7 +76,7 @@ All distilled versions are in `distilled/` subdirectory. Distilled files are AI-
 | Emery-Trist-1965.md | Emery-Trist PDF | — | L11/L12/L21/L22 causal texture |
 | Ruesch-Bateson-Communication.md | R&B pp. 196-237 + pp. 283-299 | — | Four communication levels, metacommunication |
 | Levinas-Totality-and-Infinity.md | Levinas pp. 114-121, 191-193, 220-232 | — | Separation, enjoyment, fecundity, infinite time |
-| Deleuze-Guattari-ATP-Ch15.md | ATP final chapter | — | Tetravalent assemblage, strata, abstract machines |
+| Deleuze-Guattari-ATP-Ch15.md | ATP final chapter (14pp) | — | **v5 re-distill**. Strata, double articulation, tetravalent assemblage, territory/D, molar/molecular/flight lines, mutual immanence, plane of consistency, selection rule, abstract machines (phylum+diagram), smooth/striated space, destratification warning, conjunction/connection, coefficients |
 | Jakobs-Communicology.md | Jakobs PDF | — | 4-level × 6-function communicology matrix |
 | Bateson-Table-D.md | Bateson table.png + R&B Conclusion text | — | Non-monotonic correction arc, codification types |
 | TAPequation-FINAL.md | TAPequation-FINAL.pdf + Applications-of-TAP.pdf | — | $M_{t+1} = M_t(1-\mu) + \alpha a[(1+1/a)^{M_t} - M_t/a - 1]$, blow-up time, $\mu_\text{critical}$, tetration, continuous integral |
@@ -97,4 +97,4 @@ All distilled versions are in `distilled/` subdirectory. Distilled files are AI-
 | Turchin-Gavrilets-2009-HierarchicalSocieties.md | Turchin & Gavrilets 2009 (32pp) | — | Multilevel selection, Dunbar limit (~150), log-linear scaling law (population vs levels), ABM polity formation |
 | Turchin-2009-FormationLargeEmpires.md | Turchin JGH 2009 (27pp) | — | Mirror-empires model, asabiyya as frontier cohesion, contagion with multi-century lag, Axial Age transition |
 
-All 23 source documents distilled (20 primary + 2 supplementary + 1 web resource). All distillations include "Key Concepts for sigma-TAP Integration" section mapping source concepts to simulator architecture.
+All 23 source documents distilled (20 primary + 2 supplementary + 1 web resource). v5 skill distillations (Lizier 2012, Lizier Slideshow, D&G ATP Ch15) include separate interpretation files in `interpretations/` directory; earlier distillations include inline "Key Concepts for sigma-TAP Integration" sections.

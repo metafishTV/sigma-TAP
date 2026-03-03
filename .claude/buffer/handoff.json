@@ -132,39 +132,45 @@
 
   "concept_map_digest": {
     "_meta": {
-      "total_entries": 124,
+      "total_entries": 137,
       "last_validated": "2026-03-02"
     },
     "recent_changes": [
-      "w:116 Lizier2012:ActiveInfoStorage → practico-inert = stored information",
-      "w:117 Lizier2012:ClusteringCoefficient → family group clustering as storage proxy",
-      "w:118 Lizier2012:LoopRequirement → conservation law: only loops build identity",
-      "w:119 Lizier2012:FeedforwardEchoes → differential time dilation = feedforward echo",
-      "w:120 Lizier2023Slideshow:InfoStorageSyncTriangle → Youn ratio = balance point of storage-sync-biology triangle",
-      "w:121 Lizier2023Slideshow:ModularityEffect → family groups within vs between similarity",
-      "w:122 Lizier2023Slideshow:EigenvalueBlindness → spectral limitation (confirms w:118)",
-      "w:123 Lizier2023Slideshow:CouplingDelays → differential time dilation (anticipated)",
-      "w:124 Lizier2023Slideshow:ContinuousVsDiscrete → two sigma-TAP layers capture different motif structures"
+      "w:125 DG:TetravalentAssemblage → L-matrix four-channel (4th independent convergence)",
+      "w:126 DG:DoubleArticulation → content/expression orthogonal to L-channels (candidate 4×2)",
+      "w:127 DG:LinesOfFlight → apocalypse mechanisms §5.26",
+      "w:128 DG:MutualImmanence → hexis-praxis as mutual immanence (not alternation)",
+      "w:129 DG:SelectionRule → conservation law §5.43 (converges with Fermat/Feynman)",
+      "w:130 DG:FourFormsOfD → four system trajectory states (extends binary apocalypse)",
+      "w:131 DG:DestratificationWarning → controlled dissolution §5.27",
+      "w:132 DG:SmoothStriated → global field=smooth, assembly field=striated (rhizomatic↔smooth↔global)",
+      "w:133 DG:AbstractMachine → TAPS signature as concrete machine (phylum+diagram)",
+      "w:134 DG:ConjunctionVsConnection → junction typology §5.61",
+      "w:135 DG:Coefficients → quantitative schizoanalysis legitimation",
+      "w:136 DG:ThreeAbstractMachineTypes → cross-metathesis/TAPS classification/L22 regulation (novel)",
+      "w:137 DG:ThreeDangersOfLines → three failure modes (extends binary)"
     ],
     "flagged": []
   },
 
   "convergence_web_digest": {
     "_meta": {
-      "total_entries": 22,
+      "total_entries": 29,
       "last_validated": "2026-03-02"
     },
     "clusters": [
       "Storage-Identity-Practico-inert (cw:1-5)",
       "Synchronizability-Topology-Family Groups (cw:6-9)",
-      "Four-Level Architecture (cw:10-12)",
-      "Dialectical Process (cw:13-16)",
-      "Conservation & Variational Principles (cw:17-18)",
+      "Four-Level Architecture (cw:10-12, cw:23)",
+      "Dialectical Process (cw:13-16, cw:26)",
+      "Conservation & Variational Principles (cw:17-18, cw:24-25)",
       "Agent Viability & Reception (cw:19-20)",
-      "Continuous vs Discrete & Time (cw:21-22)"
+      "Continuous vs Discrete & Time (cw:21-22)",
+      "System Trajectory & Dissolution (cw:28-29)",
+      "Real vs Apparent Exchange (cw:27)"
     ],
     "flagged": []
   },
 
-  "natural_summary": "Stage 3B complete with 345 tests across 7 phases. Post-3B reflection ongoing — Levinas, Sartre, D&G, Emery-Trist integration mapped through 72 cross-source concepts. Next: R&B deep review, then TASKS.md and Stage 3C planning."
+  "natural_summary": "Stage 3B complete with 345 tests across 7 phases. Post-3B reflection ongoing — source distillation pipeline (v5 skill) tested on Lizier 2012, Lizier Slideshow, D&G ATP Ch15. Concept map at 137 cross-source entries. Convergence web at 29 inter-source linkages across 9 clusters. D&G Ch15 provides fourth independent convergence on L-matrix 4-channel structure, selection rule = conservation law. Next: R&B deep review, then TASKS.md and Stage 3C planning."
 }

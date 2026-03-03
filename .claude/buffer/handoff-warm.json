@@ -150,7 +150,20 @@
       { "id": "w:121", "key": "Lizier2023Slideshow:ModularityEffect", "maps_to": "family_groups.within_vs_between_similarity — modularity enhances sync inside module, decreases across network", "ref": "§5.4, slide 24", "suggest": "Stage 3C modularity diagnostic: intra-group vs inter-group TAPS similarity over time" },
       { "id": "w:122", "key": "Lizier2023Slideshow:EigenvalueBlindness", "maps_to": "spectral methods inadequate for sigma-TAP diagnostics — order-of-magnitude sigma^2 changes invisible to eigenvalues (confirms w:118)", "ref": "slide 24", "suggest": null },
       { "id": "w:123", "key": "Lizier2023Slideshow:CouplingDelays", "maps_to": "differential time dilation (§5.25) — four time-modes at different rates involve inherent coupling delays; forthcoming paper directly relevant", "ref": "§5.25, slide 12", "suggest": "acquire Lizier/Atay/Jost delays paper when available" },
-      { "id": "w:124", "key": "Lizier2023Slideshow:ContinuousVsDiscrete", "maps_to": "continuous TAP (ODE) captures richer motif structure than discrete metathetic step — different-length walk pairs vs same-length only", "ref": "§5.25, slides 20-21", "suggest": "explains potential divergence between continuous.py and metathetic.py predictions" }
+      { "id": "w:124", "key": "Lizier2023Slideshow:ContinuousVsDiscrete", "maps_to": "continuous TAP (ODE) captures richer motif structure than discrete metathetic step — different-length walk pairs vs same-length only", "ref": "§5.25, slides 20-21", "suggest": "explains potential divergence between continuous.py and metathetic.py predictions" },
+      { "id": "w:125", "key": "DG:TetravalentAssemblage", "maps_to": "L-matrix four-channel structure. Content (pragmatic) ↔ P+S fields (L12+L21). Expression (semiotic) ↔ T+A fields (L11+L22). Territory ↔ TAPS signature stability. D ↔ cross-metathesis transforming signature. Fourth independent convergence on 4-channel alongside R&B, Emery, Lizier", "ref": "§5.61, ATP Ch15", "suggest": null },
+      { "id": "w:126", "key": "DG:DoubleArticulation", "maps_to": "content/expression as orthogonal axis WITHIN each L-channel — every L12 event has both content (what action) and expression (what sign). NOT same as L-matrix split. Candidate 4×2=8-fold classification", "ref": "ATP Ch15", "suggest": "missing dimension? content/expression character not currently captured in L-matrix ledger" },
+      { "id": "w:127", "key": "DG:LinesOfFlight", "maps_to": "paradigm shifts, apocalypse mechanisms (§5.26), demetathesis cascades — agents carried from established TAPS trajectory. Creative (beneficial) or destructive (detrimental)", "ref": "§5.26, ATP Ch15", "suggest": null },
+      { "id": "w:128", "key": "DG:MutualImmanence", "maps_to": "hexis-praxis cycle grounded as mutual immanence (not simple alternation) — each issues from the other. Molar/molecular are not opposed but co-constitutive", "ref": "§5.19, ATP Ch15", "suggest": "§5.19 should be reframed from temporal cycle to ontological co-implication" },
+      { "id": "w:129", "key": "DG:SelectionRule", "maps_to": "conservation law §5.43: what is retained = what increases connections at each level = minimal praxis for maximal syntegration. Variational principle from continental philosophy — independent convergence with Fermat/Feynman", "ref": "§5.43, ATP Ch15", "suggest": null },
+      { "id": "w:130", "key": "DG:FourFormsOfD", "maps_to": "four system trajectory states: (1) negative D = overconservation/rigidity (high L11, low L12), (2) relative positive D = innovation captured by structure (L12 active but segmented by L22), (3) absolute creative D = paradigm shift (all four L-channels reconfigure), (4) absolute destructive D = catastrophic collapse (demetathesis without recovery)", "ref": "§5.26, ATP Ch15", "suggest": "expand binary beneficial/detrimental to four forms; two 'relative' forms describe sub-apocalyptic dynamics currently undifferentiated" },
+      { "id": "w:131", "key": "DG:DestratificationWarning", "maps_to": "apocalypse mechanisms: too-sudden destratification = suicidal or cancerous. 'Concrete rules of extreme caution' = graduated demetathesis (§5.27). System destabilization must be controlled", "ref": "§5.27, ATP Ch15", "suggest": "formal rate threshold for 'too-sudden' destratification?" },
+      { "id": "w:132", "key": "DG:SmoothStriated", "maps_to": "global/nonlocal field (L11+L22, rhizomatic) = smooth space: vortical, nomadic, absolute D. Assembly field (L12+L21, topology-respecting) = striated space: measured, segmented, relative D. Note: 'field' is project extension — D&G speak of spaces not fields", "ref": "§5.56, ATP Ch15", "suggest": null },
+      { "id": "w:133", "key": "DG:AbstractMachine", "maps_to": "TAPS signature as concrete machine: trajectory-specific, singular, dated, immanent. Phylum = dM_history (matter-movement). Diagram = L-matrix distribution (nonformal functions). Not a classification label but a consolidated aggregate", "ref": "ATP Ch15", "suggest": "are phylum (trajectory) and diagram (distribution) tracked as genuinely distinct in current implementation?" },
+      { "id": "w:134", "key": "DG:ConjunctionVsConnection", "maps_to": "conjunction = blocking/gating/closure (axiomatics, L22 regulatory check). Connection = creative multiplication (junction producing novel types). Connection fallacy = confusing conjunction with connection", "ref": "§5.61, ATP Ch15", "suggest": null },
+      { "id": "w:135", "key": "DG:Coefficients", "maps_to": "schizoanalysis as quantitative: assemblages have measurable coefficients relative to abstract machines. Legitimates sigma-TAP's computational approach — D&G's own prescription", "ref": "ATP Ch15", "suggest": null },
+      { "id": "w:136", "key": "DG:ThreeAbstractMachineTypes", "maps_to": "consistency = cross-metathesis engine (novel connections). Stratification = TAPS classification (organizing into types). Axiomatic/overcoding = L22 environmental regulation (totalizations). All three 'overlap and intertwine'", "ref": "ATP Ch15", "suggest": "novel mapping — needs testing. Do simulation assemblages exhibit all three simultaneously?" },
+      { "id": "w:137", "key": "DG:ThreeDangersOfLines", "maps_to": "three failure modes: (1) molar danger = overconservation/homogeneity/rigidity, (2) molecular danger = micro-black holes/local collapse/hexitive overaccumulation (§5.65), (3) flight danger = catastrophic dissolution/demetathesis without syntegration", "ref": "§5.65, ATP Ch15", "suggest": "three-mode failure taxonomy vs simpler binary beneficial/detrimental" }
     ]
   },
 
@@ -158,7 +171,7 @@
     "_meta": {
       "description": "Inter-source linkages: tetradic structure mirroring metathetic dialectics. Thesis/athesis = two source concepts. Synthesis = what RELATES them (common ground, involutory). Metathesis = what EACH does independently (separate real-world functions, evolutory).",
       "type_tags": ["independent_convergence", "complementarity", "elaboration", "tension", "genealogy"],
-      "total_entries": 22,
+      "total_entries": 29,
       "last_validated": "2026-03-02"
     },
     "entries": [
@@ -315,6 +328,55 @@
         "athesis": { "ref": "w:71", "label": "Levinas:time_postponement" },
         "synthesis": "[complementarity] Multi-rate temporal structure as constitutive of identity",
         "metathesis": "Coupling delays: different channels contribute to synchronizability at different timescales; forthcoming Lizier-Atay-Jost paper (network dynamics). Time as praxitive deferral: agent persists by not completing, consummation deferred = life continuing (phenomenology). Four time-modes at different rates §5.25"
+      },
+      {
+        "id": "cw:23",
+        "thesis": { "ref": "w:125", "label": "DG:TetravalentAssemblage" },
+        "athesis": { "ref": "w:82", "label": "Emery:DP1/DP2+causal_texture" },
+        "synthesis": "[independent_convergence] Four-channel system structure arrived at independently — D&G from continental philosophy (assemblage theory), Emery-Trist from organizational systems theory (causal textures). Neither tradition derives from the other on this specific structural point",
+        "metathesis": "Tetravalent assemblage: content/expression × territory/deterritorialization as irreducible fourfold analysis of any assemblage (philosophy). Causal textures: L11/L12/L21/L22 as four environmental transaction types between system and environment (org theory). L-matrix genealogy runs R&B → Emery, but D&G arrive independently"
+      },
+      {
+        "id": "cw:24",
+        "thesis": { "ref": "w:129", "label": "DG:SelectionRule" },
+        "athesis": { "ref": "w:76", "label": "Fermat/Feynman:least_action" },
+        "synthesis": "[independent_convergence] Variational principle — what is retained is only what optimizes a global criterion. Continental philosophy and physics arrive at the same structural insight from maximally different starting points",
+        "metathesis": "Selection rule: only what increases the number of connections at each level of division/composition is retained on the plane of consistency (philosophy). Least action: nature selects the path minimizing the action integral among all possible paths (physics). Conservation law §5.43 is their common project mapping"
+      },
+      {
+        "id": "cw:25",
+        "thesis": { "ref": "w:129", "label": "DG:SelectionRule" },
+        "athesis": { "ref": "w:118", "label": "Lizier2012:LoopRequirement" },
+        "synthesis": "[independent_convergence] Only structure-building paths contribute — what doesn't increase connections/storage is not retained",
+        "metathesis": "Selection rule: plane of consistency retains only what increases connections (philosophy). Loop requirement: only closed-walk motifs (feedback/feedforward) contribute to A(Xi); unidirectional paths build zero storage (information theory). One formulated qualitatively, the other computably — both arrive at the same exclusion principle"
+      },
+      {
+        "id": "cw:26",
+        "thesis": { "ref": "w:128", "label": "DG:MutualImmanence" },
+        "athesis": { "ref": "w:48", "label": "Sartre:praxis-process/process-praxis" },
+        "synthesis": "[complementarity] Bidirectional co-constitution — not alternation between opposed states but each issuing from within the other",
+        "metathesis": "Mutual immanence: molar/molecular are not opposed but co-constitutive — arborification of rhizomes AND rhizomatic escape from trees (D&G, ontology). Praxis-process/process-praxis: action becomes structure (consummation) and structure becomes action (consumption) as dialectical cycle (Sartre, social philosophy). Hexis-praxis cycle §5.19 is grounded by both"
+      },
+      {
+        "id": "cw:27",
+        "thesis": { "ref": "w:134", "label": "DG:ConjunctionVsConnection" },
+        "athesis": { "ref": "w:88", "label": "Emery:transaction_not_interaction" },
+        "synthesis": "[independent_convergence] The distinction between real exchange (which builds structure) and apparent exchange (which merely circulates) — both traditions independently define a threshold separating genuine from spurious encounter",
+        "metathesis": "Conjunction = blocking/gating/closure vs connection = creative multiplication (D&G, philosophy). Interaction without mutual change is not a transaction (Emery, sociotechnical systems). Both ground the connection fallacy §5.61 and the conservation law's efficiency criterion"
+      },
+      {
+        "id": "cw:28",
+        "thesis": { "ref": "w:130", "label": "DG:FourFormsOfD" },
+        "athesis": { "ref": "w:101", "label": "Turchin:secular_cycles" },
+        "synthesis": "[complementarity] System trajectory taxonomy — both provide multi-state descriptions of how systems move through phases of stability, partial change, creative transformation, and catastrophic collapse",
+        "metathesis": "Four D-forms: negative (overconservation), relative positive (captured innovation), absolute creative (paradigm shift), absolute destructive (collapse) — qualitative ontology of system states (philosophy). Secular cycles: limit cycles in population/elite/state phase space with characteristic expansion-stagflation-crisis-depression sequence (cliodynamics). §5.67 L-channel phase space"
+      },
+      {
+        "id": "cw:29",
+        "thesis": { "ref": "w:131", "label": "DG:DestratificationWarning" },
+        "athesis": { "ref": "w:84", "label": "Emery:laissez_faire" },
+        "synthesis": "[complementarity] Uncontrolled dissolution as system danger — both identify the absence of graduated structure-dissolution as a specific pathology, not just the absence of order",
+        "metathesis": "Destratification warning: too-sudden destratification = suicidal or cancerous; 'concrete rules of extreme caution' required (D&G, philosophy). Laissez-faire: absence of design principle → pathological drift, system degrades through non-design (Emery, org theory). Both warn that dissolution must be controlled — §5.27 graduated demetathesis"
       }
     ]
   },
@@ -341,6 +403,7 @@
     { "id": "w:v12", "check": "3 Turchin papers + ring-volution identity + 7 cross-source", "status": "NEW", "detail": "Turchin 2013, Turchin-Gavrilets 2009, Turchin JGH 2009. Ring-volution: top=evolution, bottom=involution, meso=transvolution. Total sources: 23.", "session": "2026-03-02" },
     { "id": "w:v13", "check": "Helical structure (§5.69) + 5 concept entries", "status": "NEW", "detail": "Double helix with RNA-like meso. Syntegration/praxis ring mappings. Janus through-lines. Seven pressure vectors as cross-bridges. Alterity cascade.", "session": "2026-03-02" },
     { "id": "w:v14", "check": "distill: Lizier-2012-InfoStorage-LoopMotifs (v5 skill)", "status": "NEW", "detail": "4 concepts mapped (ActiveInfoStorage, ClusteringCoefficient, LoopRequirement, FeedforwardEchoes), 5 integration points. Re-distilled with v5 skill (cropped figures, interpretation file). Key novel finding: unidirectional interactions contribute nothing to identity storage.", "session": "2026-03-02" },
-    { "id": "w:v15", "check": "distill: Lizier-Synchronizability-Slideshow (v5 skill)", "status": "NEW", "detail": "5 concepts mapped (InfoStorageSyncTriangle, ModularityEffect, EigenvalueBlindness, CouplingDelays, ContinuousVsDiscrete), 5 integration points. Re-distilled with v5 skill (26 slides rendered, 12 visually decomposed, mandatory variable defs on all equations). Supplementary to main PNAS paper distillation.", "session": "2026-03-02" }
+    { "id": "w:v15", "check": "distill: Lizier-Synchronizability-Slideshow (v5 skill)", "status": "NEW", "detail": "5 concepts mapped (InfoStorageSyncTriangle, ModularityEffect, EigenvalueBlindness, CouplingDelays, ContinuousVsDiscrete), 5 integration points. Re-distilled with v5 skill (26 slides rendered, 12 visually decomposed, mandatory variable defs on all equations). Supplementary to main PNAS paper distillation.", "session": "2026-03-02" },
+    { "id": "w:v16", "check": "distill: Deleuze-Guattari-ATP-Ch15 (v5 skill)", "status": "NEW", "detail": "15 concepts mapped, 13 new cross_source entries (w:125-137), 6 integration points, 4 open questions, 7 convergence web entries (cw:23-29). v5 re-distill: 17 key concepts, 1 figure (Computer Einstein halftone), continental/post-structuralist register. Fourth independent convergence on 4-channel structure. Selection rule = conservation law. User confirmed: rhizomatic ↔ smooth ↔ global field.", "session": "2026-03-02" }
   ]
 }
