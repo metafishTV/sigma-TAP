@@ -59,6 +59,18 @@
           "User asked for instance_notes — personal colleague-to-colleague briefing.",
           "User asked for dialogue_trace — trajectory of ideas as most lossy transfer element."
         ]
+      },
+      {
+        "id": "c:6",
+        "session": "v4 tooling: MEMORY.md integration (2026-03-03)",
+        "arc": "Meta-tooling session. Reviewed v3 skill system, identified MEMORY.md/buffer redundancy, designed and implemented MEMORY.md integration as a first-class feature of the handoff/onhand system.",
+        "key_moments": [
+          "Redundancy analysis: MEMORY.md at 228 lines (over 200 cap) duplicated 40+ lines of theoretical concepts and 60+ lines of forward notes already in buffer concept_map.",
+          "Key principle established: MEMORY.md = broadcast channel (loads every session), buffer = narrowcast (selective loading). Overlap wastes tokens when both load.",
+          "Designed three-option integration (full/minimal/none) at first-run — respects user sovereignty over their own MEMORY.md.",
+          "User asked about upward buffering (promoting buffer entries to MEMORY.md). Recommended against autosave trigger (too expensive), chose handoff-only at full-scan threshold with 10-line cap.",
+          "Trimmed sigma-TAP MEMORY.md from 228 to 41 lines as first real application of full integration path."
+        ]
       }
     ],
     "recurring_patterns": [

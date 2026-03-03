@@ -1,11 +1,11 @@
 ---
-name: resume
-description: Reconstruct sigma-TAP session context from layered handoff buffer. Project-specific override.
+name: onhand
+description: Bring sigma-TAP session context on hand from layered handoff buffer. Project-specific override.
 ---
 
-# sigma-TAP — Session Resume
+# sigma-TAP — Session On Hand
 
-Project-specific resume skill. Overrides the global resume skill with sigma-TAP priorities.
+Project-specific on-hand skill. Overrides the global onhand skill with sigma-TAP priorities.
 
 ## Configuration
 
@@ -13,7 +13,7 @@ Project-specific resume skill. Overrides the global resume skill with sigma-TAP 
 - **Memory file**: `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\MEMORY.md`
 - **Index file**: `docs/references/INDEX.md`
 
-## Resume Priorities
+## On-Hand Priorities
 
 After the standard hot-layer reconstruction (Steps 1-4 of global process), additionally:
 
@@ -35,7 +35,7 @@ Pay special attention to `unread` sources flagged in `open_threads`.
 
 When following flagged pointers (Step 4), prioritize:
 1. `cross_source` entries marked `NEW` (from recent distillations)
-2. Any entry with `suggest` ≠ null (pending user confirmation)
+2. Any entry with `suggest` != null (pending user confirmation)
 3. Entries in `foundational_triad` or base system groups (changes need user input)
 
 ### Convergence Web Focus
@@ -57,4 +57,4 @@ Surface any `ref` fields containing `§5.XX` — these are bookmarked ideas from
 
 ## Process
 
-Follow the global resume skill process (Steps 1-8), using the configuration and priorities defined here. Insert the Source Material Review between Steps 6 and 7 of the global process.
+Follow the global onhand skill process (Steps 1-8), using the configuration and priorities defined here. Insert the Source Material Review between Steps 6 and 7 of the global process. The Autosave Protocol from the global skill applies — autosave is armed at Step 8.

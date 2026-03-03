@@ -3,9 +3,9 @@ name: handoff
 description: Generate sigma-TAP session handoff buffer. Project-specific override.
 ---
 
-# sigma-TAP — Session Handoff
+# sigma-TAP — Session Handoff v3
 
-Project-specific handoff skill. Overrides the global handoff skill with sigma-TAP structure.
+Project-specific handoff skill. Overrides the global handoff skill with sigma-TAP structure. Counterpart to `/onhand`.
 
 ## Configuration
 
@@ -102,10 +102,21 @@ When validating concept map entries (Step 6 of global process):
 - **`suggest: null`** is PREFERRED. Only flag genuine structural parallels noticed during the session.
 - **Cross-source entries** use the format `"key": "Source:ConceptName"` matching the distill interpretation output.
 
+## Warm Layer Capacity
+
+The sigma-TAP warm layer has two large exempt sections (concept_map + convergence_web) that are not migratable because they form the structural backbone. As these grow with each distillation, effective capacity for migratable content (decisions_archive, validation_log) shrinks.
+
+**Current override**: Warm max lines is raised to **800** for this project (global default: 500). This accommodates the concept_map + convergence_web backbone while leaving room for operational content.
+
+If the exempt content alone approaches 800 lines, consider:
+1. Archiving convergence_web entries older than 5 sessions to cold (they represent completed analysis and can be retrieved)
+2. Compacting cross_source entries that haven't been referenced in 3+ sessions
+3. Raising the bound further (diminishing returns beyond ~1000)
+
 ## Forward Note References
 
 Decision and thread `ref` fields use `§5.XX` notation from `docs/plans/2026-02-26-stage3a-two-channel-design.md`. This is the design doc containing all forward notes (§5.1 through §5.69+).
 
 ## Process
 
-Follow the global handoff skill process (Steps 1-12), using the configuration and schemas defined here. The global skill defines the generic process; this file defines the project-specific structure.
+Follow the global handoff skill process (Steps 1-14), using the configuration and schemas defined here. The global skill defines the generic process; this file defines the project-specific structure. Warm max lines is 800 (overrides global 500).

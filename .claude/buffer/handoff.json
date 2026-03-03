@@ -5,39 +5,31 @@
   "cold_ref": "handoff-cold.json",
 
   "session_meta": {
-    "date": "2026-03-02",
-    "commit": "3b98ff3",
+    "date": "2026-03-03",
+    "commit": "ce111d8",
     "branch": "main",
     "files_modified": [
-      "simulator/metathetic.py",
-      "tests/test_metathetic.py",
-      ".gitignore",
-      "docs/references/Ruesch & Bateson, Communication, excerpt, pg. 196-237.pdf",
-      "docs/references/Ruesch & Bateson, Communication, excerpt, pg. 283-299 - Conclusion.pdf",
-      "docs/references/COMMUNICATION_NETWORKS_and_LEVELS_Jakobs.pdf",
-      "docs/references/Bateson table.png",
-      "docs/plans/2026-02-25-p4-reproducibility-auditability.md",
-      "outputs/figures/taps_correlation.png",
-      "outputs/figures/taps_texture.png"
+      ".claude/buffer/handoff.json",
+      ".claude/skills/handoff/SKILL.md"
     ],
     "tests": "345/345 passing"
   },
 
-  "sessions_since_full_scan": 0,
+  "sessions_since_full_scan": 1,
   "full_scan_threshold": 5,
 
   "active_work": {
-    "current_phase": "Stage 3B COMPLETE — all 7 phases implemented and verified",
+    "current_phase": "Stage 3B COMPLETE — post-reflection tooling phase",
     "completed_this_session": [
-      "Stage 3B Phase 1: Sigma wiring + per-agent Xi (commit 41956b7)",
-      "Stage 3B Phase 2: Seed entropy with per-agent alpha/mu offsets (commits 1c8b355, ac5c6a5)",
-      "Stage 3B Phase 3: Trust metrics tau_self + tau_pair (commits a4664f2, d46afa7)",
-      "Stage 3B Phase 4: Endogenous mu from affordance modulation (commits d801ce3, bb70004)",
-      "Stage 3B Phase 5: Topology / family group tracking (commits 69d0cf9, 018dd80)",
-      "Stage 3B Phase 6: Junction-mode adjacency metric (commits 3285286, 274b014)",
-      "Stage 3B Phase 7: Integration tests + regression verification (commit 3a2a1b8)",
-      "Housekeeping: .gitignore, stale file cleanup, push 14 commits (commit 3268be4)",
-      "Preserved R&B reference materials in docs/references/ (commit 515049b)"
+      "v3 skill system review (global + project onhand/handoff/distill)",
+      "MEMORY.md/buffer redundancy analysis and resolution",
+      "Global onhand: Step 0f (MEMORY.md integration at first-run)",
+      "Global onhand: Promotion check in Step 5 (full-scan threshold)",
+      "Global handoff: Step 11 (MEMORY.md sync), renumbered Steps 11-13 to 12-14",
+      "Global handoff: Added memory_config to hot layer schema",
+      "Project handoff: Updated step reference (1-13 to 1-14)",
+      "Sigma-TAP MEMORY.md trimmed to orientation card (228 to 41 lines)",
+      "Hot layer: Added memory_config (integration=full)"
     ],
     "in_progress": null,
     "blocked_by": null,
@@ -85,71 +77,61 @@
 
   "recent_decisions": [
     {
-      "what": "Trust stability metric: CV-squared vs raw variance",
-      "chose": "Coefficient of variation squared: cv_sq = var / (mean^2 + eps)",
-      "why": "Raw variance is scale-dependent; dM values easily 1-100 making stability always near-zero. CV^2 is scale-invariant.",
-      "ref": "Phase 3 code quality review",
-      "session": "2026-02-28",
-      "see": ["w:d1"]
+      "what": "MEMORY.md/buffer redundancy resolution",
+      "chose": "Orientation card approach — MEMORY.md becomes lean (~50 lines) with project essentials only; buffer is single source of truth for theoretical content",
+      "why": "228-line MEMORY.md duplicated 40+ lines of concepts and 60+ lines of forward notes already in concept_map. Double token spend when both loaded.",
+      "session": "2026-03-03",
+      "see": []
     },
     {
-      "what": "Absorptive family creation: conditional vs unconditional",
-      "chose": "Always create family on absorptive cross (unconditional)",
-      "why": "Conditional guard silently skipped first-generation agents, creating data integrity gap.",
-      "ref": "Phase 5 code quality review",
-      "session": "2026-02-28",
-      "see": ["w:d3"]
+      "what": "MEMORY.md integration mode for new users",
+      "chose": "Three-option choice at first-run: full (restructure to orientation card), minimal (add pointer only), none (independent operation)",
+      "why": "Respects user sovereignty. Some users have personal notes they don't want restructured.",
+      "session": "2026-03-03",
+      "see": []
     },
     {
-      "what": "Post-3B sequencing",
-      "chose": "Housekeeping -> exploration run -> Levinas/R&B reflection -> TASKS.md",
-      "why": "R&B and Levinas material could reshape 3C roadmap, so TASKS.md comes AFTER discussion, not before.",
-      "ref": null,
-      "session": "2026-02-28",
-      "see": ["w:d4"]
+      "what": "Upward buffering mechanism",
+      "chose": "Handoff-only, at full-scan threshold only, max 10 lines per cycle, warm entry remains source of truth",
+      "why": "Autosave trigger too expensive. 200-line MEMORY.md cap too tight for aggressive promotion. Full-scan threshold is natural moment.",
+      "session": "2026-03-03",
+      "see": []
+    },
+    {
+      "what": "Status sync at handoff",
+      "chose": "Update MEMORY.md status one-liner from active_work at every handoff (new Step 11)",
+      "why": "Standalone sessions see stale status otherwise. One-line edit, negligible cost.",
+      "session": "2026-03-03",
+      "see": []
     }
   ],
 
   "instance_notes": {
-    "from": "the instance that built Stage 3B and did the Levinas/Sartre/D&G/Emery reflection sessions",
+    "from": "the instance that reviewed v3 and built MEMORY.md integration (v4 tooling session)",
     "to": "whoever picks this up next",
     "remarks": [
-      "This user thinks in systems, not in features. When they say 'add trust metrics,' they mean something philosophically grounded — not a gamification layer. Every parameter has a theoretical warrant.",
-      "The concept map looks like an ontology but it's actually a TRANSLATION TABLE. The user is checking whether independently developed frameworks converge on the same structure. Help test that convergence, not assume it.",
-      "The user is patient and generous with explanation, but they notice when you flatten their terminology. 'Metathesis' is not 'interaction.' 'Praxis' is not 'action.' 'Syntegration' is not 'integration.'",
-      "The L-matrix (L11/L12/L21/L22) is the beating heart of everything. If confused about where something fits, ask which L-channel it belongs to.",
-      "The 'island effect' (affordance drops to zero mid-run) is an empirical finding needing theoretical interpretation. System exhausts novel types in a small pool. Matters for 3C topology.",
-      "When the user shares a philosophical text, they want you to find STRUCTURAL PARALLELS to the L-matrix and TAPS framework. Read for architecture, not summary.",
-      "The user has been incredibly patient through context window issues and session fragmentation. They're building something serious."
+      "This was a META session — no theoretical work, no code changes. All changes were to the handoff/onhand skill system and MEMORY.md. The simulator is untouched.",
+      "The user thinks architecturally about the tool itself, not just the project. Treat /handoff and /onhand as first-class engineering artifacts.",
+      "MEMORY.md went from 228 lines (overflowing the 200-line auto-load cap) to 41 lines. Every removed line has a home in the buffer's concept_map or convergence_web. Zero content loss.",
+      "Global skills are at ~/.claude/skills/. Project skills are at repo/.claude/skills/. Global = process, project = structure. Don't confuse them.",
+      "The project handoff skill overrides warm max to 800 lines (global default 500) because concept_map + convergence_web are large and non-migratable.",
+      "The previous instance's instance_notes (from the Stage 3B builder) are excellent — still fully applicable. Read the cold-layer dialogue_trace too.",
+      "The .claude/skills/resume/ directory in the repo is the OLD name before rename to 'onhand'. May need cleanup."
     ],
     "open_questions": [
-      "The four time-modes (pi/alpha/sigma/Pi) mapped to L-channels — does each agent experience all four simultaneously, or shift between dominant modes?",
-      "The 'island effect' — is this what Emery-Trist would call a Type III disturbed-reactive environment transitioning to Type IV?",
-      "The reception field / fidelity band (§5.57) — filter on INCOMING metathetic events only, or also shapes what the agent EMITS?",
-      "The conservation law — does it imply an optimal agent population size for a given type-space?"
+      "The promotion check needs a tracking mechanism for 'pointer-loaded in 3+ consecutive sessions' — the spec doesn't define where this counter lives. Needs design.",
+      "Should the distill skill get a MEMORY.md-aware step? Currently writes to buffer only. No path for fundamental concepts to reach the orientation card.",
+      "MEMORY.md lives outside the repo (~/.claude/projects/). If user switches machines, it's lost. Should the buffer store a backup?",
+      "The user mentioned a previous instance capped out mid-discussion about redundancy. That instance had additional context about what content belongs where. Check if it left any trace."
     ]
   },
 
   "concept_map_digest": {
     "_meta": {
       "total_entries": 137,
-      "last_validated": "2026-03-02"
+      "last_validated": "2026-03-03"
     },
-    "recent_changes": [
-      "w:125 DG:TetravalentAssemblage → L-matrix four-channel (4th independent convergence)",
-      "w:126 DG:DoubleArticulation → content/expression orthogonal to L-channels (candidate 4×2)",
-      "w:127 DG:LinesOfFlight → apocalypse mechanisms §5.26",
-      "w:128 DG:MutualImmanence → hexis-praxis as mutual immanence (not alternation)",
-      "w:129 DG:SelectionRule → conservation law §5.43 (converges with Fermat/Feynman)",
-      "w:130 DG:FourFormsOfD → four system trajectory states (extends binary apocalypse)",
-      "w:131 DG:DestratificationWarning → controlled dissolution §5.27",
-      "w:132 DG:SmoothStriated → global field=smooth, assembly field=striated (rhizomatic↔smooth↔global)",
-      "w:133 DG:AbstractMachine → TAPS signature as concrete machine (phylum+diagram)",
-      "w:134 DG:ConjunctionVsConnection → junction typology §5.61",
-      "w:135 DG:Coefficients → quantitative schizoanalysis legitimation",
-      "w:136 DG:ThreeAbstractMachineTypes → cross-metathesis/TAPS classification/L22 regulation (novel)",
-      "w:137 DG:ThreeDangersOfLines → three failure modes (extends binary)"
-    ],
+    "recent_changes": [],
     "flagged": []
   },
 
@@ -172,5 +154,10 @@
     "flagged": []
   },
 
-  "natural_summary": "Stage 3B complete with 345 tests across 7 phases. Post-3B reflection ongoing — source distillation pipeline (v5 skill) tested on Lizier 2012, Lizier Slideshow, D&G ATP Ch15. Concept map at 137 cross-source entries. Convergence web at 29 inter-source linkages across 9 clusters. D&G Ch15 provides fourth independent convergence on L-matrix 4-channel structure, selection rule = conservation law. Next: R&B deep review, then TASKS.md and Stage 3C planning."
+  "memory_config": {
+    "integration": "full",
+    "path": "C:\\Users\\user\\.claude\\projects\\C--Users-user-Documents-New-folder\\memory\\MEMORY.md"
+  },
+
+  "natural_summary": "Meta-tooling session: reviewed v3 skill system, resolved MEMORY.md/buffer redundancy by trimming MEMORY.md to 41-line orientation card and adding automatic integration support (Step 0f in onhand, Step 11 sync in handoff, promotion check at full-scan threshold). No simulator code or theoretical content changed. 345 tests passing. Next: R&B deep review, then TASKS.md and Stage 3C planning."
 }
