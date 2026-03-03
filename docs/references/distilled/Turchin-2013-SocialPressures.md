@@ -191,19 +191,38 @@ Note: Each image reference (`![...](...)`) embeds the rendered page for visual i
 
 $$W_{t-\tau} = a \left(\frac{G_t}{N_t}\right)^\alpha \left(\frac{D_t}{S_t}\right)^\beta C_t^\gamma$$
 
-Three multiplicative factors: GDP/capita (productivity), labor D/S (market), non-market forces (C). Lag τ ≈ 5yr = wage stickiness.
+- $W_{t-\tau}$: real wage at time $t - \tau$ (scalar, USD/yr or index)
+- $\tau$: wage stickiness lag ≈ 5 years (institutional delay between structural change and wage response)
+- $a$: scaling constant
+- $G_t$: GDP at time $t$ (scalar, USD)
+- $N_t$: total population at time $t$ (scalar); $G_t / N_t$ = GDP per capita (productivity factor)
+- $D_t$: labor demand at time $t$ (scalar)
+- $S_t$: labor supply at time $t$ (scalar); $D_t / S_t$ = market tightness factor
+- $C_t$: non-market forces at time $t$ — coercive, political, ideological power (proxied by real minimum wage in contemporary model)
+- $\alpha, \beta, \gamma$: elasticity exponents for each factor (fitted via regression)
+
+Three multiplicative factors: productivity ($G/N$), market ($D/S$), non-market ($C$).
 
 ### Log-Linear Form (Eq. 2)
 
 ![Eq. 2](figures/Turchin-2013-SocialPressures/eq_02_p10.png)
 
-Log-linear form → standard regression with ARIMA errors.
+Log-transform of Eq. 1 → standard regression with ARIMA errors. Contemporary model fit: $R^2 = 0.98$ with $\alpha = 0.48$, $\beta = 0.28$, $\gamma = 0.23$.
 
 ### Elite Population Dynamics (Eqs. 3–4)
 
 $$\dot{E} = rE + \mu N \quad;\quad \mu = \mu_0 \left(\frac{w_0}{w} - 1\right)$$
 
-w < w₀ → μ > 0 (net upward mobility → elite expansion). w > w₀ → μ < 0 (net downward). Relative elite numbers: ė = μ (assuming similar natural growth rates).
+- $E$: absolute elite population (scalar, persons)
+- $\dot{E}$: time derivative of $E$ (rate of change)
+- $r$: natural growth rate of elite population (scalar, yr$^{-1}$); assumed ≈ general pop. growth rate
+- $\mu$: net upward social mobility rate (scalar, yr$^{-1}$); endogenous to relative wage
+- $N$: total population (see Eq. 1)
+- $\mu_0$: baseline mobility rate when $w = w_0 / 2$ (scaling constant)
+- $w_0$: equilibrium relative wage — $w = w_0$ → $\mu = 0$ (no net mobility)
+- $w$: relative wage $= W / (G/N)$ — worker wage scaled by GDP/capita (dimensionless)
+
+$w < w_0$ → $\mu > 0$ (net upward mobility → elite expansion). $w > w_0$ → $\mu < 0$ (net downward). Relative elite numbers: $e = E / (sN)$, so $\dot{e} \approx \mu$ (assuming similar natural growth).
 
 ### Relative Elite Income (Eq. 5)
 
@@ -211,25 +230,51 @@ w < w₀ → μ > 0 (net upward mobility → elite expansion). w > w₀ → μ <
 
 $$\varepsilon = \frac{1 - w\lambda}{e}$$
 
-λ ≈ 0.5 (labor force participation). As e↑ and w↓: numerator (elite GDP share) grows but eventually overtaken by denominator (elite numbers) → income dilution.
+- $\varepsilon$: relative elite income — average elite income scaled by GDP/capita (dimensionless)
+- $w$: relative wage (see Eq. 3)
+- $\lambda$: labor force participation rate ≈ 0.5 (fraction of population that is economically active)
+- $e$: relative elite numbers $= E / (sN)$ (dimensionless)
+- $1 - w\lambda$: elite share of GDP (residual after labor share $w\lambda$)
+
+As $e \uparrow$ and $w \downarrow$: numerator (elite GDP share) grows but eventually overtaken by denominator (elite numbers) → income dilution per elite.
 
 ### Antebellum Population Model (Eqs. 6–7)
 
 $$\dot{N}_{rur} = rN_{rur} - rN_{rur}\left(\frac{N_{rur}}{K}\right)^\theta \quad;\quad \dot{N}_{urb} = r_{urb}N_{urb} + rN_{rur}\left(\frac{N_{rur}}{K}\right)^\theta$$
 
-Rural pop. → K generates nonlinear migration to cities (θ=5 for sigmoidal response). Urban growth = endogenous (r_urb=1.5%/yr) + rural overflow.
+- $N_{rur}$: rural population (scalar, persons)
+- $N_{urb}$: urban population (scalar, persons)
+- $r$: natural rural growth rate (scalar, yr$^{-1}$)
+- $K$: rural carrying capacity (scalar, persons) — saturation limit for rural population
+- $\theta$: migration nonlinearity exponent = 5 (creates sigmoidal response: minimal migration until $N_{rur} \to K$, then rapid overflow)
+- $r_{urb}$: endogenous urban growth rate ≈ 1.5%/yr (births + immigration from outside the 4-state region)
+- $rN_{rur}(N_{rur}/K)^\theta$: rural-to-urban migration term — rural overflow when population approaches carrying capacity
 
 ### Antebellum Wage (Eq. 10)
 
 $$w = a\left(\frac{D}{N_{urb}}\right)^\beta$$
 
-Simplified for pure market economy (no C factor): w determined solely by labor D/S.
+- $w$: relative wage (see Eq. 3)
+- $a$: scaling constant (see Eq. 1)
+- $D$: labor demand (scalar; treated as exogenous in antebellum model)
+- $N_{urb}$: urban population = labor supply proxy (see Eq. 7)
+- $\beta$: labor market elasticity (see Eq. 1)
+
+Simplified for pure market economy (no non-market factor $C$): $w$ determined solely by labor D/S.
 
 ### PSI (Eq. 14)
 
 $$\Psi = w^{-1} \cdot \frac{N_{urb}}{N} \cdot A_{20-29} \cdot \varepsilon^{-1} \cdot \frac{E}{sN} \cdot \frac{Y}{G} \cdot D$$
 
-Composite index = MMP × EMP × SFD. All structural-demographic pressures → single scalar.
+- $\Psi$: Political Stress Indicator (scalar, dimensionless composite index)
+- $w^{-1}$: inverse relative wage — higher when workers are worse off
+- $N_{urb}/N$: urbanization ratio — fraction of population in cities (mobilization potential)
+- $A_{20-29}$: youth bulge — fraction of population aged 20–29 (mobilization potential)
+- $\varepsilon^{-1}$: inverse relative elite income — higher when intraelite competition intensifies (see Eq. 5)
+- $E/(sN)$: relative elite numbers — elite population as fraction of available elite positions ($s$ = fraction of positions)
+- $Y/G$: national debt-to-GDP ratio — fiscal distress indicator
+- $D$: public distrust in government (index, e.g. Pew survey data) — institutional erosion
+- First three terms = MMP (Mass Mobilization Potential); next two = EMP (Elite Mobilization Potential); last two = SFD (State Fiscal Distress). $\Psi$ = MMP × EMP × SFD.
 
 ## Theoretical & Methodological Implications
 
