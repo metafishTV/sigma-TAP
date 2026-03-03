@@ -63,31 +63,53 @@ The results offer a computational explanation for the prevalence of reciprocal l
 
 ### Autoregressive Process
 $$X(n+1) = X(n) \times C + R(n) \tag{1}$$
-$C = [C_{ji}]$: $N \times N$ weighted adjacency matrix. $R(n)$: uncorrelated mean-zero unit-variance Gaussian noise. Stationary iff $\rho(C) < 1$.
+- $X(n)$: row vector of $N$ node values at time step $n$
+- $C = [C_{ji}]$: $N \times N$ weighted adjacency matrix (connectivity); $C_{ji}$ = weight of directed connection from node $j$ to node $i$
+- $R(n)$: uncorrelated mean-zero unit-variance Gaussian noise (independent at each step)
+- $N$: number of nodes in the network
+- Stationarity condition: $\rho(C) < 1$ (all eigenvalues $|\lambda| < 1$)
 
 ### Covariance Series
 $$\Omega = \sum_{u=0}^{\infty} (C^u)^T C^u \tag{2}$$
 $$\Omega(s) = \Omega C^s \tag{3}$$
-Eq. 3 is this paper's contribution: lagged autocovariance determines information storage capability.
+- $\Omega$: $N \times N$ equal-time covariance matrix; $\Omega = X(n)^T X(n)$ (ensemble average)
+- $\Omega(s)$: lagged covariance matrix at lag $s$ (integer time steps); $\Omega(s) = X(n)^T X(n+s)$
+- $\Omega(s)_{ii}$: diagonal element = autocovariance of node $i$ at lag $s$ (drives information storage)
+- Eq. 3 is this paper's contribution: lagged autocovariance determines information storage capability
 
 ### Active Information Storage
 $$A(X) = H(X) - H_\mu(X) \tag{4}$$
 $$H_\mu(X) = \lim_{k \to \infty} H(X^{(k+1)}) - H(X^{(k)}) \tag{5}$$
 $$A(X_i) = \lim_{k \to \infty} \frac{1}{2} \ln\left(\frac{|\Omega(0)_{ii}| \cdot |M_i(k)|}{|M_i(k+1)|}\right) \tag{6}$$
-$M_i(k)$: $k \times k$ symmetric Toeplitz autocovariance matrix built from $\Omega(s)_{ii}$ terms.
+- $A(X_i)$: active information storage at node $i$ — mutual information between joint past states and next state
+- $H(X)$: differential entropy of node $X$; for Gaussian: $H(X_i) = \frac{1}{2}\ln(2\pi e \cdot \Omega(0)_{ii})$
+- $H_\mu(X)$: entropy rate — residual uncertainty about next state given full past
+- $H(X^{(k)})$: block entropy of $k$ consecutive states
+- $M_i(k)$: $k \times k$ symmetric Toeplitz autocovariance matrix built from $\Omega(s)_{ii}$ terms ($s = 0, 1, \ldots, k-1$)
+- $|\cdot|$: matrix determinant
+- $k$: past history length (taken $k \to \infty$ for the true measure)
 
 ### Motif Expansion of Autocovariance
 $$\Omega(0)_{ii} = 1 + w^{sqr}_{i,1} + O(\epsilon^4) \tag{7}$$
 $$\Omega(1)_{ii} = w^{fwd}_{i,3} + O(\epsilon^5) \tag{8}$$
 $$\Omega(2)_{ii} = w^{cyc}_{i,2} + w^{fwd}_{i,4} + O(\epsilon^6) \tag{9}$$
 $$\Omega(3)_{ii} = w^{cyc}_{i,3} + O(\epsilon^5) \tag{10}$$
-$\Omega(s \geq 4)_{ii}$: $O(\epsilon^4)$ or smaller — enters $A$ below $O(\epsilon^6)$. Only loop motifs of length $s$ contribute to $\Omega(s \geq 1)_{ii}$.
+- $\epsilon \equiv \|C\|$: any consistent matrix norm of $C$ (expansion parameter; terms ordered by powers of $\epsilon$)
+- $w^{sqr}_{i,1} = \sum_{j \neq i} C^2_{ji}$: sum of squared incoming weights at node $i$ (directed effects, Fig. 1e)
+- $w^{cyc}_{i,2} = \sum_{j \neq i} C_{ij}C_{ji}$: weighted count of 2-node directed cycles (reciprocal links, Fig. 1a)
+- $w^{cyc}_{i,3} = \sum_{j \neq i; l \neq j,i} C_{il}C_{lj}C_{ji}$: weighted count of 3-node directed cycles (Fig. 1b)
+- $w^{fwd}_{i,3} = \sum_{j \neq i; l \neq j,i} C_{li}C_{lj}C_{ji}$: weighted count of 3-node feedforward loops (Fig. 1c)
+- $w^{fwd}_{i,4}$: weighted count of 4-node feedforward loops (Fig. 1d); decomposed in Eq. 13
+- $O(\epsilon^n)$: terms of order $n$ and higher in the matrix norm expansion
+- $\Omega(s \geq 4)_{ii}$: $O(\epsilon^4)$ or smaller — enters $A$ below $O(\epsilon^6)$. Only loop motifs of length $s$ contribute to $\Omega(s \geq 1)_{ii}$
 
 ### Storage Estimates
 $$A^*(X_i) = \frac{1}{2}(w^{cyc}_{i,2})^2 \tag{11}$$
 $$A^{**}(X_i) = \frac{1}{2}\left(w^{cyc}_{i,2}(w^{cyc}_{i,2} + 2w^{fwd\prime}_{i,4}) + (w^{fwd}_{i,3})^2 + (w^{cyc}_{i,3})^2\right) \tag{12}$$
 $$w^{fwd}_{i,4} = w^{sqr}_{i,1} \cdot w^{cyc}_{i,2} + w^{fwd\prime}_{i,4} \tag{13}$$
-$w^{fwd\prime}_{i,4}$ adds restriction $g \neq i$, factoring out the reducible component.
+- $A^*(X_i)$: storage estimate accurate to $O(\epsilon^4)$ — captures two-node motifs only
+- $A^{**}(X_i)$: storage estimate accurate to $O(\epsilon^6)$ — captures up to three-node motifs
+- $w^{fwd\prime}_{i,4}$: $w^{fwd}_{i,4}$ with additional restriction $g \neq i$, factoring out the reducible component that equals $w^{sqr}_{i,1} \cdot w^{cyc}_{i,2}$
 
 ## Theoretical & Methodological Implications
 

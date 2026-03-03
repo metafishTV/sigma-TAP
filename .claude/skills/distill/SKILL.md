@@ -321,7 +321,14 @@ Note: The image reference embeds the rendered page for visual inspection by futu
 
 ## Equations & Formal Models                  ← CONDITIONAL: only if mathematical content exists
 
-[Reproduce key equations in LaTeX notation. Explain variables and significance.]
+[For each key equation, reproduce in LaTeX notation AND define every variable. Format:]
+
+### [Equation Name or Label]
+$$[equation in LaTeX] \tag{N}$$
+- $[symbol]$: [definition — type (scalar/vector/matrix), units if applicable, constraints]
+- $[symbol]$: [definition]
+
+[**Variable definitions are MANDATORY.** An equation without its variable definitions cannot be reconstructed by a future instance. If a variable was defined in an earlier equation, a brief back-reference suffices (e.g., "$C$: connectivity matrix (see Eq. 1)"). Group equations sharing a derivation chain under a common heading.]
 
 ## Theoretical & Methodological Implications   ← MANDATORY
 
