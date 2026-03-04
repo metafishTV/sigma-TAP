@@ -1,7 +1,7 @@
 # Distill Skill v7 — Bundled Scripts, Pass Restructuring, UX Improvements
 
 > Date: 2026-03-03
-> Status: approved
+> Status: implemented
 > Scope: `~/.claude/skills/distill/` (global skill + new scripts directory)
 
 ## Summary

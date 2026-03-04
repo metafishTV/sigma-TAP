@@ -13,6 +13,10 @@ Project-specific on-hand skill. Overrides the global onhand skill with sigma-TAP
 - **Memory file**: `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\MEMORY.md`
 - **Index file**: `docs/references/INDEX.md`
 
+## Greeting
+
+When `/onhand` is invoked, always begin with a brief variation of: **"Let me see what's on hand."** Then proceed silently through the reconstruction steps. Do not ask the user anything before reconstruction is complete — the greeting is a signal that work has started, not a prompt for input.
+
 ## On-Hand Priorities
 
 After the standard hot-layer reconstruction (Steps 1-4 of global process), additionally:

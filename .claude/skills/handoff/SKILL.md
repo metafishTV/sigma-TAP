@@ -117,6 +117,42 @@ If the exempt content alone approaches 800 lines, consider:
 
 Decision and thread `ref` fields use `§5.XX` notation from `docs/plans/2026-02-26-stage3a-two-channel-design.md`. This is the design doc containing all forward notes (§5.1 through §5.69+).
 
+## Consolidation Heuristics
+
+When performing warm consolidation (Step 6b of global process), use these sigma-TAP-specific rules.
+
+### Established Vocabulary
+
+These terms are defined in the concept_map and should be used without re-explanation in other entries:
+
+- **Structural**: unity, multiplicity, unificity, L-matrix, L11/L12/L21/L22
+- **Dialectic**: thesis, athesis, synthesis, metathesis
+- **TAPS**: transvolution, anopression, praxis, syntegration
+- **RIP**: recursive/reflective, iterative/integrative, preservative/praxitive
+- **Operational**: affordance score, type-set, Jaccard, metathetic transition, TAPS signature, affordance tick, Youn ratio, sigma(Xi)
+
+When a warm entry's description restates any of these using more words, compress to the term. The concept_map is the glossary — every other warm section should speak its language.
+
+### Merge Candidates
+
+Check these patterns during consolidation:
+
+- **Cross-source convergence**: Two `cross_source` entries from different sources that both `maps_to` the same TAPS letter or L-channel → merge into single entry with both source attributions, one `maps_to`, combined `see_also`
+- **Confirmed suggestions**: Entry where `suggest` was promoted to `equiv` → check if the original description is now redundant with the confirmed mapping. If so, tighten.
+- **Convergence web ref updates**: If convergence web `thesis`/`athesis` refs point to entries that were merged → update the refs to the surviving entry ID
+
+### Compression Signals
+
+An entry is ready for description tightening when ALL of:
+- Unchanged for 3+ sessions (check `validation_log`)
+- Description uses >20 words
+- All key terms in the description are defined elsewhere in concept_map
+- No pending `suggest` (mapping is stable)
+
+### Conservation Interaction
+
+Consolidation reduces warm line count, which delays conservation migration (Step 9). This is intentional — consolidation keeps content in warm where it's accessible, rather than pushing it to cold where it requires explicit retrieval. The warm layer should get denser, not migrate prematurely.
+
 ## Process
 
 Follow the global handoff skill process (Steps 1-14), using the configuration and schemas defined here. The global skill defines the generic process; this file defines the project-specific structure. Warm max lines is 800 (overrides global 500).
