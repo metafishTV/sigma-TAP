@@ -2,7 +2,7 @@
 
 > Source: Merrelyn Emery, "The Current Version of Emery's Open Systems Theory," *Systemic Practice and Action Research*, Vol. 13, No. 5, 2000, pp. 623–643 (21 pages)
 > Date distilled: 2026-03-03
-> Distilled by: Claude (via distill skill v6)
+> Distilled by: Claude (via distill skill)
 > Register: mixed (empirical social science + practitioner-applied)
 > Tone: mixed (personal-reflexive in historical/polemical sections; impersonal-objective in formal treatment)
 > Density: accessible-general

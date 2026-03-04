@@ -2,7 +2,7 @@
 
 > Source: opensystemstheory.org — practitioner learning resource for Open Systems Theory, maintained by OST community (Hjorteland, Hamidi, Aughton, et al.) with Merrelyn Emery as primary authority. 13 pages fetched and synthesized.
 > Date distilled: 2026-03-03
-> Distilled by: Claude (via distill skill v6)
+> Distilled by: Claude (via distill skill)
 > Register: practitioner-applied
 > Tone: mixed (impersonal exposition + personal/reflexive Q&A with Merrelyn Emery)
 > Density: accessible-general

@@ -2,7 +2,7 @@
 
 > Source: Donald W. de Guerre, "Open Systems Theory and the Two-Stage Model of Active Adaptation," chapter in practitioner anthology, 2016. 9 pages.
 > Date distilled: 2026-03-03
-> Distilled by: Claude (via distill skill v6)
+> Distilled by: Claude (via distill skill)
 > Register: practitioner-applied
 > Tone: mixed (personal "we" framing + impersonal theory exposition)
 > Density: accessible-general

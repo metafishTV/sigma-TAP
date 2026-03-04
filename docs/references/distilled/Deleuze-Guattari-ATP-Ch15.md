@@ -2,7 +2,7 @@
 
 > Source: Gilles Deleuze & Félix Guattari, *A Thousand Plateaus: Capitalism and Schizophrenia*, trans. Brian Massumi (Minneapolis: University of Minnesota Press, 1987), Chapter 15: "Conclusion: Concrete Rules and Abstract Machines," pp. 501–514. 14 pages.
 > Date distilled: 2026-03-02
-> Distilled by: Claude (via distill skill v5)
+> Distilled by: Claude (via distill skill)
 > Register: continental / post-structuralist
 > Tone: impersonal-objective (theoretical third person, declarative)
 > Density: technical-specialist (requires familiarity with D&G's conceptual apparatus; this chapter recapitulates the entire work)

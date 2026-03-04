@@ -2,7 +2,7 @@
 
 > Source: Peter Turchin, "Modeling Social Pressures Toward Political Instability," *Cliodynamics* 4(2): 241–280, 2013. 41pp.
 > Date distilled: 2026-03-02
-> Distilled by: Claude (via distill skill v4)
+> Distilled by: Claude (via distill skill)
 > Register: empirical social science / formal-mathematical
 > Tone: mixed (impersonal-objective with first-person methodological narration)
 > Density: technical-specialist (assumes ODE modeling, regression analysis, demographic theory)

@@ -128,7 +128,7 @@
 
   "concept_map_digest": {
     "_meta": {
-      "total_entries": 158,
+      "total_entries": 164,
       "last_validated": "2026-03-03"
     },
     "recent_changes": [
@@ -139,14 +139,20 @@
       { "id": "w:155", "key": "Emery:functional_level_hierarchy", "status": "NEW" },
       { "id": "w:156", "key": "Emery:learning_organization_DP2", "status": "NEW" },
       { "id": "w:157", "key": "Emery:AXB_model", "status": "NEW" },
-      { "id": "w:158", "key": "Emery:structural_corroboration", "status": "NEW" }
+      { "id": "w:158", "key": "Emery:structural_corroboration", "status": "NEW" },
+      { "id": "w:159", "key": "OSTsite:SixCriteria_3plus3", "status": "NEW" },
+      { "id": "w:160", "key": "OSTsite:DP_exhaustiveness", "status": "NEW" },
+      { "id": "w:161", "key": "OSTsite:LaissezFaire_void", "status": "NEW" },
+      { "id": "w:162", "key": "OSTsite:TwoLayer_environment", "status": "NEW" },
+      { "id": "w:163", "key": "OSTsite:L22_incommensurability_case", "status": "NEW" },
+      { "id": "w:164", "key": "OSTsite:Neoliberalism_counterfinality", "status": "NEW" }
     ],
     "flagged": ["w:152"]
   },
 
   "convergence_web_digest": {
     "_meta": {
-      "total_entries": 41,
+      "total_entries": 45,
       "last_validated": "2026-03-03"
     },
     "clusters": [
@@ -160,12 +166,13 @@
       "Structural-Asymmetry (cw:32)",
       "Agent Viability & Reception (cw:19-20)",
       "Continuous vs Discrete & Time (cw:21-22)",
-      "System Trajectory & Dissolution (cw:28-29, cw:34)",
+      "System Trajectory & Dissolution (cw:28-29, cw:34, cw:44)",
       "Real vs Apparent Exchange (cw:27)",
       "Group Phase Alignment & Multilevel Selection (cw:36, cw:40)",
-      "Agency Preconditions (cw:37, cw:38)",
+      "Agency Preconditions (cw:37, cw:38, cw:42)",
       "Emergent Discovery & Puzzle Learning (cw:39)",
-      "Structural Invariance Across Contexts (cw:41)"
+      "Structural Invariance Across Contexts (cw:41, cw:43)",
+      "Counter-Finality & Institutional Regression (cw:45)"
     ],
     "flagged": []
   },

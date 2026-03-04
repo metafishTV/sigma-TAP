@@ -2,7 +2,7 @@
 
 > Source: Joseph T. Lizier, Fatihcan M. Atay, and Jürgen Jost, "Information storage, loop motifs and clustered structure in complex networks," *Physical Review E* 86, 026110, 2012. 5pp.
 > Date distilled: 2026-03-02
-> Distilled by: Claude (via distill skill v5)
+> Distilled by: Claude (via distill skill)
 > Register: formal-mathematical
 > Tone: impersonal-objective
 > Density: technical-specialist (assumes information theory, linear algebra, network science)

@@ -2,7 +2,7 @@
 
 > Source: Joseph T. Lizier, "Analytic relationship of relative synchronizability to network structure and motifs," presentation slides (26 slides), Centre for Complex Systems, School of Computer Science, The University of Sydney. Accompanies Lizier et al., *PNAS* 120(37), e2303332120 (2023).
 > Date distilled: 2026-03-02
-> Distilled by: Claude (via distill skill v5)
+> Distilled by: Claude (via distill skill)
 > Register: formal-mathematical
 > Tone: impersonal-objective
 > Density: technical-specialist (assumes network science, linear algebra, stochastic processes)

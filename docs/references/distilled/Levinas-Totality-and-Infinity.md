@@ -2,7 +2,7 @@
 
 > Source: Emmanuel Levinas, *Totality and Infinity: An Essay on Exteriority*, trans. Alphonso Lingis (Pittsburgh: Duquesne University Press, 1969). Three excerpted sections: pp. 114–121 (Separation as Life), pp. 191–193 (Sensibility and the Face), pp. 220–232 (The Ethical Relation and Time). 23 pp.
 > Date distilled: 2026-03-03
-> Distilled by: Claude (via distill skill v6)
+> Distilled by: Claude (via distill skill)
 > Register: continental phenomenology
 > Tone: mixed (impersonal-objective argumentation with personal-reflexive passages)
 > Density: technical-specialist
