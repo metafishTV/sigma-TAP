@@ -6,13 +6,16 @@
   "cold_ref": "handoff-cold.json",
   "session_meta": {
     "date": "2026-03-05",
-    "commit": "eb978d3",
+    "commit": "9bef205",
     "branch": "main",
     "files_modified": [
-      ".claude/hooks/compact-hook.cmd",
-      ".claude/settings.json",
-      ".claude/skills/distill/SKILL.md",
-      ".gitignore"
+      "docs/references/distilled/DeLanda_AssemblageTheory_2016_Book.md",
+      "docs/references/distilled/Easwaran_BhagavadGita_2007_Book.md",
+      "docs/references/distilled/Easwaran_BhagavadGita_2007_Glossary.md",
+      "docs/references/interpretations/DeLanda_AssemblageTheory_2016_Book.md",
+      "docs/references/interpretations/Easwaran_BhagavadGita_2007_Book.md",
+      "docs/references/interpretations/Easwaran_BhagavadGita_2007_Glossary.md",
+      "docs/references/INDEX.md"
     ],
     "tests": "345/345 passing"
   },
@@ -21,16 +24,14 @@
   "active_work": {
     "current_phase": "Stage 3B COMPLETE — post-reflection tooling phase",
     "completed_this_session": [
-      "Compact hook fix: find_buffer_dir() searches down + global registry",
-      "Hooks moved to user-level settings.json with absolute paths",
-      "Skill registration: buffer-off/ and buffer-on/ as flat top-level dirs",
-      "Direct assertive register in distill skill (8 edits)",
-      "Error registry + debug_check.py (5 seeded patterns)",
-      "Distill-in-progress detection in compact_hook.py"
+      "DeLanda + Easwaran distillations committed (9bef205)",
+      "buffer_manager.py: handoff pipeline command (update→migrate→sync)",
+      "buffer-off compressed workflow documented (~7 tool calls)",
+      "Compact hooks confirmed working in live compaction"
     ],
     "in_progress": null,
     "blocked_by": null,
-    "next_action": "DeLanda review → R&B deep review → TASKS.md → Stage 3C"
+    "next_action": "Implement full/lite buffer-off mode → DeLanda review → R&B deep review → Stage 3C"
   },
   "orientation": {
     "core_insight": "sigma-TAP models PRAXIS (how agents become through action) via the L-matrix. Four channels: L11=self-self, L12=self-other, L21=other-self, L22=env-env. Philosophical sources (Levinas, Sartre, D&G, Emery-Trist) independently converge on this 4-channel structure — that convergence is the user's key claim.",
@@ -45,6 +46,21 @@
   },
   "open_threads": [
     {
+      "thread": "Compact hooks unreliable — fired once, missed other compactions. Debug.",
+      "status": "noted",
+      "ref": "Hooks in ~/.claude/settings.json. PreCompact + SessionStart:compact. Only 1 confirmed firing despite multiple compactions."
+    },
+    {
+      "thread": "Full/lite buffer-off mode — user chooses depth at invocation.",
+      "status": "noted",
+      "ref": "Full = existing 14-step handoff. Lite = quick hot-layer checkpoint (skip warm consolidation, concept map, conservation). User wants more control than autosave."
+    },
+    {
+      "thread": "Skills repo for marketplace — needed for plugin conversion.",
+      "status": "deferred",
+      "ref": "Buffer plugin 3-4 sessions, distill separate. Needs proper repo + manifest."
+    },
+    {
       "thread": "R&B deep review — after DeLanda.",
       "status": "noted",
       "ref": "docs/references/Ruesch_Bateson_Communication_1951_Excerpt_pg196-237.pdf"
@@ -57,58 +73,36 @@
       "thread": "Turbulence reconception — full rethink needed.",
       "status": "deferred",
       "ref": "§5.42"
-    },
-    {
-      "thread": "Plugin conversion scoped (buffer: 3-4 sessions, distill separate).",
-      "status": "deferred"
-    },
-    {
-      "thread": "Verify compact hooks fire during real compaction.",
-      "status": "noted"
     }
   ],
   "recent_decisions": [
     {
-      "what": "Compact hooks location",
-      "chose": "User-level settings.json, absolute Python path",
-      "why": "Repo settings not loaded when CWD is parent",
-      "session": "2026-03-05"
+      "what": "Buffer-off mode split",
+      "chose": "Full (complete handoff) vs Lite (quick checkpoint)",
+      "why": "User wants mid-session saves with more control than autosave"
     },
     {
-      "what": "Buffer discovery",
-      "chose": "Search up → down one level → global registry",
-      "why": "CWD can be parent of repo",
-      "session": "2026-03-05"
-    },
-    {
-      "what": "Skill invocation names",
-      "chose": "Flat dirs: /buffer-off, /buffer-on (hyphenated)",
-      "why": "Personal skills: flat scanning only",
-      "session": "2026-03-05"
-    },
-    {
-      "what": "Distillation register",
-      "chose": "Direct assertive — speak AS source",
-      "why": "Header carries attribution; meta-framing = noise",
-      "session": "2026-03-05"
+      "what": "Handoff pipeline",
+      "chose": "Single `handoff` command chains update→migrate→sync",
+      "why": "15 tool calls → ~7; file input avoids cp1252 encoding issues"
     }
   ],
   "instance_notes": {
-    "from": "v5 tooling bugfix instance",
+    "from": "v6 continuation instance",
     "to": "next instance",
     "remarks": [
-      "Still META — tooling bugfixes only, no theory or simulator code.",
-      "Skills: /buffer-off and /buffer-on (hyphenated). Old /handoff, /onhand redirect.",
-      "Compact hooks in USER-level ~/.claude/settings.json (absolute paths).",
-      "compact_hook.py searches downward now — works from any parent CWD.",
-      "Distill skill: direct assertive register at 8 edit points.",
-      "User wants to share skills as plugins eventually. Buffer first.",
-      "Orphaned subdirs ~/.claude/skills/buffer/off/ and buffer/on/ — can clean up."
+      "Compact hooks fired ONCE but compaction occurred MULTIPLE times — hooks are NOT reliably triggering. Investigate.",
+      "buffer_manager.py now has `handoff` command — use it instead of manual step-by-step.",
+      "Write changes to _changes.json file, not stdin pipe (Windows cp1252 breaks Unicode).",
+      "DeLanda + Easwaran distillations committed. DeLanda review is next theory work.",
+      "User wants full/lite buffer-off split — design this next session.",
+      "Skills repo needed for marketplace — deferred but important to user.",
+      "Orphaned ~/.claude/skills/buffer/off/ and buffer/on/ still exist — can clean up."
     ],
     "open_questions": [
-      "Compact hooks untested in live compaction — only manual test passed.",
+      "PRIORITY: Compact hooks unreliable — fired once but missed other compactions. Root cause unknown. Debug next session.",
       "Warm at 2925 lines (2658 exempt backbone). Load time impact?",
-      "Centrifugal/diffuse thread dropped this session — still valid?"
+      "Lite buffer scope: how minimal? Just hot snapshot, or include recent decisions too?"
     ]
   },
   "concept_map_digest": {
@@ -151,5 +145,5 @@
     "integration": "full",
     "path": "C:\\Users\\user\\.claude\\projects\\C--Users-user-Documents-New-folder\\memory\\MEMORY.md"
   },
-  "natural_summary": "Continuation session focused on tooling bugfixes: compaction hooks now fire from any CWD (moved to user-level settings, buffer discovery searches downward), skill invocation fixed with flat top-level directories (/buffer-off, /buffer-on). Direct assertive register enforced in distill skill. No theory or simulator changes. [compacted] Context compacted -- hot layer preserved by pre-compact hook."
+  "natural_summary": "Continuation: committed DeLanda + Easwaran distillations, built handoff pipeline command in buffer_manager.py, confirmed compact hooks fired once but user reports multiple compactions missed — hooks unreliable, needs debugging. New feature noted: full/lite buffer-off mode for user-controlled checkpoint depth. Skills repo needed for marketplace plugin conversion."
 }
