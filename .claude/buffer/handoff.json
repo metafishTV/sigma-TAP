@@ -4,37 +4,34 @@
   "buffer_mode": "project",
   "warm_ref": "handoff-warm.json",
   "cold_ref": "handoff-cold.json",
-
   "session_meta": {
     "date": "2026-03-05",
-    "commit": "bb48470",
+    "commit": "eb978d3",
     "branch": "main",
     "files_modified": [
-      ".claude/buffer/handoff.json",
-      ".claude/skills/buffer/on.md",
-      ".claude/skills/handoff/SKILL.md",
-      ".claude/skills/onhand/SKILL.md"
+      ".claude/hooks/compact-hook.cmd",
+      ".claude/settings.json",
+      ".claude/skills/distill/SKILL.md",
+      ".gitignore"
     ],
     "tests": "345/345 passing"
   },
-
-  "sessions_since_full_scan": 1,
+  "sessions_since_full_scan": 2,
   "full_scan_threshold": 5,
-
   "active_work": {
     "current_phase": "Stage 3B COMPLETE — post-reflection tooling phase",
     "completed_this_session": [
-      "Buffer skill reorganization (/handoff+/onhand → /buffer:off+/buffer:on)",
-      "Provenance-aware consolidation protocol",
-      "Post-compaction consistency check (now self-activating)",
-      "Distill skill: source citations, web figure capture fix, routing escape hatch",
-      "Source label convention: all 24 source files + 21 distilled + 8 interpretations renamed"
+      "Compact hook fix: find_buffer_dir() searches down + global registry",
+      "Hooks moved to user-level settings.json with absolute paths",
+      "Skill registration: buffer-off/ and buffer-on/ as flat top-level dirs",
+      "Direct assertive register in distill skill (8 edits)",
+      "Error registry + debug_check.py (5 seeded patterns)",
+      "Distill-in-progress detection in compact_hook.py"
     ],
-    "in_progress": "Three buffer modes (minimal/memory/project)",
+    "in_progress": null,
     "blocked_by": null,
-    "next_action": "Verify buffer mode edits → create project buffer/off.md → R&B deep review"
+    "next_action": "DeLanda review → R&B deep review → TASKS.md → Stage 3C"
   },
-
   "orientation": {
     "core_insight": "sigma-TAP models PRAXIS (how agents become through action) via the L-matrix. Four channels: L11=self-self, L12=self-other, L21=other-self, L22=env-env. Philosophical sources (Levinas, Sartre, D&G, Emery-Trist) independently converge on this 4-channel structure — that convergence is the user's key claim.",
     "practical_warning": "Do NOT introduce novel claims or impose ABM assumptions. Terminological precision matters deeply. When in doubt, quote the user's terms back rather than paraphrasing.",
@@ -46,95 +43,84 @@
       "user_framework": "FOUNDATIONAL triad: Unity-Multiplicity-Unificity. Sits above all sources; TAPS, RIP, Dialectic unfold from it"
     }
   },
-
   "open_threads": [
     {
-      "thread": "R&B deep review — NEXT ACTION. Preliminary L-channel mapping untested against actual text.",
+      "thread": "R&B deep review — after DeLanda.",
       "status": "noted",
       "ref": "docs/references/Ruesch_Bateson_Communication_1951_Excerpt_pg196-237.pdf"
     },
     {
-      "thread": "TASKS.md — deferred until after R&B review (findings may reshape Stage 3C scope).",
+      "thread": "TASKS.md — deferred until after R&B review.",
       "status": "deferred"
     },
     {
-      "thread": "Centrifugal/diffuse alternation: evolution→anapression→projection→disintegration = out→in→out→in.",
-      "status": "deferred"
-    },
-    {
-      "thread": "Turbulence reconception — full rethink of turbulence.py needed.",
+      "thread": "Turbulence reconception — full rethink needed.",
       "status": "deferred",
       "ref": "§5.42"
+    },
+    {
+      "thread": "Plugin conversion scoped (buffer: 3-4 sessions, distill separate).",
+      "status": "deferred"
+    },
+    {
+      "thread": "Verify compact hooks fire during real compaction.",
+      "status": "noted"
     }
   ],
-
   "recent_decisions": [
     {
-      "what": "MEMORY.md/buffer redundancy",
-      "chose": "Orientation card: MEMORY.md lean ~50 lines, buffer = single source of truth",
-      "why": "228-line MEMORY.md duplicated concept_map content"
+      "what": "Compact hooks location",
+      "chose": "User-level settings.json, absolute Python path",
+      "why": "Repo settings not loaded when CWD is parent",
+      "session": "2026-03-05"
     },
     {
-      "what": "MEMORY.md integration mode",
-      "chose": "Three-option first-run: full/minimal/none",
-      "why": "Respects user sovereignty over existing notes"
+      "what": "Buffer discovery",
+      "chose": "Search up → down one level → global registry",
+      "why": "CWD can be parent of repo",
+      "session": "2026-03-05"
     },
     {
-      "what": "Upward buffering mechanism",
-      "chose": "Handoff-only at full-scan threshold, max 10 lines/cycle",
-      "why": "Autosave too expensive; full-scan = natural moment"
+      "what": "Skill invocation names",
+      "chose": "Flat dirs: /buffer-off, /buffer-on (hyphenated)",
+      "why": "Personal skills: flat scanning only",
+      "session": "2026-03-05"
     },
     {
-      "what": "Status sync at handoff",
-      "chose": "Update MEMORY.md one-liner from active_work (Step 11)",
-      "why": "Standalone sessions see stale status otherwise"
+      "what": "Distillation register",
+      "chose": "Direct assertive — speak AS source",
+      "why": "Header carries attribution; meta-framing = noise",
+      "session": "2026-03-05"
     }
   ],
-
   "instance_notes": {
-    "from": "v4 tooling session instance",
+    "from": "v5 tooling bugfix instance",
     "to": "next instance",
     "remarks": [
-      "META session — tooling only, no theory or code. Simulator untouched.",
-      "User thinks architecturally about /handoff and /onhand — treat as first-class artifacts.",
-      "MEMORY.md: 228→41 lines. All removed content lives in buffer concept_map/convergence_web.",
-      "Global skills: ~/.claude/skills/. Project skills: repo/.claude/skills/. Don't confuse them.",
-      "Project warm max overridden to 800 lines (concept_map + convergence_web are large).",
-      "Previous Stage 3B instance_notes still applicable. Read cold-layer dialogue_trace.",
-      "repo/.claude/skills/resume/ is OLD name before rename to 'onhand'. May need cleanup."
+      "Still META — tooling bugfixes only, no theory or simulator code.",
+      "Skills: /buffer-off and /buffer-on (hyphenated). Old /handoff, /onhand redirect.",
+      "Compact hooks in USER-level ~/.claude/settings.json (absolute paths).",
+      "compact_hook.py searches downward now — works from any parent CWD.",
+      "Distill skill: direct assertive register at 8 edit points.",
+      "User wants to share skills as plugins eventually. Buffer first.",
+      "Orphaned subdirs ~/.claude/skills/buffer/off/ and buffer/on/ — can clean up."
     ],
     "open_questions": [
-      "Promotion check counter undefined — where does 'loaded 3+ sessions' state live?",
-      "Distill skill has no path to push concepts to MEMORY.md orientation card.",
-      "MEMORY.md lives outside repo. If user switches machines, it's lost. Buffer backup?",
-      "Previous instance capped mid-redundancy discussion — check for leftover context."
+      "Compact hooks untested in live compaction — only manual test passed.",
+      "Warm at 2925 lines (2658 exempt backbone). Load time impact?",
+      "Centrifugal/diffuse thread dropped this session — still valid?"
     ]
   },
-
   "concept_map_digest": {
     "_meta": {
       "total_entries": 164,
-      "last_validated": "2026-03-03"
+      "last_validated": "2026-03-05"
     },
-    "recent_changes": [
-      { "id": "w:151", "key": "Emery:potential_directive_correlation", "status": "NEW" },
-      { "id": "w:152", "key": "Emery:four_ideals_L_channel", "status": "NEW" },
-      { "id": "w:153", "key": "Emery:ecological_learning", "status": "NEW" },
-      { "id": "w:154", "key": "Emery:puzzle_learning", "status": "NEW" },
-      { "id": "w:155", "key": "Emery:functional_level_hierarchy", "status": "NEW" },
-      { "id": "w:156", "key": "Emery:learning_organization_DP2", "status": "NEW" },
-      { "id": "w:157", "key": "Emery:AXB_model", "status": "NEW" },
-      { "id": "w:158", "key": "Emery:structural_corroboration", "status": "NEW" },
-      { "id": "w:159", "key": "OSTsite:SixCriteria_3plus3", "status": "NEW" },
-      { "id": "w:160", "key": "OSTsite:DP_exhaustiveness", "status": "NEW" },
-      { "id": "w:161", "key": "OSTsite:LaissezFaire_void", "status": "NEW" },
-      { "id": "w:162", "key": "OSTsite:TwoLayer_environment", "status": "NEW" },
-      { "id": "w:163", "key": "OSTsite:L22_incommensurability_case", "status": "NEW" },
-      { "id": "w:164", "key": "OSTsite:Neoliberalism_counterfinality", "status": "NEW" }
-    ],
-    "flagged": ["w:152"]
+    "recent_changes": [],
+    "flagged": [
+      "w:152"
+    ]
   },
-
   "convergence_web_digest": {
     "_meta": {
       "total_entries": 45,
@@ -161,11 +147,9 @@
     ],
     "flagged": []
   },
-
   "memory_config": {
     "integration": "full",
     "path": "C:\\Users\\user\\.claude\\projects\\C--Users-user-Documents-New-folder\\memory\\MEMORY.md"
   },
-
-  "natural_summary": "Extended meta-tooling session (continued from context exhaustion): buffer skill reorganized into unified /buffer system with three modes (minimal/memory/project), source label convention enforced across all files (git mv), distill skill improved with source citations and routing escape hatch. [compacted] Context compacted — hot layer updated from compaction summary."
+  "natural_summary": "Continuation session focused on tooling bugfixes: compaction hooks now fire from any CWD (moved to user-level settings, buffer discovery searches downward), skill invocation fixed with flat top-level directories (/buffer-off, /buffer-on). Direct assertive register enforced in distill skill. No theory or simulator changes."
 }

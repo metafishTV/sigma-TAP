@@ -5,8 +5,8 @@
     "_meta": {
       "base_system": "Unity-Multiplicity-Unificity > TAPS + RIP + Dialectic",
       "version": 2,
-      "last_validated": "2026-03-04",
-      "total_entries": 151
+      "last_validated": "2026-03-05",
+      "total_entries": 174
     },
     "foundational_triad": [
       {
@@ -1413,6 +1413,167 @@
         "ref": "w:194",
         "suggest": null,
         "note": "Adding one item doubles accessible options (substitutability) => geometric halving of doubling time => finite blowup. The paper's key analytic device. Maps to per-agent innovation contribution in L-matrix framework."
+      },
+      {
+        "id": "w:195",
+        "source": "Easwaran_Gita:nishkama_karma",
+        "maps_to": "sigma_field_engagement_modulation",
+        "ref": "desireless_action_as_sigma_structure",
+        "suggest": null
+      },
+      {
+        "id": "w:196",
+        "source": "Easwaran_Gita:three_gunas",
+        "maps_to": "sigma_TAP_growth_regimes",
+        "ref": "sattva_rajas_tamas_as_dynamical_phases",
+        "suggest": null
+      },
+      {
+        "id": "w:197",
+        "source": "Easwaran_Gita:kshetra_kshetrajna",
+        "maps_to": "L_matrix_agent_architecture",
+        "ref": "field_knower_distinction",
+        "suggest": null
+      },
+      {
+        "id": "w:198",
+        "source": "Easwaran_Gita:vishvarupa",
+        "maps_to": "blow_up_phenomenology",
+        "ref": "unforeshadowability_experience",
+        "suggest": null
+      },
+      {
+        "id": "w:199",
+        "source": "Easwaran_Gita:dharma",
+        "maps_to": "constraint_closure_and_directive_correlation",
+        "ref": "dual_scale_dharma",
+        "suggest": null
+      },
+      {
+        "id": "w:200",
+        "source": "Easwaran_Gita:atman_completeness",
+        "maps_to": "one_prime_non_divisive_totality",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:201",
+        "source": "Easwaran_Gita:shraddha",
+        "maps_to": "sigma_as_constitutive_orientation",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:202",
+        "source": "Easwaran_Gita:yoga_praxis",
+        "maps_to": "praxis_as_union_skill_discipline",
+        "ref": "multiple_registers_of_praxis",
+        "suggest": null
+      },
+      {
+        "id": "w:203",
+        "source": "Easwaran_Glossary:ahamkara",
+        "maps_to": "agent_individuation_mechanism, I-maker_as_type_set_construction",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:204",
+        "source": "Easwaran_Glossary:buddhi_manas_ahamkara",
+        "maps_to": "agent_processing_pipeline, three_stage_cognition (input/evaluation/self-reference)",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:205",
+        "source": "Easwaran_Glossary:jiva_atman_distinction",
+        "maps_to": "finite_infinite_agent, agent_as_type_set_vs_agent_as_one_prime",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:206",
+        "source": "Easwaran_Glossary:lila",
+        "maps_to": "generative_play_dynamics, TAP_as_play_not_engineering_nor_chance",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:207",
+        "source": "Easwaran_Glossary:tapas",
+        "maps_to": "constraint_generated_capacity, restriction_as_amplification",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:208",
+        "source": "Easwaran_Glossary:kalpa_yuga_samsara",
+        "maps_to": "nested_temporal_dynamics, multi_scale_temporality",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:209",
+        "source": "Easwaran_Glossary:samsara",
+        "maps_to": "cyclical_default_dynamics, problem_sigma_field_solves",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:210",
+        "source": "Easwaran_Glossary:etymological_architecture",
+        "maps_to": "TAP_combinatorial_composition, root_recombination_as_adjacent_possible",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:211",
+        "source": "DeLanda_AssemblageTheory:parametrized_assemblage",
+        "maps_to": "L_matrix_parametrization, T_score_C_score_derived_metrics, continuously_variable_assemblage_parameters",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:212",
+        "source": "DeLanda_AssemblageTheory:relations_of_exteriority",
+        "maps_to": "cross_metathesis_capacity, agent_type_set_autonomy, components_detachable_recombineable",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:213",
+        "source": "DeLanda_AssemblageTheory:properties_vs_capacities",
+        "maps_to": "type_set_actual_vs_adjacent_possible_virtual, intrinsic_properties_vs_relational_capacities",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:214",
+        "source": "DeLanda_AssemblageTheory:intensive_extensive",
+        "maps_to": "sigma_field_as_intensive, M_t_as_extensive, variable_taxonomy_intensive_vs_extensive",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:215",
+        "source": "DeLanda_AssemblageTheory:virtual_diagram",
+        "maps_to": "TAP_state_space_attractors, parameter_space_as_control_space, sensitivity_sweeps_as_control_space_exploration",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:216",
+        "source": "DeLanda_AssemblageTheory:divergent_actualization",
+        "maps_to": "TAP_growth_regimes_from_same_equation, sigma_field_as_actualization_navigator",
+        "ref": null,
+        "suggest": null
+      },
+      {
+        "id": "w:217",
+        "source": "DeLanda_AssemblageTheory:nested_assemblages",
+        "maps_to": "multi_scale_TAP, family_groups_as_assemblages, bottom_up_top_down_causality",
+        "ref": null,
+        "suggest": null
       }
     ]
   },
@@ -1426,8 +1587,8 @@
         "tension",
         "genealogy"
       ],
-      "total_entries": 64,
-      "last_validated": "2026-03-04"
+      "total_entries": 82,
+      "last_validated": "2026-03-05"
     },
     "entries": [
       {
@@ -2261,6 +2422,240 @@
         },
         "synthesis": "[elaboration] Two-scale TAP's exponential phase IS the ever-expanding configuration space regime. The blow-up transition marks where combinatorial innovation overwhelms the exponential expansion — the same structure at different levels of description.",
         "metathesis": "TAP equation: exponential phase driven by alpha1*M (single-object evolution). Biocosmology: configuration space expands without bound as new possibilities emerge. The two-scale variant reveals the temporal structure hidden in the configuration-space claim: expansion is initially exponential, then TAP."
+      },
+      {
+        "id": "cw:65",
+        "thesis": {
+          "ref": "w:195",
+          "label": "Easwaran_Gita:nishkama_karma"
+        },
+        "athesis": {
+          "ref": "w:192",
+          "label": "Cortes_etal_TAP:logistic_TAP_open"
+        },
+        "synthesis": "[independent_convergence] Both address the same structural problem: how to moderate unbounded growth through transformed engagement rather than external constraint. Nishkama karma (desireless action) and the logistic TAP problem (resource-mediated moderation of blow-up) converge on sigma-field feedback as the answer",
+        "metathesis": "Nishkama karma operates phenomenologically (agent's relationship to action); logistic TAP operates mathematically (equation-level growth moderation). Each produces a theory of sustainable engagement in its own domain"
+      },
+      {
+        "id": "cw:66",
+        "thesis": {
+          "ref": "w:196",
+          "label": "Easwaran_Gita:three_gunas"
+        },
+        "athesis": {
+          "ref": "w:189",
+          "label": "Cortes_etal_TAP:extinction_instability"
+        },
+        "synthesis": "[complementarity] The gunas as triadic dynamics (sattva/rajas/tamas) complement the binary extinction instability (blow-up or collapse). Tamas maps to the extinction regime; rajas maps to the blow-up regime; sattva maps to the stable intermediate that sigma-TAP's sigma-field creates",
+        "metathesis": "Gunas provide a phenomenological classification of engagement modes; extinction instability provides a mathematical proof of binary outcome without feedback. Together they frame sigma-TAP's central challenge: achieving sattvic metastability"
+      },
+      {
+        "id": "cw:67",
+        "thesis": {
+          "ref": "w:197",
+          "label": "Easwaran_Gita:kshetra_kshetrajna"
+        },
+        "athesis": {
+          "ref": "w:87",
+          "label": "Emery_Trist:L_matrix"
+        },
+        "synthesis": "[independent_convergence] Both establish a four-channel field/knower distinction: the field of activity (kshetra/L-matrix) is structurally separate from the consciousness that reads it (kshetrajna/agent). The Gita's is the oldest formulation; Emery-Trist's is the operational sociological version",
+        "metathesis": "Kshetra/kshetrajna operates ontologically (the Self witnesses prakriti); L-matrix operates accounting-wise (agents read interaction channels). Independent traditions arriving at the same structural separation of activity-field from observing-consciousness"
+      },
+      {
+        "id": "cw:68",
+        "thesis": {
+          "ref": "w:200",
+          "label": "Easwaran_Gita:atman_completeness"
+        },
+        "athesis": {
+          "ref": "w:185",
+          "label": "Unificity:one_prime"
+        },
+        "synthesis": "[genealogy] Atman-as-complete-Self is the oldest formulation of the 1' principle: each perspective IS the whole, not a fraction. Unificity's 1' (each modality = complete perspective on total configuration space) is the formal-structural version of what the Gita states ontologically",
+        "metathesis": "Atman doctrine operates in sacred/ontological register (the Self in every creature IS Brahman); 1' operates in structural/formal register (each modality is a complete perspective). The Gita provides the phenomenological warrant; Unificity provides the structural formalization"
+      },
+      {
+        "id": "cw:69",
+        "thesis": {
+          "ref": "w:199",
+          "label": "Easwaran_Gita:dharma"
+        },
+        "athesis": {
+          "ref": "w:180",
+          "label": "Cortes_Perspective:constraint_closure"
+        },
+        "synthesis": "[independent_convergence] Dharma as cosmic law that sustains itself through the processes it constrains (the yajna cycle: sacrifice->rain->food->beings->sacrifice) is structurally identical to constraint closure (constraints that reproduce themselves through the energy-releasing processes they constrain)",
+        "metathesis": "Dharma operates in sacred-ethical register (cosmic duty that sustains order); constraint closure operates in formal-biological register (thermodynamic closure of organizational constraints). Both describe self-sustaining structural loops but in radically different traditions"
+      },
+      {
+        "id": "cw:70",
+        "thesis": {
+          "ref": "w:201",
+          "label": "Easwaran_Gita:shraddha"
+        },
+        "athesis": {
+          "ref": "w:155",
+          "label": "Emery_M_OST:directive_correlation"
+        },
+        "synthesis": "[independent_convergence] Shraddha as constitutive faith (one IS one's shraddha) and directive correlation as shared environmental orientation both describe the structural ground FROM which agents engage. Neither is a propositional belief — both are constitutive orientations that shape all subsequent action",
+        "metathesis": "Shraddha operates individually (each person's constitutive orientation shapes their guna-quality); directive correlation operates collectively (shared orientation enables system coherence). Both converge on sigma(Xi) as accumulated constitutive orientation"
+      },
+      {
+        "id": "cw:71",
+        "thesis": {
+          "ref": "w:204",
+          "label": "Easwaran_Glossary:buddhi_manas_ahamkara"
+        },
+        "athesis": {
+          "ref": "w:199",
+          "label": "Easwaran_Gita:kshetra_kshetrajna"
+        },
+        "synthesis": "[elaboration] Both decompose the knower-of-the-field into functional sub-components: the glossary reveals manas/buddhi/ahamkara as the cognitive architecture WITHIN kshetrajna",
+        "metathesis": "Kshetra/kshetrajna (Book) provides the macro-level field/knower distinction for L-matrix/agent architecture; buddhi/manas/ahamkara (Glossary) provides the micro-level processing pipeline within the agent"
+      },
+      {
+        "id": "cw:72",
+        "thesis": {
+          "ref": "w:207",
+          "label": "Easwaran_Glossary:tapas"
+        },
+        "athesis": {
+          "ref": "w:182",
+          "label": "Cortes_BiocosmologyPerspective:constraint_closure"
+        },
+        "synthesis": "[independent_convergence] Both describe constraint as generative rather than merely restrictive — constraints produce the conditions for their own continuation AND amplify capacity",
+        "metathesis": "Constraint closure (Montevil & Mossio via Cortes) describes how constraints reproduce themselves through the processes they constrain; tapas (Gita) adds that this self-reproduction GENERATES power — restriction concentrates and amplifies, not just maintains"
+      },
+      {
+        "id": "cw:73",
+        "thesis": {
+          "ref": "w:206",
+          "label": "Easwaran_Glossary:lila"
+        },
+        "athesis": {
+          "ref": "w:189",
+          "label": "Cortes_TAPEquation:TAP_combinatorics"
+        },
+        "synthesis": "[complementarity] Both describe generative dynamics producing novelty from existing elements, but through different registers: mathematical (combinatorial growth) and aesthetic (divine play)",
+        "metathesis": "TAP combinatorics (Cortes) provides the formal mechanism: M(t+1) from recombination of existing types; lila (Gita) provides the qualitative characterization: this process is play, not engineering — generative exploration without predetermined outcome"
+      },
+      {
+        "id": "cw:74",
+        "thesis": {
+          "ref": "w:209",
+          "label": "Easwaran_Glossary:samsara"
+        },
+        "athesis": {
+          "ref": "w:190",
+          "label": "Cortes_TAPEquation:extinction_instability"
+        },
+        "synthesis": "[independent_convergence] Both describe the system's default unmodulated mode as cyclical/oscillatory — without intervention the system does not achieve stable development",
+        "metathesis": "Extinction instability (Cortes) shows bare TAP has no stable intermediate (blow-up or collapse); samsara (Gita) describes the experiential correlate: unmodulated existence is cyclical repetition. Both identify what sigma-field / moksha must solve"
+      },
+      {
+        "id": "cw:75",
+        "thesis": {
+          "ref": "w:208",
+          "label": "Easwaran_Glossary:kalpa_yuga_samsara"
+        },
+        "athesis": {
+          "ref": "w:131",
+          "label": "Turchin:secular_cycles"
+        },
+        "synthesis": "[independent_convergence] Both describe nested temporal dynamics where different timescales exhibit different dynamical behavior — individual cycles nest within regime phases nest within macro-epochs",
+        "metathesis": "Secular cycles (Turchin) provides empirical evidence: demographic-structural cycles (50-200yr) nest within mega-trends; kalpa/yuga/samsara (Gita) provides cosmological framework: individual repetition within age-degradation within cosmic expansion-contraction"
+      },
+      {
+        "id": "cw:76",
+        "thesis": {
+          "ref": "w:211",
+          "label": "DeLanda_AssemblageTheory:parametrized_assemblage"
+        },
+        "athesis": {
+          "ref": "w:117",
+          "label": "EmeryTrist:L_matrix_four_channels"
+        },
+        "synthesis": "[independent_convergence] Both decompose system-environment interaction into a 2x2 parametric structure with continuously variable channel strengths — L-matrix channels map to territorialization/coding parameters",
+        "metathesis": "Emery-Trist L-matrix provides empirical organizational accounting (L11/L12/L21/L22 causal textures); DeLanda's parametrized assemblage provides the ontological justification: these channels ARE the continuously variable parameters of an assemblage's territorial and coding dimensions"
+      },
+      {
+        "id": "cw:77",
+        "thesis": {
+          "ref": "w:211",
+          "label": "DeLanda_AssemblageTheory:parametrized_assemblage"
+        },
+        "athesis": {
+          "ref": "w:96",
+          "label": "DG_ATPCh15:tetravalent_assemblage"
+        },
+        "synthesis": "[elaboration] DeLanda's parametrized assemblage is the systematic reconstruction of D&G's tetravalent assemblage — same four-axis structure but rendered as continuously variable parameters rather than categorical distinctions",
+        "metathesis": "D&G tetravalent assemblage (ATP Ch15) provides the original 4-axis concept (content/expression × territorialization/coding); DeLanda adds the parametrization: these axes are not binary but continuously variable, enabling placement of any entity along a continuum"
+      },
+      {
+        "id": "cw:78",
+        "thesis": {
+          "ref": "w:213",
+          "label": "DeLanda_AssemblageTheory:properties_vs_capacities"
+        },
+        "athesis": {
+          "ref": "w:169",
+          "label": "Cortes_BiocosmologyBirth:ever_expanding_config_space"
+        },
+        "synthesis": "[complementarity] Both distinguish between what an entity currently IS and what it COULD become — actual states vs virtual possibility space, each requiring different formal treatment",
+        "metathesis": "Properties/capacities (DeLanda) makes the distinction at the level of individual assemblages: actual enduring states vs virtual interaction-dependent potentials. Ever-expanding config space (Cortes) makes the same distinction at the system level: actual types vs adjacent possible combinatorial space"
+      },
+      {
+        "id": "cw:79",
+        "thesis": {
+          "ref": "w:214",
+          "label": "DeLanda_AssemblageTheory:intensive_extensive"
+        },
+        "athesis": {
+          "ref": "w:190",
+          "label": "Cortes_TAPEquation:extinction_instability"
+        },
+        "synthesis": "[complementarity] Both identify phase transitions driven by intensive variables crossing critical thresholds — the mechanism by which qualitative change occurs in quantitative systems",
+        "metathesis": "DeLanda provides the ontological framework: intensive quantities (temperature, speed, pressure) drive qualitative phase transitions at thresholds. Extinction instability (Cortes) is a specific instance: mu_critical is an intensive threshold where the TAP system transitions from growth to collapse"
+      },
+      {
+        "id": "cw:80",
+        "thesis": {
+          "ref": "w:215",
+          "label": "DeLanda_AssemblageTheory:virtual_diagram"
+        },
+        "athesis": {
+          "ref": "w:189",
+          "label": "Cortes_TAPEquation:TAP_equation_general"
+        },
+        "synthesis": "[elaboration] The TAP equation IS a virtual diagram in DeLanda's sense — it defines a state space structured by singularities (attractors: blow-up, collapse, steady-state) whose parameter space constitutes a control space structured by bifurcations",
+        "metathesis": "DeLanda provides the ontological reading: equations define virtual structure (possibility spaces with singularities). The TAP equation (Cortes) IS such a virtual diagram — its state space attractors and parameter-space bifurcations are the assemblage's diagram"
+      },
+      {
+        "id": "cw:81",
+        "thesis": {
+          "ref": "w:212",
+          "label": "DeLanda_AssemblageTheory:relations_of_exteriority"
+        },
+        "athesis": {
+          "ref": "w:197",
+          "label": "Easwaran_Book:nishkama_karma"
+        },
+        "synthesis": "[independent_convergence] Both describe a mode of agent participation where the agent contributes to a larger whole without being constitutively determined by that whole — maintaining autonomy while enabling emergence",
+        "metathesis": "Relations of exteriority (DeLanda) describes the structural condition: parts can be detached and recombined. Nishkama karma (Gita) describes the agent's stance: acting within the system without attachment to outcomes — both enable productive participation without absorption"
+      },
+      {
+        "id": "cw:82",
+        "thesis": {
+          "ref": "w:217",
+          "label": "DeLanda_AssemblageTheory:nested_assemblages"
+        },
+        "athesis": {
+          "ref": "w:136",
+          "label": "Turchin:hierarchical_scaling_law"
+        },
+        "synthesis": "[independent_convergence] Both describe nested multi-scale composition where each level has emergent properties irreducible to lower levels — persons within communities within organizations within polities",
+        "metathesis": "Nested assemblages (DeLanda) provides the ontological framework: assemblages compose recursively with genuine emergence at each level. Hierarchical scaling law (Turchin) provides empirical evidence: log-linear scaling of population vs hierarchical levels, with Dunbar-limited group sizes at each scale"
       }
     ]
   },
@@ -2296,6 +2691,34 @@
       "why": "R&B/Levinas material could reshape 3C roadmap",
       "ref": null,
       "session": "2026-02-28"
+    },
+    {
+      "what": "MEMORY.md/buffer redundancy",
+      "chose": "Orientation card: MEMORY.md lean ~50 lines, buffer = single source of truth",
+      "why": "228-line MEMORY.md duplicated concept_map content",
+      "session": "2026-03-04",
+      "id": "w:d5"
+    },
+    {
+      "what": "MEMORY.md integration mode",
+      "chose": "Three-option first-run: full/minimal/none",
+      "why": "Respects user sovereignty over existing notes",
+      "session": "2026-03-04",
+      "id": "w:d6"
+    },
+    {
+      "what": "Upward buffering mechanism",
+      "chose": "Handoff-only at full-scan threshold, max 10 lines/cycle",
+      "why": "Autosave too expensive; full-scan = natural moment",
+      "session": "2026-03-04",
+      "id": "w:d7"
+    },
+    {
+      "what": "Status sync at handoff",
+      "chose": "Update MEMORY.md one-liner from active_work (Step 11)",
+      "why": "Standalone sessions see stale status otherwise",
+      "session": "2026-03-04",
+      "id": "w:d8"
     }
   ],
   "validation_log": [
@@ -2483,6 +2906,20 @@
         "cw:63",
         "cw:64"
       ]
+    },
+    {
+      "id": "w:v26",
+      "date": "2026-03-05",
+      "action": "Easwaran_BhagavadGita_2007_Book distillation",
+      "entries_added": "w:195-w:202 (8 cross_source), cw:65-cw:70 (6 convergence_web)",
+      "notes": "First sacred/scriptural source. 16 concept mappings (7 confirms, 9 extends). Gita provides philosophical precedents for sigma-field (nishkama karma), growth regimes (gunas), L-matrix/agent architecture (kshetra/kshetrajna), blow-up phenomenology (vishvarupa), constraint closure (dharma), 1' principle (atman), constitutive sigma (shraddha)"
+    },
+    {
+      "id": "w:v27",
+      "check": "Tooling bugfix session — no concept_map changes",
+      "status": "PASS",
+      "detail": "Compact hooks, skill registration, direct assertive register, error registry. No theory changes.",
+      "session": "2026-03-05"
     }
   ]
 }
