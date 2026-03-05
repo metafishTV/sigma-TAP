@@ -1,6 +1,6 @@
-# Emery-M-2000-CurrentVersionOST — sigma-TAP Interpretation
+# Emery_M_CurrentVersionOST_2000_Paper — sigma-TAP Interpretation
 
-> Distillation: [distilled/Emery-M-2000-CurrentVersionOST.md](../distilled/Emery-M-2000-CurrentVersionOST.md)
+> Distillation: [../distilled/Emery_M_CurrentVersionOST_2000_Paper.md](../distilled/Emery_M_CurrentVersionOST_2000_Paper.md)
 > Date interpreted: 2026-03-03
 > Project: sigma-TAP
 

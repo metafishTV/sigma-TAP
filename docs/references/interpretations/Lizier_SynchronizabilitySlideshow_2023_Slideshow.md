@@ -1,6 +1,6 @@
-# Lizier-Synchronizability-Slideshow — sigma-TAP Interpretation
+# Lizier_SynchronizabilitySlideshow_2023_Slideshow — sigma-TAP Interpretation
 
-> Distillation: [../distilled/Lizier-Synchronizability-Slideshow.md](../distilled/Lizier-Synchronizability-Slideshow.md)
+> Distillation: [../distilled/Lizier_SynchronizabilitySlideshow_2023_Slideshow.md](../distilled/Lizier_SynchronizabilitySlideshow_2023_Slideshow.md)
 > Date interpreted: 2026-03-02
 > Project: sigma-TAP
 

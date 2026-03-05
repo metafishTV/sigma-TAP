@@ -9,11 +9,11 @@ Claude Code sessions are ephemeral — each new instance starts with zero memory
 ## Quick Start
 
 ```
-/onhand     # Start of session — reconstructs context from last handoff
-/handoff    # End of session — saves state for next instance
+/buffer:on  # Start of session — reconstructs context from last handoff
+/buffer:off # End of session — saves state for next instance
 ```
 
-First time? Just run `/handoff` at the end of your first session. The system bootstraps from there. Next session, `/onhand` picks up where you left off.
+First time? Just run `/buffer:off` at the end of your first session. The system bootstraps from there. Next session, `/buffer:on` picks up where you left off.
 
 ## Architecture
 
@@ -60,7 +60,7 @@ Content migrates downward when layer bounds are exceeded. On-hand reads upward s
 
 **Warm consolidation**: The warm layer gets *denser* over sessions, not just longer. At each handoff, a consolidation pass compresses descriptions using established vocabulary, merges overlapping entries, and tightens stable entries from explanatory prose to referential shorthand. This keeps content accessible in warm rather than pushing it to cold prematurely.
 
-## What `/handoff` Does
+## What /buffer:off Does
 
 1. Reads current buffer state
 2. Gathers git metadata (commit, branch, modified files, test results)
@@ -78,7 +78,7 @@ Content migrates downward when layer bounds are exceeded. On-hand reads upward s
 14. Commits to git
 15. Confirms completion
 
-## What `/onhand` Does
+## What /buffer:on Does
 
 1. Reads hot layer only (fast startup, ~200 lines)
 2. Checks git state against buffer (detects if commits happened outside a session)
@@ -89,20 +89,20 @@ Content migrates downward when layer bounds are exceeded. On-hand reads upward s
 7. Reads MEMORY.md for project baseline
 8. Arms autosave and confirms ready
 
-**Autosave**: After on-hand completes, the system silently saves hot-layer state at natural completion boundaries (pipeline complete, tests pass, topic shift). This is lightweight — hot layer only, no migration, no git commit. Full `/handoff` is still needed at end of session for instance notes, full conservation, and commit.
+**Autosave**: After on-hand completes, the system silently saves hot-layer state at natural completion boundaries (pipeline complete, tests pass, topic shift). This is lightweight — hot layer only, no migration, no git commit. Full `/buffer:off` is still needed at end of session for instance notes, full conservation, and commit.
 
 ## The Two-File Skill Pattern
 
 | File | Location | Owns |
 |------|----------|------|
-| Global handoff | `~/.claude/skills/handoff/SKILL.md` | Generic 15-step process, three-layer schema, conservation enforcement, warm consolidation |
-| Project handoff | `<repo>/.claude/skills/handoff/SKILL.md` | Concept map groups, terminology, validation rules, orientation template, consolidation heuristics |
-| Global onhand | `~/.claude/skills/onhand/SKILL.md` | Generic 8-step reconstruction, pointer-following algorithm, autosave protocol |
-| Project onhand | `<repo>/.claude/skills/onhand/SKILL.md` | On-hand priorities, source material review, forward note surfacing |
+| Global buffer:off | `~/.claude/skills/buffer/off.md` | Generic 15-step process, three-layer schema, conservation enforcement, warm consolidation |
+| Project buffer:off | `<repo>/.claude/skills/buffer/off.md` | Concept map groups, terminology, validation rules, orientation template, consolidation heuristics |
+| Global buffer:on | `~/.claude/skills/buffer/on.md` | Generic 8-step reconstruction, pointer-following algorithm, autosave protocol |
+| Project buffer:on | `<repo>/.claude/skills/buffer/on.md` | On-hand priorities, source material review, forward note surfacing |
 
 **Global skills** define the process (reusable across any project). **Project skills** define the structure (what the concept map looks like, what validation means for this domain). When invoked, the global skill checks for a project override first and defers if found.
 
-**To use in your own project**: You only need the two global skill files. On first `/handoff`, a generic buffer is created. Add project skills when you want project-specific concept map groups, validation rules, or on-hand priorities.
+**To use in your own project**: You only need the two global skill files. On first `/buffer:off`, a generic buffer is created. Add project skills when you want project-specific concept map groups, validation rules, or on-hand priorities.
 
 ## MEMORY.md Integration
 
@@ -127,7 +127,7 @@ Concept map groups, validation rules, orientation templates, and consolidation h
 
 - **Warm consolidation**: At every handoff, existing warm entries are compressed using project vocabulary, overlapping entries are merged, and stable descriptions are tightened. The warm layer's line count should stay flat or drop while information density climbs.
 - **Archival questionnaire**: When the cold layer exceeds its bound, the system presents a dependency map and lets you choose what to archive — you pick the ratio, direction, and specific entries. Archived entries go to sealed tower files.
-- **Full rescan**: Every N sessions (configurable), `/onhand` offers a complete review of all layers to surface stale or orphaned entries.
+- **Full rescan**: Every N sessions (configurable), `/buffer:on` offers a complete review of all layers to surface stale or orphaned entries.
 - **Tower files**: Named `handoff-tower-NNN-YYYY-MM-DD.json`. Sealed archives that are never auto-loaded. Tombstones in the cold layer reference them if retrieval is needed.
 
 ## File Inventory
@@ -141,8 +141,8 @@ Concept map groups, validation rules, orientation templates, and consolidation h
 │   ├── handoff-cold.json              Cold layer (on-demand)
 │   └── handoff-tower-NNN-*.json       Sealed archives (if any)
 └── skills/
-    ├── handoff/SKILL.md               Project-specific handoff structure
-    ├── onhand/SKILL.md                Project-specific on-hand priorities
+    ├── handoff/SKILL.md               Project-specific buffer:off structure
+    ├── onhand/SKILL.md                Project-specific buffer:on priorities
     └── distill/SKILL.md               Source distillation skill (see its own README)
 ```
 
@@ -150,17 +150,17 @@ The `SKILL.md` files are instructions for Claude instances, not human documentat
 
 ## Global Project Registry
 
-A registry at `~/.claude/buffer/projects.json` tracks all projects with buffers. Updated at each handoff. This allows `/onhand` to route between projects when invoked outside a recognized repo.
+A registry at `~/.claude/buffer/projects.json` tracks all projects with buffers. Updated at each handoff. This allows `/buffer:on` to route between projects when invoked outside a recognized repo.
 
 ## FAQ
 
-**"No handoff buffer found"** — Run `/handoff` at the end of your current session. The system bootstraps from there.
+**"No handoff buffer found"** — Run `/buffer:off` at the end of your current session. The system bootstraps from there.
 
-**Buffer seems stale** — `/onhand` compares git state against the buffer's recorded commit. If commits happened outside a session, it flags the discrepancy.
+**Buffer seems stale** — `/buffer:on` compares git state against the buffer's recorded commit. If commits happened outside a session, it flags the discrepancy.
 
 **Can I edit the buffer JSON directly?** — Yes, but be careful with ID numbering. IDs (`w:N`, `c:N`) are never reused. Editing is useful for fixing broken references or curating the concept map.
 
-**How do I share this with another project?** — Copy the two global skill files (`~/.claude/skills/handoff/SKILL.md` and `~/.claude/skills/onhand/SKILL.md`) to the target machine. Project-specific skills are generated per-project by adding files to `<repo>/.claude/skills/`.
+**How do I share this with another project?** — Copy the two global skill files (`~/.claude/skills/buffer/off.md` and `~/.claude/skills/buffer/on.md`) to the target machine. Project-specific skills are generated per-project by adding files to `<repo>/.claude/skills/`.
 
 **What are "instance notes"?** — A free-form colleague-to-colleague briefing written by the outgoing Claude instance. Contains working-style observations, warnings, open questions, and things that surprised it. Replaced each session.
 

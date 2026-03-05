@@ -1,6 +1,6 @@
-# Deleuze-Guattari-ATP-Ch15 — sigma-TAP Interpretation
+# Deleuze_Guattari_ATPCh15_1987_Chapter — sigma-TAP Interpretation
 
-> Distillation: [../distilled/Deleuze-Guattari-ATP-Ch15.md](../distilled/Deleuze-Guattari-ATP-Ch15.md)
+> Distillation: [../distilled/Deleuze_Guattari_ATPCh15_1987_Chapter.md](../distilled/Deleuze_Guattari_ATPCh15_1987_Chapter.md)
 > Date interpreted: 2026-03-02
 > Project: sigma-TAP
 

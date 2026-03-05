@@ -1,4 +1,4 @@
-# OpenSystemsTheory-org-Website — Distillation
+# OpenSystemsTheory_PractitionerSite_Website — Distillation
 
 > Source: opensystemstheory.org — practitioner learning resource for Open Systems Theory, maintained by OST community (Hjorteland, Hamidi, Aughton, et al.) with Merrelyn Emery as primary authority. 13 pages fetched and synthesized.
 > Date distilled: 2026-03-03

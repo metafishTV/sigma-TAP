@@ -36,19 +36,28 @@ Structured extraction and integration of scholarly sources into the sigma-TAP mu
 
 | Source Label | Date | Route | Notes |
 |-------------|------|-------|-------|
-| TAPequation-FINAL | Pre-skill | Route A | Core TAP equation. Merged with Applications-of-TAP |
-| Paper1-Biocosmology | Pre-skill | Route A | Core TAP framework |
-| Paper2-Biocosmology-Perspective | Pre-skill | Route A | Three cosmological system types |
-| Taalbi-Long-Run-Patterns | Pre-skill | Route A | Empirical benchmark, Youn ratio |
-| Turchin-End-Times-Elites | 2026-03-02 | Route A | PSI, elite overproduction, secular cycles |
-| Emery-Trist-1965 | 2026-03-02 | Route A | Original L11/L12/L21/L22 framework |
-| Lizier-2012 | 2026-03-02 | Route A + coordinate crop | Synchronizability, transfer entropy. Compact 2-column format |
-| Lizier-Synchronizability-Slideshow | 2026-03-02 | Route A + full-page render | Slideshow PDF, 26 slides at 200 DPI |
-| D&G-ATP-Ch15 | 2026-03-02 | Route A + raster crop | Continental philosophy, Computer Einstein halftone |
-| Levinas-Totality-and-Infinity | 2026-03-03 | Route A | Continental phenomenology, 3 PDFs combined |
-| deGuerre-2016-TwoStageModel | 2026-03-03 | Route A + raster crop | Practitioner-applied, 4 figures |
-| Emery-M-2000-CurrentVersionOST | 2026-03-03 | Route A + raster crop | Mixed register, 4 figures. 8 new cross_source entries |
-| Ruesch-Bateson-Communication | 2026-03-03 | Route A | Four levels of communication, 2 excerpts combined |
+| Cortes_etal_TAPEquation_2022_Paper | 2026-03-04 | Route A + full-page render | **Re-distilled**. 15 concepts, 5 full-page renders (pp 3-7), 6 cross_source (w:189-194), 4 convergence_web (cw:61-64). Merged with Applications-of-TAP |
+| Cortes_etal_BiocosmologyBirth_2022_Paper | 2026-03-04 | Route A + figure crop | Re-distilled. 18 concepts, 1 figure, 10 cross_source (w:165-174), 6 convergence_web (cw:46-51) |
+| Cortes_etal_BiocosmologyPerspective_2022_Paper | 2026-03-04 | Route A + figure crop | Re-distilled. 16 concepts, 1 figure, 8 cross_source (w:175-182), 5 convergence_web (cw:52-56) |
+| Taalbi_LongRunPatterns_2025_Paper | Pre-skill | Route A | Empirical benchmark, Youn ratio |
+| Turchin_SocialPressures_2013_Paper | 2026-03-02 | Route A | PSI, elite overproduction, secular cycles |
+| Emery_Trist_CausalTexture_1965_Paper | 2026-03-02 | Route A | Original L11/L12/L21/L22 framework |
+| Lizier_etal_InfoStorageLoopMotifs_2012_Paper | 2026-03-02 | Route A + coordinate crop | Synchronizability, transfer entropy. Compact 2-column format |
+| Lizier_SynchronizabilitySlideshow_2023_Slideshow | 2026-03-02 | Route A + full-page render | Slideshow PDF, 26 slides at 200 DPI |
+| Deleuze_Guattari_ATPCh15_1987_Chapter | 2026-03-02 | Route A + raster crop | Continental philosophy, Computer Einstein halftone |
+| Levinas_TotalityInfinity_1961_Excerpt | 2026-03-03 | Route A | Continental phenomenology, 3 PDFs combined |
+| deGuerre_TwoStageModel_2016_Paper | 2026-03-03 | Route A + raster crop | Practitioner-applied, 4 figures |
+| Emery_M_CurrentVersionOST_2000_Paper | 2026-03-03 | Route A + raster crop | Mixed register, 4 figures. 8 new cross_source entries |
+| Ruesch_Bateson_Communication_1951_Excerpt | 2026-03-03 | Route A | Four levels of communication, 2 excerpts combined |
+| Jakobs_Communicology_2016_Chart | Pre-skill | Route A | 4-level communicology matrix |
+| Bateson_TableD_1951_Table | Pre-skill | Route I | Table D image extraction |
+| Hosseinioun_etal_NestedHumanCapital_2025_Paper | Pre-skill | Route A | Nested skill-occupation hierarchy |
+| Emery_Emery_ParticipativeDesign_1974_Paper | Pre-skill | Route A | PDW methodology, six criteria |
+| Turchin_Gavrilets_HierarchicalSocieties_2009_Paper | Pre-skill | Route A | Multilevel selection, Dunbar limit |
+| Turchin_FormationLargeEmpires_2009_Paper | Pre-skill | Route A | Mirror-empires, asabiyya |
+| Lizier_etal_SynchronizabilityMotifs_2023_Paper | Pre-skill | Route A | Process motif decomposition |
+| OpenSystemsTheory_PractitionerSite_Website | 2026-03-03 | Route W | Re-distilled. 18 concepts, 6 cross_source, 4 convergence_web |
+| Unificity | 2026-03-04 | Direct read (markdown) | Re-distilled. 15 concepts, 6 cross_source (w:183-188), 4 convergence_web (cw:57-60) |
 
 ## Glossary
 
@@ -68,14 +77,24 @@ Key project terms (mirrors the project skill's terminology glossary):
 | Metathesis | Dialectical moment of transformation |
 | Practico-inert | Sedimented praxis — action crystallized into fixed structure (Sartre) |
 | Unificity | Generative triad above TAPS: Unity-Multiplicity-Unificity |
+| Kantian Whole | Parts exist for and by means of the Whole (Kauffman via Kant) |
+| Functional explanation | X exists because X contributes to survival of larger system S |
+| Constraint closure | Constraints constrain energy release in processes that construct the same constraints (Montévil & Mossio) |
+| False equilibrium | Equilibrium calculated from incomplete theory — masks deeper dynamics |
+| Entailment laws | Three structural laws binding the modalities: downward closure, upward opening, third-party |
+| 1′ (one-prime) | Each modality is a complete perspective on the total, not a fraction (non-divisive totality) |
+| Consummation / consumption | Consumption = taking up sedimented structure; consummation = integrating into new form |
+| Extinction instability | μ_critical equilibrium is unstable — bare TAP has no stable intermediate (blow-up or collapse) |
+| Tetration | Exponential tower 10^10^10^... — TAP late-time growth regime |
+| Two-scale TAP | Variant with α₁M_t (single-object evolution) + α combinatoric — exponential phase → blow-up |
 
 ## Integration
 
 Distillation outputs feed into the buffer system:
 
-- **Concept map**: New cross_source entries added to warm layer (currently 158 entries)
-- **Convergence web**: Inter-source linkages created as tetradic entries (currently 41 entries across 16 clusters)
-- **Hot digest**: Updated so `/onhand` surfaces new mappings at next session start
+- **Concept map**: New cross_source entries added to warm layer (currently 194 entries, w:44-w:194)
+- **Convergence web**: Inter-source linkages created as tetradic entries (currently 64 entries, cw:1-cw:64)
+- **Hot digest**: Updated so `/buffer:on` surfaces new mappings at next session start
 - **MEMORY.md**: Conservative updates (full integration mode)
 
 ## Configuration

@@ -1,4 +1,4 @@
-# Turchin-2013-SocialPressures — Distillation
+# Turchin_SocialPressures_2013_Paper — Distillation
 
 > Source: Peter Turchin, "Modeling Social Pressures Toward Political Instability," *Cliodynamics* 4(2): 241–280, 2013. 41pp.
 > Date distilled: 2026-03-02
@@ -37,7 +37,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 1: Structural-Demographic Model Components
 
-![Figure 1](figures/Turchin-2013-SocialPressures/fig_01_p3.png)
+![Figure 1](figures/Turchin_SocialPressures_2013_Paper/fig_01_p3.png)
 
 - **What it shows**: Schematic diagram of the main logical components of the structural-demographic model and their causal connections
 - **Key data points**: Three compartments (Population/Labor, Elites, State) with feedback arrows showing how relative wage (w) couples mass and elite dynamics
@@ -45,7 +45,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 2: Population Dynamics — Antebellum Model vs. Data
 
-![Figure 2](figures/Turchin-2013-SocialPressures/fig_02_p16.png)
+![Figure 2](figures/Turchin_SocialPressures_2013_Paper/fig_02_p16.png)
 
 - **What it shows**: Two-panel comparison — (a) model-generated, (b) observed trajectories for rural pop., urban pop., and relative wage in 4 NE states (MA, CT, NY, NJ), 1790–1880
 - **Key data points**: Rural pop. saturates ~3.5M (carrying capacity K); urban pop. grows exponentially from ~0.1M; w rises until ~1820 then declines as labor supply overtakes demand
@@ -53,7 +53,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 3: Elite Dynamics — Antebellum Model
 
-![Figure 3](figures/Turchin-2013-SocialPressures/fig_03_p18.png)
+![Figure 3](figures/Turchin_SocialPressures_2013_Paper/fig_03_p18.png)
 
 - **What it shows**: Trajectories of w, relative elite numbers (e), and ε, 1790–1880
 - **Key data points**: e ≈ 1% until 1840, then 3× to ~3% by 1870; ε rises until 1840, then declines as e dilutes surplus
@@ -61,7 +61,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 4: Youth Cohort Proportion — Empirical
 
-![Figure 4](figures/Turchin-2013-SocialPressures/fig_04_p20.png)
+![Figure 4](figures/Turchin_SocialPressures_2013_Paper/fig_04_p20.png)
 
 - **What it shows**: A₂₀₋₂₉ (proportion of 20–29yr cohort among white males), 1800–1900
 - **Key data points**: Fluctuates 15–19%, peaks ~1810 and ~1860
@@ -69,7 +69,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 5: MMP and EMP — Antebellum Model
 
-![Figure 5](figures/Turchin-2013-SocialPressures/fig_05_p21.png)
+![Figure 5](figures/Turchin_SocialPressures_2013_Paper/fig_05_p21.png)
 
 - **What it shows**: Predicted MMP and EMP (both scaled to min=1), 1790–1880
 - **Key data points**: MMP flat until 1820, then steady growth; EMP declines until 1830s, then explodes (~18× minimum by 1870)
@@ -77,7 +77,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 6: Predicted PSI vs. Observed Instability — Antebellum
 
-![Figure 6](figures/Turchin-2013-SocialPressures/fig_06_p22.png)
+![Figure 6](figures/Turchin_SocialPressures_2013_Paper/fig_06_p22.png)
 
 - **What it shows**: Model PSI overlaid with observed political instability (casualties/million) and sectional conflict index, 1790–1880
 - **Key data points**: PSI low until ~1840, explodes 1850s; observed escalation (Bleeding Kansas 1855, Harper's Ferry 1859, Civil War 1861–65) follows PSI with short lag
@@ -85,7 +85,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 7: Labor Demand vs. Supply — Contemporary US
 
-![Figure 7](figures/Turchin-2013-SocialPressures/fig_07_p24.png)
+![Figure 7](figures/Turchin_SocialPressures_2013_Paper/fig_07_p24.png)
 
 - **What it shows**: Labor demand (G/P = GDP÷productivity) vs. supply (total labor force), both indexed to 1927=100, 1927–2012
 - **Key data points**: D > S until ~1965; S crosses above D late 1960s (baby boomers + immigration); D plateaus post-2000 (sluggish growth + productivity gains)
@@ -93,7 +93,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 8: Union Dynamics — Coverage and Illegal Firings
 
-![Figure 8](figures/Turchin-2013-SocialPressures/fig_08_p26.png)
+![Figure 8](figures/Turchin_SocialPressures_2013_Paper/fig_08_p26.png)
 
 - **What it shows**: Union coverage (1930–2010) and proportion of union campaigns with illegal firings (1951–2007)
 - **Key data points**: Coverage peaks >25% (1945–60), declines to ~12% by 2010; illegal firings during drives increase ~10× between 1950s and 1980s
@@ -101,7 +101,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 9: Real Minimum Wage — Proxy for Non-Market Forces
 
-![Figure 9](figures/Turchin-2013-SocialPressures/fig_09_p28.png)
+![Figure 9](figures/Turchin_SocialPressures_2013_Paper/fig_09_p28.png)
 
 - **What it shows**: Real (inflation-adjusted) minimum wage, 1938–2012
 - **Key data points**: Steady rise New Deal → Great Society (2× over 1950–1970); declines post-1970 (inflation erosion without increases); lower equilibrium 1990s–2000s
@@ -109,7 +109,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 10: Progressive Regression Fits — Contemporary Wages
 
-![Figure 10](figures/Turchin-2013-SocialPressures/fig_10_p29.png)
+![Figure 10](figures/Turchin_SocialPressures_2013_Paper/fig_10_p29.png)
 
 - **What it shows**: Four panels — regression fits with progressively more factors: (a) GDP/capita only, (b) +D/S, (c) +C (all three), (d) full model with 5yr lag
 - **Key data points**: R² = 0.73 → 0.93 → 0.98; 5yr lag captures fine-scale fluctuations (1980s dip, 1990s rise, post-2000 decline)
@@ -117,13 +117,13 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Table 1: Regression Analysis Results
 
-![Table 1](figures/Turchin-2013-SocialPressures/tab_01_p30.png)
+![Table 1](figures/Turchin_SocialPressures_2013_Paper/tab_01_p30.png)
 
 - **Key findings**: All predictors significant: GDP/capita α=0.60±0.07, D/S β=1.65±0.31, min. wage γ=0.45±0.08. ARIMA(1,0,1) error: AR1=0.74, MA1=0.65. AIC confirms all three needed.
 
 ### Figure 11: Elite Submodel Dynamics — Contemporary US
 
-![Figure 11](figures/Turchin-2013-SocialPressures/fig_11_p32.png)
+![Figure 11](figures/Turchin_SocialPressures_2013_Paper/fig_11_p32.png)
 
 - **What it shows**: Model-predicted w, e, and ε trajectories, 1927–2012
 - **Key data points**: w peaks ~1960, steep decline post-1978; e declines gently 1930–1980, then ~3× post-1980; ε recovers post-1955, peaks ~1990, then declines as expanding e dilutes surplus
@@ -131,19 +131,19 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Table 2: Millionaire Proportions, 1983–2007
 
-![Table 2](figures/Turchin-2013-SocialPressures/tab_02_p33.png)
+![Table 2](figures/Turchin_SocialPressures_2013_Paper/tab_02_p33.png)
 
 - **Key findings**: Households >$1M net worth: 2.9% → 6.3%; >$5M: 0.29% → 1.26%; >$10M: 0.08% → 0.40%. Expansion rates bracket model's predicted elite growth.
 
 ### Table 3: Congressional Candidates, 2000–2012
 
-![Table 3](figures/Turchin-2013-SocialPressures/tab_03_p34.png)
+![Table 3](figures/Turchin_SocialPressures_2013_Paper/tab_03_p34.png)
 
 - **Key findings**: House candidates 1,233 → 1,897 (+54%); Senate 191 → 308 (+61%). Self-funded millionaire candidates ~2× (30 → 58, 2004–2010).
 
 ### Figure 12: Cost of Winning House Election, 1986–2012
 
-![Figure 12](figures/Turchin-2013-SocialPressures/fig_12_p34.png)
+![Figure 12](figures/Turchin_SocialPressures_2013_Paper/fig_12_p34.png)
 
 - **What it shows**: Inflation-adjusted cost of winning House seat (thousands) + total major party spending (millions), 1986–2012
 - **Key data points**: Cost of winning ~2× ($800K → $1.6M); total spending → ~$1B by 2010
@@ -151,7 +151,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 13: National Debt/GDP and Government Distrust
 
-![Figure 13](figures/Turchin-2013-SocialPressures/fig_13_p36.png)
+![Figure 13](figures/Turchin_SocialPressures_2013_Paper/fig_13_p36.png)
 
 - **What it shows**: Debt/GDP (%) and proportion distrusting government, 1930–2012
 - **Key data points**: Debt/GDP: WWII spike → decline to ~30% by 1980 → unprecedented peacetime growth to ~100% by 2012. Distrust: 20–30% (late 1950s/60s), Watergate damage, cyclically escalating (each peak > last, reaching ~80% by 2011)
@@ -159,7 +159,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 ### Figure 14: Estimated PSI, 1958–2012
 
-![Figure 14](figures/Turchin-2013-SocialPressures/fig_14_p37.png)
+![Figure 14](figures/Turchin_SocialPressures_2013_Paper/fig_14_p37.png)
 
 - **What it shows**: Calculated PSI for contemporary US
 - **Key data points**: PSI ≈ 0 through 1960s–80s; rises post-1980; sharp acceleration post-2000; reaches ~40 by 2012 (from ≈0 in 1960)
@@ -167,7 +167,7 @@ Turchin explicitly separates slow structural pressures (forecastable, policy-ame
 
 Note: Each image reference (`![...](...)`) embeds the rendered page for visual inspection by future sessions. The textual decomposition provides searchable, quotable content and serves as alt-text. Both are required.
 
-**Figure storage convention**: Rendered figures saved in `figures/Turchin-2013-SocialPressures/`. File naming: `{type}_{NN}_p{P}.png` — e.g., `fig_02_p16.png` (Figure 2, page 16), `tab_03_p34.png` (Table 3, page 34). Fallback: `page_{P}.png` (full-page render for text-only tables). Extraction script also writes `_manifest.json` listing all items.
+**Figure storage convention**: Rendered figures saved in `figures/Turchin_SocialPressures_2013_Paper/`. File naming: `{type}_{NN}_p{P}.png` — e.g., `fig_02_p16.png` (Figure 2, page 16), `tab_03_p34.png` (Table 3, page 34). Fallback: `page_{P}.png` (full-page render for text-only tables). Extraction script also writes `_manifest.json` listing all items.
 
 ## Figure ↔ Concept Contrast
 
@@ -187,7 +187,7 @@ Note: Each image reference (`![...](...)`) embeds the rendered page for visual i
 
 ### General Real Wage Model (Eq. 1)
 
-![Eq. 1](figures/Turchin-2013-SocialPressures/eq_01_p9.png)
+![Eq. 1](figures/Turchin_SocialPressures_2013_Paper/eq_01_p9.png)
 
 $$W_{t-\tau} = a \left(\frac{G_t}{N_t}\right)^\alpha \left(\frac{D_t}{S_t}\right)^\beta C_t^\gamma$$
 
@@ -205,7 +205,7 @@ Three multiplicative factors: productivity ($G/N$), market ($D/S$), non-market (
 
 ### Log-Linear Form (Eq. 2)
 
-![Eq. 2](figures/Turchin-2013-SocialPressures/eq_02_p10.png)
+![Eq. 2](figures/Turchin_SocialPressures_2013_Paper/eq_02_p10.png)
 
 Log-transform of Eq. 1 → standard regression with ARIMA errors. Contemporary model fit: $R^2 = 0.98$ with $\alpha = 0.48$, $\beta = 0.28$, $\gamma = 0.23$.
 
@@ -226,7 +226,7 @@ $w < w_0$ → $\mu > 0$ (net upward mobility → elite expansion). $w > w_0$ →
 
 ### Relative Elite Income (Eq. 5)
 
-![Eq. 5](figures/Turchin-2013-SocialPressures/eq_05_p13.png)
+![Eq. 5](figures/Turchin_SocialPressures_2013_Paper/eq_05_p13.png)
 
 $$\varepsilon = \frac{1 - w\lambda}{e}$$
 

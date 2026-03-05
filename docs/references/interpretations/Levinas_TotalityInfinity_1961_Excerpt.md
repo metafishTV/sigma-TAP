@@ -1,6 +1,6 @@
-# Levinas-Totality-and-Infinity — sigma-TAP Interpretation
+# Levinas_TotalityInfinity_1961_Excerpt — sigma-TAP Interpretation
 
-> Distillation: [../distilled/Levinas-Totality-and-Infinity.md](../distilled/Levinas-Totality-and-Infinity.md)
+> Distillation: [../distilled/Levinas_TotalityInfinity_1961_Excerpt.md](../distilled/Levinas_TotalityInfinity_1961_Excerpt.md)
 > Date interpreted: 2026-03-03
 > Project: sigma-TAP
 

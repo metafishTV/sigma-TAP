@@ -1,6 +1,6 @@
-# OpenSystemsTheory-org-Website — sigma-TAP Interpretation
+# OpenSystemsTheory_PractitionerSite_Website — sigma-TAP Interpretation
 
-> Distillation: [distilled/OpenSystemsTheory-org-Website.md](../distilled/OpenSystemsTheory-org-Website.md)
+> Distillation: [../distilled/OpenSystemsTheory_PractitionerSite_Website.md](../distilled/OpenSystemsTheory_PractitionerSite_Website.md)
 > Date interpreted: 2026-03-03
 > Project: sigma-TAP
 
@@ -8,7 +8,7 @@
 
 | Concept (from distillation) | sigma-TAP Mapping | Relationship |
 |----------------------------|-------------------|--------------|
-| Open system | L-matrix architecture — foundational ontology shared with Emery-Trist-1965 | confirms |
+| Open system | L-matrix architecture — foundational ontology shared with Emery_Trist_CausalTexture_1965_Paper | confirms |
 | L11/L12/L21/L22 | L-matrix event channel framework — site uses notation explicitly | confirms |
 | Environmental causal texture (L22) | Environmental drift mechanism (Mode 4); L22 must be genuinely incommensurate with L11 | confirms |
 | Two-layer environmental model | SC methodology: wider (L22-dominant) → immediate (L12/L21-dominant); maps to global/nonlocal vs assembly field (§5.56) | extends |
@@ -41,7 +41,7 @@
 
 - **Neoliberalism=CounterFinality**: Merrelyn Emery's account of neoliberalism arresting the DP2 movement maps to Sartre's counter-finality — the practico-inert (sedimented market ideology, managerial prerogative) reversing active praxis (the global DP2 movement). DP2 organizations, by succeeding within the capitalist frame, may have contributed to the very conditions neoliberalism weaponized. This is the "progress as changing to remain the same" pattern — relevant to modeling how environmental counter-forces (L22 shifts) can reverse group-level organizational gains (L11 transformation).
 
-- **JointOptimization=SigmaFunction**: The website's "holy grail" formulation confirms sigma(Xi) as the joint optimization function. sigma is NOT merely a growth rate multiplier but the mechanism through which social structure (interaction history, trust, topology) modulates technical performance (innovation rate, type_set growth). Neither can be optimized independently. This extends the existing w:91 mapping (joint optimization from Emery-M-2000) with the practitioner-level emphasis on why isolated optimization fails.
+- **JointOptimization=SigmaFunction**: The website's "holy grail" formulation confirms sigma(Xi) as the joint optimization function. sigma is NOT merely a growth rate multiplier but the mechanism through which social structure (interaction history, trust, topology) modulates technical performance (innovation rate, type_set growth). Neither can be optimized independently. This extends the existing w:91 mapping (joint optimization from Emery_M_CurrentVersionOST_2000_Paper) with the practitioner-level emphasis on why isolated optimization fails.
 
 - **AboriginalDP2=EmpiricalOptimum**: The claim that Aboriginal and Islander cultures operated DP2 structures for cooperative culture across a continent positions DP2 not as modern normative preference but as empirically-observed structural optimum for cooperative systems persisting in complex environments over deep time. For sigma-TAP: validates that the DP2 attractor should be robust across diverse parameter settings — the simulation should show DP2 emerging as favored under cooperation-demanding conditions regardless of specific initial configuration.
 

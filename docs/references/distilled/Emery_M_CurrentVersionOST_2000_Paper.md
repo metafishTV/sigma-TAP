@@ -1,4 +1,4 @@
-# Emery-M-2000-CurrentVersionOST — Distillation
+# Emery_M_CurrentVersionOST_2000_Paper — Distillation
 
 > Source: Merrelyn Emery, "The Current Version of Emery's Open Systems Theory," *Systemic Practice and Action Research*, Vol. 13, No. 5, 2000, pp. 623–643 (21 pages)
 > Date distilled: 2026-03-03
@@ -43,7 +43,7 @@ The practical method for achieving cultural change is the two-stage model: (1) t
 
 ### Figure 1: The Models of Open System and Directive Correlation
 
-![Figure 1](figures/Emery-M-2000-CurrentVersionOST/fig_01_p2.png)
+![Figure 1](figures/Emery_M_CurrentVersionOST_2000_Paper/fig_01_p2.png)
 
 - **What it shows**: Two-panel diagram. (A) Open System: L11 (System) as dashed circle at center; L22 (Environment) above; bidirectional arrows labeled L21 (Learning, downward) and L12 (Planning, upward). (B) Directive Correlation: temporal trajectory t0 → t1 → t2; L11 and L22 as starting states at t0; L12 (Planning) and L21 (Learning) as crossing arrows through t1; L11' and L22' as changed states at t2.
 - **Key data points**: Panel A shows the four L-parameters as a static structural model. Panel B adds the temporal dimension — both system and environment change through the directive correlation cycle, producing L11' and L22' (primed states) at t2. The crossing arrows at t1 show simultaneous planning and learning.
@@ -51,7 +51,7 @@ The practical method for achieving cultural change is the two-stage model: (1) t
 
 ### Figure 2: The Genotypical Organizational Design Principles
 
-![Figure 2](figures/Emery-M-2000-CurrentVersionOST/fig_02_p5.png)
+![Figure 2](figures/Emery_M_CurrentVersionOST_2000_Paper/fig_02_p5.png)
 
 - **What it shows**: Side-by-side structural comparison. Left (DP1): hierarchical tree — S2 supervises S1, who supervises individual people assigned to individual tasks (one person per task). Right (DP2): single self-managing circle containing "People / Group Task" with responsibility for control, coordination, and goals located within the group itself.
 - **Key data points**: DP1 has ≥2 supervisory levels (S2, S1) above workers. Workers are separated and matched 1:1 with tasks. DP2 has zero supervisory levels — the group holds all responsibility. The structural module under DP1 is a branching hierarchy; under DP2 it is a unified circle.
@@ -59,7 +59,7 @@ The practical method for achieving cultural change is the two-stage model: (1) t
 
 ### Figure 3: Codetermination of Cultural Change Over Time
 
-![Figure 3](figures/Emery-M-2000-CurrentVersionOST/fig_03_p8.png)
+![Figure 3](figures/Emery_M_CurrentVersionOST_2000_Paper/fig_03_p8.png)
 
 - **What it shows**: Iterated directive correlation cycles from t0 through t1, t2, t3, t4 to tn. Each cycle has the diamond structure: L11(L22) and L22(L11) at the base; L12 (Planning) rising to the apex; L21 (Learning) descending. Each cycle produces primed versions (L11', L22' → L11'', L22'' → ...). A dotted line labeled GN connects the final cycle to "New culture in Type II." The starting point is labeled "Original culture in Type IV."
 - **Key data points**: The coimplication notation L11(L22) and L22(L11) shows that each parameter is a function of the other. Each successive cycle produces changed states. The endpoint (modern Type II) is reached through an indefinite number of cycles (tn). GN appears to denote the cumulative goal.
@@ -67,7 +67,7 @@ The practical method for achieving cultural change is the two-stage model: (1) t
 
 ### Figure 4: The Two-Stage Model for Active Socioecological Adaptation
 
-![Figure 4](figures/Emery-M-2000-CurrentVersionOST/fig_04_p9.png)
+![Figure 4](figures/Emery_M_CurrentVersionOST_2000_Paper/fig_04_p9.png)
 
 - **What it shows**: Modified open-system diagram (same structure as Fig. 1A) with method annotations. L22 = "Environment: Extended Social Field of Directive Correlation" with progression "Type IV → Type II (pockets) → Type II." L12 = "Active Adaptive Planning (through ideal seeking)." L21 = "Puzzle Learning (based on ecological learning)." L11 = system circle. Left side: two method labels — "The Work of the Search Conference" (adjacent to L21/L12) and "The Work of the Participative Design Workshop" (adjacent to L11). Right side: "Design principle 2 (DP2) system / 'Learning organization.'" "Purpose" labels the L22 region.
 - **Key data points**: SC maps to L21 (puzzle learning) and L12 (active adaptive planning). PDW maps to L11 (restructuring to DP2). The environmental trajectory is Type IV → Type II (pockets) → Type II. The system becomes a "learning organization" through DP2.

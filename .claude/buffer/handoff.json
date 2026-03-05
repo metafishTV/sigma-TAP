@@ -5,12 +5,14 @@
   "cold_ref": "handoff-cold.json",
 
   "session_meta": {
-    "date": "2026-03-03",
-    "commit": "ce111d8",
+    "date": "2026-03-05",
+    "commit": "bb48470",
     "branch": "main",
     "files_modified": [
       ".claude/buffer/handoff.json",
-      ".claude/skills/handoff/SKILL.md"
+      ".claude/skills/buffer/on.md",
+      ".claude/skills/handoff/SKILL.md",
+      ".claude/skills/onhand/SKILL.md"
     ],
     "tests": "345/345 passing"
   },
@@ -21,108 +23,90 @@
   "active_work": {
     "current_phase": "Stage 3B COMPLETE — post-reflection tooling phase",
     "completed_this_session": [
-      "v3 skill system review (global + project onhand/handoff/distill)",
-      "MEMORY.md/buffer redundancy analysis and resolution",
-      "Global onhand: Step 0f (MEMORY.md integration at first-run)",
-      "Global onhand: Promotion check in Step 5 (full-scan threshold)",
-      "Global handoff: Step 11 (MEMORY.md sync), renumbered Steps 11-13 to 12-14",
-      "Global handoff: Added memory_config to hot layer schema",
-      "Project handoff: Updated step reference (1-13 to 1-14)",
-      "Sigma-TAP MEMORY.md trimmed to orientation card (228 to 41 lines)",
-      "Hot layer: Added memory_config (integration=full)"
+      "Buffer skill reorganization (/handoff+/onhand → /buffer:off+/buffer:on)",
+      "Provenance-aware consolidation protocol",
+      "Post-compaction consistency check (now self-activating)",
+      "Distill skill: source citations, web figure capture fix, routing escape hatch",
+      "Source label convention: all 24 source files + 21 distilled + 8 interpretations renamed"
     ],
-    "in_progress": null,
+    "in_progress": "Three buffer modes (minimal/memory/project)",
     "blocked_by": null,
-    "next_action": "R&B deep review (docs/references/ has PDFs). Then TASKS.md generation, then Stage 3C planning."
+    "next_action": "Verify buffer mode edits → create project buffer/off.md → R&B deep review"
   },
 
   "orientation": {
-    "core_insight": "sigma-TAP is not a standard agent-based model. It models PRAXIS (how agents become through action) using the L-matrix as its fundamental accounting unit. Every interaction is classified into one of four channels (L11=self-self, L12=self-other, L21=other-self, L22=env-env). The philosophical sources (Levinas, Sartre, D&G, Emery-Trist) are not decoration — they independently converge on this same 4-channel structure from different directions, which is the user's key claim.",
-    "practical_warning": "Do NOT introduce novel claims or impose standard ABM assumptions. The user cares deeply about terminological precision and theoretical fidelity. When in doubt, quote the user's terms back and ask for clarification rather than paraphrasing into generic language.",
+    "core_insight": "sigma-TAP models PRAXIS (how agents become through action) via the L-matrix. Four channels: L11=self-self, L12=self-other, L21=other-self, L22=env-env. Philosophical sources (Levinas, Sartre, D&G, Emery-Trist) independently converge on this 4-channel structure — that convergence is the user's key claim.",
+    "practical_warning": "Do NOT introduce novel claims or impose ABM assumptions. Terminological precision matters deeply. When in doubt, quote the user's terms back rather than paraphrasing.",
     "why_keys": {
       "levinas": "ETHICAL ground: cross-metathesis as asymmetric encounter with irreducible otherness",
-      "sartre": "PROCESSUAL ground: praxis-process (consummation) / process-praxis (consumption) cycle; practico-inert = gas/fuel, praxistatic = engine",
-      "dg": "TOPOLOGICAL ground: tetravalent assemblage = L-matrix; conjunction (gate) vs connection (creative multiplier) drives 3C",
-      "emery": "EMPIRICAL ground: original L11/L12/L21/L22 from organizational systems theory (1965); Type V vortical = unificity",
-      "user_framework": "Unificity.md sits ABOVE all sources: Unity-Multiplicity-Unificity is the foundational triad from which TAPS, RIP, and Dialectic unfold"
+      "sartre": "PROCESSUAL ground: praxis-process/process-praxis cycle; practico-inert = gas/fuel, praxistatic = engine",
+      "dg": "TOPOLOGICAL ground: tetravalent assemblage = L-matrix; conjunction (gate) vs connection (multiplier) drives 3C",
+      "emery": "EMPIRICAL ground: original L11/L12/L21/L22 from organizational systems theory (1965); Type V = unificity",
+      "user_framework": "FOUNDATIONAL triad: Unity-Multiplicity-Unificity. Sits above all sources; TAPS, RIP, Dialectic unfold from it"
     }
   },
 
   "open_threads": [
     {
-      "thread": "R&B deep review — NEXT ACTION. PDFs in docs/references/ not yet analyzed. Preliminary mapping (Level I->L11, II->L12/L21, III->family groups, IV->L22) is UNTESTED HYPOTHESIS — must verify against actual text.",
+      "thread": "R&B deep review — NEXT ACTION. Preliminary L-channel mapping untested against actual text.",
       "status": "noted",
-      "ref": "docs/references/Ruesch & Bateson, Communication, excerpt, pg. 196-237.pdf",
-      "see": []
+      "ref": "docs/references/Ruesch_Bateson_Communication_1951_Excerpt_pg196-237.pdf"
     },
     {
-      "thread": "TASKS.md — DOES NOT EXIST YET. Intentionally deferred until after R&B review because R&B findings could reshape Stage 3C scope.",
-      "status": "deferred",
-      "ref": null,
-      "see": []
+      "thread": "TASKS.md — deferred until after R&B review (findings may reshape Stage 3C scope).",
+      "status": "deferred"
     },
     {
-      "thread": "Centrifugal/diffuse alternation observation (evolution->anapression->projection->disintegration = out->in->out->in)",
-      "status": "deferred",
-      "ref": null,
-      "see": []
+      "thread": "Centrifugal/diffuse alternation: evolution→anapression→projection→disintegration = out→in→out→in.",
+      "status": "deferred"
     },
     {
-      "thread": "Turbulence reconception needs full rethink of turbulence.py",
+      "thread": "Turbulence reconception — full rethink of turbulence.py needed.",
       "status": "deferred",
-      "ref": "§5.42",
-      "see": []
+      "ref": "§5.42"
     }
   ],
 
   "recent_decisions": [
     {
-      "what": "MEMORY.md/buffer redundancy resolution",
-      "chose": "Orientation card approach — MEMORY.md becomes lean (~50 lines) with project essentials only; buffer is single source of truth for theoretical content",
-      "why": "228-line MEMORY.md duplicated 40+ lines of concepts and 60+ lines of forward notes already in concept_map. Double token spend when both loaded.",
-      "session": "2026-03-03",
-      "see": []
+      "what": "MEMORY.md/buffer redundancy",
+      "chose": "Orientation card: MEMORY.md lean ~50 lines, buffer = single source of truth",
+      "why": "228-line MEMORY.md duplicated concept_map content"
     },
     {
-      "what": "MEMORY.md integration mode for new users",
-      "chose": "Three-option choice at first-run: full (restructure to orientation card), minimal (add pointer only), none (independent operation)",
-      "why": "Respects user sovereignty. Some users have personal notes they don't want restructured.",
-      "session": "2026-03-03",
-      "see": []
+      "what": "MEMORY.md integration mode",
+      "chose": "Three-option first-run: full/minimal/none",
+      "why": "Respects user sovereignty over existing notes"
     },
     {
       "what": "Upward buffering mechanism",
-      "chose": "Handoff-only, at full-scan threshold only, max 10 lines per cycle, warm entry remains source of truth",
-      "why": "Autosave trigger too expensive. 200-line MEMORY.md cap too tight for aggressive promotion. Full-scan threshold is natural moment.",
-      "session": "2026-03-03",
-      "see": []
+      "chose": "Handoff-only at full-scan threshold, max 10 lines/cycle",
+      "why": "Autosave too expensive; full-scan = natural moment"
     },
     {
       "what": "Status sync at handoff",
-      "chose": "Update MEMORY.md status one-liner from active_work at every handoff (new Step 11)",
-      "why": "Standalone sessions see stale status otherwise. One-line edit, negligible cost.",
-      "session": "2026-03-03",
-      "see": []
+      "chose": "Update MEMORY.md one-liner from active_work (Step 11)",
+      "why": "Standalone sessions see stale status otherwise"
     }
   ],
 
   "instance_notes": {
-    "from": "the instance that reviewed v3 and built MEMORY.md integration (v4 tooling session)",
-    "to": "whoever picks this up next",
+    "from": "v4 tooling session instance",
+    "to": "next instance",
     "remarks": [
-      "This was a META session — no theoretical work, no code changes. All changes were to the handoff/onhand skill system and MEMORY.md. The simulator is untouched.",
-      "The user thinks architecturally about the tool itself, not just the project. Treat /handoff and /onhand as first-class engineering artifacts.",
-      "MEMORY.md went from 228 lines (overflowing the 200-line auto-load cap) to 41 lines. Every removed line has a home in the buffer's concept_map or convergence_web. Zero content loss.",
-      "Global skills are at ~/.claude/skills/. Project skills are at repo/.claude/skills/. Global = process, project = structure. Don't confuse them.",
-      "The project handoff skill overrides warm max to 800 lines (global default 500) because concept_map + convergence_web are large and non-migratable.",
-      "The previous instance's instance_notes (from the Stage 3B builder) are excellent — still fully applicable. Read the cold-layer dialogue_trace too.",
-      "The .claude/skills/resume/ directory in the repo is the OLD name before rename to 'onhand'. May need cleanup."
+      "META session — tooling only, no theory or code. Simulator untouched.",
+      "User thinks architecturally about /handoff and /onhand — treat as first-class artifacts.",
+      "MEMORY.md: 228→41 lines. All removed content lives in buffer concept_map/convergence_web.",
+      "Global skills: ~/.claude/skills/. Project skills: repo/.claude/skills/. Don't confuse them.",
+      "Project warm max overridden to 800 lines (concept_map + convergence_web are large).",
+      "Previous Stage 3B instance_notes still applicable. Read cold-layer dialogue_trace.",
+      "repo/.claude/skills/resume/ is OLD name before rename to 'onhand'. May need cleanup."
     ],
     "open_questions": [
-      "The promotion check needs a tracking mechanism for 'pointer-loaded in 3+ consecutive sessions' — the spec doesn't define where this counter lives. Needs design.",
-      "Should the distill skill get a MEMORY.md-aware step? Currently writes to buffer only. No path for fundamental concepts to reach the orientation card.",
-      "MEMORY.md lives outside the repo (~/.claude/projects/). If user switches machines, it's lost. Should the buffer store a backup?",
-      "The user mentioned a previous instance capped out mid-discussion about redundancy. That instance had additional context about what content belongs where. Check if it left any trace."
+      "Promotion check counter undefined — where does 'loaded 3+ sessions' state live?",
+      "Distill skill has no path to push concepts to MEMORY.md orientation card.",
+      "MEMORY.md lives outside repo. If user switches machines, it's lost. Buffer backup?",
+      "Previous instance capped mid-redundancy discussion — check for leftover context."
     ]
   },
 
@@ -182,5 +166,5 @@
     "path": "C:\\Users\\user\\.claude\\projects\\C--Users-user-Documents-New-folder\\memory\\MEMORY.md"
   },
 
-  "natural_summary": "Meta-tooling session: reviewed v3 skill system, resolved MEMORY.md/buffer redundancy by trimming MEMORY.md to 41-line orientation card and adding automatic integration support (Step 0f in onhand, Step 11 sync in handoff, promotion check at full-scan threshold). No simulator code or theoretical content changed. 345 tests passing. Next: R&B deep review, then TASKS.md and Stage 3C planning."
+  "natural_summary": "Extended meta-tooling session (continued from context exhaustion): buffer skill reorganized into unified /buffer system with three modes (minimal/memory/project), source label convention enforced across all files (git mv), distill skill improved with source citations and routing escape hatch. [compacted] Context compacted — hot layer updated from compaction summary."
 }

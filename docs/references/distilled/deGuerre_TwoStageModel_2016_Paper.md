@@ -38,7 +38,7 @@ A 300-employee mine case study demonstrates the model at scale: 4 SCs → 8 stra
 
 ### Figure 3.1: The Tele and Tinny Society
 
-![Figure 3.1](figures/deGuerre-2016-TwoStageModel/fig_01_p1.png)
+![Figure 3.1](figures/deGuerre_TwoStageModel_2016_Paper/fig_01_p1.png)
 
 - **What it shows**: Cascading pathological spiral produced by DP1/bureaucratic organization over time. Arrows flow from DP1 structure through negative emotional tone (contempt, humiliation, guilt, shame, anger) → defense mechanisms (cliques, competition, playing politics, passing the buck, withdrawal, dissociation) → productivity loss (error rates, accidents, absenteeism, workloads, hours of work, apathy, fatigue, communication problems) → the Tele and Tinny society (widespread irresponsibility and "dits," family/community disruption, physical/mental/psychosomatic disorders, economic insecurity, anxiety). Arrows return from Tele and Tinny back to Distress, completing the self-amplifying loop. Time axis runs left-to-right.
 - **Key data points**: The cascade has four stages (distress → defense → productivity → societal); feedback arrows create a closed loop showing irreversibility; the Time axis is explicit.
@@ -46,7 +46,7 @@ A 300-employee mine case study demonstrates the model at scale: 4 SCs → 8 stra
 
 ### Figure 3.2: The Two-Stage Model of Active Adaptation
 
-![Figure 3.2](figures/deGuerre-2016-TwoStageModel/fig_01_p2.png)
+![Figure 3.2](figures/deGuerre_TwoStageModel_2016_Paper/fig_01_p2.png)
 
 - **What it shows**: The complete two-stage model. "Global Social Environment" at top (characterized by value shifts as people change their world). Stage 1 (SC): system acts on environment through active adaptive strategic planning. Stage 2 (PDW): produces participative democratic organizational systems through which people actualize their plans. Arrows cycle between stages and the global environment. "Ongoing Unique Designs" at right — OST-selected principles/tools applied to complex change challenges.
 - **Key data points**: Two-way arrows between SC output and environment; SC feeds PDW which feeds ongoing designs; environment sits above both stages.
@@ -54,7 +54,7 @@ A 300-employee mine case study demonstrates the model at scale: 4 SCs → 8 stra
 
 ### Figure 3.3: Search Conference Schematic Framework
 
-![Figure 3.3](figures/deGuerre-2016-TwoStageModel/fig_01_p3.png)
+![Figure 3.3](figures/deGuerre_TwoStageModel_2016_Paper/fig_01_p3.png)
 
 - **What it shows**: Inverted funnel/fishbone. Left side labels narrow from broad to specific: Environment → Desirable and Probable Future Environment → Econiche → Desirable and Probable Econiche → Where have we come from? → Desirable Future for Us → Constraints → Desirable and Achievable Future → Action Plans. Bottom: "system grows and diffuses." Right side maps to OST architecture: Extended Social Field → Task Environment or Econiche → System → Integration system and environment (directive correlation formed) → Active Adaptation / New Goal Achieved.
 - **Key data points**: The funnel structure explicitly maps each SC phase to OST theory (Extended Social Field, Task Environment, System, directive correlation, active adaptation). Diffusion is the output at the bottom.
@@ -62,7 +62,7 @@ A 300-employee mine case study demonstrates the model at scale: 4 SCs → 8 stra
 
 ### Figure 3.4: Organization Design Principles (DP1/DP2)
 
-![Figure 3.4](figures/deGuerre-2016-TwoStageModel/fig_01_p5.png)
+![Figure 3.4](figures/deGuerre_TwoStageModel_2016_Paper/fig_01_p5.png)
 
 - **What it shows**: Side-by-side structural comparison. DP1 (Redundancy of Parts): hierarchical tree — Manager → Supervisor → People/Tasks; goals set and monitored from above; people matched to fragmented tasks. DP2 (Redundancy of Functions): circular arrangement — Management Team at boundary, People + Whole Task in a self-managing circle; Team Goals set by negotiation and monitored by team. Central label: "Responsibility for Control, Coordination and Goals" with arrow showing where this responsibility resides in each structure.
 - **Key data points**: DP1 has 3 hierarchical levels (Manager/Supervisor/People); DP2 has 2 functional levels (Management Team/People+Whole Task); the critical shift is WHERE responsibility for control, coordination and goals resides.

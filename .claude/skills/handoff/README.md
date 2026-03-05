@@ -4,7 +4,7 @@ Project-specific handoff configuration for the sigma-TAP multi-agent praxis simu
 
 ## What This Adds
 
-This project skill extends the global `/handoff` with sigma-TAP-specific structure:
+This project skill extends the global `/buffer:off` with sigma-TAP-specific structure:
 
 - **8 concept map groups** organized by the project's theoretical framework
 - **Convergence web** for inter-source linkages (tetradic structure)
@@ -60,4 +60,4 @@ The warm layer uses sigma-TAP vocabulary for compression. Established terms (uni
 
 ## How to Modify
 
-Edit `.claude/skills/handoff/SKILL.md` directly. The concept map groups, validation rules, orientation template, and consolidation heuristics are all in that file. The global handoff skill reads the project skill and follows its structure.
+Edit `.claude/skills/handoff/SKILL.md` directly. The concept map groups, validation rules, orientation template, and consolidation heuristics are all in that file. The global buffer:off skill reads the project skill and follows its structure.

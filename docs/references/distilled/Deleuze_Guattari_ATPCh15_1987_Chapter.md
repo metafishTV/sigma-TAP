@@ -1,4 +1,4 @@
-# Deleuze-Guattari-ATP-Ch15 — Distillation
+# Deleuze_Guattari_ATPCh15_1987_Chapter — Distillation
 
 > Source: Gilles Deleuze & Félix Guattari, *A Thousand Plateaus: Capitalism and Schizophrenia*, trans. Brian Massumi (Minneapolis: University of Minnesota Press, 1987), Chapter 15: "Conclusion: Concrete Rules and Abstract Machines," pp. 501–514. 14 pages.
 > Date distilled: 2026-03-02
@@ -49,7 +49,7 @@ Finally, **abstract machines** (M) operate within assemblages as their cutting e
 
 ### Visual 1: "Computer Einstein"
 
-![Visual 1](figures/Deleuze-Guattari-ATP-Ch15/visual_01_p1.png)
+![Visual 1](figures/Deleuze_Guattari_ATPCh15_1987_Chapter/visual_01_p1.png)
 
 - **What it shows**: A halftone dot-matrix portrait of Albert Einstein, rendered as if by early computer graphics — rows of varying-density dots composing the face
 - **Key data points**: The image is labeled "Computer Einstein" on page 501 (chapter title page)

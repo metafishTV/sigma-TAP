@@ -1,6 +1,6 @@
-# Lizier-2012-InfoStorage-LoopMotifs — sigma-TAP Interpretation
+# Lizier_etal_InfoStorageLoopMotifs_2012_Paper — sigma-TAP Interpretation
 
-> Distillation: [../distilled/Lizier-2012-InfoStorage-LoopMotifs.md](../distilled/Lizier-2012-InfoStorage-LoopMotifs.md)
+> Distillation: [../distilled/Lizier_etal_InfoStorageLoopMotifs_2012_Paper.md](../distilled/Lizier_etal_InfoStorageLoopMotifs_2012_Paper.md)
 > Date interpreted: 2026-03-02
 > Project: sigma-TAP
 

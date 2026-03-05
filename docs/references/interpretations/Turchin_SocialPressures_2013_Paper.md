@@ -1,6 +1,6 @@
-# Turchin-2013-SocialPressures — sigma-TAP Interpretation
+# Turchin_SocialPressures_2013_Paper — sigma-TAP Interpretation
 
-> Distillation: [../distilled/Turchin-2013-SocialPressures.md](../distilled/Turchin-2013-SocialPressures.md)
+> Distillation: [../distilled/Turchin_SocialPressures_2013_Paper.md](../distilled/Turchin_SocialPressures_2013_Paper.md)
 > Date interpreted: 2026-03-02
 > Project: sigma-TAP
 

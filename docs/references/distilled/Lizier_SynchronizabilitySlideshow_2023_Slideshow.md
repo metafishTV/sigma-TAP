@@ -1,4 +1,4 @@
-# Lizier-Synchronizability-Slideshow — Distillation
+# Lizier_SynchronizabilitySlideshow_2023_Slideshow — Distillation
 
 > Source: Joseph T. Lizier, "Analytic relationship of relative synchronizability to network structure and motifs," presentation slides (26 slides), Centre for Complex Systems, School of Computer Science, The University of Sydney. Accompanies Lizier et al., *PNAS* 120(37), e2303332120 (2023).
 > Date distilled: 2026-03-02
@@ -7,7 +7,7 @@
 > Tone: impersonal-objective
 > Density: technical-specialist (assumes network science, linear algebra, stochastic processes)
 
-**Relationship to main paper distillation**: SUPPLEMENTARY. The main paper distillation is [Lizier-Synchronizability-Motifs.md](Lizier-Synchronizability-Motifs.md). This slideshow provides: (1) pedagogical scaffolding building the limitations stack, (2) explicit three-part research program structure, (3) the critical interpretive reframe linking closed dual walk motifs to information storage (slide 22), (4) future direction on coupling delays.
+**Relationship to main paper distillation**: SUPPLEMENTARY. The main paper distillation is [Lizier_etal_SynchronizabilityMotifs_2023_Paper.md](Lizier_etal_SynchronizabilityMotifs_2023_Paper.md). This slideshow provides: (1) pedagogical scaffolding building the limitations stack, (2) explicit three-part research program structure, (3) the critical interpretive reframe linking closed dual walk motifs to information storage (slide 22), (4) future direction on coupling delays.
 
 ## Core Argument
 
@@ -36,7 +36,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 5: Network Structure and Three-Part Aim
 
-![Slide 5](figures/Lizier-Synchronizability-Slideshow/slide_05_p5.png)
+![Slide 5](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_05_p5.png)
 
 - **What it shows**: Directed weighted network with 5 nodes (Y, X, Z blue; A, B gray). Node A has self-loop. Dashed line labeled $C_{YX}$ shows coupling weight $X \to Y$. Two walk paths highlighted in red/orange
 - **Key data points**: Self-loop on A = visual prototype of L11. Asymmetric directed edges = L12/L21. Three-part aim listed: determine synchronizability, rank quality, relate to structure
@@ -44,7 +44,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 6: Dynamics Comparison Table
 
-![Slide 6](figures/Lizier-Synchronizability-Slideshow/slide_06_p6.png)
+![Slide 6](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_06_p6.png)
 
 - **What it shows**: 4-node colored network (green, red, blue, yellow) + comparison table of discrete (VAR) vs continuous (Ornstein-Uhlenbeck) dynamics. Equations for both regimes. Sync condition: $|\lambda| < 1$ (discrete) vs $\text{Re}(\lambda) < 1$ (continuous). Definition of $\sigma^2(t) = \sum_{i=1}^{N}(x_i(t) - \bar{x}(t))^2$
 - **Key data points**: Both converge to $\sigma^2(\infty) \to 0$ without ongoing noise. $\psi_0 = [1,1,...,1]$ with $\lambda_0 = 1$
@@ -52,7 +52,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 13: Covariance Projection (Pivotal Mathematical Step)
 
-![Slide 13](figures/Lizier-Synchronizability-Slideshow/slide_13_p13.png)
+![Slide 13](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_13_p13.png)
 
 - **What it shows**: Full derivation chain: $\langle\sigma^2\rangle = \frac{1}{N}\text{trace}(\Omega_U)$ where $\Omega_U = U^T\Omega U$, $\vec{x}U = \vec{x} - \bar{x}\psi_0$, $U$ = unaveraging operator
 - **Key data points**: "If we can write down $\Omega_U$ then we can write down $\langle\sigma^2(\infty)\rangle$" — reduces problem to covariance computation in orthogonal complement of synchronized state
@@ -60,7 +60,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 14: Barnett Power Series and Its Limitation
 
-![Slide 14](figures/Lizier-Synchronizability-Slideshow/slide_14_p14.png)
+![Slide 14](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_14_p14.png)
 
 - **What it shows**: Barnett et al.'s covariance as power series for discrete ($\Omega = \sum_{u=0}^{\infty}(C^u)^TC^u$) and continuous ($\Omega = \sum 2^{-m}\binom{m}{u}(C^u)^TC^{m-u}$). But: only valid for $|\lambda| < 1$ — fails when $\psi_0$ is eigenvector with $\lambda_0 = 1$
 - **Key data points**: Cannot plug directly into $\Omega_U = U^T\Omega U$ when $\Omega$ itself doesn't converge
@@ -68,7 +68,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 15: Extended Solution for $\Omega_U$
 
-![Slide 15](figures/Lizier-Synchronizability-Slideshow/slide_15_p15.png)
+![Slide 15](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_15_p15.png)
 
 - **What it shows**: The paper's extension — inserts $U$ operators into the power series: discrete $\Omega_U = \sum U(C^u)^TC^uU$, continuous with $\binom{m}{u}$ terms. Valid for $|\lambda| < 1$ except $\lambda_0 = 1$
 - **Key data points**: Matches form of direct plug-in (solution holds without zero mode). Valid for all synchronizing $C$ in discrete time; subset in continuous time
@@ -76,7 +76,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 16: Full Analytic $\langle\sigma^2\rangle$
 
-![Slide 16](figures/Lizier-Synchronizability-Slideshow/slide_16_p16.png)
+![Slide 16](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_16_p16.png)
 
 - **What it shows**: Complete solutions — discrete: $\langle\sigma^2\rangle = \frac{1}{N}\sum_{u=0}^{\infty}\text{trace}(U(C^u)^TC^uU)$; continuous with binomial sum. "We can now rank the quality of synchronisation fully analytically — not heuristic, empirical or symmetric or diagonalizable"
 - **Key data points**: Circle diagram showing eigenvalue unit disk with $\lambda_0$ excluded
@@ -84,7 +84,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 17: Numerical Validation
 
-![Slide 17](figures/Lizier-Synchronizability-Slideshow/slide_17_p17.png)
+![Slide 17](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_17_p17.png)
 
 - **What it shows**: Log-log plot of relative error between empirical and analytic $\langle\sigma^2\rangle$ vs sample length $L$. N=100 Watts-Strogatz, $d=4$, $C_{ii}=0.5$, $C_{ij}=0.5/d$. Ten values of $p$ from 0.002 to 1.000. Right: network topology diagrams (regular → small-world → random)
 - **Key data points**: Exponential convergence across all $p$. Random networks (high $p$) converge fastest. At $L = 10^6$, relative error $< 10^{-3}$ for all $p$
@@ -92,7 +92,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 19: Three-Stage Derivation for Continuous-Time
 
-![Slide 19](figures/Lizier-Synchronizability-Slideshow/slide_19_p19.png)
+![Slide 19](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_19_p19.png)
 
 - **What it shows**: Three transformation stages: (1) expanding trace$(U^TAU)$ into diagonal − off-diagonal, (2) expanding matrix products to element-level $C^u_{ki}C^{m-u}_{ki}$ terms, (3) rewriting as weighted dual walk counts $\mathbf{w}^{k\to i,m-u}_{k\to i,u}$
 - **Key data points**: Notation: $\mathbf{w}^{a\to e,M_2}_{a\to b,M_1} = \mathbf{w}_{a\to b,M_1}\mathbf{w}_{a\to e,M_2} = (C^{M_1})_{ab}(C^{M_2})_{ae}$
@@ -100,9 +100,9 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slides 20–21: Process Motif Diagrams (CRITICAL VISUAL)
 
-![Slide 20](figures/Lizier-Synchronizability-Slideshow/slide_20_p20.png)
+![Slide 20](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_20_p20.png)
 
-![Slide 21](figures/Lizier-Synchronizability-Slideshow/slide_21_p21.png)
+![Slide 21](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_21_p21.png)
 
 - **What it shows**: Side-by-side continuous (slide 20) and discrete (slide 21) process motif diagrams. Each shows: (top) equation + motif node diagrams — green node $k$ (source), blue node $i$ (target), red node $j$ (alternate target). Two walks depicted as colored arrow arcs. (bottom) Five specific motif examples labeled (a)–(e): (a) $\mathbf{w}_{i\to i,1}$ self-loop, (b) $\mathbf{w}^{k\to i,1}_{k\to i,1}$ shortest closed dual walk, (c) $\mathbf{w}_{i\to i,2}$ feedback loop length 2, (d) $\mathbf{w}^{k\to i,1}_{k\to i,3}$ asymmetric closed dual walk, (e) $\mathbf{w}^{k\to j,1}_{k\to i,2}$ open dual walk
 - **Key data points**: Continuous: walks of lengths $m-u$ and $u$ (can differ). Discrete: both walks of length $u$ (must match). "Bad for sync to have weighted count of closed walks as a high proportion of such dual walks"
@@ -110,7 +110,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 22: Information Storage Motifs (KEY INTERPRETIVE SLIDE)
 
-![Slide 22](figures/Lizier-Synchronizability-Slideshow/slide_22_p22.png)
+![Slide 22](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_22_p22.png)
 
 - **What it shows**: (Top) Closed walk motif illustrations from slides 20-21, now labeled as information storage structures. (Bottom) Directed clustered network from Lizier, Atay & Jost 2012 showing internal loops within clusters and weak between-cluster connections
 - **Key data points**: Five bullet points: (1) noise reinforcement, (2) discrete/continuous differences, (3) "They store traces of dynamics in one part of the network only," (4) "hinder dissemination or transfer of perturbations," (5) **"These are information storage motifs."** Cites Lizier et al. 2012 (PhysRevE)
@@ -118,7 +118,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 23: Sync Insights — Watts-Strogatz Validation
 
-![Slide 23](figures/Lizier-Synchronizability-Slideshow/slide_23_p23.png)
+![Slide 23](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_23_p23.png)
 
 - **What it shows**: (Left) Bullet-point summary of findings. (Right) Chart showing $\langle\sigma^2\rangle$ vs $p$ for different approximation orders, plus network topology diagrams at regular/small-world/random. $d=4$, $C_{ii}=0.5$, $C_{ij}=0.5/d$
 - **Key data points**: "Stronger contribution of shorter motifs — but all required" (emphasized). Regular/small-world less synchronizable than random. Better than eigenspectrum heuristics. Caveats: about proportions; careful with negative weights
@@ -126,7 +126,7 @@ The presentation builds a three-part research program: (1) determine whether a n
 
 ### Slide 24: Sync Insights — Eigenvalue Failure + Modularity
 
-![Slide 24](figures/Lizier-Synchronizability-Slideshow/slide_24_p24.png)
+![Slide 24](figures/Lizier_SynchronizabilitySlideshow_2023_Slideshow/slide_24_p24.png)
 
 - **What it shows**: (Left) Additional insights. (Right) Chart showing $\langle\sigma^2\rangle$ vs coupling strength $c$ at fixed $p=0.001$, with eigenvalue heuristic overlay. $d=4$, $C_{ii}=1-c$, $C_{ij}=c/d$
 - **Key data points**: $\langle\sigma^2\rangle$ changes by order of magnitude while eigenvalue heuristics show virtually no change = most devastating demonstration of heuristic failure. "Modularity will enhance sync inside module but decrease it across network" — stated more directly than in paper. Auto- vs cross-covariance interpretation: $\langle\sigma^2\rangle = \frac{1}{N}\sum_i\Omega_{ii} - \frac{1}{N^2}\sum_{i,j}\Omega_{ij}$

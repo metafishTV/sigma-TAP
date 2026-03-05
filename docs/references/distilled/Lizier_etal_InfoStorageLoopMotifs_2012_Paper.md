@@ -1,4 +1,4 @@
-# Lizier-2012-InfoStorage-LoopMotifs — Distillation
+# Lizier_etal_InfoStorageLoopMotifs_2012_Paper — Distillation
 
 > Source: Joseph T. Lizier, Fatihcan M. Atay, and Jürgen Jost, "Information storage, loop motifs and clustered structure in complex networks," *Physical Review E* 86, 026110, 2012. 5pp.
 > Date distilled: 2026-03-02
@@ -36,7 +36,7 @@ The results offer a computational explanation for the prevalence of reciprocal l
 
 ### Figure 1: Loop Motifs Implicated in Information Storage
 
-![Figure 1](figures/Lizier-2012-InfoStorage-LoopMotifs/fig_01_p3.png)
+![Figure 1](figures/Lizier_etal_InfoStorageLoopMotifs_2012_Paper/fig_01_p3.png)
 
 - **What it shows**: Five motif structures at node $i$: (a) $w^{cyc}_{i,2}$ = 2-node directed cycle (reciprocal link); (b) $w^{cyc}_{i,3}$ = 3-node directed cycle; (c) $w^{fwd}_{i,3}$ = 3-node feedforward loop; (d) $w^{fwd}_{i,4}$ = 4-node feedforward loop; (e) $w^{sqr}_{i,1}$ = directed effects
 - **Key data points**: Each motif labeled with weighted sum notation; arrows show directed edges; node $i$ is the measurement point in all cases. Motifs (a)-(d) are the loop structures; (e) is the non-loop baseline
@@ -44,7 +44,7 @@ The results offer a computational explanation for the prevalence of reciprocal l
 
 ### Figure 2: Information Storage Through Small-World Transition
 
-![Figure 2](figures/Lizier-2012-InfoStorage-LoopMotifs/fig_02_p4.png)
+![Figure 2](figures/Lizier_etal_InfoStorageLoopMotifs_2012_Paper/fig_02_p4.png)
 
 - **What it shows**: Four normalized curves vs. rewiring probability $p$ (log scale): $A$ (true storage, $k=30$), $A^{**}$ (3-node estimate), $A^*$ (2-node estimate), $\tilde{C}^{in}$ (clustering coefficient). $N=100$, $K=4$, equal weights $c=0.5/K$, 10 network realizations per $p$
 - **Key data points**: All start ≈1.0 at $p \approx 0.01$, decrease monotonically to ≈0 at $p=1$. $A^{**}$ tracks $A$ closely; $A^*$ captures dominant trend but underestimates; $\tilde{C}^{in}$ mirrors $A$ decay almost exactly

@@ -1,6 +1,6 @@
 # de Guerre (2016) — Two-Stage Model — sigma-TAP Interpretation
 
-> Distillation: [../distilled/deGuerre-2016-TwoStageModel.md](../distilled/deGuerre-2016-TwoStageModel.md)
+> Distillation: [../distilled/deGuerre_TwoStageModel_2016_Paper.md](../distilled/deGuerre_TwoStageModel_2016_Paper.md)
 > Date interpreted: 2026-03-03
 > Project: sigma-TAP
 
@@ -26,10 +26,10 @@
 ## Integration Points
 
 - **Tele and Tinny = demetathesis cascade**: The irreversible spiral (DP1 → distress → defense → productivity loss → societal harm → reinforced DP1) maps to sigma-TAP's demetathesis: once sigma approaches zero (no feedback modulation), the system locks into declining trajectory. Recovery requires external structural intervention (PDW = metathetic event). Modeling implication: demetathesis should accelerate, not self-correct. The time axis in Figure 3.1 is explicit about irreversibility.
-  - Concept map entry: `deGuerre:TeleAndTinny` → demetathesis_cascade (confirms Emery-Emery-1974 deskilling spiral)
+  - Concept map entry: `deGuerre:TeleAndTinny` → demetathesis_cascade (confirms Emery_Emery_ParticipativeDesign_1974_Paper deskilling spiral)
 
 - **SC funnel = L-channel scanning sequence**: The SC phases map to a systematic scan across L-channels: L22 (extended social field) → L21 (econiche impacts) → L11 (system history) → L12 (action plans). This is the "topology from sigma" principle: environmental feedback signal must be read before organizational structure can be designed. Figure 3.3 makes this sequence explicit and maps each phase to OST architecture.
-  - Concept map entry: `deGuerre:SCFunnel` → L-channel scanning sequence (extends Emery-Trist-1965 L-matrix with operational methodology)
+  - Concept map entry: `deGuerre:SCFunnel` → L-channel scanning sequence (extends Emery_Trist_CausalTexture_1965_Paper L-matrix with operational methodology)
 
 - **Emergence through variation and selection**: The mine case study numbers (4 SCs → 44 designs → 3 themes → 1 selected) demonstrate emergence through distributed process. No single agent designed the outcome; it emerged from variation (many designs generated) and selection (non-DP2 designs rejected, consensus formed). Maps to sigma-TAP principle: group topology should emerge from agent interaction history, not from imposed initial conditions.
   - Concept map entry: `deGuerre:EmergentDesign` → emergence through cross-metathesis (novel — case-level evidence for emergent topology)
@@ -38,7 +38,7 @@
   - Concept map entry: `deGuerre:TownHallConsensus` → group phase alignment threshold (extends Turchin-Gavrilets multilevel selection)
 
 - **Six motivators = metathesis preconditions**: The six intrinsic motivators (elbow room, learning, variety, support, meaningfulness, desirable future) are the conditions under which L22 channels remain open and metathesis continues. When degraded (DP1), the system collapses to L11-dominance. These are not motivational preferences but structural preconditions for continued cross-metathesis.
-  - Concept map entry: `deGuerre:SixMotivators` → metathesis preconditions (confirms Emery-Emery-1974 six criteria)
+  - Concept map entry: `deGuerre:SixMotivators` → metathesis preconditions (confirms Emery_Emery_ParticipativeDesign_1974_Paper six criteria)
 
 - **Political/emotional process**: De Guerre insists the redesign was "not an intellectual engineering exercise" but involved conflict, identity threat, and "painful learning." Metathetic events in sigma-TAP should not be frictionless. The cost dimension (dormancy, temporal state hysteresis) partially captures this, but the political/emotional dimensions (inter-agent conflict over design preferences, identity restructuring during type_set changes) are future modeling targets.
   - Candidate forward note: §5.70 — political/emotional cost of metathesis

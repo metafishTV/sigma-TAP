@@ -1,4 +1,4 @@
-# Levinas-Totality-and-Infinity — Distillation
+# Levinas_TotalityInfinity_1961_Excerpt — Distillation
 
 > Source: Emmanuel Levinas, *Totality and Infinity: An Essay on Exteriority*, trans. Alphonso Lingis (Pittsburgh: Duquesne University Press, 1969). Three excerpted sections: pp. 114–121 (Separation as Life), pp. 191–193 (Sensibility and the Face), pp. 220–232 (The Ethical Relation and Time). 23 pp.
 > Date distilled: 2026-03-03

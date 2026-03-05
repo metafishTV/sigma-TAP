@@ -4,7 +4,7 @@ Project-specific on-hand configuration for the sigma-TAP multi-agent praxis simu
 
 ## What This Adds
 
-This project skill extends the global `/onhand` with sigma-TAP-specific priorities:
+This project skill extends the global `/buffer:on` with sigma-TAP-specific priorities:
 
 - **Greeting**: Always begins with a variation of "Let me see what's on hand" before reconstruction
 - **Source material review**: Presents an inventory of distilled sources from `docs/references/INDEX.md`
@@ -56,4 +56,4 @@ Any `ref` fields containing `§5.XX` are surfaced — these are bookmarked ideas
 
 ## How to Modify
 
-Edit `.claude/skills/onhand/SKILL.md` directly. You can change the greeting text, add new priority sections, or adjust what gets surfaced during reconstruction. The global onhand skill reads the project skill and follows its instructions.
+Edit `.claude/skills/onhand/SKILL.md` directly. You can change the greeting text, add new priority sections, or adjust what gets surfaced during reconstruction. The global buffer:on skill reads the project skill and follows its instructions.
