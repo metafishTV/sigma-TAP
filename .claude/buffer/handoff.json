@@ -151,5 +151,5 @@
     "integration": "full",
     "path": "C:\\Users\\user\\.claude\\projects\\C--Users-user-Documents-New-folder\\memory\\MEMORY.md"
   },
-  "natural_summary": "Continuation session focused on tooling bugfixes: compaction hooks now fire from any CWD (moved to user-level settings, buffer discovery searches downward), skill invocation fixed with flat top-level directories (/buffer-off, /buffer-on). Direct assertive register enforced in distill skill. No theory or simulator changes."
+  "natural_summary": "Continuation session focused on tooling bugfixes: compaction hooks now fire from any CWD (moved to user-level settings, buffer discovery searches downward), skill invocation fixed with flat top-level directories (/buffer-off, /buffer-on). Direct assertive register enforced in distill skill. No theory or simulator changes. [compacted] Context compacted -- hot layer preserved by pre-compact hook."
 }
