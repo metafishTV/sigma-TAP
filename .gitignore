@@ -22,6 +22,9 @@ env/
 Thumbs.db
 nul
 
+# Buffer system ephemeral files
+.claude/buffer/.compact_marker
+
 # Outputs (generated artifacts, not source)
 outputs/run_manifest.json
 outputs/claim_audit_report.json
