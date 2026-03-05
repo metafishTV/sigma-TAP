@@ -6,32 +6,31 @@
   "cold_ref": "handoff-cold.json",
   "session_meta": {
     "date": "2026-03-05",
-    "commit": "9bef205",
+    "commit": "6656864",
     "branch": "main",
     "files_modified": [
-      "docs/references/distilled/DeLanda_AssemblageTheory_2016_Book.md",
-      "docs/references/distilled/Easwaran_BhagavadGita_2007_Book.md",
-      "docs/references/distilled/Easwaran_BhagavadGita_2007_Glossary.md",
-      "docs/references/interpretations/DeLanda_AssemblageTheory_2016_Book.md",
-      "docs/references/interpretations/Easwaran_BhagavadGita_2007_Book.md",
-      "docs/references/interpretations/Easwaran_BhagavadGita_2007_Glossary.md",
-      "docs/references/INDEX.md"
+      "docs/plans/2026-03-05-buffer-lite-and-hooks-design.md",
+      "docs/plans/2026-03-05-buffer-lite-and-hooks-plan.md",
+      "~/.claude/settings.json",
+      "~/.claude/skills/buffer/scripts/compact_hook.py",
+      "~/.claude/skills/buffer-off/SKILL.md"
     ],
     "tests": "345/345 passing"
   },
-  "sessions_since_full_scan": 2,
+  "sessions_since_full_scan": 3,
   "full_scan_threshold": 5,
   "active_work": {
     "current_phase": "Stage 3B COMPLETE — post-reflection tooling phase",
     "completed_this_session": [
-      "DeLanda + Easwaran distillations committed (9bef205)",
-      "buffer_manager.py: handoff pipeline command (update→migrate→sync)",
-      "buffer-off compressed workflow documented (~7 tool calls)",
-      "Compact hooks confirmed working in live compaction"
+      "Compact hooks fixed: PreCompact matcher (manual+auto), SessionStart matcher removed, marker guard added",
+      "Full/lite buffer-off implemented: mode selector, snapshot + targeted branches in SKILL.md",
+      "Design doc + implementation plan committed (50b7eb4, 6656864)",
+      "PreCompact confirmed firing after fix (hot layer got [compacted] marker)",
+      "Lite snapshot mode live-tested (this handoff)"
     ],
     "in_progress": null,
     "blocked_by": null,
-    "next_action": "Implement full/lite buffer-off mode → DeLanda review → R&B deep review → Stage 3C"
+    "next_action": "DeLanda review → R&B deep review → TASKS.md → Stage 3C"
   },
   "orientation": {
     "core_insight": "sigma-TAP models PRAXIS (how agents become through action) via the L-matrix. Four channels: L11=self-self, L12=self-other, L21=other-self, L22=env-env. Philosophical sources (Levinas, Sartre, D&G, Emery-Trist) independently converge on this 4-channel structure — that convergence is the user's key claim.",
@@ -46,14 +45,9 @@
   },
   "open_threads": [
     {
-      "thread": "Compact hooks unreliable — fired once, missed other compactions. Debug.",
+      "thread": "Verify PreCompact:auto fires during real auto-compaction (not just manual test).",
       "status": "noted",
-      "ref": "Hooks in ~/.claude/settings.json. PreCompact + SessionStart:compact. Only 1 confirmed firing despite multiple compactions."
-    },
-    {
-      "thread": "Full/lite buffer-off mode — user chooses depth at invocation.",
-      "status": "noted",
-      "ref": "Full = existing 14-step handoff. Lite = quick hot-layer checkpoint (skip warm consolidation, concept map, conservation). User wants more control than autosave."
+      "ref": "Settings.json fixed. Manual E2E test passed. Need live auto-compaction confirmation."
     },
     {
       "thread": "Skills repo for marketplace — needed for plugin conversion.",
@@ -73,36 +67,44 @@
       "thread": "Turbulence reconception — full rethink needed.",
       "status": "deferred",
       "ref": "§5.42"
+    },
+    {
+      "thread": "Orphaned ~/.claude/skills/buffer/off/ and buffer/on/ — can clean up.",
+      "status": "noted"
     }
   ],
   "recent_decisions": [
     {
-      "what": "Buffer-off mode split",
-      "chose": "Full (complete handoff) vs Lite (quick checkpoint)",
-      "why": "User wants mid-session saves with more control than autosave"
+      "what": "Compact hooks config",
+      "chose": "PreCompact: manual+auto matchers. SessionStart: no matcher. Post-compact: marker guard.",
+      "why": "Root cause: empty matcher matched nothing; SessionStart doesn't support matchers."
     },
     {
-      "what": "Handoff pipeline",
-      "chose": "Single `handoff` command chains update→migrate→sync",
-      "why": "15 tool calls → ~7; file input avoids cp1252 encoding issues"
+      "what": "Buffer-off lite approach",
+      "chose": "Prompt-gated (Approach A): single skill, AskUserQuestion at invocation",
+      "why": "No skill proliferation, clean UX, works within skill constraints"
+    },
+    {
+      "what": "Read-first ordering",
+      "chose": "Scan all layers → scan dialogue → write delta",
+      "why": "Prevents cross-layer duplication. User specified this ordering."
     }
   ],
   "instance_notes": {
-    "from": "v6 continuation instance",
+    "from": "v7 tooling completion instance",
     "to": "next instance",
     "remarks": [
-      "Compact hooks fired ONCE but compaction occurred MULTIPLE times — hooks are NOT reliably triggering. Investigate.",
-      "buffer_manager.py now has `handoff` command — use it instead of manual step-by-step.",
-      "Write changes to _changes.json file, not stdin pipe (Windows cp1252 breaks Unicode).",
-      "DeLanda + Easwaran distillations committed. DeLanda review is next theory work.",
-      "User wants full/lite buffer-off split — design this next session.",
-      "Skills repo needed for marketplace — deferred but important to user.",
-      "Orphaned ~/.claude/skills/buffer/off/ and buffer/on/ still exist — can clean up."
+      "Compact hooks NOW WORKING. Root cause was wrong matchers. PreCompact needs 'manual'/'auto', SessionStart has no matcher.",
+      "buffer_manager.py `handoff` command works. Write _changes.json file (not stdin) on Windows.",
+      "/buffer-off now has 3 modes: Full, Lite Snapshot, Lite Targeted. Mode selector appears at invocation.",
+      "Lite Snapshot = read all layers → dialogue delta → write hot → commit. ~3 tool calls.",
+      "DeLanda review is next theory work. R&B after that.",
+      "Orphaned ~/.claude/skills/buffer/off/ and buffer/on/ still exist — clean up when convenient."
     ],
     "open_questions": [
-      "PRIORITY: Compact hooks unreliable — fired once but missed other compactions. Root cause unknown. Debug next session.",
+      "Does PreCompact:auto actually fire during auto-compaction? Manual test passed but live test pending.",
       "Warm at 2925 lines (2658 exempt backbone). Load time impact?",
-      "Lite buffer scope: how minimal? Just hot snapshot, or include recent decisions too?"
+      "Should lite snapshot also increment sessions_since_full_scan? (Currently yes, in this handoff.)"
     ]
   },
   "concept_map_digest": {
@@ -145,5 +147,5 @@
     "integration": "full",
     "path": "C:\\Users\\user\\.claude\\projects\\C--Users-user-Documents-New-folder\\memory\\MEMORY.md"
   },
-  "natural_summary": "Continuation: committed DeLanda + Easwaran distillations, built handoff pipeline command in buffer_manager.py, confirmed compact hooks fired once but user reports multiple compactions missed — hooks unreliable, needs debugging. New feature noted: full/lite buffer-off mode for user-controlled checkpoint depth. Skills repo needed for marketplace plugin conversion."
+  "natural_summary": "Tooling session: fixed compact hooks (wrong matchers were root cause — PreCompact needs manual/auto, SessionStart has no matcher). Implemented full/lite buffer-off mode with prompt-gated selector (snapshot + targeted). All 8 implementation tasks completed and E2E tested. PreCompact confirmed firing after fix. Next: DeLanda review, then theory work."
 }
