@@ -1,6 +1,7 @@
 {
   "schema_version": 2,
   "layer": "hot",
+  "buffer_mode": "project",
   "warm_ref": "handoff-warm.json",
   "cold_ref": "handoff-cold.json",
 

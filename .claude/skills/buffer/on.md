@@ -9,9 +9,12 @@ Project-specific on-hand skill. Overrides the global `/buffer:on` with sigma-TAP
 
 ## Configuration
 
+- **Buffer mode**: `project` (always — skip Step 0d mode selection)
 - **Buffer directory**: `.claude/buffer/`
 - **Memory file**: `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\MEMORY.md`
 - **Index file**: `docs/references/INDEX.md`
+
+> **Mode note**: sigma-TAP always runs in project mode. Step 0d (mode choice) in the global `/buffer:on` is skipped — the hot layer's `buffer_mode` is always `"project"`. All mode-gated steps (concept map, convergence web, provenance consolidation) fire unconditionally.
 
 ## Greeting
 

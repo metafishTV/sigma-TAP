@@ -9,9 +9,13 @@ Project-specific handoff skill. Overrides the global `/buffer:off` with sigma-TA
 
 ## Configuration
 
+- **Buffer mode**: `project` (always — sigma-TAP uses concept map + convergence web)
 - **Buffer directory**: `.claude/buffer/`
 - **Test command**: `python -m pytest tests/ -q --tb=no`
 - **Memory file**: `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\MEMORY.md`
+- **Warm max lines**: 800 (overrides global 500)
+
+> **Mode note**: sigma-TAP always runs in project mode. All global `/buffer:off` mode gates (Steps 3-7) fire unconditionally. The hot layer's `buffer_mode` field must be `"project"`.
 
 ## Concept Map Groups
 
@@ -155,4 +159,11 @@ Consolidation reduces warm line count, which delays conservation migration (Step
 
 ## Process
 
-Follow the global `/buffer:off` process (Steps 1-14), using the configuration and schemas defined here. The global skill defines the generic process; this file defines the project-specific structure. Warm max lines is 800 (overrides global 500).
+Follow the global `/buffer:off` process (Steps 1-14), using the configuration and schemas defined here. The global skill defines the generic process; this file defines the project-specific structure.
+
+**Key overrides from global defaults**:
+- `buffer_mode`: always `"project"` — never prompt for mode selection
+- Warm max lines: 800 (global default: 500)
+- Concept map groups: 8 groups defined above
+- Convergence web: top-level warm section with tetradic entry schema
+- Conservation: concept_map + convergence_web are exempt from warm→cold migration
