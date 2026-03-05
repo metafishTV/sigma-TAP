@@ -61,6 +61,26 @@ Grows with each distillation.
 | tetration | Exponential tower 10^{10^{10^{...}}} — TAP late-time super-exponential growth regime | Cortes_etal_TAPEquation_2022_Paper |
 | two-scale TAP | Variant: M_{t+1} = M_t(1-μ) + α₁M_t + Σα C(M_t,i) with α₁≫α — exponential phase then blow-up | Cortes_etal_TAPEquation_2022_Paper |
 | t_add_one | Time to add one item: 1/[α(2^{M₀}-M₀-1)]. Substitutability → geometric halving → finite blow-up | Cortes_etal_TAPEquation_2022_Paper |
+| nishkama karma | Desireless action — performing duty without attachment to results. Philosophical precedent for σ(Xi) feedback modulation | Easwaran_BhagavadGita_2007_Book |
+| gunas (sattva, rajas, tamas) | Three fundamental qualities of prakriti: harmony/luminosity, passion/activity, inertia/delusion. Map to sigma-TAP growth regimes: stable intermediate, pre-blow-up acceleration, extinction instability | Easwaran_BhagavadGita_2007_Book |
+| svadharma | One's own duty/nature — agent-specific structural role that cannot be substituted. Basis for agent specialization and trust-gating | Easwaran_BhagavadGita_2007_Book |
+| shraddha | Constitutive faith — one IS one's shraddha (not propositional belief but structural orientation). Precedent for σ(Xi) as constitutive agent orientation | Easwaran_BhagavadGita_2007_Book |
+| kshetra / kshetrajna | The field (body-mind-environment) and its knower (Self). Structural template for L-matrix (field) / agent (knower) architecture | Easwaran_BhagavadGita_2007_Book |
+| vishvarupa | The cosmic form — totality simultaneously creating and destroying all beings. Phenomenological correlate of TAP blow-up / unforeshadowability | Easwaran_BhagavadGita_2007_Book |
+| ahamkara | [aham "I" + kara "maker"] Self-will, separateness — agent individuation as active construction, not given. Type_set IS ahamkara | Easwaran_BhagavadGita_2007_Glossary |
+| buddhi / manas | Tripartite cognitive architecture: manas (sensory registration) → buddhi (discriminative evaluation) → ahamkara (self-referencing). Agent processing pipeline | Easwaran_BhagavadGita_2007_Glossary |
+| tapas | Constraint-generated capacity — austerity/self-control that PRODUCES power through restriction. Constraint as amplification mechanism | Easwaran_BhagavadGita_2007_Glossary |
+| lila | Divine play — the universe as generative self-expression, not engineering or chance. TAP dynamics as play | Easwaran_BhagavadGita_2007_Glossary |
+| samsara | Cyclical default dynamics — the system's baseline repetition mode. The problem σ-field/moksha solves | Easwaran_BhagavadGita_2007_Glossary |
+| kalpa / yuga | Multi-scale temporal cosmology: samsara (individual) within yuga (regime degradation) within kalpa (cosmic epoch). Nested timescales | Easwaran_BhagavadGita_2007_Glossary |
+| assemblage (agencement) | Wholes with emergent properties where parts maintain autonomy via relations of exteriority — can be detached and recombined | DeLanda_AssemblageTheory_2016_Book |
+| relations of exteriority | Parts not exhaustively defined by membership in a whole; properties exceed any particular assemblage. Grounds cross-metathesis | DeLanda_AssemblageTheory_2016_Book |
+| parametrized assemblage | Territorialization and coding as continuously variable parameters (not binary categories). L-matrix channels as T/C parameter readings | DeLanda_AssemblageTheory_2016_Book |
+| properties vs capacities | Properties = actual enduring states (type_set). Capacities = virtual, relational, exercised only in interaction (adjacent possible). Different formal treatment required | DeLanda_AssemblageTheory_2016_Book |
+| intensive / extensive | Intensive = drives phase transitions at thresholds (σ, temperature, speed). Extensive = additive (M_t, volume). σ-field is intensive, M_t is extensive | DeLanda_AssemblageTheory_2016_Book |
+| virtual / actual (DeLanda) | Virtual = real but not actual (singularities, attractors, adjacent possible). Actual = manifest, determined. NOT possible/real. TAP equation defines virtual structure | DeLanda_AssemblageTheory_2016_Book |
+| divergent actualization | One virtual structure produces multiple qualitatively different actual entities without resemblance. Same TAP equation → multiple growth regimes | DeLanda_AssemblageTheory_2016_Book |
+| symmetry-breaking cascade | Progressive differentiation from topological to metric via successive symmetry elimination. Klein's Erlangen program applied ontologically | DeLanda_AssemblageTheory_2016_Book |
 
 ## Distillation Process
 
@@ -70,7 +90,7 @@ After extracting raw text, perform two additional analytic passes before writing
 
 **Pass 1 — Text extraction**: Raw content from the PDF pipeline (see below).
 
-**Pass 2a — Internal significance**: Re-read asking: *What does this concept mean within this source?* For each key concept, identify its *role* in the author's argument (premise, mechanism, implication, boundary condition, conclusion). Understand the source on its own terms. Feeds Key Concepts Significance column and Core Argument.
+**Pass 2a — Internal significance**: Re-read asking: *What does this concept mean within this source?* For each key concept, identify its *role* in the author's argument (premise, mechanism, implication, boundary condition, conclusion). Understand the source on its own terms. Feeds Key Concepts Significance column and Core Argument. **Voice**: Write in direct assertive register — state what the concepts ARE and DO within the source's framework, not that "the author defines" them. Attribution is structural (header metadata).
 
 **Pass 2b — Project significance**: Re-read asking: *What does this mean for sigma-TAP?* Map to TAPS, RIP, L-matrix, dialectic — confirm, extend, or challenge. A minor source concept may be a major project discovery. Feeds sigma-TAP Integration Points and candidate forward notes.
 
@@ -303,7 +323,7 @@ Produce the distillation in this exact structure. Mandatory sections ALWAYS appe
 
 ## Core Argument
 
-[1-3 paragraphs: What is this source fundamentally arguing? What is its core contribution? Preserve the author's logic chain — do not editorialize. Go beyond surface claims to extract the meaning and significance of the argument for the author's own project.]
+[1-3 paragraphs in direct assertive register: State the argument AS the source states it, condensed. Trace the logic chain and its operational motions — what each move blocks, enables, or transforms. Do not frame claims as "the author argues" or "this paper proposes" — the header carries attribution. Write as if the source itself is speaking in compressed form. When the source attributes claims to others, preserve THAT attribution. Do not editorialize.]
 
 ## Key Concepts
 
@@ -372,6 +392,26 @@ $$[equation in LaTeX] \tag{N}$$
 **Exception — full prose ONLY where symbolic notation genuinely cannot capture the nuance**: Core argumentative logic chains (Core Argument section) and methodological reasoning (Theoretical & Methodological Implications) where causal/temporal relationships require natural language to avoid ambiguity. Even in these sections, prefer concise sentences over verbose exposition.
 
 Equations section uses LaTeX notation throughout.
+
+### Voice Rule: Direct Assertive Register
+
+Distillations speak AS the source, not ABOUT the source. The file header (author, title, year, register, tone) handles all attribution. The body text states claims directly.
+
+**Eliminate**:
+- "The paper argues/proposes/claims that..."
+- "According to X..." / "X argues that..."
+- "The authors demonstrate/show that..."
+- "This source presents..." / "The text establishes..."
+- Passive attributions: "...is described as..." / "...is presented as..."
+
+**Use instead**:
+- Direct assertion: "Causal textures constitute four ideal types." [§2, p. 4]
+- Source-internal attribution (when the source cites others): "Against Hegel: the totality suppresses the Other." [§I.A, p. 34]
+- Operational framing: "The L22 channel captures environment-environment transactions that no single agent controls." [§4, p. 12]
+
+**Edge case — internal polyvocality**: When a source surveys competing views, use the source's own devices: "Three theories compete: X holds..., Y counters..., Z synthesizes..." The distiller does not add meta-commentary ("The paper surveys three theories...").
+
+**Rationale**: Token compression (10-15% savings), reduced entropy, higher operational utility for future instances. The meta-descriptive frame adds no information beyond what the header provides.
 
 ### sigma-TAP Interpretation File
 
@@ -652,6 +692,16 @@ Update `.claude/buffer/handoff.json` → `convergence_web_digest`:
 | Cortes_etal_TAPEquation_2022_Paper: caption_only item_type = guaranteed verification failure | When `_manifest.json` shows `item_type: "caption_only"`, the extraction script found captions but NOT the associated visual elements. These will ALWAYS fail the crop verification gate — they contain only text. **Pattern**: for future distillations, check manifest for `caption_only` items BEFORE reading individual PNGs, and immediately route those pages to full-page rendering instead | 2026-03-04 |
 | Cortes_etal_TAPEquation_2022_Paper: two PDFs merged into single distillation | Preprint (2022, 8pp) and published version (2025, 10pp) are the same paper. Published adds Section 4 "More on blow-up" (continuous integral Eqs 15'-16'), updated references (Vinge, Kurzweil, Bellina), and minor text refinements. Both texts extracted and merged for comprehensive coverage. Equation numbering note added to distillation (primed numbers for published-only equations) | 2026-03-04 |
 | Cortes_etal_TAPEquation_2022_Paper distillation run summary | Route A (clean text via PyMuPDF) for all pages of both PDFs (8+10). Full-page rendering at dpi=200 for 5 pages (pp 3-7) after caption-only crop failure. Verification gate: 8/8 items FAILED initial crop (all caption-only/text-only), resolved via full-page fallback — 5/5 full-page renders verified. No new tools installed. Pre-skill distillation existed (older format with inline integration section) and was overwritten with current skill-compliant format. Separate interpretation file created. 15 key concepts, 16 equations with variable definitions, formal-mathematical register. 6 new cross_source entries (w:189-194), 4 convergence web entries (cw:61-64). 5 open questions flagged for user review | 2026-03-04 |
+| Easwaran_BhagavadGita_2007_Book: table/complex_layout heuristic false-positive (same known pattern) | 35/74 pages flagged as tables, 34/74 complex layout. Formatted verse text with chapter headings triggers both heuristics. 0 scanned, 0 equations. All Route A (clean text). Same known pattern as all previous academic/philosophical PDFs | 2026-03-05 |
+| Easwaran_BhagavadGita_2007_Book: sacred/scriptural register — no equations, no empirical data, no tables, no figures | All conditional sections correctly omitted. Only mandatory sections produced (Core Argument, Key Concepts, Theoretical & Methodological Implications). Third purely philosophical source processed (after Levinas, D&G). First sacred/scriptural register — dialogical-revelatory method, not analytic or phenomenological. Pipeline confirmed for this register | 2026-03-05 |
+| Easwaran_BhagavadGita_2007_Book distillation run summary | Route A (clean text via PyMuPDF) for all 74 pages. No figures, no equations, no scanned pages. Verification gate: N/A (no visual material). No new tools installed. No pre-existing distillation. Separate interpretation file created. 16 key concepts, sacred-scriptural/philosophical-commentary mixed register. 8 new cross_source entries (w:195-202), 6 convergence web entries (cw:65-70). 5 open questions flagged for user review. First source providing philosophical precedent for sigma-field mechanism (nishkama karma) and triadic growth classification (gunas) | 2026-03-05 |
+| Easwaran_BhagavadGita_2007_Glossary: table/complex_layout heuristic false-positive (same known pattern) | 1/12 pages flagged as table, 1/12 complex layout. Formatted glossary entries with bold headings trigger heuristics. 0 scanned, 0 equations. All Route A (clean text). Same known pattern as all previous formatted text sources | 2026-03-05 |
+| Easwaran_BhagavadGita_2007_Glossary: reference-lexical register — glossary/dictionary format, not argument-driven | Adapted Core Argument section to describe the glossary's structural contribution (compositional architecture, taxonomic layers) rather than a linear argument. Key Concepts table selects ~16 terms with highest sigma-TAP relevance from ~120+ glossary entries. Companion to Easwaran_BhagavadGita_2007_Book — etymological depth and faculty-psychology model not available in the verse text | 2026-03-05 |
+| Easwaran_BhagavadGita_2007_Glossary distillation run summary | Route A (clean text via PyMuPDF) for all 12 pages. No figures, no equations, no scanned pages. Verification gate: N/A (no visual material). No new tools installed. No pre-existing distillation. Separate interpretation file created. 16 key concepts, reference-lexical/accessible-general register. 8 new cross_source entries (w:203-210), 5 convergence web entries (cw:71-75). 3 open questions flagged for user review. Novel concepts: kundalini (irreversible agent transformation), prajna (system-level cognition) | 2026-03-05 |
+| DeLanda_AssemblageTheory_2016_Book: table/complex_layout/equation heuristic — minimal false positives | 0 tables, 0 complex layout, 1 equation (p.112, low-confidence symbol-density flag — algebraic equations in running text about Galois theory). 0 scanned. All 144 pages Route A (clean text). Cleanest scan of any source to date — 144 pages with only 1 low-confidence flag | 2026-03-05 |
+| DeLanda_AssemblageTheory_2016_Book: book-length analytic-systematic register — no equations (formal), no empirical data, no tables, no figures | 144-page book (7 chapters + introduction + endnotes). All conditional sections correctly omitted. Only mandatory sections produced (Core Argument, Key Concepts, Theoretical & Methodological Implications). First full-book distillation (vs chapters, papers, excerpts). Continental subject matter rendered in analytic idiom — register classified as analytic-systematic, not continental | 2026-03-05 |
+| DeLanda_AssemblageTheory_2016_Book: pages 121-144 are endnotes/references, not body text | Body text ends at p.120 (Chapter 7 conclusion). Pages 121-144 contain numbered endnotes with bibliographic references. These provide useful cross-references (DeLanda cites D&G, Braudel, Prigogine, Kauffman, etc.) but no new argumentative content. All endnote content used to verify and ground distillation claims | 2026-03-05 |
+| DeLanda_AssemblageTheory_2016_Book distillation run summary | Route A (clean text via PyMuPDF) for all 144 pages. No figures, no equations (formal), no scanned pages. Verification gate: N/A (no visual material). No new tools installed. No pre-existing distillation. Separate interpretation file created. 16 key concepts, analytic-systematic register. 7 new cross_source entries (w:211-217), 7 convergence web entries (cw:76-82). 5 open questions flagged for user review. Most architecturally significant distillation for sigma-TAP — systematic grounding of L-matrix ↔ assemblage correspondence. Novel concepts: symmetry-breaking cascade → TAPS, plane of consistency → system diagnostic | 2026-03-05 |
 
 ### Error Logging (mandatory)
 
