@@ -602,7 +602,7 @@ Encoding / platform issues:
 
 ### Post-Distillation Updates
 
-After both files written, present the interpretation to the user and **wait for their acknowledgment or feedback** before proceeding. Then perform these updates from the **interpretation file** (not the distillation). Skip if either file was abandoned.
+After both files written, **⚠ MANDATORY POPUP**: You MUST present the interpretation to the user via `AskUserQuestion` and wait for their acknowledgment or feedback. Do NOT proceed to updates until the user has responded. Do NOT assume acknowledgment from silence. Call `AskUserQuestion` with options like "Looks good — proceed with updates" / "I have feedback" (let the user choose). Then perform these updates from the **interpretation file** (not the distillation). Skip if either file was abandoned.
 
 **1. INDEX.md Update**
 
