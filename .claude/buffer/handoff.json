@@ -5,8 +5,8 @@
   "warm_ref": "handoff-warm.json",
   "cold_ref": "handoff-cold.json",
   "session_meta": {
-    "date": "2026-03-05",
-    "commit": "6656864",
+    "date": "2026-03-06",
+    "commit": "e466385",
     "branch": "main",
     "files_modified": [
       "docs/plans/2026-03-05-buffer-lite-and-hooks-design.md",
@@ -30,7 +30,7 @@
     ],
     "in_progress": null,
     "blocked_by": null,
-    "next_action": "DeLanda review → R&B deep review → TASKS.md → Stage 3C"
+    "next_action": "R&B deep review → DeLanda deep review → Emery deep review → TASKS.md → Stage 3C"
   },
   "orientation": {
     "core_insight": "sigma-TAP models PRAXIS (how agents become through action) via the L-matrix. Four channels: L11=self-self, L12=self-other, L21=other-self, L22=env-env. Philosophical sources (Levinas, Sartre, D&G, Emery-Trist) independently converge on this 4-channel structure — that convergence is the user's key claim.",
@@ -55,12 +55,22 @@
       "ref": "Buffer plugin 3-4 sessions, distill separate. Needs proper repo + manifest."
     },
     {
-      "thread": "R&B deep review — after DeLanda.",
+      "thread": "R&B deep review.",
       "status": "noted",
       "ref": "docs/references/Ruesch_Bateson_Communication_1951_Excerpt_pg196-237.pdf"
     },
     {
-      "thread": "TASKS.md — deferred until after R&B review.",
+      "thread": "DeLanda deep review.",
+      "status": "noted",
+      "ref": "docs/references/distilled/DeLanda_AssemblageTheory_2016_Book.md"
+    },
+    {
+      "thread": "Emery deep review.",
+      "status": "noted",
+      "ref": "Emery-Trist L-matrix origin (1965). No distillation yet — source needed."
+    },
+    {
+      "thread": "TASKS.md — deferred until after deep reviews.",
       "status": "deferred"
     },
     {
@@ -110,7 +120,8 @@
   "concept_map_digest": {
     "_meta": {
       "total_entries": 164,
-      "last_validated": "2026-03-05"
+      "last_validated": "2026-03-05",
+      "migrated_to_alpha": "2026-03-07"
     },
     "recent_changes": [],
     "flagged": [
@@ -120,7 +131,8 @@
   "convergence_web_digest": {
     "_meta": {
       "total_entries": 45,
-      "last_validated": "2026-03-03"
+      "last_validated": "2026-03-03",
+      "migrated_to_alpha": "2026-03-07"
     },
     "clusters": [
       "Storage-Identity-Practico-inert (cw:1-5, cw:33)",
@@ -147,5 +159,6 @@
     "integration": "full",
     "path": "C:\\Users\\user\\.claude\\projects\\C--Users-user-Documents-New-folder\\memory\\MEMORY.md"
   },
-  "natural_summary": "Tooling session: fixed compact hooks (wrong matchers were root cause — PreCompact needs manual/auto, SessionStart has no matcher). Implemented full/lite buffer-off mode with prompt-gated selector (snapshot + targeted). All 8 implementation tasks completed and E2E tested. PreCompact confirmed firing after fix. Next: DeLanda review, then theory work."
+  "natural_summary": "Tooling session: fixed compact hooks (wrong matchers were root cause — PreCompact needs manual/auto, SessionStart has no matcher). Implemented full/lite buffer-off mode with prompt-gated selector (snapshot + targeted). All 8 implementation tasks completed and E2E tested. PreCompact confirmed firing after fix. Next: DeLanda review, then theory work. [compacted] Context compacted -- hot layer preserved by pre-compact hook.",
+  "alpha_ref": "alpha/index.json"
 }

@@ -81,6 +81,46 @@ Grows with each distillation.
 | virtual / actual (DeLanda) | Virtual = real but not actual (singularities, attractors, adjacent possible). Actual = manifest, determined. NOT possible/real. TAP equation defines virtual structure | DeLanda_AssemblageTheory_2016_Book |
 | divergent actualization | One virtual structure produces multiple qualitatively different actual entities without resemblance. Same TAP equation → multiple growth regimes | DeLanda_AssemblageTheory_2016_Book |
 | symmetry-breaking cascade | Progressive differentiation from topological to metric via successive symmetry elimination. Klein's Erlangen program applied ontologically | DeLanda_AssemblageTheory_2016_Book |
+| totalization-of-envelopment | History as totalization without a totalizer — all praxes integrated into comprehensible but never-completed process; identified with system | Sartre_CritiqueDR2_1991_Appendix |
+| practico-inert (Sartre) | Worked matter governing man — institutions, tools, language as anti-dialectical reversal of praxis. L-matrix as practico-inert structure | Sartre_CritiqueDR2_1991_Appendix |
+| seriality / series | Mode of coexistence in practico-inert milieu — interchangeable Others, sealed inertia; twofold constitution: inert as multiplicity, active from afar | Sartre_CritiqueDR2_1991_Appendix |
+| group-in-fusion | Group constituting itself through dissolution of seriality under opposing praxis (Apocalypse). Opposes series; oscillates with institutional ossification | Sartre_CritiqueDR2_1991_Appendix |
+| incarnation (Sartre) | Singular praxis enveloping ensemble of totalizations in progress — whole present in each part as lived singularity | Sartre_CritiqueDR2_1991_Appendix |
+| counter-finality | Unintended consequences of praxis turning against agent — innovation producing its own negation. Extinction instability IS counter-finality | Sartre_CritiqueDR2_1991_Appendix |
+| totalization / detotalization / retotalization | Dialectical triad: totalization never completes → produces detotalization → demands retotalization. Engine of history | Sartre_CritiqueDR2_1991_Appendix |
+| immanence (Sartre) | Impossibility of not living together + impossibility of living together — dead-possibility of unification creating dialectical tension | Sartre_CritiqueDR2_1991_Appendix |
+| praxis-process | Dialectical unity of free praxis and practico-inert process — action producing its own body (corporality) which turns back on the agent | Sartre_CritiqueDR2_1991_Envelopment |
+| the differential (Sartre) | Structural gap between objective exigencies and sovereign's realization — consequence of incarnation through a factical being, not accident | Sartre_CritiqueDR2_1991_Envelopment |
+| deviation (structural, Sartre) | Systematic gap between intended outcome and actual result, produced by incarnation itself. "Stalinism saved socialization by deviating socialism" | Sartre_CritiqueDR2_1991_Envelopment |
+| determined indetermination | The decree as universality/economy of means — each agent particularizes the sovereign's underdetermined intention through local praxis | Sartre_CritiqueDR2_1991_Envelopment |
+| corporality of praxis | Praxis producing its own body/exteriority (society-object, institutions, hierarchy) which sustains and deviates it | Sartre_CritiqueDR2_1991_Envelopment |
+| retrospective condemnation | Practical drift re-signifying the past — acts innocent at time t become criminal when reference system shifts. System cannot know its own drift | Sartre_CritiqueDR2_1991_Envelopment |
+| ossification (Sartre) | Terminal phase where corporality of praxis blocks adaptive capacity — accumulated structure overwhelms self-awareness. Late Stalin (1948-53) | Sartre_CritiqueDR2_1991_Envelopment |
+| scarcity of men | Second-order scarcity: structural impossibility of the right agent for the right function. "Man is not made for man." Makes dynamics historical | Sartre_CritiqueDR2_1991_Envelopment |
+| costs of action / costs of History | Every type combination expends agent capacity; accumulated type_set = "waste-product" conditioning future action. Per-agent energy budget alongside systemic μ | Sartre_CritiqueDR2_1991_PraxisProcess |
+| feedback / second-level deviations | Directed circularity corrects primary deviation but necessarily produces secondary deviations. Impossibility of eliminating meta-deviation = formal structure of σ-modulation | Sartre_CritiqueDR2_1991_PraxisProcess |
+| meaning vs signification | Signification = aggregate, atemporal, universalizable (M_t, Youn ratio). Meaning = singular, temporal, non-repeatable (per-agent L-matrix history). Neither reduces to the other | Sartre_CritiqueDR2_1991_PraxisProcess |
+| process-praxis | Reverse of praxis-process: the totalization viewed from outside, in its being-in-itself. The experimenter's perspective — the "hidden card" conditioning every run | Sartre_CritiqueDR2_1991_PraxisProcess |
+| the single and the multiple | Interplay: each unification produces new multiplicity requiring fresh unification. The "slipping stitch" = TAP phase transition from cyclical to spiral dynamics | Sartre_CritiqueDR2_1991_PraxisProcess |
+| ontological limit of totalization | Agents produce only passive syntheses (type combinations), not new agents. Agent population is substrate, not product — system cannot bootstrap its own substrate | Sartre_CritiqueDR2_1991_PraxisProcess |
+| abandonment (Sartre) | Absolute solitude — agents cannot know whether their parameters permit survival. Existential register for sensitivity to initial conditions | Sartre_CritiqueDR2_1991_PraxisProcess |
+| fatigue / threshold (Sartre) | Per-agent capacity reduction from recent expenditure — qualitative degradation once threshold crossed. Distinct from ossification (accumulated type_set burden) | Sartre_CritiqueDR2_1991_PraxisProcess |
+| singularity of praxis | Human praxis as specific determination of every possible praxis through organic-inorganic facticity — singular not by exclusion but by positive self-comprehension | Sartre_CritiqueDR2_1991_SingularityPraxis |
+| non-transcendable aim | Preservation of life as absolute end grounding all practical sectors — σ-field as formal expression of viability condition | Sartre_CritiqueDR2_1991_SingularityPraxis |
+| organic hexis | Sedimented practical orientation — "passive synthesis supported by living synthesis." Type_set as hexis: agent's practical being, not merely accumulated output | Sartre_CritiqueDR2_1991_SingularityPraxis |
+| practical field (as real body) | Totalization of surrounding elements as means/risks — "mediation, milieu, intermediary, means = one single reality." L-matrix IS the practical field | Sartre_CritiqueDR2_1991_SingularityPraxis |
+| governed circularity | Feedback subordinated to non-transcendable aim — distinguishes σ-modulation from wild TAP (no feedback) and pure cybernetics (mechanical feedback) | Sartre_CritiqueDR2_1991_SingularityPraxis |
+| two types of praxis | Exterior replacement (machine substitutes for operation) vs. interior replacement (tool extends organ). Product types vs. capacity-modifier types | Sartre_CritiqueDR2_1991_SingularityPraxis |
+| trans-itivity of action | Action as neither permanence (inert) nor repetition (organic) but irreversible unification — "quartering of the cyclical by changes of exteriority" | Sartre_CritiqueDR2_1991_SingularityPraxis |
+| stasis / alienating halt | Social order defining agent by product — "dead unity of a passive synthesis for the real movement of unification." Warning about snapshot diagnostics | Sartre_CritiqueDR2_1991_SingularityPraxis |
+| effective adjacent possible | Subset of AP searchable given integration complexity (λ), absorptive capacity (D*), resource constraints (R). |U| = (ν + ρk/D)|R| | Taalbi_LongRunPatterns_2025_Paper |
+| resource constraint taming | Resource limits transform TAP super-exponential → exponential: dk/dt ~ k·ln(η). B-B model: k = preferential attachment, ln(η) = fitness | Taalbi_LongRunPatterns_2025_Paper |
+| linear attachment kernel | dk/dt ~ k (coefficient 0.997). Critical boundary: sub-linear → decline, super-linear → winner-take-all, linear = viable | Taalbi_LongRunPatterns_2025_Paper |
+| new colors vs copies | ν = new product types (exploration); ρ = improvements (exploitation). ν/ρ ratio = exploration/exploitation balance | Taalbi_LongRunPatterns_2025_Paper |
+| Heaps' law | D ~ k^(ν/ρ) — diversity grows sub-linearly with cumulative innovations. Empirical exponent 0.587 | Taalbi_LongRunPatterns_2025_Paper |
+| timescale-dependent predictability | Short-run structured/predictable, long-run unstructured/unprestatable. Reconciles Kauffman and Hidalgo | Taalbi_LongRunPatterns_2025_Paper |
+| deepening vs widening | Deepening (ν < ρ): exploitation norm, Heaps' law. Widening (ν > ρ): paradigm shifts, exploration-dominant | Taalbi_LongRunPatterns_2025_Paper |
+| product space | Co-occurrence network within firms. Small-world, moderate modularity (0.36-0.38) in sub-periods, dissolving long-run (0.23) | Taalbi_LongRunPatterns_2025_Paper |
 
 ## Distillation Process
 
@@ -574,56 +614,87 @@ Read `docs/references/INDEX.md`. Add or update a row in the appropriate category
 
 Match the existing table format exactly. Place the row in the correct category section (TAP Literature, Empirical, Philosophical Sources, Communication Theory, Structural Demographics, Network Theory, Web Resources).
 
-**2. Buffer Update**
+**2. Buffer Update (alpha-aware)**
 
-Read `.claude/buffer/handoff-warm.json` (warm layer). Draw mappings from the **interpretation file's** Project Significance table and Integration Points:
+**Guard**: Before updating, verify `.claude/buffer/` exists and has been initialized (hot layer present).
 
-- In `concept_map.cross_source`: add a mapping entry for each concept. Assign a new `w:N` ID (read current max warm ID, increment). Format:
-  ```json
-  {
-    "id": "w:N",
-    "key": "Source:ConceptName",
-    "maps_to": "[sigma-TAP mapping]",
-    "ref": "[§5.XX forward note reference if applicable]",
-    "suggest": null
-  }
-  ```
-- In `validation_log`: add an entry with new `w:N` ID:
-  ```json
-  {
-    "id": "w:N",
-    "check": "distill: [Source Label]",
-    "status": "NEW",
-    "detail": "[N] concepts mapped, [M] integration points identified",
-    "session": "YYYY-MM-DD"
-  }
-  ```
+**Alpha path (preferred — when `.claude/buffer/alpha/index.json` exists):**
 
-Then read `.claude/buffer/handoff.json` (hot layer) and update `concept_map_digest`:
-- Increment `_meta.total_entries` by the number of new cross_source entries
-- Add each new entry to `recent_changes` with status `NEW`
-- If any mapping is uncertain, add its `w:N` ID to `flagged`
+Write referent files directly to the alpha bin. Draw mappings from the **interpretation file's** Project Significance table and Integration Points:
+
+1. Get next available ID: run `buffer_manager.py next-id --buffer-dir .claude/buffer/ --layer warm` (scans both warm and alpha to prevent collisions)
+2. For each concept, write a referent file to the appropriate source folder:
+   ```
+   .claude/buffer/alpha/[source-folder]/w[NNN].md
+   ```
+   File content (same format as migration output):
+   ```markdown
+   # w:N -- Source:ConceptName
+   **Source**: [source-folder] | **ID**: w:N | **Type**: cross_source
+
+   ## Mapping
+   **Key**: Source:ConceptName
+   **Maps to**: [sigma-TAP mapping]
+   **Ref**: [§5.XX forward note reference if applicable]
+   **Suggest**: null
+   ```
+3. Update `alpha/index.json`:
+   - Add each new entry to `entries`
+   - Add each new ID to the source's `cross_source_ids`
+   - Update `concept_index` and `source_index`
+   - Increment `summary.total_cross_source`
+4. In warm `validation_log`: add a summary entry:
+   ```json
+   {
+     "id": "w:N",
+     "check": "distill: [Source Label]",
+     "status": "NEW",
+     "detail": "[N] concepts mapped to alpha, [M] integration points identified",
+     "session": "YYYY-MM-DD"
+   }
+   ```
+5. Update hot `concept_map_digest`:
+   - Increment `_meta.total_entries`
+   - Add each new entry to `recent_changes` with status `NEW`
+   - If any mapping is uncertain, add its `w:N` ID to `flagged`
+
+**Warm fallback (when alpha doesn't exist):**
+
+Read `.claude/buffer/handoff-warm.json`. In `concept_map.cross_source`: add entries as before (same format, same ID assignment). This path is for projects that haven't migrated to alpha yet.
 
 **3. MEMORY.md Update (conservative)**
 
 Read `C:\Users\user\.claude\projects\C--Users-user-Documents-New-folder\memory\MEMORY.md`. From the **interpretation file**, ONLY add concepts that are genuinely new, significant, and sigma-TAP-relevant. If uncertain, note in Open Questions.
 
-**4. Convergence Web Update**
+**4. Convergence Web Update (alpha-aware)**
 
 From the interpretation file's Project Significance table and Integration Points, identify inter-source connections:
 - For each concept mapped with relationship "confirms" or "extends": check if the confirmed/extended concept came from a DIFFERENT source
-- If so: create a convergence web entry in `.claude/buffer/handoff-warm.json` → `convergence_web.entries[]`
 
-Tetradic entry structure (mirrors metathetic dialectics):
-```json
-{
-  "id": "cw:N",
-  "thesis": { "ref": "w:X", "label": "SourceA:Concept" },
-  "athesis": { "ref": "w:Y", "label": "SourceB:Concept" },
-  "synthesis": "[type_tag] What RELATES them — the shared structural ground (involutory)",
-  "metathesis": "What EACH does independently in its own domain — their separate real-world functions that happen to converge (evolutory)"
-}
-```
+**Alpha path (when alpha exists):**
+
+Write convergence web referent files to the thesis source's alpha folder:
+
+1. Get next available ID: `buffer_manager.py next-id --buffer-dir .claude/buffer/ --layer convergence`
+2. Write a referent file:
+   ```
+   .claude/buffer/alpha/[thesis-source-folder]/cw[NNN].md
+   ```
+   File content:
+   ```markdown
+   # cw:N -- SourceA:Concept x SourceB:Concept
+   **ID**: cw:N | **Type**: convergence_web
+
+   ## Tetradic Structure
+   **Thesis**: w:X (SourceA:Concept)
+   **Athesis**: w:Y (SourceB:Concept)
+   **Synthesis**: [type_tag] What RELATES them — the shared structural ground (involutory)
+   **Metathesis**: What EACH does independently in its own domain (evolutory)
+   ```
+3. Update `alpha/index.json`: add entry, update source's `convergence_web_ids`, increment `summary.total_convergence_web`
+
+**Warm fallback (when alpha doesn't exist):**
+Create the entry in `.claude/buffer/handoff-warm.json` → `convergence_web.entries[]` with the same tetradic structure.
 
 Type tags: `[independent_convergence]`, `[complementarity]`, `[elaboration]`, `[tension]`, `[genealogy]`.
 
@@ -702,6 +773,25 @@ Update `.claude/buffer/handoff.json` → `convergence_web_digest`:
 | DeLanda_AssemblageTheory_2016_Book: book-length analytic-systematic register — no equations (formal), no empirical data, no tables, no figures | 144-page book (7 chapters + introduction + endnotes). All conditional sections correctly omitted. Only mandatory sections produced (Core Argument, Key Concepts, Theoretical & Methodological Implications). First full-book distillation (vs chapters, papers, excerpts). Continental subject matter rendered in analytic idiom — register classified as analytic-systematic, not continental | 2026-03-05 |
 | DeLanda_AssemblageTheory_2016_Book: pages 121-144 are endnotes/references, not body text | Body text ends at p.120 (Chapter 7 conclusion). Pages 121-144 contain numbered endnotes with bibliographic references. These provide useful cross-references (DeLanda cites D&G, Braudel, Prigogine, Kauffman, etc.) but no new argumentative content. All endnote content used to verify and ground distillation claims | 2026-03-05 |
 | DeLanda_AssemblageTheory_2016_Book distillation run summary | Route A (clean text via PyMuPDF) for all 144 pages. No figures, no equations (formal), no scanned pages. Verification gate: N/A (no visual material). No new tools installed. No pre-existing distillation. Separate interpretation file created. 16 key concepts, analytic-systematic register. 7 new cross_source entries (w:211-217), 7 convergence web entries (cw:76-82). 5 open questions flagged for user review. Most architecturally significant distillation for sigma-TAP — systematic grounding of L-matrix ↔ assemblage correspondence. Novel concepts: symmetry-breaking cascade → TAPS, plane of consistency → system diagnostic | 2026-03-05 |
+| Sartre_CritiqueDR2_1991_Appendix: table/complex_layout heuristic — false positives (51 tables, 32 complex_layout) | 64-page PDF (working notes). 51 table flags and 32 complex_layout flags are ALL false positives — running headers/footers, page numbers, and editor's footnotes triggered heuristics. All 64 pages Route A (clean text). Same pattern as previous academic PDFs. No actual tables, figures, or equations in source | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_Appendix: fragmentary working-note register — continental dialectical-existentialist | Posthumous working notes with incomplete sentences, self-corrections, lacunae (marked by editor as [...]), question marks in manuscript. Register: continental phenomenological / dialectical-existentialist. Tone: personal-reflexive (thinking-as-writing). Density: technical-specialist (presupposes CDR Vol 1, Being and Nothingness). OCR artifacts present (㋻, ㋼, ㋸, ㌇) but comprehensible in context — PDFium-generated PDF with character encoding artifacts | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_Appendix: no PDF metadata (title/author empty) | PDFium-generated PDF with empty metadata fields. Source identified from content: editor's preface signature (A.E.-S. = Arlette Elkaïm-Sartre), page numbers matching CDR2 pagination (pp. 397-460), translator's note referencing Alan Sheridan-Smith's Volume 1. Source Label required manual identification from content rather than metadata | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_Appendix distillation run summary | Route A (clean text via PyMuPDF) for all 64 pages. No figures, no equations, no scanned pages. Verification gate: N/A (no visual material). No new tools installed. Separate interpretation file created. 14 key concepts, continental dialectical-existentialist register. 7 new cross_source entries (w:218-224), 7 convergence web entries (cw:83-89). 5 open questions flagged for user review. Dialectical complement to DeLanda: totalization without totalizer, practico-inert as L-matrix constraint, counter-finality as extinction instability. Novel concepts: incarnation (per-agent justification), chance/non-conceptual man (anti-essentialist agents) | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_Envelopment: table/complex_layout heuristic — false positives (43 tables, 23 complex_layout) | 77-page PDF (CDR2 Book II main body). 43 table flags and 23 complex_layout flags are ALL false positives — running headers/page numbers triggered heuristics. 1 scanned/empty page (page 1 = section divider). All other pages Route A (clean text). Same pattern as Appendix and all previous academic PDFs | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_Envelopment: systematic treatise register — continental dialectical-existentialist, impersonal-objective | Distinct from Appendix (fragmentary working notes, personal-reflexive). Book II is systematic analysis: extended Stalin/USSR case study (pp. 187-255), generalization to incarnation at every level (pp. 255-262). Sustained argument rather than fragmentary notes. Same OCR artifacts (PDFium-generated) but comprehensible. Text breaks off mid-sentence at p. 262 ("• • • institutions") — Sartre's manuscript ends here | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_Envelopment: Book II not Book III — user correction applied | Initially labelled as Book III (which was never completed). User corrected: this is CDR2 Book II (The Intelligibility of History), section on "Totalization-of-Envelopment." The Appendix contains working notes TOWARD the never-completed Book III. Correction applied to distillation header, interpretation, and all references | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_Envelopment distillation run summary | Route A (clean text via PyMuPDF) for 76/77 pages (1 empty section divider). No figures, no equations, no scanned pages. Verification gate: N/A (no visual material). No new tools installed. Separate interpretation file created. 15 key concepts, continental dialectical-existentialist register (systematic treatise). 7 new cross_source entries (w:225-231), 7 convergence web entries (cw:90-96). 5 open questions flagged for user review. Deepens Appendix mappings: praxis-process, the differential, deviation as structural, determined indetermination. Novel concepts: retrospective condemnation, scarcity of men, ossification diagnostic | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_PraxisProcess: table/complex_layout heuristic — false positives (31 tables, 16 complex_layout) | 65-page PDF (CDR2 Book III systematic re-examination + ontological investigation, pp. 272-336). 31 table flags and 16 complex_layout flags are ALL false positives — running headers/page numbers triggered heuristics. 0 scanned, 0 equations. All 65 pages Route A (clean text). Same pattern as Appendix and Envelopment | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_PraxisProcess: systematic treatise register — continental dialectical-existentialist, impersonal-objective with phenomenological examples | Two-arc structure: Arc 1 (pp. 272-301) = systematic analysis of praxis-process in 4 numbered remarks (costs, feedback, human/anti-human, meaning vs signification). Arc 2 (pp. 301-336) = ontological investigation (being-in-itself, death/holes, Martian, process-praxis, single/multiple, ontological limit). Same register as Envelopment but with formal (quasi-cybernetic) argument in feedback section | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_PraxisProcess distillation run summary | Route A (clean text via PyMuPDF) for all 65 pages. No figures, no equations, no scanned pages. Verification gate: N/A (no visual material). No new tools installed. Separate interpretation file created. 13 key concepts, continental dialectical-existentialist register. 7 new cross_source entries (w:232-238), 7 convergence web entries (cw:97-103). 5 open questions flagged for user review. Completes CDR2 trilogy (Appendix + Envelopment + PraxisProcess). Novel concepts: meaning vs signification (diagnostic taxonomy), fatigue/threshold, against humanist idealism (methodological warning). 2 candidate forward notes: §5.72 (per-agent energy budget), §5.73 (extinction porosity) | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_SingularityPraxis: table/complex_layout heuristic — false positives (25 tables, 15 complex_layout) | 46-page PDF (CDR2 Book III Section C, pp. 347-392 — final section of 1958 manuscript). 25 table flags and 15 complex_layout flags are ALL false positives — running headers/page numbers triggered heuristics. 0 scanned, 0 equations. All 46 pages Route A (clean text). Same pattern as all CDR2 sections | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_SingularityPraxis: autonomous recapitulatory section — editor separated as Section C | Editor's note (footnote 112, p. 392): "I have separated off the preceding fifty-odd pages and made them into an independent Section C, because they suddenly took on the aspect of an autonomous, partly recapitulatory, study of praxis." Could have served as transition to projected diachronic totalization (never written). Main 1958 manuscript breaks off at this point | 2026-03-06 |
+| Sartre_CritiqueDR2_1991_SingularityPraxis distillation run summary | Route A (clean text via PyMuPDF) for all 46 pages. No figures, no equations, no scanned pages. Verification gate: N/A (no visual material). No new tools installed. Separate interpretation file created. 15 key concepts, continental dialectical-ontology register. 7 new cross_source entries (w:239-245), 7 convergence web entries (cw:104-110). 3 open questions flagged for user review. Completes CDR2 tetralogy (Appendix + Envelopment + PraxisProcess + SingularityPraxis). Novel concepts: governed circularity (deepens directed circularity), two types of praxis (exterior/interior), knowledge=creation=invention (anti-positivist TAP), analytic vs dialectical Reason (diagnostic framework). 1 candidate forward note: §5.74 (exterior/interior type distinction) | 2026-03-06 |
+| Taalbi_LongRunPatterns_2025_Paper: table/complex_layout/equation heuristic — false positives (same known pattern) | 18/27 pages flagged as tables, 26/27 complex_layout, 10/27 equations (inline math symbols, low-confidence). Two-column journal format (Industrial and Corporate Change). All false positives — same known pattern as all previous academic PDFs. All 27 pages Route A (clean text) | 2026-03-07 |
+| Taalbi_LongRunPatterns_2025_Paper: no figures extracted — vector plots in two-column format | Paper contains 6 figures (urn model schematic, rate determination, innovation counts, log-log plots, product networks, diversification pathways) and 8 tables. All are vector plots embedded in two-column layout. distill_figures.py cluster_drawings() would likely fragment in this encoding (same pattern as Cortes TAPEquation). Figures noted but not extracted — equations and data fully captured in text | 2026-03-07 |
+| Taalbi_LongRunPatterns_2025_Paper: pre-skill distillation had inline integration section — now separated | Original distillation (pre-skill format, 281 lines) had inline "Key Concepts for sigma-TAP Integration" with 9 integration points. Re-distilled version separates neutral distillation (131 lines) from project-specific interpretation file (new). No Taalbi cross_source entries existed in buffer from original distillation — first proper buffer integration | 2026-03-07 |
+| Taalbi_LongRunPatterns_2025_Paper: existing cw:62 references Taalbi with mislabelled ref "w:109" | Convergence web entry cw:62 (from Cortes TAPEquation re-distillation) links logistic_TAP↔Taalbi:resource_constraints_tame_TAP with athesis ref "w:109", but w:109 is actually Viz:trilaminar_rings. The label in cw:62 is correct (conceptual link valid) but the ref ID is wrong. Not corrected in this session — flagged for manual review | 2026-03-07 |
+| Taalbi_LongRunPatterns_2025_Paper distillation run summary | Route A (clean text via PyMuPDF) for all 27 pages. No figures extracted (vector plots in two-column format). No equations rendered (inline math captured in text). Verification gate: N/A (no visual material). No new tools installed. Pre-skill distillation existed (older format with inline integration section, 281 lines) and was overwritten with current skill-compliant format (131 lines). Separate interpretation file created (first for Taalbi). 12 key concepts, 6 equation groups with mandatory variable definitions, empirical social science / formal-mathematical register. 10 new cross_source entries (w:246-255), 7 convergence web entries (cw:111-117). 3 open questions flagged for user review. Primary empirical benchmark for sigma-TAP: linear rate, power-law distribution, Heaps' law, timescale-dependent predictability, Bianconi-Barabási connection | 2026-03-07 |
 
 ### Error Logging (mandatory)
 

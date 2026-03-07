@@ -1,0 +1,3328 @@
+{
+  "schema_version": 1,
+  "created": "2026-03-07",
+  "last_updated": "2026-03-07",
+  "rebuilt": true,
+  "summary": {
+    "total_cross_source": 205,
+    "total_convergence_web": 117,
+    "total_framework": 43,
+    "total_sources": 24
+  },
+  "sources": {
+    "_framework": {
+      "framework": true,
+      "folder": "_framework",
+      "entry_count": 43,
+      "groups": [
+        "A",
+        "P",
+        "RIP",
+        "S",
+        "T",
+        "dialectic",
+        "foundational_triad"
+      ]
+    },
+    "_forward-notes": {
+      "folder": "_forward-notes",
+      "cross_source_ids": [
+        "w:232",
+        "w:233",
+        "w:234",
+        "w:235",
+        "w:236",
+        "w:237",
+        "w:238",
+        "w:239",
+        "w:240",
+        "w:241",
+        "w:242",
+        "w:243",
+        "w:244",
+        "w:245"
+      ],
+      "convergence_web_ids": [],
+      "entry_count": 14
+    },
+    "_mixed-early": {
+      "folder": "_mixed-early",
+      "cross_source_ids": [
+        "w:109",
+        "w:110",
+        "w:111",
+        "w:112",
+        "w:113",
+        "w:114",
+        "w:115"
+      ],
+      "convergence_web_ids": [],
+      "entry_count": 7
+    },
+    "austin-early": {
+      "folder": "austin-early",
+      "cross_source_ids": [
+        "w:75"
+      ],
+      "convergence_web_ids": [],
+      "entry_count": 1
+    },
+    "baudrillard-early": {
+      "folder": "baudrillard-early",
+      "cross_source_ids": [
+        "w:100"
+      ],
+      "convergence_web_ids": [],
+      "entry_count": 1
+    },
+    "bohm-early": {
+      "folder": "bohm-early",
+      "cross_source_ids": [
+        "w:59",
+        "w:60",
+        "w:61"
+      ],
+      "convergence_web_ids": [],
+      "entry_count": 3
+    },
+    "cortes-early": {
+      "folder": "cortes-early",
+      "cross_source_ids": [
+        "w:165",
+        "w:166",
+        "w:167",
+        "w:168",
+        "w:169",
+        "w:170",
+        "w:171",
+        "w:172",
+        "w:173",
+        "w:174",
+        "w:175",
+        "w:176",
+        "w:177",
+        "w:178",
+        "w:179",
+        "w:180",
+        "w:181",
+        "w:182",
+        "w:189",
+        "w:190",
+        "w:191",
+        "w:192",
+        "w:193",
+        "w:194"
+      ],
+      "convergence_web_ids": [
+        "cw:46",
+        "cw:47",
+        "cw:48",
+        "cw:49",
+        "cw:50",
+        "cw:51",
+        "cw:52",
+        "cw:53",
+        "cw:54",
+        "cw:55",
+        "cw:56",
+        "cw:61",
+        "cw:62",
+        "cw:63",
+        "cw:64"
+      ],
+      "entry_count": 39
+    },
+    "deguerre-early": {
+      "folder": "deguerre-early",
+      "cross_source_ids": [
+        "w:143",
+        "w:144",
+        "w:145",
+        "w:146",
+        "w:147",
+        "w:148",
+        "w:149",
+        "w:150"
+      ],
+      "convergence_web_ids": [
+        "cw:34",
+        "cw:35",
+        "cw:36",
+        "cw:37"
+      ],
+      "entry_count": 12
+    },
+    "delanda-assemblage-early": {
+      "folder": "delanda-assemblage-early",
+      "cross_source_ids": [
+        "w:211",
+        "w:212",
+        "w:213",
+        "w:214",
+        "w:215",
+        "w:216",
+        "w:217"
+      ],
+      "convergence_web_ids": [
+        "cw:76",
+        "cw:77",
+        "cw:78",
+        "cw:79",
+        "cw:80",
+        "cw:81",
+        "cw:82"
+      ],
+      "entry_count": 14
+    },
+    "dg-early": {
+      "folder": "dg-early",
+      "cross_source_ids": [
+        "w:73",
+        "w:74",
+        "w:125",
+        "w:126",
+        "w:127",
+        "w:128",
+        "w:129",
+        "w:130",
+        "w:131",
+        "w:132",
+        "w:133",
+        "w:134",
+        "w:135",
+        "w:136",
+        "w:137"
+      ],
+      "convergence_web_ids": [
+        "cw:23",
+        "cw:24",
+        "cw:25",
+        "cw:26",
+        "cw:27",
+        "cw:28",
+        "cw:29"
+      ],
+      "entry_count": 22
+    },
+    "easwaran-gita-early": {
+      "folder": "easwaran-gita-early",
+      "cross_source_ids": [
+        "w:195",
+        "w:196",
+        "w:197",
+        "w:198",
+        "w:199",
+        "w:200",
+        "w:201",
+        "w:202"
+      ],
+      "convergence_web_ids": [
+        "cw:65",
+        "cw:66",
+        "cw:67",
+        "cw:68",
+        "cw:69",
+        "cw:70"
+      ],
+      "entry_count": 14
+    },
+    "easwaran-glossary-early": {
+      "folder": "easwaran-glossary-early",
+      "cross_source_ids": [
+        "w:203",
+        "w:204",
+        "w:205",
+        "w:206",
+        "w:207",
+        "w:208",
+        "w:209",
+        "w:210"
+      ],
+      "convergence_web_ids": [
+        "cw:71",
+        "cw:72",
+        "cw:73",
+        "cw:74",
+        "cw:75"
+      ],
+      "entry_count": 13
+    },
+    "emery-early": {
+      "folder": "emery-early",
+      "cross_source_ids": [
+        "w:82",
+        "w:83",
+        "w:84",
+        "w:85",
+        "w:86",
+        "w:87",
+        "w:88",
+        "w:89",
+        "w:90",
+        "w:91",
+        "w:92",
+        "w:93",
+        "w:94",
+        "w:95",
+        "w:96",
+        "w:97",
+        "w:98",
+        "w:99",
+        "w:151",
+        "w:152",
+        "w:153",
+        "w:154",
+        "w:155",
+        "w:156",
+        "w:157",
+        "w:158"
+      ],
+      "convergence_web_ids": [
+        "cw:16",
+        "cw:19",
+        "cw:38",
+        "cw:39",
+        "cw:40",
+        "cw:41"
+      ],
+      "entry_count": 32
+    },
+    "fermat-early": {
+      "folder": "fermat-early",
+      "cross_source_ids": [
+        "w:76"
+      ],
+      "convergence_web_ids": [],
+      "entry_count": 1
+    },
+    "fermatfeynman-early": {
+      "folder": "fermatfeynman-early",
+      "cross_source_ids": [],
+      "convergence_web_ids": [
+        "cw:17",
+        "cw:18"
+      ],
+      "entry_count": 2
+    },
+    "feynman-early": {
+      "folder": "feynman-early",
+      "cross_source_ids": [
+        "w:77"
+      ],
+      "convergence_web_ids": [],
+      "entry_count": 1
+    },
+    "levinas-early": {
+      "folder": "levinas-early",
+      "cross_source_ids": [
+        "w:62",
+        "w:63",
+        "w:64",
+        "w:65",
+        "w:66",
+        "w:67",
+        "w:68",
+        "w:69",
+        "w:70",
+        "w:71",
+        "w:72",
+        "w:138",
+        "w:139",
+        "w:140",
+        "w:141",
+        "w:142"
+      ],
+      "convergence_web_ids": [
+        "cw:20",
+        "cw:30",
+        "cw:31",
+        "cw:32",
+        "cw:33"
+      ],
+      "entry_count": 21
+    },
+    "lizier-early": {
+      "folder": "lizier-early",
+      "cross_source_ids": [
+        "w:116",
+        "w:117",
+        "w:118",
+        "w:119",
+        "w:120",
+        "w:121",
+        "w:122",
+        "w:123",
+        "w:124"
+      ],
+      "convergence_web_ids": [
+        "cw:1",
+        "cw:2",
+        "cw:3",
+        "cw:4",
+        "cw:5",
+        "cw:6",
+        "cw:7",
+        "cw:8",
+        "cw:9",
+        "cw:21",
+        "cw:22"
+      ],
+      "entry_count": 20
+    },
+    "ostsite-early": {
+      "folder": "ostsite-early",
+      "cross_source_ids": [
+        "w:159",
+        "w:160",
+        "w:161",
+        "w:162",
+        "w:163",
+        "w:164"
+      ],
+      "convergence_web_ids": [
+        "cw:42",
+        "cw:43",
+        "cw:44",
+        "cw:45"
+      ],
+      "entry_count": 10
+    },
+    "ruesch-bateson-early": {
+      "folder": "ruesch-bateson-early",
+      "cross_source_ids": [
+        "w:78",
+        "w:79",
+        "w:80",
+        "w:81"
+      ],
+      "convergence_web_ids": [
+        "cw:10",
+        "cw:11",
+        "cw:12"
+      ],
+      "entry_count": 7
+    },
+    "sartre-CDR2-envelopment": {
+      "folder": "sartre-CDR2-envelopment",
+      "cross_source_ids": [
+        "w:225",
+        "w:226",
+        "w:227",
+        "w:228",
+        "w:229",
+        "w:230",
+        "w:231"
+      ],
+      "convergence_web_ids": [],
+      "entry_count": 7
+    },
+    "sartre-early": {
+      "folder": "sartre-early",
+      "cross_source_ids": [
+        "w:44",
+        "w:45",
+        "w:46",
+        "w:47",
+        "w:48",
+        "w:49",
+        "w:50",
+        "w:51",
+        "w:52",
+        "w:53",
+        "w:54",
+        "w:55",
+        "w:56",
+        "w:57",
+        "w:58"
+      ],
+      "convergence_web_ids": [
+        "cw:13",
+        "cw:14",
+        "cw:15",
+        "cw:83",
+        "cw:84",
+        "cw:85",
+        "cw:86",
+        "cw:87",
+        "cw:88",
+        "cw:89",
+        "cw:90",
+        "cw:91",
+        "cw:92",
+        "cw:93",
+        "cw:94",
+        "cw:95",
+        "cw:96",
+        "cw:97",
+        "cw:98",
+        "cw:99",
+        "cw:100",
+        "cw:101",
+        "cw:102",
+        "cw:103",
+        "cw:104",
+        "cw:105",
+        "cw:106",
+        "cw:107",
+        "cw:108",
+        "cw:109",
+        "cw:110"
+      ],
+      "entry_count": 46
+    },
+    "taalbi-early": {
+      "folder": "taalbi-early",
+      "cross_source_ids": [
+        "w:246",
+        "w:247",
+        "w:248",
+        "w:249",
+        "w:250",
+        "w:251",
+        "w:252",
+        "w:253",
+        "w:254",
+        "w:255"
+      ],
+      "convergence_web_ids": [
+        "cw:111",
+        "cw:112",
+        "cw:113",
+        "cw:114",
+        "cw:115",
+        "cw:116",
+        "cw:117"
+      ],
+      "entry_count": 17
+    },
+    "turchin-early": {
+      "folder": "turchin-early",
+      "cross_source_ids": [
+        "w:101",
+        "w:102",
+        "w:103",
+        "w:104",
+        "w:105",
+        "w:106",
+        "w:107",
+        "w:108"
+      ],
+      "convergence_web_ids": [],
+      "entry_count": 8
+    },
+    "unificity": {
+      "folder": "unificity",
+      "cross_source_ids": [
+        "w:183",
+        "w:184",
+        "w:185",
+        "w:186",
+        "w:187",
+        "w:188"
+      ],
+      "convergence_web_ids": [
+        "cw:57",
+        "cw:58",
+        "cw:59",
+        "cw:60"
+      ],
+      "entry_count": 10
+    }
+  },
+  "entries": {
+    "w:15": {
+      "source": "_framework",
+      "file": "_framework/A.md",
+      "concept": "expression",
+      "group": "A"
+    },
+    "w:16": {
+      "source": "_framework",
+      "file": "_framework/A.md",
+      "concept": "impression",
+      "group": "A"
+    },
+    "w:17": {
+      "source": "_framework",
+      "file": "_framework/A.md",
+      "concept": "adpression",
+      "group": "A"
+    },
+    "w:18": {
+      "source": "_framework",
+      "file": "_framework/A.md",
+      "concept": "compression",
+      "group": "A"
+    },
+    "w:19": {
+      "source": "_framework",
+      "file": "_framework/A.md",
+      "concept": "depression",
+      "group": "A"
+    },
+    "w:20": {
+      "source": "_framework",
+      "file": "_framework/A.md",
+      "concept": "suppression",
+      "group": "A"
+    },
+    "w:21": {
+      "source": "_framework",
+      "file": "_framework/A.md",
+      "concept": "oppression",
+      "group": "A"
+    },
+    "w:22": {
+      "source": "_framework",
+      "file": "_framework/A.md",
+      "concept": "[meta]",
+      "group": "A"
+    },
+    "w:23": {
+      "source": "_framework",
+      "file": "_framework/P.md",
+      "concept": "projection",
+      "group": "P"
+    },
+    "w:24": {
+      "source": "_framework",
+      "file": "_framework/P.md",
+      "concept": "reflection",
+      "group": "P"
+    },
+    "w:25": {
+      "source": "_framework",
+      "file": "_framework/P.md",
+      "concept": "consumption",
+      "group": "P"
+    },
+    "w:26": {
+      "source": "_framework",
+      "file": "_framework/P.md",
+      "concept": "consummation",
+      "group": "P"
+    },
+    "w:27": {
+      "source": "_framework",
+      "file": "_framework/P.md",
+      "concept": "habitation",
+      "group": "P"
+    },
+    "w:28": {
+      "source": "_framework",
+      "file": "_framework/P.md",
+      "concept": "behabitation",
+      "group": "P"
+    },
+    "w:29": {
+      "source": "_framework",
+      "file": "_framework/P.md",
+      "concept": "[meta]",
+      "group": "P"
+    },
+    "w:37": {
+      "source": "_framework",
+      "file": "_framework/RIP.md",
+      "concept": "recursive",
+      "group": "RIP"
+    },
+    "w:38": {
+      "source": "_framework",
+      "file": "_framework/RIP.md",
+      "concept": "reflective",
+      "group": "RIP"
+    },
+    "w:39": {
+      "source": "_framework",
+      "file": "_framework/RIP.md",
+      "concept": "iterative",
+      "group": "RIP"
+    },
+    "w:40": {
+      "source": "_framework",
+      "file": "_framework/RIP.md",
+      "concept": "integrative",
+      "group": "RIP"
+    },
+    "w:41": {
+      "source": "_framework",
+      "file": "_framework/RIP.md",
+      "concept": "preservative",
+      "group": "RIP"
+    },
+    "w:42": {
+      "source": "_framework",
+      "file": "_framework/RIP.md",
+      "concept": "praxitive",
+      "group": "RIP"
+    },
+    "w:43": {
+      "source": "_framework",
+      "file": "_framework/RIP.md",
+      "concept": "[meta]",
+      "group": "RIP"
+    },
+    "w:30": {
+      "source": "_framework",
+      "file": "_framework/S.md",
+      "concept": "integration",
+      "group": "S"
+    },
+    "w:31": {
+      "source": "_framework",
+      "file": "_framework/S.md",
+      "concept": "disintegration",
+      "group": "S"
+    },
+    "w:32": {
+      "source": "_framework",
+      "file": "_framework/S.md",
+      "concept": "preservation",
+      "group": "S"
+    },
+    "w:33": {
+      "source": "_framework",
+      "file": "_framework/S.md",
+      "concept": "synthesis",
+      "group": "S"
+    },
+    "w:34": {
+      "source": "_framework",
+      "file": "_framework/S.md",
+      "concept": "fusion",
+      "group": "S"
+    },
+    "w:35": {
+      "source": "_framework",
+      "file": "_framework/S.md",
+      "concept": "diffusion",
+      "group": "S"
+    },
+    "w:36": {
+      "source": "_framework",
+      "file": "_framework/S.md",
+      "concept": "[meta]",
+      "group": "S"
+    },
+    "w:9": {
+      "source": "_framework",
+      "file": "_framework/T.md",
+      "concept": "evolution",
+      "group": "T"
+    },
+    "w:10": {
+      "source": "_framework",
+      "file": "_framework/T.md",
+      "concept": "involution",
+      "group": "T"
+    },
+    "w:11": {
+      "source": "_framework",
+      "file": "_framework/T.md",
+      "concept": "condensation",
+      "group": "T"
+    },
+    "w:12": {
+      "source": "_framework",
+      "file": "_framework/T.md",
+      "concept": "condension",
+      "group": "T"
+    },
+    "w:13": {
+      "source": "_framework",
+      "file": "_framework/T.md",
+      "concept": "transvolution_constraints",
+      "group": "T"
+    },
+    "w:14": {
+      "source": "_framework",
+      "file": "_framework/T.md",
+      "concept": "[meta]",
+      "group": "T"
+    },
+    "w:5": {
+      "source": "_framework",
+      "file": "_framework/dialectic.md",
+      "concept": "thesis",
+      "group": "dialectic"
+    },
+    "w:6": {
+      "source": "_framework",
+      "file": "_framework/dialectic.md",
+      "concept": "athesis",
+      "group": "dialectic"
+    },
+    "w:7": {
+      "source": "_framework",
+      "file": "_framework/dialectic.md",
+      "concept": "synthesis",
+      "group": "dialectic"
+    },
+    "w:8": {
+      "source": "_framework",
+      "file": "_framework/dialectic.md",
+      "concept": "metathesis",
+      "group": "dialectic"
+    },
+    "w:1": {
+      "source": "_framework",
+      "file": "_framework/foundational_triad.md",
+      "concept": "unificity",
+      "group": "foundational_triad"
+    },
+    "w:2": {
+      "source": "_framework",
+      "file": "_framework/foundational_triad.md",
+      "concept": "unity",
+      "group": "foundational_triad"
+    },
+    "w:3": {
+      "source": "_framework",
+      "file": "_framework/foundational_triad.md",
+      "concept": "multiplicity",
+      "group": "foundational_triad"
+    },
+    "w:4": {
+      "source": "_framework",
+      "file": "_framework/foundational_triad.md",
+      "concept": "[meta]",
+      "group": "foundational_triad"
+    },
+    "w:232": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w232.md",
+      "concept": "?"
+    },
+    "w:233": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w233.md",
+      "concept": "?"
+    },
+    "w:234": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w234.md",
+      "concept": "?"
+    },
+    "w:235": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w235.md",
+      "concept": "?"
+    },
+    "w:236": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w236.md",
+      "concept": "?"
+    },
+    "w:237": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w237.md",
+      "concept": "?"
+    },
+    "w:238": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w238.md",
+      "concept": "?"
+    },
+    "w:239": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w239.md",
+      "concept": "?"
+    },
+    "w:240": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w240.md",
+      "concept": "?"
+    },
+    "w:241": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w241.md",
+      "concept": "?"
+    },
+    "w:242": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w242.md",
+      "concept": "?"
+    },
+    "w:243": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w243.md",
+      "concept": "?"
+    },
+    "w:244": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w244.md",
+      "concept": "?"
+    },
+    "w:245": {
+      "source": "_forward-notes",
+      "file": "_forward-notes/w245.md",
+      "concept": "?"
+    },
+    "w:109": {
+      "source": "_mixed-early",
+      "file": "_mixed-early/w109.md",
+      "concept": "Viz:trilaminar_rings"
+    },
+    "w:110": {
+      "source": "_mixed-early",
+      "file": "_mixed-early/w110.md",
+      "concept": "Viz:ring_volution_identity"
+    },
+    "w:111": {
+      "source": "_mixed-early",
+      "file": "_mixed-early/w111.md",
+      "concept": "Viz:helical_structure"
+    },
+    "w:112": {
+      "source": "_mixed-early",
+      "file": "_mixed-early/w112.md",
+      "concept": "Viz:janus_through_lines"
+    },
+    "w:113": {
+      "source": "_mixed-early",
+      "file": "_mixed-early/w113.md",
+      "concept": "Viz:floating_pressure_vectors"
+    },
+    "w:114": {
+      "source": "_mixed-early",
+      "file": "_mixed-early/w114.md",
+      "concept": "Viz:syntegration_ring_mapping"
+    },
+    "w:115": {
+      "source": "_mixed-early",
+      "file": "_mixed-early/w115.md",
+      "concept": "Viz:praxis_ring_mapping"
+    },
+    "w:75": {
+      "source": "austin-early",
+      "file": "austin-early/w075.md",
+      "concept": "Austin:behabitives"
+    },
+    "w:100": {
+      "source": "baudrillard-early",
+      "file": "baudrillard-early/w100.md",
+      "concept": "Baudrillard:simulacrum_levels"
+    },
+    "w:59": {
+      "source": "bohm-early",
+      "file": "bohm-early/w059.md",
+      "concept": "Bohm:explicate_order"
+    },
+    "w:60": {
+      "source": "bohm-early",
+      "file": "bohm-early/w060.md",
+      "concept": "Bohm:implicate_order"
+    },
+    "w:61": {
+      "source": "bohm-early",
+      "file": "bohm-early/w061.md",
+      "concept": "Bohm:rheomode"
+    },
+    "cw:46": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw046.md",
+      "concept": "Cortes:opacity_principle x Emery:transaction_not_interaction",
+      "type": "convergence_web"
+    },
+    "cw:47": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw047.md",
+      "concept": "Cortes:ever_expanding_config_space x Emery:contextualism",
+      "type": "convergence_web"
+    },
+    "cw:48": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw048.md",
+      "concept": "Cortes:non_ergodicity x Levinas:ipseity",
+      "type": "convergence_web"
+    },
+    "cw:49": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw049.md",
+      "concept": "Cortes:no_entailing_laws x DG:AbstractMachine",
+      "type": "convergence_web"
+    },
+    "cw:50": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw050.md",
+      "concept": "Cortes:TAP_equation x Lizier2012:LoopRequirement",
+      "type": "convergence_web"
+    },
+    "cw:51": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw051.md",
+      "concept": "Cortes:creative_potential_Q x Sartre:totalization",
+      "type": "convergence_web"
+    },
+    "cw:52": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw052.md",
+      "concept": "Cortes:kantian_whole x Emery:unitas_multiplex",
+      "type": "convergence_web"
+    },
+    "cw:53": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw053.md",
+      "concept": "Cortes:constraint_closure x Lizier2012:LoopRequirement",
+      "type": "convergence_web"
+    },
+    "cw:54": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw054.md",
+      "concept": "Cortes:three_arrows x Levinas:time_postponement",
+      "type": "convergence_web"
+    },
+    "cw:55": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw055.md",
+      "concept": "Cortes:recursive_excursive x DG:MutualImmanence",
+      "type": "convergence_web"
+    },
+    "cw:56": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw056.md",
+      "concept": "Cortes:functional_explanation x Emery:directive_correlation",
+      "type": "convergence_web"
+    },
+    "cw:61": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw061.md",
+      "concept": "Cortes_etal_TAP:extinction_instability x Emery_Trist:Type_IV_vortical",
+      "type": "convergence_web"
+    },
+    "cw:62": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw062.md",
+      "concept": "Cortes_etal_TAP:logistic_TAP_open x Taalbi:resource_constraints_tame_TAP",
+      "type": "convergence_web"
+    },
+    "cw:63": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw063.md",
+      "concept": "Cortes_etal_TAP:universality_markov x Lizier2012:information_storage_loop_motifs",
+      "type": "convergence_web"
+    },
+    "cw:64": {
+      "source": "cortes-early",
+      "file": "cortes-early/cw064.md",
+      "concept": "Cortes_etal_TAP:two_scale_variant x Cortes_Birth:ever_expanding_config_space",
+      "type": "convergence_web"
+    },
+    "w:165": {
+      "source": "cortes-early",
+      "file": "cortes-early/w165.md",
+      "concept": "Cortes:opacity_principle"
+    },
+    "w:166": {
+      "source": "cortes-early",
+      "file": "cortes-early/w166.md",
+      "concept": "Cortes:ever_expanding_config_space"
+    },
+    "w:167": {
+      "source": "cortes-early",
+      "file": "cortes-early/w167.md",
+      "concept": "Cortes:non_ergodicity"
+    },
+    "w:168": {
+      "source": "cortes-early",
+      "file": "cortes-early/w168.md",
+      "concept": "Cortes:no_entailing_laws"
+    },
+    "w:169": {
+      "source": "cortes-early",
+      "file": "cortes-early/w169.md",
+      "concept": "Cortes:TAP_equation"
+    },
+    "w:170": {
+      "source": "cortes-early",
+      "file": "cortes-early/w170.md",
+      "concept": "Cortes:emergent_DOF"
+    },
+    "w:171": {
+      "source": "cortes-early",
+      "file": "cortes-early/w171.md",
+      "concept": "Cortes:EFT_analogy"
+    },
+    "w:172": {
+      "source": "cortes-early",
+      "file": "cortes-early/w172.md",
+      "concept": "Cortes:creative_potential_Q"
+    },
+    "w:173": {
+      "source": "cortes-early",
+      "file": "cortes-early/w173.md",
+      "concept": "Cortes:template_synthesis"
+    },
+    "w:174": {
+      "source": "cortes-early",
+      "file": "cortes-early/w174.md",
+      "concept": "Cortes:alive_dead"
+    },
+    "w:175": {
+      "source": "cortes-early",
+      "file": "cortes-early/w175.md",
+      "concept": "Cortes:three_type_classification"
+    },
+    "w:176": {
+      "source": "cortes-early",
+      "file": "cortes-early/w176.md",
+      "concept": "Cortes:false_equilibrium"
+    },
+    "w:177": {
+      "source": "cortes-early",
+      "file": "cortes-early/w177.md",
+      "concept": "Cortes:functional_explanation"
+    },
+    "w:178": {
+      "source": "cortes-early",
+      "file": "cortes-early/w178.md",
+      "concept": "Cortes:kantian_whole"
+    },
+    "w:179": {
+      "source": "cortes-early",
+      "file": "cortes-early/w179.md",
+      "concept": "Cortes:recursive_excursive"
+    },
+    "w:180": {
+      "source": "cortes-early",
+      "file": "cortes-early/w180.md",
+      "concept": "Cortes:three_arrows"
+    },
+    "w:181": {
+      "source": "cortes-early",
+      "file": "cortes-early/w181.md",
+      "concept": "Cortes:fourth_law_formal"
+    },
+    "w:182": {
+      "source": "cortes-early",
+      "file": "cortes-early/w182.md",
+      "concept": "Cortes:constraint_closure"
+    },
+    "w:189": {
+      "source": "cortes-early",
+      "file": "cortes-early/w189.md",
+      "concept": "Cortes_etal_TAP:extinction_instability"
+    },
+    "w:190": {
+      "source": "cortes-early",
+      "file": "cortes-early/w190.md",
+      "concept": "Cortes_etal_TAP:universality_markov"
+    },
+    "w:191": {
+      "source": "cortes-early",
+      "file": "cortes-early/w191.md",
+      "concept": "Cortes_etal_TAP:two_scale_variant"
+    },
+    "w:192": {
+      "source": "cortes-early",
+      "file": "cortes-early/w192.md",
+      "concept": "Cortes_etal_TAP:logistic_TAP_open"
+    },
+    "w:193": {
+      "source": "cortes-early",
+      "file": "cortes-early/w193.md",
+      "concept": "Cortes_etal_TAP:continuous_blowup_integral"
+    },
+    "w:194": {
+      "source": "cortes-early",
+      "file": "cortes-early/w194.md",
+      "concept": "Cortes_etal_TAP:t_add_one_substitutability"
+    },
+    "cw:34": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/cw034.md",
+      "concept": "deGuerre:TeleAndTinny x DG:ThreeDangersOfLines",
+      "type": "convergence_web"
+    },
+    "cw:35": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/cw035.md",
+      "concept": "deGuerre:SCFunnel x ET:L-matrix",
+      "type": "convergence_web"
+    },
+    "cw:36": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/cw036.md",
+      "concept": "deGuerre:TownHallConsensus x Turchin-Gavrilets:multilevel_selection",
+      "type": "convergence_web"
+    },
+    "cw:37": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/cw037.md",
+      "concept": "deGuerre:SixMotivators x Levinas:enjoyment_ipseity",
+      "type": "convergence_web"
+    },
+    "w:143": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/w143.md",
+      "concept": "deGuerre:TeleAndTinny"
+    },
+    "w:144": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/w144.md",
+      "concept": "deGuerre:SCFunnel"
+    },
+    "w:145": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/w145.md",
+      "concept": "deGuerre:EmergentDesign"
+    },
+    "w:146": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/w146.md",
+      "concept": "deGuerre:TownHallConsensus"
+    },
+    "w:147": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/w147.md",
+      "concept": "deGuerre:SixMotivators"
+    },
+    "w:148": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/w148.md",
+      "concept": "deGuerre:PoliticalEmotionalProcess"
+    },
+    "w:149": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/w149.md",
+      "concept": "deGuerre:GenerativeLearning"
+    },
+    "w:150": {
+      "source": "deguerre-early",
+      "file": "deguerre-early/w150.md",
+      "concept": "deGuerre:Diffusion"
+    },
+    "cw:76": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/cw076.md",
+      "concept": "DeLanda_AssemblageTheory:parametrized_assemblage x EmeryTrist:L_matrix_four_channels",
+      "type": "convergence_web"
+    },
+    "cw:77": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/cw077.md",
+      "concept": "DeLanda_AssemblageTheory:parametrized_assemblage x DG_ATPCh15:tetravalent_assemblage",
+      "type": "convergence_web"
+    },
+    "cw:78": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/cw078.md",
+      "concept": "DeLanda_AssemblageTheory:properties_vs_capacities x Cortes_BiocosmologyBirth:ever_expanding_config_space",
+      "type": "convergence_web"
+    },
+    "cw:79": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/cw079.md",
+      "concept": "DeLanda_AssemblageTheory:intensive_extensive x Cortes_TAPEquation:extinction_instability",
+      "type": "convergence_web"
+    },
+    "cw:80": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/cw080.md",
+      "concept": "DeLanda_AssemblageTheory:virtual_diagram x Cortes_TAPEquation:TAP_equation_general",
+      "type": "convergence_web"
+    },
+    "cw:81": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/cw081.md",
+      "concept": "DeLanda_AssemblageTheory:relations_of_exteriority x Easwaran_Book:nishkama_karma",
+      "type": "convergence_web"
+    },
+    "cw:82": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/cw082.md",
+      "concept": "DeLanda_AssemblageTheory:nested_assemblages x Turchin:hierarchical_scaling_law",
+      "type": "convergence_web"
+    },
+    "w:211": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/w211.md",
+      "concept": "DeLanda_AssemblageTheory:parametrized_assemblage"
+    },
+    "w:212": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/w212.md",
+      "concept": "DeLanda_AssemblageTheory:relations_of_exteriority"
+    },
+    "w:213": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/w213.md",
+      "concept": "DeLanda_AssemblageTheory:properties_vs_capacities"
+    },
+    "w:214": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/w214.md",
+      "concept": "DeLanda_AssemblageTheory:intensive_extensive"
+    },
+    "w:215": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/w215.md",
+      "concept": "DeLanda_AssemblageTheory:virtual_diagram"
+    },
+    "w:216": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/w216.md",
+      "concept": "DeLanda_AssemblageTheory:divergent_actualization"
+    },
+    "w:217": {
+      "source": "delanda-assemblage-early",
+      "file": "delanda-assemblage-early/w217.md",
+      "concept": "DeLanda_AssemblageTheory:nested_assemblages"
+    },
+    "cw:23": {
+      "source": "dg-early",
+      "file": "dg-early/cw023.md",
+      "concept": "DG:TetravalentAssemblage x Emery:DP1/DP2+causal_texture",
+      "type": "convergence_web"
+    },
+    "cw:24": {
+      "source": "dg-early",
+      "file": "dg-early/cw024.md",
+      "concept": "DG:SelectionRule x Fermat/Feynman:least_action",
+      "type": "convergence_web"
+    },
+    "cw:25": {
+      "source": "dg-early",
+      "file": "dg-early/cw025.md",
+      "concept": "DG:SelectionRule x Lizier2012:LoopRequirement",
+      "type": "convergence_web"
+    },
+    "cw:26": {
+      "source": "dg-early",
+      "file": "dg-early/cw026.md",
+      "concept": "DG:MutualImmanence x Sartre:praxis-process/process-praxis",
+      "type": "convergence_web"
+    },
+    "cw:27": {
+      "source": "dg-early",
+      "file": "dg-early/cw027.md",
+      "concept": "DG:ConjunctionVsConnection x Emery:transaction_not_interaction",
+      "type": "convergence_web"
+    },
+    "cw:28": {
+      "source": "dg-early",
+      "file": "dg-early/cw028.md",
+      "concept": "DG:FourFormsOfD x Turchin:secular_cycles",
+      "type": "convergence_web"
+    },
+    "cw:29": {
+      "source": "dg-early",
+      "file": "dg-early/cw029.md",
+      "concept": "DG:DestratificationWarning x Emery:laissez_faire",
+      "type": "convergence_web"
+    },
+    "w:73": {
+      "source": "dg-early",
+      "file": "dg-early/w073.md",
+      "concept": "DG:rhizomatic"
+    },
+    "w:74": {
+      "source": "dg-early",
+      "file": "dg-early/w074.md",
+      "concept": "DG:arborescent"
+    },
+    "w:125": {
+      "source": "dg-early",
+      "file": "dg-early/w125.md",
+      "concept": "DG:TetravalentAssemblage"
+    },
+    "w:126": {
+      "source": "dg-early",
+      "file": "dg-early/w126.md",
+      "concept": "DG:DoubleArticulation"
+    },
+    "w:127": {
+      "source": "dg-early",
+      "file": "dg-early/w127.md",
+      "concept": "DG:LinesOfFlight"
+    },
+    "w:128": {
+      "source": "dg-early",
+      "file": "dg-early/w128.md",
+      "concept": "DG:MutualImmanence"
+    },
+    "w:129": {
+      "source": "dg-early",
+      "file": "dg-early/w129.md",
+      "concept": "DG:SelectionRule"
+    },
+    "w:130": {
+      "source": "dg-early",
+      "file": "dg-early/w130.md",
+      "concept": "DG:FourFormsOfD"
+    },
+    "w:131": {
+      "source": "dg-early",
+      "file": "dg-early/w131.md",
+      "concept": "DG:DestratificationWarning"
+    },
+    "w:132": {
+      "source": "dg-early",
+      "file": "dg-early/w132.md",
+      "concept": "DG:SmoothStriated"
+    },
+    "w:133": {
+      "source": "dg-early",
+      "file": "dg-early/w133.md",
+      "concept": "DG:AbstractMachine"
+    },
+    "w:134": {
+      "source": "dg-early",
+      "file": "dg-early/w134.md",
+      "concept": "DG:ConjunctionVsConnection"
+    },
+    "w:135": {
+      "source": "dg-early",
+      "file": "dg-early/w135.md",
+      "concept": "DG:Coefficients"
+    },
+    "w:136": {
+      "source": "dg-early",
+      "file": "dg-early/w136.md",
+      "concept": "DG:ThreeAbstractMachineTypes"
+    },
+    "w:137": {
+      "source": "dg-early",
+      "file": "dg-early/w137.md",
+      "concept": "DG:ThreeDangersOfLines"
+    },
+    "cw:65": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/cw065.md",
+      "concept": "Easwaran_Gita:nishkama_karma x Cortes_etal_TAP:logistic_TAP_open",
+      "type": "convergence_web"
+    },
+    "cw:66": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/cw066.md",
+      "concept": "Easwaran_Gita:three_gunas x Cortes_etal_TAP:extinction_instability",
+      "type": "convergence_web"
+    },
+    "cw:67": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/cw067.md",
+      "concept": "Easwaran_Gita:kshetra_kshetrajna x Emery_Trist:L_matrix",
+      "type": "convergence_web"
+    },
+    "cw:68": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/cw068.md",
+      "concept": "Easwaran_Gita:atman_completeness x Unificity:one_prime",
+      "type": "convergence_web"
+    },
+    "cw:69": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/cw069.md",
+      "concept": "Easwaran_Gita:dharma x Cortes_Perspective:constraint_closure",
+      "type": "convergence_web"
+    },
+    "cw:70": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/cw070.md",
+      "concept": "Easwaran_Gita:shraddha x Emery_M_OST:directive_correlation",
+      "type": "convergence_web"
+    },
+    "w:195": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/w195.md",
+      "concept": "Easwaran_Gita:nishkama_karma"
+    },
+    "w:196": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/w196.md",
+      "concept": "Easwaran_Gita:three_gunas"
+    },
+    "w:197": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/w197.md",
+      "concept": "Easwaran_Gita:kshetra_kshetrajna"
+    },
+    "w:198": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/w198.md",
+      "concept": "Easwaran_Gita:vishvarupa"
+    },
+    "w:199": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/w199.md",
+      "concept": "Easwaran_Gita:dharma"
+    },
+    "w:200": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/w200.md",
+      "concept": "Easwaran_Gita:atman_completeness"
+    },
+    "w:201": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/w201.md",
+      "concept": "Easwaran_Gita:shraddha"
+    },
+    "w:202": {
+      "source": "easwaran-gita-early",
+      "file": "easwaran-gita-early/w202.md",
+      "concept": "Easwaran_Gita:yoga_praxis"
+    },
+    "cw:71": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/cw071.md",
+      "concept": "Easwaran_Glossary:buddhi_manas_ahamkara x Easwaran_Gita:kshetra_kshetrajna",
+      "type": "convergence_web"
+    },
+    "cw:72": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/cw072.md",
+      "concept": "Easwaran_Glossary:tapas x Cortes_BiocosmologyPerspective:constraint_closure",
+      "type": "convergence_web"
+    },
+    "cw:73": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/cw073.md",
+      "concept": "Easwaran_Glossary:lila x Cortes_TAPEquation:TAP_combinatorics",
+      "type": "convergence_web"
+    },
+    "cw:74": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/cw074.md",
+      "concept": "Easwaran_Glossary:samsara x Cortes_TAPEquation:extinction_instability",
+      "type": "convergence_web"
+    },
+    "cw:75": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/cw075.md",
+      "concept": "Easwaran_Glossary:kalpa_yuga_samsara x Turchin:secular_cycles",
+      "type": "convergence_web"
+    },
+    "w:203": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/w203.md",
+      "concept": "Easwaran_Glossary:ahamkara"
+    },
+    "w:204": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/w204.md",
+      "concept": "Easwaran_Glossary:buddhi_manas_ahamkara"
+    },
+    "w:205": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/w205.md",
+      "concept": "Easwaran_Glossary:jiva_atman_distinction"
+    },
+    "w:206": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/w206.md",
+      "concept": "Easwaran_Glossary:lila"
+    },
+    "w:207": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/w207.md",
+      "concept": "Easwaran_Glossary:tapas"
+    },
+    "w:208": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/w208.md",
+      "concept": "Easwaran_Glossary:kalpa_yuga_samsara"
+    },
+    "w:209": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/w209.md",
+      "concept": "Easwaran_Glossary:samsara"
+    },
+    "w:210": {
+      "source": "easwaran-glossary-early",
+      "file": "easwaran-glossary-early/w210.md",
+      "concept": "Easwaran_Glossary:etymological_architecture"
+    },
+    "cw:16": {
+      "source": "emery-early",
+      "file": "emery-early/cw016.md",
+      "concept": "Emery:laissez_faire x Sartre:counter-finality",
+      "type": "convergence_web"
+    },
+    "cw:19": {
+      "source": "emery-early",
+      "file": "emery-early/cw019.md",
+      "concept": "Emery:six_criteria x Levinas:enjoyment",
+      "type": "convergence_web"
+    },
+    "cw:38": {
+      "source": "emery-early",
+      "file": "emery-early/cw038.md",
+      "concept": "Emery:ecological_learning x Levinas:enjoyment_ipseity",
+      "type": "convergence_web"
+    },
+    "cw:39": {
+      "source": "emery-early",
+      "file": "emery-early/cw039.md",
+      "concept": "Emery:puzzle_learning x deGuerre:EmergentDesign",
+      "type": "convergence_web"
+    },
+    "cw:40": {
+      "source": "emery-early",
+      "file": "emery-early/cw040.md",
+      "concept": "Emery:functional_level_hierarchy x Turchin-Gavrilets:hierarchical_scaling",
+      "type": "convergence_web"
+    },
+    "cw:41": {
+      "source": "emery-early",
+      "file": "emery-early/cw041.md",
+      "concept": "Emery:structural_corroboration x DG:abstract_machines",
+      "type": "convergence_web"
+    },
+    "w:82": {
+      "source": "emery-early",
+      "file": "emery-early/w082.md",
+      "concept": "Emery:DP1"
+    },
+    "w:83": {
+      "source": "emery-early",
+      "file": "emery-early/w083.md",
+      "concept": "Emery:DP2"
+    },
+    "w:84": {
+      "source": "emery-early",
+      "file": "emery-early/w084.md",
+      "concept": "Emery:laissez_faire"
+    },
+    "w:85": {
+      "source": "emery-early",
+      "file": "emery-early/w085.md",
+      "concept": "Emery:six_criteria_optimization"
+    },
+    "w:86": {
+      "source": "emery-early",
+      "file": "emery-early/w086.md",
+      "concept": "Emery:six_criteria_maximization"
+    },
+    "w:87": {
+      "source": "emery-early",
+      "file": "emery-early/w087.md",
+      "concept": "Emery:directive_correlation"
+    },
+    "w:88": {
+      "source": "emery-early",
+      "file": "emery-early/w088.md",
+      "concept": "Emery:transaction_not_interaction"
+    },
+    "w:89": {
+      "source": "emery-early",
+      "file": "emery-early/w089.md",
+      "concept": "Emery:unitas_multiplex"
+    },
+    "w:90": {
+      "source": "emery-early",
+      "file": "emery-early/w090.md",
+      "concept": "Emery:ideal_seeking"
+    },
+    "w:91": {
+      "source": "emery-early",
+      "file": "emery-early/w091.md",
+      "concept": "Emery:thin_red_line"
+    },
+    "w:92": {
+      "source": "emery-early",
+      "file": "emery-early/w092.md",
+      "concept": "Emery:joint_optimization"
+    },
+    "w:93": {
+      "source": "emery-early",
+      "file": "emery-early/w093.md",
+      "concept": "Emery:tele_and_tinny"
+    },
+    "w:94": {
+      "source": "emery-early",
+      "file": "emery-early/w094.md",
+      "concept": "Emery:SC_then_PDW"
+    },
+    "w:95": {
+      "source": "emery-early",
+      "file": "emery-early/w095.md",
+      "concept": "Emery:shadow_organization"
+    },
+    "w:96": {
+      "source": "emery-early",
+      "file": "emery-early/w096.md",
+      "concept": "Emery:skills_matrix"
+    },
+    "w:97": {
+      "source": "emery-early",
+      "file": "emery-early/w097.md",
+      "concept": "Emery:transaction_biunimodal"
+    },
+    "w:98": {
+      "source": "emery-early",
+      "file": "emery-early/w098.md",
+      "concept": "Emery:reciprocity_gauge"
+    },
+    "w:99": {
+      "source": "emery-early",
+      "file": "emery-early/w099.md",
+      "concept": "Emery:directive_correlation_CDF"
+    },
+    "w:151": {
+      "source": "emery-early",
+      "file": "emery-early/w151.md",
+      "concept": "Emery:potential_directive_correlation"
+    },
+    "w:152": {
+      "source": "emery-early",
+      "file": "emery-early/w152.md",
+      "concept": "Emery:four_ideals_L_channel"
+    },
+    "w:153": {
+      "source": "emery-early",
+      "file": "emery-early/w153.md",
+      "concept": "Emery:ecological_learning"
+    },
+    "w:154": {
+      "source": "emery-early",
+      "file": "emery-early/w154.md",
+      "concept": "Emery:puzzle_learning"
+    },
+    "w:155": {
+      "source": "emery-early",
+      "file": "emery-early/w155.md",
+      "concept": "Emery:functional_level_hierarchy"
+    },
+    "w:156": {
+      "source": "emery-early",
+      "file": "emery-early/w156.md",
+      "concept": "Emery:learning_organization_DP2"
+    },
+    "w:157": {
+      "source": "emery-early",
+      "file": "emery-early/w157.md",
+      "concept": "Emery:AXB_model"
+    },
+    "w:158": {
+      "source": "emery-early",
+      "file": "emery-early/w158.md",
+      "concept": "Emery:structural_corroboration"
+    },
+    "w:76": {
+      "source": "fermat-early",
+      "file": "fermat-early/w076.md",
+      "concept": "Fermat:least_time"
+    },
+    "cw:17": {
+      "source": "fermatfeynman-early",
+      "file": "fermatfeynman-early/cw017.md",
+      "concept": "Fermat/Feynman:least_action x Turchin:multilevel_selection",
+      "type": "convergence_web"
+    },
+    "cw:18": {
+      "source": "fermatfeynman-early",
+      "file": "fermatfeynman-early/cw018.md",
+      "concept": "Fermat/Feynman:least_action x Lizier2012:LoopRequirement",
+      "type": "convergence_web"
+    },
+    "w:77": {
+      "source": "feynman-early",
+      "file": "feynman-early/w077.md",
+      "concept": "Feynman:path_integral"
+    },
+    "cw:20": {
+      "source": "levinas-early",
+      "file": "levinas-early/cw020.md",
+      "concept": "Levinas:facade x Emery:skills_matrix",
+      "type": "convergence_web"
+    },
+    "cw:30": {
+      "source": "levinas-early",
+      "file": "levinas-early/cw030.md",
+      "concept": "Levinas:corporeity x Emery:L11_L22",
+      "type": "convergence_web"
+    },
+    "cw:31": {
+      "source": "levinas-early",
+      "file": "levinas-early/cw031.md",
+      "concept": "Levinas:radical_multiplicity x Turchin:multilevel_selection",
+      "type": "convergence_web"
+    },
+    "cw:32": {
+      "source": "levinas-early",
+      "file": "levinas-early/cw032.md",
+      "concept": "Levinas:asymmetry_of_transcendence x DG:ConjunctionVsConnection",
+      "type": "convergence_web"
+    },
+    "cw:33": {
+      "source": "levinas-early",
+      "file": "levinas-early/cw033.md",
+      "concept": "Levinas:work_separating_from_will x Sartre:practico-inert",
+      "type": "convergence_web"
+    },
+    "w:62": {
+      "source": "levinas-early",
+      "file": "levinas-early/w062.md",
+      "concept": "Levinas:alterity"
+    },
+    "w:63": {
+      "source": "levinas-early",
+      "file": "levinas-early/w063.md",
+      "concept": "Levinas:unicity_paternity"
+    },
+    "w:64": {
+      "source": "levinas-early",
+      "file": "levinas-early/w064.md",
+      "concept": "Levinas:enjoyment"
+    },
+    "w:65": {
+      "source": "levinas-early",
+      "file": "levinas-early/w065.md",
+      "concept": "Levinas:ipseity"
+    },
+    "w:66": {
+      "source": "levinas-early",
+      "file": "levinas-early/w066.md",
+      "concept": "Levinas:need"
+    },
+    "w:67": {
+      "source": "levinas-early",
+      "file": "levinas-early/w067.md",
+      "concept": "Levinas:separation"
+    },
+    "w:68": {
+      "source": "levinas-early",
+      "file": "levinas-early/w068.md",
+      "concept": "Levinas:the_face"
+    },
+    "w:69": {
+      "source": "levinas-early",
+      "file": "levinas-early/w069.md",
+      "concept": "Levinas:facade"
+    },
+    "w:70": {
+      "source": "levinas-early",
+      "file": "levinas-early/w070.md",
+      "concept": "Levinas:lateral_signification"
+    },
+    "w:71": {
+      "source": "levinas-early",
+      "file": "levinas-early/w071.md",
+      "concept": "Levinas:time_postponement"
+    },
+    "w:72": {
+      "source": "levinas-early",
+      "file": "levinas-early/w072.md",
+      "concept": "Levinas:work_separating_from_will"
+    },
+    "w:138": {
+      "source": "levinas-early",
+      "file": "levinas-early/w138.md",
+      "concept": "Levinas:corporeity"
+    },
+    "w:139": {
+      "source": "levinas-early",
+      "file": "levinas-early/w139.md",
+      "concept": "Levinas:radical_multiplicity"
+    },
+    "w:140": {
+      "source": "levinas-early",
+      "file": "levinas-early/w140.md",
+      "concept": "Levinas:asymmetry_of_transcendence"
+    },
+    "w:141": {
+      "source": "levinas-early",
+      "file": "levinas-early/w141.md",
+      "concept": "Levinas:betrayal_fidelity"
+    },
+    "w:142": {
+      "source": "levinas-early",
+      "file": "levinas-early/w142.md",
+      "concept": "Levinas:affectivity_as_involution"
+    },
+    "cw:1": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw001.md",
+      "concept": "Lizier2012:ActiveInfoStorage x Sartre:practico-inert",
+      "type": "convergence_web"
+    },
+    "cw:2": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw002.md",
+      "concept": "Lizier2012:LoopRequirement x Emery:reciprocity_gauge",
+      "type": "convergence_web"
+    },
+    "cw:3": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw003.md",
+      "concept": "Lizier2012:LoopRequirement x Emery:transaction_not_interaction",
+      "type": "convergence_web"
+    },
+    "cw:4": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw004.md",
+      "concept": "Lizier2012:ActiveInfoStorage x Levinas:ipseity",
+      "type": "convergence_web"
+    },
+    "cw:5": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw005.md",
+      "concept": "Lizier2012:FeedforwardEchoes x Levinas:time_postponement",
+      "type": "convergence_web"
+    },
+    "cw:6": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw006.md",
+      "concept": "Lizier2023Slideshow:ModularityEffect x Emery:DP1/DP2",
+      "type": "convergence_web"
+    },
+    "cw:7": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw007.md",
+      "concept": "Lizier2023Slideshow:ModularityEffect x Turchin:asabiyya",
+      "type": "convergence_web"
+    },
+    "cw:8": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw008.md",
+      "concept": "Lizier2012:ClusteringCoefficient x Turchin:dunbar_limit",
+      "type": "convergence_web"
+    },
+    "cw:9": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw009.md",
+      "concept": "Lizier2023Slideshow:InfoStorageSyncTriangle x Turchin:multilevel_selection",
+      "type": "convergence_web"
+    },
+    "cw:21": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw021.md",
+      "concept": "Lizier2023Slideshow:ContinuousVsDiscrete x Sartre:praxis-process/process-praxis",
+      "type": "convergence_web"
+    },
+    "cw:22": {
+      "source": "lizier-early",
+      "file": "lizier-early/cw022.md",
+      "concept": "Lizier2023Slideshow:CouplingDelays x Levinas:time_postponement",
+      "type": "convergence_web"
+    },
+    "w:116": {
+      "source": "lizier-early",
+      "file": "lizier-early/w116.md",
+      "concept": "Lizier2012:ActiveInfoStorage"
+    },
+    "w:117": {
+      "source": "lizier-early",
+      "file": "lizier-early/w117.md",
+      "concept": "Lizier2012:ClusteringCoefficient"
+    },
+    "w:118": {
+      "source": "lizier-early",
+      "file": "lizier-early/w118.md",
+      "concept": "Lizier2012:LoopRequirement"
+    },
+    "w:119": {
+      "source": "lizier-early",
+      "file": "lizier-early/w119.md",
+      "concept": "Lizier2012:FeedforwardEchoes"
+    },
+    "w:120": {
+      "source": "lizier-early",
+      "file": "lizier-early/w120.md",
+      "concept": "Lizier2023Slideshow:InfoStorageSyncTriangle"
+    },
+    "w:121": {
+      "source": "lizier-early",
+      "file": "lizier-early/w121.md",
+      "concept": "Lizier2023Slideshow:ModularityEffect"
+    },
+    "w:122": {
+      "source": "lizier-early",
+      "file": "lizier-early/w122.md",
+      "concept": "Lizier2023Slideshow:EigenvalueBlindness"
+    },
+    "w:123": {
+      "source": "lizier-early",
+      "file": "lizier-early/w123.md",
+      "concept": "Lizier2023Slideshow:CouplingDelays"
+    },
+    "w:124": {
+      "source": "lizier-early",
+      "file": "lizier-early/w124.md",
+      "concept": "Lizier2023Slideshow:ContinuousVsDiscrete"
+    },
+    "cw:42": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/cw042.md",
+      "concept": "OSTsite:SixCriteria_3plus3 x Lizier2012:LoopRequirement",
+      "type": "convergence_web"
+    },
+    "cw:43": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/cw043.md",
+      "concept": "OSTsite:DP_exhaustiveness x DG:rhizomatic",
+      "type": "convergence_web"
+    },
+    "cw:44": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/cw044.md",
+      "concept": "OSTsite:LaissezFaire_void x deGuerre:TeleAndTinny",
+      "type": "convergence_web"
+    },
+    "cw:45": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/cw045.md",
+      "concept": "OSTsite:Neoliberalism_counterfinality x Sartre:counter-finality",
+      "type": "convergence_web"
+    },
+    "w:159": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/w159.md",
+      "concept": "OSTsite:SixCriteria_3plus3"
+    },
+    "w:160": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/w160.md",
+      "concept": "OSTsite:DP_exhaustiveness"
+    },
+    "w:161": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/w161.md",
+      "concept": "OSTsite:LaissezFaire_void"
+    },
+    "w:162": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/w162.md",
+      "concept": "OSTsite:TwoLayer_environment"
+    },
+    "w:163": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/w163.md",
+      "concept": "OSTsite:L22_incommensurability_case"
+    },
+    "w:164": {
+      "source": "ostsite-early",
+      "file": "ostsite-early/w164.md",
+      "concept": "OSTsite:Neoliberalism_counterfinality"
+    },
+    "cw:10": {
+      "source": "ruesch-bateson-early",
+      "file": "ruesch-bateson-early/cw010.md",
+      "concept": "RB:Level_I-IV x Emery:DP1/DP2+causal_texture",
+      "type": "convergence_web"
+    },
+    "cw:11": {
+      "source": "ruesch-bateson-early",
+      "file": "ruesch-bateson-early/cw011.md",
+      "concept": "RB:Level_I-IV x DG:rhizomatic/arborescent",
+      "type": "convergence_web"
+    },
+    "cw:12": {
+      "source": "ruesch-bateson-early",
+      "file": "ruesch-bateson-early/cw012.md",
+      "concept": "RB:Level_IV x Turchin:asabiyya",
+      "type": "convergence_web"
+    },
+    "w:78": {
+      "source": "ruesch-bateson-early",
+      "file": "ruesch-bateson-early/w078.md",
+      "concept": "RB:Level_I"
+    },
+    "w:79": {
+      "source": "ruesch-bateson-early",
+      "file": "ruesch-bateson-early/w079.md",
+      "concept": "RB:Level_II"
+    },
+    "w:80": {
+      "source": "ruesch-bateson-early",
+      "file": "ruesch-bateson-early/w080.md",
+      "concept": "RB:Level_III"
+    },
+    "w:81": {
+      "source": "ruesch-bateson-early",
+      "file": "ruesch-bateson-early/w081.md",
+      "concept": "RB:Level_IV"
+    },
+    "w:225": {
+      "source": "sartre-CDR2-envelopment",
+      "file": "sartre-CDR2-envelopment/w225.md",
+      "concept": "?"
+    },
+    "w:226": {
+      "source": "sartre-CDR2-envelopment",
+      "file": "sartre-CDR2-envelopment/w226.md",
+      "concept": "?"
+    },
+    "w:227": {
+      "source": "sartre-CDR2-envelopment",
+      "file": "sartre-CDR2-envelopment/w227.md",
+      "concept": "?"
+    },
+    "w:228": {
+      "source": "sartre-CDR2-envelopment",
+      "file": "sartre-CDR2-envelopment/w228.md",
+      "concept": "?"
+    },
+    "w:229": {
+      "source": "sartre-CDR2-envelopment",
+      "file": "sartre-CDR2-envelopment/w229.md",
+      "concept": "?"
+    },
+    "w:230": {
+      "source": "sartre-CDR2-envelopment",
+      "file": "sartre-CDR2-envelopment/w230.md",
+      "concept": "?"
+    },
+    "w:231": {
+      "source": "sartre-CDR2-envelopment",
+      "file": "sartre-CDR2-envelopment/w231.md",
+      "concept": "?"
+    },
+    "cw:13": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw013.md",
+      "concept": "Sartre:totalization/detotalization x Levinas:enjoyment",
+      "type": "convergence_web"
+    },
+    "cw:14": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw014.md",
+      "concept": "Sartre:praxis-process/process-praxis x Bohm:explicate/implicate",
+      "type": "convergence_web"
+    },
+    "cw:15": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw015.md",
+      "concept": "Sartre:counter-finality x Turchin:elite_overproduction",
+      "type": "convergence_web"
+    },
+    "cw:83": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw083.md",
+      "concept": "Sartre_CritiqueDR2:totalization_of_envelopment x DeLanda_AssemblageTheory:divergent_actualization",
+      "type": "convergence_web"
+    },
+    "cw:84": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw084.md",
+      "concept": "Sartre_CritiqueDR2:practico_inert x EmeryTrist:L_matrix",
+      "type": "convergence_web"
+    },
+    "cw:85": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw085.md",
+      "concept": "Sartre_CritiqueDR2:counter_finality x Cortes_TAPEquation:extinction_instability",
+      "type": "convergence_web"
+    },
+    "cw:86": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw086.md",
+      "concept": "Sartre_CritiqueDR2:seriality_group_dialectic x DeLanda_AssemblageTheory:nested_assemblages",
+      "type": "convergence_web"
+    },
+    "cw:87": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw087.md",
+      "concept": "Sartre_CritiqueDR2:scarcity x Turchin_SocialPressures:elite_overproduction",
+      "type": "convergence_web"
+    },
+    "cw:88": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw088.md",
+      "concept": "Sartre_CritiqueDR2:incarnation x DG_ATPCh15:tetravalent_assemblage",
+      "type": "convergence_web"
+    },
+    "cw:89": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw089.md",
+      "concept": "Sartre_CritiqueDR2:TDR_triad x Cortes_BiocosmologyBirth:ever_expanding_config_space",
+      "type": "convergence_web"
+    },
+    "cw:90": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw090.md",
+      "concept": "Sartre:praxis_process x Sartre_Appendix:totalization_of_envelopment",
+      "type": "convergence_web"
+    },
+    "cw:91": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw091.md",
+      "concept": "Sartre:differential x DeLanda:divergent_actualization",
+      "type": "convergence_web"
+    },
+    "cw:92": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw092.md",
+      "concept": "Sartre:deviation_structural x Cortes:extinction_instability",
+      "type": "convergence_web"
+    },
+    "cw:93": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw093.md",
+      "concept": "Sartre:determined_indetermination x deGuerre:two_stage_model",
+      "type": "convergence_web"
+    },
+    "cw:94": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw094.md",
+      "concept": "Sartre:retrospective_condemnation x Sartre_Appendix:hysteresis",
+      "type": "convergence_web"
+    },
+    "cw:95": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw095.md",
+      "concept": "Sartre:ossification x DeLanda:assemblage_T_axis",
+      "type": "convergence_web"
+    },
+    "cw:96": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw096.md",
+      "concept": "Sartre:scarcity_of_men x Sartre_Appendix:scarcity",
+      "type": "convergence_web"
+    },
+    "cw:97": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw097.md",
+      "concept": "Sartre_CritiqueDR2:feedback_second_level x Sartre_CritiqueDR2:deviation_structural",
+      "type": "convergence_web"
+    },
+    "cw:98": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw098.md",
+      "concept": "Sartre_CritiqueDR2:costs_of_action x Cortes_TAPEquation:extinction_instability",
+      "type": "convergence_web"
+    },
+    "cw:99": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw099.md",
+      "concept": "Sartre_CritiqueDR2:meaning_vs_signification x Cortes_TAPEquation:youn_ratio",
+      "type": "convergence_web"
+    },
+    "cw:100": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw100.md",
+      "concept": "Sartre_CritiqueDR2:history_riddled_with_holes x Sartre_CritiqueDR2:retrospective_condemnation",
+      "type": "convergence_web"
+    },
+    "cw:101": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw101.md",
+      "concept": "Sartre_CritiqueDR2:single_and_multiple x DeLanda_AssemblageTheory:parametrized_assemblage",
+      "type": "convergence_web"
+    },
+    "cw:102": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw102.md",
+      "concept": "Sartre_CritiqueDR2:ontological_limit x DeLanda_AssemblageTheory:properties_capacities",
+      "type": "convergence_web"
+    },
+    "cw:103": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw103.md",
+      "concept": "Sartre_CritiqueDR2:process_praxis x DeLanda_AssemblageTheory:virtual_actual",
+      "type": "convergence_web"
+    },
+    "cw:104": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw104.md",
+      "concept": "Sartre_CritiqueDR2:non_transcendable_aim x BhagavadGita:nishkama_karma",
+      "type": "convergence_web"
+    },
+    "cw:105": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw105.md",
+      "concept": "Sartre_CritiqueDR2:practical_field_real_body x BhagavadGita:kshetra_kshetrajna",
+      "type": "convergence_web"
+    },
+    "cw:106": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw106.md",
+      "concept": "Sartre_CritiqueDR2:organic_hexis x BhagavadGita_Glossary:ahamkara",
+      "type": "convergence_web"
+    },
+    "cw:107": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw107.md",
+      "concept": "Sartre_CritiqueDR2:governed_circularity x Sartre_CritiqueDR2:feedback_second_level",
+      "type": "convergence_web"
+    },
+    "cw:108": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw108.md",
+      "concept": "Sartre_CritiqueDR2:knowledge_creation_invention x DeLanda_AssemblageTheory:properties_capacities",
+      "type": "convergence_web"
+    },
+    "cw:109": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw109.md",
+      "concept": "Sartre_CritiqueDR2:two_types_praxis x DeLanda_AssemblageTheory:parametrized_assemblage",
+      "type": "convergence_web"
+    },
+    "cw:110": {
+      "source": "sartre-early",
+      "file": "sartre-early/cw110.md",
+      "concept": "Sartre_CritiqueDR2:singularity_of_praxis x DeLanda_AssemblageTheory:divergent_actualization",
+      "type": "convergence_web"
+    },
+    "w:44": {
+      "source": "sartre-early",
+      "file": "sartre-early/w044.md",
+      "concept": "Sartre:totalization"
+    },
+    "w:45": {
+      "source": "sartre-early",
+      "file": "sartre-early/w045.md",
+      "concept": "Sartre:totalization_detotalization"
+    },
+    "w:46": {
+      "source": "sartre-early",
+      "file": "sartre-early/w046.md",
+      "concept": "Sartre:practico-inert"
+    },
+    "w:47": {
+      "source": "sartre-early",
+      "file": "sartre-early/w047.md",
+      "concept": "Sartre:counter-finality"
+    },
+    "w:48": {
+      "source": "sartre-early",
+      "file": "sartre-early/w048.md",
+      "concept": "Sartre:praxis-process"
+    },
+    "w:49": {
+      "source": "sartre-early",
+      "file": "sartre-early/w049.md",
+      "concept": "Sartre:process-praxis"
+    },
+    "w:50": {
+      "source": "sartre-early",
+      "file": "sartre-early/w050.md",
+      "concept": "Sartre:immanence"
+    },
+    "w:51": {
+      "source": "sartre-early",
+      "file": "sartre-early/w051.md",
+      "concept": "Sartre:transcendence"
+    },
+    "w:52": {
+      "source": "sartre-early",
+      "file": "sartre-early/w052.md",
+      "concept": "Sartre:anti-labour"
+    },
+    "w:53": {
+      "source": "sartre-early",
+      "file": "sartre-early/w053.md",
+      "concept": "Sartre:totalization-of-envelopment"
+    },
+    "w:54": {
+      "source": "sartre-early",
+      "file": "sartre-early/w054.md",
+      "concept": "Sartre:anti-dialectic"
+    },
+    "w:55": {
+      "source": "sartre-early",
+      "file": "sartre-early/w055.md",
+      "concept": "Sartre:pledge"
+    },
+    "w:56": {
+      "source": "sartre-early",
+      "file": "sartre-early/w056.md",
+      "concept": "Sartre:milieu"
+    },
+    "w:57": {
+      "source": "sartre-early",
+      "file": "sartre-early/w057.md",
+      "concept": "Sartre:ensemble"
+    },
+    "w:58": {
+      "source": "sartre-early",
+      "file": "sartre-early/w058.md",
+      "concept": "Sartre:group-in-fusion"
+    },
+    "cw:111": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/cw111.md",
+      "concept": "Taalbi:effective_adjacent_possible x Cortes_etal_BiocosmBirth:ever_expanding_config_space",
+      "type": "convergence_web"
+    },
+    "cw:112": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/cw112.md",
+      "concept": "Taalbi:resource_constraint_taming x Sartre_CritiqueDR2:counter_finality",
+      "type": "convergence_web"
+    },
+    "cw:113": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/cw113.md",
+      "concept": "Taalbi:new_colors_vs_copies x Sartre_CritiqueDR2:two_types_praxis",
+      "type": "convergence_web"
+    },
+    "cw:114": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/cw114.md",
+      "concept": "Taalbi:timescale_dependent_predictability x Emery_Trist:Type_IV_vortical",
+      "type": "convergence_web"
+    },
+    "cw:115": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/cw115.md",
+      "concept": "Taalbi:heaps_law_diversification x DeLanda_AssemblageTheory:properties_capacities",
+      "type": "convergence_web"
+    },
+    "cw:116": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/cw116.md",
+      "concept": "Taalbi:linear_attachment_kernel x Cortes_etal_TAP:extinction_instability",
+      "type": "convergence_web"
+    },
+    "cw:117": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/cw117.md",
+      "concept": "Taalbi:product_space_topology x Lizier2012:information_storage_loop_motifs",
+      "type": "convergence_web"
+    },
+    "w:246": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w246.md",
+      "concept": "Taalbi:effective_adjacent_possible"
+    },
+    "w:247": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w247.md",
+      "concept": "Taalbi:resource_constraint_taming"
+    },
+    "w:248": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w248.md",
+      "concept": "Taalbi:linear_attachment_kernel"
+    },
+    "w:249": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w249.md",
+      "concept": "Taalbi:new_colors_vs_copies"
+    },
+    "w:250": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w250.md",
+      "concept": "Taalbi:heaps_law_diversification"
+    },
+    "w:251": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w251.md",
+      "concept": "Taalbi:timescale_dependent_predictability"
+    },
+    "w:252": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w252.md",
+      "concept": "Taalbi:product_space_topology"
+    },
+    "w:253": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w253.md",
+      "concept": "Taalbi:bianconi_barabasi_connection"
+    },
+    "w:254": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w254.md",
+      "concept": "Taalbi:deepening_widening_regime"
+    },
+    "w:255": {
+      "source": "taalbi-early",
+      "file": "taalbi-early/w255.md",
+      "concept": "Taalbi:absorptive_capacity_depreciation"
+    },
+    "w:101": {
+      "source": "turchin-early",
+      "file": "turchin-early/w101.md",
+      "concept": "Turchin:secular_cycles"
+    },
+    "w:102": {
+      "source": "turchin-early",
+      "file": "turchin-early/w102.md",
+      "concept": "Turchin:elite_overproduction"
+    },
+    "w:103": {
+      "source": "turchin-early",
+      "file": "turchin-early/w103.md",
+      "concept": "Turchin:PSI"
+    },
+    "w:104": {
+      "source": "turchin-early",
+      "file": "turchin-early/w104.md",
+      "concept": "Turchin:asabiyya"
+    },
+    "w:105": {
+      "source": "turchin-early",
+      "file": "turchin-early/w105.md",
+      "concept": "Turchin:mirror_empires"
+    },
+    "w:106": {
+      "source": "turchin-early",
+      "file": "turchin-early/w106.md",
+      "concept": "Turchin:multilevel_selection"
+    },
+    "w:107": {
+      "source": "turchin-early",
+      "file": "turchin-early/w107.md",
+      "concept": "Turchin:dunbar_limit"
+    },
+    "w:108": {
+      "source": "turchin-early",
+      "file": "turchin-early/w108.md",
+      "concept": "Turchin:hierarchical_scaling_law"
+    },
+    "cw:57": {
+      "source": "unificity",
+      "file": "unificity/cw057.md",
+      "concept": "Unificity:three_modalities_L_matrix x ET:L11_L12_L21_L22",
+      "type": "convergence_web"
+    },
+    "cw:58": {
+      "source": "unificity",
+      "file": "unificity/cw058.md",
+      "concept": "Unificity:entailment_laws x Cortes:recursive_excursive",
+      "type": "convergence_web"
+    },
+    "cw:59": {
+      "source": "unificity",
+      "file": "unificity/cw059.md",
+      "concept": "Unificity:configuration_space_1prime x Cortes:ever_expanding_config_space",
+      "type": "convergence_web"
+    },
+    "cw:60": {
+      "source": "unificity",
+      "file": "unificity/cw060.md",
+      "concept": "Unificity:consummation_consumption x Cortes:constraint_closure",
+      "type": "convergence_web"
+    },
+    "w:183": {
+      "source": "unificity",
+      "file": "unificity/w183.md",
+      "concept": "Unificity:entailment_laws"
+    },
+    "w:184": {
+      "source": "unificity",
+      "file": "unificity/w184.md",
+      "concept": "Unificity:configuration_space_1prime"
+    },
+    "w:185": {
+      "source": "unificity",
+      "file": "unificity/w185.md",
+      "concept": "Unificity:three_modalities_L_matrix"
+    },
+    "w:186": {
+      "source": "unificity",
+      "file": "unificity/w186.md",
+      "concept": "Unificity:rhizome_unity_redistribution"
+    },
+    "w:187": {
+      "source": "unificity",
+      "file": "unificity/w187.md",
+      "concept": "Unificity:consummation_consumption"
+    },
+    "w:188": {
+      "source": "unificity",
+      "file": "unificity/w188.md",
+      "concept": "Unificity:virtual_real_asymmetry"
+    }
+  },
+  "concept_index": {
+    "?": [
+      "w:232",
+      "w:233",
+      "w:234",
+      "w:235",
+      "w:236",
+      "w:237",
+      "w:238",
+      "w:239",
+      "w:240",
+      "w:241",
+      "w:242",
+      "w:243",
+      "w:244",
+      "w:245",
+      "w:225",
+      "w:226",
+      "w:227",
+      "w:228",
+      "w:229",
+      "w:230",
+      "w:231"
+    ],
+    "trilaminar_rings": [
+      "w:109"
+    ],
+    "ring_volution_identity": [
+      "w:110"
+    ],
+    "helical_structure": [
+      "w:111"
+    ],
+    "janus_through_lines": [
+      "w:112"
+    ],
+    "floating_pressure_vectors": [
+      "w:113"
+    ],
+    "syntegration_ring_mapping": [
+      "w:114"
+    ],
+    "praxis_ring_mapping": [
+      "w:115"
+    ],
+    "behabitives": [
+      "w:75"
+    ],
+    "simulacrum_levels": [
+      "w:100"
+    ],
+    "explicate_order": [
+      "w:59"
+    ],
+    "implicate_order": [
+      "w:60"
+    ],
+    "rheomode": [
+      "w:61"
+    ],
+    "opacity_principle": [
+      "w:165"
+    ],
+    "ever_expanding_config_space": [
+      "w:166"
+    ],
+    "non_ergodicity": [
+      "w:167"
+    ],
+    "no_entailing_laws": [
+      "w:168"
+    ],
+    "tap_equation": [
+      "w:169"
+    ],
+    "emergent_dof": [
+      "w:170"
+    ],
+    "eft_analogy": [
+      "w:171"
+    ],
+    "creative_potential_q": [
+      "w:172"
+    ],
+    "template_synthesis": [
+      "w:173"
+    ],
+    "alive_dead": [
+      "w:174"
+    ],
+    "three_type_classification": [
+      "w:175"
+    ],
+    "false_equilibrium": [
+      "w:176"
+    ],
+    "functional_explanation": [
+      "w:177"
+    ],
+    "kantian_whole": [
+      "w:178"
+    ],
+    "recursive_excursive": [
+      "w:179"
+    ],
+    "three_arrows": [
+      "w:180"
+    ],
+    "fourth_law_formal": [
+      "w:181"
+    ],
+    "constraint_closure": [
+      "w:182"
+    ],
+    "extinction_instability": [
+      "w:189"
+    ],
+    "universality_markov": [
+      "w:190"
+    ],
+    "two_scale_variant": [
+      "w:191"
+    ],
+    "logistic_tap_open": [
+      "w:192"
+    ],
+    "continuous_blowup_integral": [
+      "w:193"
+    ],
+    "t_add_one_substitutability": [
+      "w:194"
+    ],
+    "teleandtinny": [
+      "w:143"
+    ],
+    "scfunnel": [
+      "w:144"
+    ],
+    "emergentdesign": [
+      "w:145"
+    ],
+    "townhallconsensus": [
+      "w:146"
+    ],
+    "sixmotivators": [
+      "w:147"
+    ],
+    "politicalemotionalprocess": [
+      "w:148"
+    ],
+    "generativelearning": [
+      "w:149"
+    ],
+    "diffusion": [
+      "w:150"
+    ],
+    "parametrized_assemblage": [
+      "w:211"
+    ],
+    "relations_of_exteriority": [
+      "w:212"
+    ],
+    "properties_vs_capacities": [
+      "w:213"
+    ],
+    "intensive_extensive": [
+      "w:214"
+    ],
+    "virtual_diagram": [
+      "w:215"
+    ],
+    "divergent_actualization": [
+      "w:216"
+    ],
+    "nested_assemblages": [
+      "w:217"
+    ],
+    "rhizomatic": [
+      "w:73"
+    ],
+    "arborescent": [
+      "w:74"
+    ],
+    "tetravalentassemblage": [
+      "w:125"
+    ],
+    "doublearticulation": [
+      "w:126"
+    ],
+    "linesofflight": [
+      "w:127"
+    ],
+    "mutualimmanence": [
+      "w:128"
+    ],
+    "selectionrule": [
+      "w:129"
+    ],
+    "fourformsofd": [
+      "w:130"
+    ],
+    "destratificationwarning": [
+      "w:131"
+    ],
+    "smoothstriated": [
+      "w:132"
+    ],
+    "abstractmachine": [
+      "w:133"
+    ],
+    "conjunctionvsconnection": [
+      "w:134"
+    ],
+    "coefficients": [
+      "w:135"
+    ],
+    "threeabstractmachinetypes": [
+      "w:136"
+    ],
+    "threedangersoflines": [
+      "w:137"
+    ],
+    "nishkama_karma": [
+      "w:195"
+    ],
+    "three_gunas": [
+      "w:196"
+    ],
+    "kshetra_kshetrajna": [
+      "w:197"
+    ],
+    "vishvarupa": [
+      "w:198"
+    ],
+    "dharma": [
+      "w:199"
+    ],
+    "atman_completeness": [
+      "w:200"
+    ],
+    "shraddha": [
+      "w:201"
+    ],
+    "yoga_praxis": [
+      "w:202"
+    ],
+    "ahamkara": [
+      "w:203"
+    ],
+    "buddhi_manas_ahamkara": [
+      "w:204"
+    ],
+    "jiva_atman_distinction": [
+      "w:205"
+    ],
+    "lila": [
+      "w:206"
+    ],
+    "tapas": [
+      "w:207"
+    ],
+    "kalpa_yuga_samsara": [
+      "w:208"
+    ],
+    "samsara": [
+      "w:209"
+    ],
+    "etymological_architecture": [
+      "w:210"
+    ],
+    "dp1": [
+      "w:82"
+    ],
+    "dp2": [
+      "w:83"
+    ],
+    "laissez_faire": [
+      "w:84"
+    ],
+    "six_criteria_optimization": [
+      "w:85"
+    ],
+    "six_criteria_maximization": [
+      "w:86"
+    ],
+    "directive_correlation": [
+      "w:87"
+    ],
+    "transaction_not_interaction": [
+      "w:88"
+    ],
+    "unitas_multiplex": [
+      "w:89"
+    ],
+    "ideal_seeking": [
+      "w:90"
+    ],
+    "thin_red_line": [
+      "w:91"
+    ],
+    "joint_optimization": [
+      "w:92"
+    ],
+    "tele_and_tinny": [
+      "w:93"
+    ],
+    "sc_then_pdw": [
+      "w:94"
+    ],
+    "shadow_organization": [
+      "w:95"
+    ],
+    "skills_matrix": [
+      "w:96"
+    ],
+    "transaction_biunimodal": [
+      "w:97"
+    ],
+    "reciprocity_gauge": [
+      "w:98"
+    ],
+    "directive_correlation_cdf": [
+      "w:99"
+    ],
+    "potential_directive_correlation": [
+      "w:151"
+    ],
+    "four_ideals_l_channel": [
+      "w:152"
+    ],
+    "ecological_learning": [
+      "w:153"
+    ],
+    "puzzle_learning": [
+      "w:154"
+    ],
+    "functional_level_hierarchy": [
+      "w:155"
+    ],
+    "learning_organization_dp2": [
+      "w:156"
+    ],
+    "axb_model": [
+      "w:157"
+    ],
+    "structural_corroboration": [
+      "w:158"
+    ],
+    "least_time": [
+      "w:76"
+    ],
+    "path_integral": [
+      "w:77"
+    ],
+    "alterity": [
+      "w:62"
+    ],
+    "unicity_paternity": [
+      "w:63"
+    ],
+    "enjoyment": [
+      "w:64"
+    ],
+    "ipseity": [
+      "w:65"
+    ],
+    "need": [
+      "w:66"
+    ],
+    "separation": [
+      "w:67"
+    ],
+    "the_face": [
+      "w:68"
+    ],
+    "facade": [
+      "w:69"
+    ],
+    "lateral_signification": [
+      "w:70"
+    ],
+    "time_postponement": [
+      "w:71"
+    ],
+    "work_separating_from_will": [
+      "w:72"
+    ],
+    "corporeity": [
+      "w:138"
+    ],
+    "radical_multiplicity": [
+      "w:139"
+    ],
+    "asymmetry_of_transcendence": [
+      "w:140"
+    ],
+    "betrayal_fidelity": [
+      "w:141"
+    ],
+    "affectivity_as_involution": [
+      "w:142"
+    ],
+    "activeinfostorage": [
+      "w:116"
+    ],
+    "clusteringcoefficient": [
+      "w:117"
+    ],
+    "looprequirement": [
+      "w:118"
+    ],
+    "feedforwardechoes": [
+      "w:119"
+    ],
+    "infostoragesynctriangle": [
+      "w:120"
+    ],
+    "modularityeffect": [
+      "w:121"
+    ],
+    "eigenvalueblindness": [
+      "w:122"
+    ],
+    "couplingdelays": [
+      "w:123"
+    ],
+    "continuousvsdiscrete": [
+      "w:124"
+    ],
+    "sixcriteria_3plus3": [
+      "w:159"
+    ],
+    "dp_exhaustiveness": [
+      "w:160"
+    ],
+    "laissezfaire_void": [
+      "w:161"
+    ],
+    "twolayer_environment": [
+      "w:162"
+    ],
+    "l22_incommensurability_case": [
+      "w:163"
+    ],
+    "neoliberalism_counterfinality": [
+      "w:164"
+    ],
+    "level_i": [
+      "w:78"
+    ],
+    "level_ii": [
+      "w:79"
+    ],
+    "level_iii": [
+      "w:80"
+    ],
+    "level_iv": [
+      "w:81"
+    ],
+    "totalization": [
+      "w:44"
+    ],
+    "totalization_detotalization": [
+      "w:45"
+    ],
+    "practico-inert": [
+      "w:46"
+    ],
+    "counter-finality": [
+      "w:47"
+    ],
+    "praxis-process": [
+      "w:48"
+    ],
+    "process-praxis": [
+      "w:49"
+    ],
+    "immanence": [
+      "w:50"
+    ],
+    "transcendence": [
+      "w:51"
+    ],
+    "anti-labour": [
+      "w:52"
+    ],
+    "totalization-of-envelopment": [
+      "w:53"
+    ],
+    "anti-dialectic": [
+      "w:54"
+    ],
+    "pledge": [
+      "w:55"
+    ],
+    "milieu": [
+      "w:56"
+    ],
+    "ensemble": [
+      "w:57"
+    ],
+    "group-in-fusion": [
+      "w:58"
+    ],
+    "effective_adjacent_possible": [
+      "w:246"
+    ],
+    "resource_constraint_taming": [
+      "w:247"
+    ],
+    "linear_attachment_kernel": [
+      "w:248"
+    ],
+    "new_colors_vs_copies": [
+      "w:249"
+    ],
+    "heaps_law_diversification": [
+      "w:250"
+    ],
+    "timescale_dependent_predictability": [
+      "w:251"
+    ],
+    "product_space_topology": [
+      "w:252"
+    ],
+    "bianconi_barabasi_connection": [
+      "w:253"
+    ],
+    "deepening_widening_regime": [
+      "w:254"
+    ],
+    "absorptive_capacity_depreciation": [
+      "w:255"
+    ],
+    "secular_cycles": [
+      "w:101"
+    ],
+    "elite_overproduction": [
+      "w:102"
+    ],
+    "psi": [
+      "w:103"
+    ],
+    "asabiyya": [
+      "w:104"
+    ],
+    "mirror_empires": [
+      "w:105"
+    ],
+    "multilevel_selection": [
+      "w:106"
+    ],
+    "dunbar_limit": [
+      "w:107"
+    ],
+    "hierarchical_scaling_law": [
+      "w:108"
+    ],
+    "entailment_laws": [
+      "w:183"
+    ],
+    "configuration_space_1prime": [
+      "w:184"
+    ],
+    "three_modalities_l_matrix": [
+      "w:185"
+    ],
+    "rhizome_unity_redistribution": [
+      "w:186"
+    ],
+    "consummation_consumption": [
+      "w:187"
+    ],
+    "virtual_real_asymmetry": [
+      "w:188"
+    ]
+  },
+  "source_index": {
+    "Viz": [
+      "w:109",
+      "w:110",
+      "w:111",
+      "w:112",
+      "w:113",
+      "w:114",
+      "w:115"
+    ],
+    "Austin": [
+      "w:75"
+    ],
+    "Baudrillard": [
+      "w:100"
+    ],
+    "Bohm": [
+      "w:59",
+      "w:60",
+      "w:61"
+    ],
+    "Cortes": [
+      "w:165",
+      "w:166",
+      "w:167",
+      "w:168",
+      "w:169",
+      "w:170",
+      "w:171",
+      "w:172",
+      "w:173",
+      "w:174",
+      "w:175",
+      "w:176",
+      "w:177",
+      "w:178",
+      "w:179",
+      "w:180",
+      "w:181",
+      "w:182"
+    ],
+    "Cortes_etal_TAP": [
+      "w:189",
+      "w:190",
+      "w:191",
+      "w:192",
+      "w:193",
+      "w:194"
+    ],
+    "deGuerre": [
+      "w:143",
+      "w:144",
+      "w:145",
+      "w:146",
+      "w:147",
+      "w:148",
+      "w:149",
+      "w:150"
+    ],
+    "DeLanda_AssemblageTheory": [
+      "w:211",
+      "w:212",
+      "w:213",
+      "w:214",
+      "w:215",
+      "w:216",
+      "w:217"
+    ],
+    "DG": [
+      "w:73",
+      "w:74",
+      "w:125",
+      "w:126",
+      "w:127",
+      "w:128",
+      "w:129",
+      "w:130",
+      "w:131",
+      "w:132",
+      "w:133",
+      "w:134",
+      "w:135",
+      "w:136",
+      "w:137"
+    ],
+    "Easwaran_Gita": [
+      "w:195",
+      "w:196",
+      "w:197",
+      "w:198",
+      "w:199",
+      "w:200",
+      "w:201",
+      "w:202"
+    ],
+    "Easwaran_Glossary": [
+      "w:203",
+      "w:204",
+      "w:205",
+      "w:206",
+      "w:207",
+      "w:208",
+      "w:209",
+      "w:210"
+    ],
+    "Emery": [
+      "w:82",
+      "w:83",
+      "w:84",
+      "w:85",
+      "w:86",
+      "w:87",
+      "w:88",
+      "w:89",
+      "w:90",
+      "w:91",
+      "w:92",
+      "w:93",
+      "w:94",
+      "w:95",
+      "w:96",
+      "w:97",
+      "w:98",
+      "w:99",
+      "w:151",
+      "w:152",
+      "w:153",
+      "w:154",
+      "w:155",
+      "w:156",
+      "w:157",
+      "w:158"
+    ],
+    "Fermat": [
+      "w:76"
+    ],
+    "Feynman": [
+      "w:77"
+    ],
+    "Levinas": [
+      "w:62",
+      "w:63",
+      "w:64",
+      "w:65",
+      "w:66",
+      "w:67",
+      "w:68",
+      "w:69",
+      "w:70",
+      "w:71",
+      "w:72",
+      "w:138",
+      "w:139",
+      "w:140",
+      "w:141",
+      "w:142"
+    ],
+    "Lizier2012": [
+      "w:116",
+      "w:117",
+      "w:118",
+      "w:119"
+    ],
+    "Lizier2023Slideshow": [
+      "w:120",
+      "w:121",
+      "w:122",
+      "w:123",
+      "w:124"
+    ],
+    "OSTsite": [
+      "w:159",
+      "w:160",
+      "w:161",
+      "w:162",
+      "w:163",
+      "w:164"
+    ],
+    "RB": [
+      "w:78",
+      "w:79",
+      "w:80",
+      "w:81"
+    ],
+    "Sartre": [
+      "w:44",
+      "w:45",
+      "w:46",
+      "w:47",
+      "w:48",
+      "w:49",
+      "w:50",
+      "w:51",
+      "w:52",
+      "w:53",
+      "w:54",
+      "w:55",
+      "w:56",
+      "w:57",
+      "w:58"
+    ],
+    "Taalbi": [
+      "w:246",
+      "w:247",
+      "w:248",
+      "w:249",
+      "w:250",
+      "w:251",
+      "w:252",
+      "w:253",
+      "w:254",
+      "w:255"
+    ],
+    "Turchin": [
+      "w:101",
+      "w:102",
+      "w:103",
+      "w:104",
+      "w:105",
+      "w:106",
+      "w:107",
+      "w:108"
+    ],
+    "Unificity": [
+      "w:183",
+      "w:184",
+      "w:185",
+      "w:186",
+      "w:187",
+      "w:188"
+    ]
+  }
+}
